@@ -14,7 +14,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/js/display_profile_image.js"></script>
   <!-- Middleware JS -->
-   <script src="../assets/js/middleware.js"></script>
+  <script src="../assets/js/middleware.js"></script>
+  <!-- SWAL -->
+  <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
+  <script src="../assets/swal/sweetalert2.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -52,7 +55,6 @@
         </div>
       </div>
     </div>
-    
-  </div> <!-- closing container div -->
+  </div> 
 </body>
 </html>
