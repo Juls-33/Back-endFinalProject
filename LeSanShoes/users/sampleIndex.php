@@ -1,4 +1,12 @@
-
+<?php
+// Start the session
+session_start();
+// if (!isset($_SESSION['username'])) {
+//     // Not logged in — redirect to login
+//     header("Location: sampleLogin.php");
+//     exit();
+// }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +22,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div><a href="sampleLogin.php"></a>Login</div>
+        <div><a href="sampleLogin.php">Login</a></div>
+        <p>Username: <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?></p>
+        <a href="../logoutUser.php">Logout</a>
     </body>
 </html>

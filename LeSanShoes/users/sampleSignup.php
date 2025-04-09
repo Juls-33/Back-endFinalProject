@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>UserAccounts - Sign up</title>
+  <title>LeSanShoes - Sign up</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
   <!-- Custom styles -->
@@ -14,7 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/js/display_profile_image.js"></script>
   <!-- Middleware JS -->
-  <script src="../assets/js/middleware.js"></script>
+  <script src="../assets/js/signupMiddleware.js"></script>
   <!-- SWAL -->
   <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
   <script src="../assets/swal/sweetalert2.min.js"></script>
@@ -50,7 +50,7 @@
             <div class="form-group">
               <button type="button" name="signup_btn" value="signup_btn" class="btn btn-success btn-block"  onclick="signUp()">Sign up</button>
             </div>
-            <p>Aready have an account? <a href="login.php">Sign in</a></p>
+            <p>Aready have an account? <a href="sampleLogin.php">Log in</a></p>
           </form>
         </div>
       </div>
