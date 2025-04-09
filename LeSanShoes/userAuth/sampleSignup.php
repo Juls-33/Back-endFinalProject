@@ -14,7 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="assets/js/display_profile_image.js"></script>
   <!-- Middleware JS -->
-  <script src="../assets/js/signupMiddleware.js"></script>
+  <script src="../includes/logic/signupMiddleware.js"></script>
   <!-- SWAL -->
   <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
   <script src="../assets/swal/sweetalert2.min.js"></script>

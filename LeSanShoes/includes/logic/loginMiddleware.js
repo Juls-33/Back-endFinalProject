@@ -30,7 +30,7 @@ function sendViaAJAX(formData){
         //sending to php and receiving response from server
         var jsonString = JSON.stringify(formData);
         $.ajax({
-            url: "../submitToDB.php", 
+            url: "../includes/logic/submitToDB.php", 
             type: "POST",
             data: {myJson : jsonString},
             success: function(response) {

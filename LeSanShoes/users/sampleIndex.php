@@ -22,8 +22,8 @@ session_start();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div><a href="sampleLogin.php">Login</a></div>
+        <div><a href="../userAuth/sampleLogin.php">Login</a></div>
         <p>Username: <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?></p>
-        <a href="../logoutUser.php">Logout</a>
+        <a href="../userAuth/logoutUser.php">Logout</a>
     </body>
 </html>

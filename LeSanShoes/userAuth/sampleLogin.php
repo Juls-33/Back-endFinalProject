@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['username'])) {
     // User is already logged in — redirect based on role
     if ($_SESSION['roles_id'] == 1) {
-        header("Location: sampleIndex.php"); 
+        header("Location: ../users/sampleIndex.php"); 
     } else {
         header("Location: ../admin/sampleAdminPage.php"); 
     }
@@ -26,7 +26,7 @@ if (isset($_SESSION['username'])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- <script type="text/javascript" src="assets/js/display_profile_image.js"></script> -->
         <!-- Middleware JS -->
-        <script src="../assets/js/loginMiddleware.js"></script>
+        <script src="../includes/logic/loginMiddleware.js"></script>
         <!-- SWAL -->
         <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
         <script src="../assets/swal/sweetalert2.min.js"></script>

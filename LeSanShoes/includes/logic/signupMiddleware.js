@@ -73,7 +73,7 @@ function isSignUpError(formData){
 
 function sendViaAJAX(jsonString){
     $.ajax({
-        url: "../submitToDB.php", 
+        url: "../includes/logic/submitToDB.php", 
         type: "POST",
         data: {myJson : jsonString},
         success: function(response) {

@@ -16,8 +16,8 @@
 </head>
 <body>
     <h1>I am an Admin</h1>
-    <a href="../users/sampleLogin.php">Login</a>
-    <a href="../users/sampleSignup.php">Sign Up</a>
-    <a href="../logoutAdmin.php">Logout</a>
+    <a href="../userAuth/sampleLogin.php">Login</a>
+    <a href="../userAuth/sampleSignup.php">Sign Up</a>
+    <a href="../userAuth/logoutAdmin.php">Logout</a>
 </body>
 </html>
