@@ -12,13 +12,16 @@
                         $roles = 1;
                         $user_email = $obj ->user_email;
                         $user_password = $obj ->user_password;
-                        $sql = "INSERT INTO users_tbl(username, roles_id, email, user_password)  VALUES ('$username', '$roles', '$user_email', '$user_password')";
-                        if ($conn->query($sql)===TRUE){
+                        $date_created = date('Y-m-d H:i:s');
+                        // $sql = "INSERT INTO users_tbl(username, roles_id, email, user_password, date_created, date_updated)  VALUES ('$username', '$roles', '$user_email', '$user_password', '$date_created','$date_created)";
+                        $stmt = $conn->prepare("INSERT INTO users_tbl(username, roles_id, email, user_password, date_created, date_updated) VALUES (?, ?, ?, ?, ?, ?)");
+                        $stmt->bind_param("sissss", $username, $roles, $user_email, $user_password, $date_created, $date_created);
+                        if ($stmt->execute()) {
                             echo "New record is saved.";
-                        }
-                        else{
+                        } else {
                             echo "Error";
                         }
+                        $stmt->close();
                     break;
                     case 'login':
                         $username = $obj->username;
@@ -39,6 +42,11 @@
                             $_SESSION['username'] = $user['username'];
                             $_SESSION['email'] = $user['email'];
                             $_SESSION['roles_id'] = $user['roles_id'];
+
+                            $updateStmt = $conn->prepare("UPDATE users_tbl SET last_login = NOW() WHERE username = ?");
+                            $updateStmt->bind_param("s", $user['username']);
+                            $updateStmt->execute();
+                            $updateStmt->close();
                 
                             echo json_encode([
                                 'status' => 'success',
