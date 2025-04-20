@@ -2,10 +2,16 @@ function signUp() {
     var formData = {
         action: 'signUp',
         username: document.getElementById("username").value.trim(),
+        user_fname: document.getElementById("fname").value.trim(),
+        user_lname: document.getElementById("lname").value.trim(),
         user_email: document.getElementById("email").value.trim(),
         user_password: document.getElementById("password").value.trim(),
         user_passwordConf: document.getElementById("passwordConf").value.trim(),
+        user_birthday: document.getElementById("birthdate").value.trim(),
+        user_address: document.getElementById("address").value.trim(),
+        user_contact: document.getElementById("contact").value.trim(),
     };
+    console.log(document.getElementById("birthdate").value.trim());
     verifySignUp(formData);
 }
 
@@ -40,11 +46,24 @@ function isSignUpError(formData){
     var errorString = "";
     if (!formData.username) {
         errorString +="--Username is empty--\n";
-        document.getElementById("username").classList.add("has-error");
+    }
+    if (!formData.user_fname) {
+        errorString +="--First name is empty--\n";
+    }
+    if (!formData.user_lname) {
+        errorString +="--Last nameis empty--\n";
     }
     if(!formData.user_email){
         errorString +="--Email is empty--\n";
-        document.getElementById("email").classList.add("has-error");
+    }
+    if(!formData.user_birthday){
+        errorString +="--Birthday is empty--\n";
+    }
+    if(!formData.user_address){
+        errorString +="--Address is empty--\n";
+    }
+    if(!formData.user_contact){
+        errorString +="--Contact is empty--\n";
     }
     let emailCtr = 0;
     for (let i = 0; i < formData.user_email.length; i++) {
@@ -59,11 +78,9 @@ function isSignUpError(formData){
     }
     if(!formData.user_password){
         errorString +="--Password is empty--\n";
-        document.getElementById("password").classList.add("has-error");
     }
     if(!formData.user_passwordConf){
         errorString +="--Confirm password is empty--\n";
-        document.getElementById("passwordConf").classList.add("has-error");
     }
     if (formData.user_password!==formData.user_passwordConf){
         errorString +="--The password must match--\n";
@@ -73,7 +90,7 @@ function isSignUpError(formData){
 
 function sendViaAJAX(jsonString){
     $.ajax({
-        url: "../includes/logic/submitToDB.php", 
+        url: "../includes/logic/userAuthToDB.php", 
         type: "POST",
         data: {myJson : jsonString},
         success: function(response) {

@@ -10,12 +10,20 @@
                     case 'signUp':
                         $username = $obj ->username;
                         $roles = 1;
+                        $user_fname = $obj ->user_fname;
+                        $user_lname = $obj ->user_lname;
                         $user_email = $obj ->user_email;
                         $user_password = $obj ->user_password;
+                        $user_birthday = $obj ->user_birthday;
+                        $user_address = $obj ->user_address;
+                        $user_contact = $obj ->user_contact;
                         $date_created = date('Y-m-d H:i:s');
+
+                        $dateObj = new DateTime($user_birthday);
+                        $formatted_birthday = $dateObj->format('Y-m-d');
                         // $sql = "INSERT INTO users_tbl(username, roles_id, email, user_password, date_created, date_updated)  VALUES ('$username', '$roles', '$user_email', '$user_password', '$date_created','$date_created)";
-                        $stmt = $conn->prepare("INSERT INTO users_tbl(username, roles_id, email, user_password, date_created, date_updated) VALUES (?, ?, ?, ?, ?, ?)");
-                        $stmt->bind_param("sissss", $username, $roles, $user_email, $user_password, $date_created, $date_created);
+                        $stmt = $conn->prepare("INSERT INTO users_tbl(username, roles_id, fname, lname, email, user_password, birthday, user_address, contact, date_created, date_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        $stmt->bind_param("sisssssssss", $username, $roles, $user_fname, $user_lname, $user_email, $user_password, $formatted_birthday, $user_address, $user_contact, $date_created, $date_created);
                         if ($stmt->execute()) {
                             echo "New record is saved.";
                         } else {
