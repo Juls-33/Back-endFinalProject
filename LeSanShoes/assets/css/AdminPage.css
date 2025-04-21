@@ -144,5 +144,9 @@ a.sidebar-link:hover {
 }
 
 .sidebar-item:hover {
+    background-color: #cb4c4c; 
+}
+
+.active-nav{
     background-color: #B51E1E; 
-  }
+}

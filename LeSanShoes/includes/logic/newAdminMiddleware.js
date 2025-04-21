@@ -1,14 +1,12 @@
 function signUp() {
     var formData = {
-        action: 'signUp',
+        action: 'newAdmin',
         username: document.getElementById("username").value.trim(),
         user_fname: document.getElementById("fname").value.trim(),
         user_lname: document.getElementById("lname").value.trim(),
         user_email: document.getElementById("email").value.trim(),
         user_password: document.getElementById("password").value.trim(),
         user_passwordConf: document.getElementById("passwordConf").value.trim(),
-        user_birthday: document.getElementById("birthdate").value.trim(),
-        user_address: document.getElementById("address").value.trim(),
         user_contact: document.getElementById("contact").value.trim(),
     };
     verifySignUp(formData);
@@ -54,12 +52,6 @@ function isSignUpError(formData){
     }
     if(!formData.user_email){
         errorString +="--Email is empty--\n";
-    }
-    if(!formData.user_birthday){
-        errorString +="--Birthday is empty--\n";
-    }
-    if(!formData.user_address){
-        errorString +="--Address is empty--\n";
     }
     if(!formData.user_contact){
         errorString +="--Contact is empty--\n";
@@ -107,6 +99,14 @@ function sendViaAJAX(jsonString){
                     center top
                     no-repeat
                 `
+                }).then(() => {
+                    // Reset the form
+                    document.querySelector("#newAdminModal form").reset();
+    
+                    // Close the modal using Bootstrap's modal method
+                    var modalEl = document.getElementById('newAdminModal');
+                    var modal = bootstrap.Modal.getInstance(modalEl);
+                    modal.hide();
                 });
             
         },
@@ -120,4 +120,12 @@ function sendViaAJAX(jsonString){
         }
     });
 }
+document.addEventListener('DOMContentLoaded', function () {
+    var newAdminModal = document.getElementById('newAdminModal');
+
+    newAdminModal.addEventListener('hidden.bs.modal', function () {
+        // Clear the form inside the modal when it closes
+        newAdminModal.querySelector('form').reset();
+    });
+});
 

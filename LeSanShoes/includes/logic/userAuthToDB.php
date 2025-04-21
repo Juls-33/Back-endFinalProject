@@ -31,6 +31,26 @@
                         }
                         $stmt->close();
                     break;
+                    case 'newAdmin':
+                        $username = $obj ->username;
+                        $roles = 3;
+                        $user_fname = $obj ->user_fname;
+                        $user_lname = $obj ->user_lname;
+                        $user_email = $obj ->user_email;
+                        $user_password = $obj ->user_password;
+                        $user_contact = $obj ->user_contact;
+                        $date_created = date('Y-m-d H:i:s');
+
+                        // $sql = "INSERT INTO users_tbl(username, roles_id, email, user_password, date_created, date_updated)  VALUES ('$username', '$roles', '$user_email', '$user_password', '$date_created','$date_created)";
+                        $stmt = $conn->prepare("INSERT INTO users_tbl(username, roles_id, fname, lname, email, user_password, contact, date_created, date_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        $stmt->bind_param("sisssssss", $username, $roles, $user_fname, $user_lname, $user_email, $user_password,  $user_contact, $date_created, $date_created);
+                        if ($stmt->execute()) {
+                            echo "New record is saved.";
+                        } else {
+                            echo "Error";
+                        }
+                        $stmt->close();
+                    break;
                     case 'login':
                         $username = $obj->username;
                         $user_password = $obj->user_password;

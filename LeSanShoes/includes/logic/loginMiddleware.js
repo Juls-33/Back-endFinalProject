@@ -50,7 +50,7 @@ function sendViaAJAX(formData){
                     if (res.roles_id == 1) {
                         window.location.href = "../users/sampleIndex.php";
                     } else if (res.roles_id == 2 || res.roles_id == 3) {
-                        window.location.href = "../admin/sampleAdminPage.php";
+                        window.location.href = "../admin/DashboardAdmin.php";
                     } else {
                         Swal.fire({
                             icon: "warning",

@@ -6,7 +6,7 @@ if (isset($_SESSION['username'])) {
     if ($_SESSION['roles_id'] == 1) {
         header("Location: ../users/sampleIndex.php"); 
     } else {
-        header("Location: ../admin/sampleAdminPage.php"); 
+        header("Location: ../admin/DashboardAdmin.php"); 
     }
     exit();
 }

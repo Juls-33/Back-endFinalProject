@@ -1,3 +1,14 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['username'])) {
+        // Not logged in — redirect to login
+        header("Location: ../users/sampleIndex.php");
+        exit();
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +44,7 @@
                         <span>Profile</span>
                     </a>
                 </li> -->
-                <li class="sidebar-item">
+                <li class="sidebar-item active-nav">
                     <a href="#" class="sidebar-link">
                         <i class="lni lni-dashboard-square-1"></i>
                         <span>Dashboard</span>
@@ -82,14 +93,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="UserMngAdmin.php" class="sidebar-link">
                         <i class="lni lni-user-multiple-4"></i>
                         <span>User Management</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="../userAuth/logoutAdmin.php" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Logout</span>
                 </a>
@@ -109,17 +120,13 @@
                         </ol>
                         <!-- <h6 class="font-weight-bolder mb-0">Dashboard</h6> -->
                     </nav>
-            
-                
-                    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                        <ul class="navbar-nav ms-auto justify-content-end">
-                            <li class="nav-item d-flex align-items-center">
-                                <a href="javascript:;" class="nav-link font-weight-bold px-0 text-body">
-                                    <i class="fa fa-user me-sm-1" aria-hidden="true"></i>
-                                    <span class="d-sm-inline d-none">Sign In</span>
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="d-flex align-items-center justify-content-end ms-auto">
+                        <p class="mb-0 text-sm text-dark">Welcome back,
+                            <strong>
+                                <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?>
+                            </strong>
+                            
+                        </p>
                     </div>
                 </div>
             </nav>
@@ -319,10 +326,6 @@
             </div> -->
         </div>
     </div>
-
-    
-
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
