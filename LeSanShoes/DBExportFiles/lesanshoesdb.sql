@@ -16,12 +16,10 @@
 
 
 -- Dumping database structure for lesanshoes_db
-DROP DATABASE IF EXISTS `lesanshoes_db`;
 CREATE DATABASE IF NOT EXISTS `lesanshoes_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `lesanshoes_db`;
 
 -- Dumping structure for table lesanshoes_db.ads_tbl
-DROP TABLE IF EXISTS `ads_tbl`;
 CREATE TABLE IF NOT EXISTS `ads_tbl` (
   `ads_id` int(11) NOT NULL AUTO_INCREMENT,
   `image_add` text NOT NULL,
@@ -34,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `ads_tbl` (
 DELETE FROM `ads_tbl`;
 
 -- Dumping structure for table lesanshoes_db.brand_tbl
-DROP TABLE IF EXISTS `brand_tbl`;
 CREATE TABLE IF NOT EXISTS `brand_tbl` (
   `brand_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '',
@@ -47,7 +44,6 @@ CREATE TABLE IF NOT EXISTS `brand_tbl` (
 DELETE FROM `brand_tbl`;
 
 -- Dumping structure for table lesanshoes_db.category_tbl
-DROP TABLE IF EXISTS `category_tbl`;
 CREATE TABLE IF NOT EXISTS `category_tbl` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '',
@@ -60,7 +56,6 @@ CREATE TABLE IF NOT EXISTS `category_tbl` (
 DELETE FROM `category_tbl`;
 
 -- Dumping structure for table lesanshoes_db.faq_tbl
-DROP TABLE IF EXISTS `faq_tbl`;
 CREATE TABLE IF NOT EXISTS `faq_tbl` (
   `faq_id` int(11) NOT NULL AUTO_INCREMENT,
   `question` mediumtext NOT NULL,
@@ -74,7 +69,6 @@ CREATE TABLE IF NOT EXISTS `faq_tbl` (
 DELETE FROM `faq_tbl`;
 
 -- Dumping structure for table lesanshoes_db.orders_tbl
-DROP TABLE IF EXISTS `orders_tbl`;
 CREATE TABLE IF NOT EXISTS `orders_tbl` (
   `orders_id` int(11) DEFAULT NULL,
   `username` int(11) DEFAULT NULL,
@@ -90,7 +84,6 @@ CREATE TABLE IF NOT EXISTS `orders_tbl` (
 DELETE FROM `orders_tbl`;
 
 -- Dumping structure for table lesanshoes_db.roles_tbl
-DROP TABLE IF EXISTS `roles_tbl`;
 CREATE TABLE IF NOT EXISTS `roles_tbl` (
   `roles_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -108,7 +101,6 @@ INSERT INTO `roles_tbl` (`roles_id`, `name`, `description`, `date_created`, `dat
 	(3, 'Admin', 'Have the ability to accomodate orders, manage inventory, and view statistics', NULL, NULL);
 
 -- Dumping structure for table lesanshoes_db.shoes_gender_tbl
-DROP TABLE IF EXISTS `shoes_gender_tbl`;
 CREATE TABLE IF NOT EXISTS `shoes_gender_tbl` (
   `shoes_gender_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -121,7 +113,6 @@ CREATE TABLE IF NOT EXISTS `shoes_gender_tbl` (
 DELETE FROM `shoes_gender_tbl`;
 
 -- Dumping structure for table lesanshoes_db.shoes_tbl
-DROP TABLE IF EXISTS `shoes_tbl`;
 CREATE TABLE IF NOT EXISTS `shoes_tbl` (
   `shoes_id` int(11) DEFAULT NULL,
   `brand_id` int(11) DEFAULT NULL,
@@ -137,7 +128,6 @@ CREATE TABLE IF NOT EXISTS `shoes_tbl` (
 DELETE FROM `shoes_tbl`;
 
 -- Dumping structure for table lesanshoes_db.sku_tbl
-DROP TABLE IF EXISTS `sku_tbl`;
 CREATE TABLE IF NOT EXISTS `sku_tbl` (
   `sku` int(11) DEFAULT NULL,
   `shoe_id` int(11) DEFAULT NULL,
@@ -154,7 +144,6 @@ CREATE TABLE IF NOT EXISTS `sku_tbl` (
 DELETE FROM `sku_tbl`;
 
 -- Dumping structure for table lesanshoes_db.users_tbl
-DROP TABLE IF EXISTS `users_tbl`;
 CREATE TABLE IF NOT EXISTS `users_tbl` (
   `username` varchar(100) NOT NULL DEFAULT '',
   `roles_id` int(11) DEFAULT NULL,
@@ -173,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `users_tbl` (
   CONSTRAINT `users_tbl_ibfk_1` FOREIGN KEY (`roles_id`) REFERENCES `roles_tbl` (`roles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.users_tbl: ~4 rows (approximately)
+-- Dumping data for table lesanshoes_db.users_tbl: ~5 rows (approximately)
 DELETE FROM `users_tbl`;
 INSERT INTO `users_tbl` (`username`, `roles_id`, `fname`, `lname`, `email`, `user_password`, `birthday`, `user_address`, `contact`, `date_created`, `date_updated`, `last_login`) VALUES
 	('damian', 2, 'damian', 'lillard', 'damian@gmail.com', '123', '2025-04-23', '167-B 21st Avenue, East Rembo', '09664282161', '2025-04-20 18:25:14', '2025-04-20 18:25:14', '2025-04-21 22:12:32'),
