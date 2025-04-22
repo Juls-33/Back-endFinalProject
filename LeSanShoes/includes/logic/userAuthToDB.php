@@ -103,19 +103,33 @@
                         }
                         $stmt->close();
                     break;
-
-                       
-                    //     $user = getSingleRecord($sql, 'ss', [$username, $username]);
-                    //     if (!empty($user)) { // if user was found
-                    //         if (password_verify($password, $user_password)) { // if password matches
-                    //                 // log user in
-                    //                 loginById($user['id']);
-                    //         } else { // if password does not match
-                    //                 $_SESSION['error_msg'] = "Wrong credentials";
-                    //         }
-                    // } else { // if no user found
-                    //         $_SESSION['error_msg'] = "Wrong credentials";
-                    // }
+                    case 'confirmDelete':
+                        $username = $obj->username;
+                        $password = $obj->password;
+                        $adminUsername = $_SESSION['username'];
+                    
+                        $stmt = $conn->prepare("SELECT user_password FROM users_tbl WHERE username=? AND user_password=?");
+                        $stmt->bind_param("ss", $adminUsername, $password);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        
+                        if ($result->num_rows > 0) {
+                            if ($adminUsername === $username) {
+                                echo json_encode(['status' => 'error', 'message' => 'You cannot delete your own account.']);
+                                break;
+                            }
+                            $deleteStmt = $conn->prepare("DELETE FROM users_tbl WHERE username = ?");
+                            $deleteStmt->bind_param("s", $username);
+                            if ($deleteStmt->execute()) {
+                                echo json_encode(['status' => 'success', 'message' => 'User deleted successfully.']);
+                            } else {
+                                echo json_encode(['status' => 'error', 'message' => 'Deletion failed.']);
+                            }
+                            $deleteStmt->close();
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Incorrect admin password.']);
+                        }
+                        $stmt->close();
                     break;
                 }
             }

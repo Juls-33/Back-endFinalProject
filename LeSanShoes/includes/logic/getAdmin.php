@@ -1,7 +1,7 @@
 <?php
 include("config.php");
 
-$sql = "SELECT username, email, roles_id, date_created, last_login 
+$sql = "SELECT username, CONCAT(fname, ' ', lname) AS full_name, email, roles_id, contact, date_created, date_updated, last_login 
         FROM users_tbl 
         WHERE roles_id IN (2, 3)";
 

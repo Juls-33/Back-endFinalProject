@@ -132,7 +132,57 @@
                 <h1>User Management</h1>
                 <p>Add and delete administrator accounts and manage customer accounts</p>
             </div>
+            <!-- start of edit modal -->
             <div class="d-flex justify-content-end gap-3">
+            <div class="modal fade" id="deleteAdmin1" aria-hidden="true" aria-labelledby="deleteAdmin1ToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteAdmin1ToggleLabel">Edit details of administrator</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
+                        </div>
+                        <div class="modal-body">
+                            Enter the username to delete
+                            <hr>
+                            <div class="form-group mb-3">
+                                <label for="deleteUsername">Username</label>
+                                <input type="text" id="deleteUsername" name="deleteUsername" class="form-control" maxlength="100" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInput()">Close</button>
+                            <button class="btn btn-danger"   onclick="deleteAdmin()">Delete Administrator</button>
+                            <!-- data-bs-target="#deleteAdmin2" data-bs-toggle="modal"-->
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- secondmodal -->
+                    <div class="modal fade" id="deleteAdmin2" aria-hidden="true" aria-labelledby="deleteAdmin2ToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteAdmin2ToggleLabel">Delete an administrator</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
+                        </div>
+                        <div class="modal-body">
+                            Please enter your password to delete the administrator
+                            <hr>
+                            <div class="form-group mb-3">
+                                <label for="adminPassword">Password</label>
+                                <input type="password" id="adminPassword" name="adminPassword" class="form-control" maxlength="100" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#deleteAdmin1" data-bs-toggle="modal">Cancel</button>
+                            <button class="btn btn-danger" onclick="confirmDelete()">Confirm</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" data-bs-target="#editAdmin1" data-bs-toggle="modal">Edit Admin Details</button>
+                <!-- end of edit modal -->
+
                 <!-- New Admin Modal -->
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newAdminModal">Add New Admin</button>
                 <div class="modal fade" id="newAdminModal" tabindex="-1" aria-labelledby="neweModalLabel" aria-hidden="true">
@@ -196,7 +246,7 @@
                         <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="deleteAdmin1ToggleLabel">Delete an administrator</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
                         </div>
                         <div class="modal-body">
                             Enter the username to delete
@@ -207,7 +257,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInput()">Close</button>
                             <button class="btn btn-danger"   onclick="deleteAdmin()">Delete Administrator</button>
                             <!-- data-bs-target="#deleteAdmin2" data-bs-toggle="modal"-->
                         </div>
@@ -220,19 +270,19 @@
                         <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="deleteAdmin2ToggleLabel">Delete an administrator</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
                         </div>
                         <div class="modal-body">
                             Please enter your password to delete the administrator
                             <hr>
                             <div class="form-group mb-3">
                                 <label for="adminPassword">Password</label>
-                                <input type="adminPassword" id="password" name="password" class="form-control" maxlength="100" required>
+                                <input type="password" id="adminPassword" name="adminPassword" class="form-control" maxlength="100" required>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#deleteAdmin1" data-bs-toggle="modal">Cancel</button>
-                            <button class="btn btn-danger" onclick="test()">Confirm</button>
+                            <button class="btn btn-danger" onclick="confirmDelete()">Confirm</button>
                         </div>
                         </div>
                     </div>
@@ -254,9 +304,12 @@
                             <thead>
                                 <tr>
                                     <th>Username</th>
+                                    <th>Full name</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>Contact</th>
                                     <th>Date Created</th>
+                                    <th>Date Updated</th>
                                     <th>Last Login</th>
                                 </tr>
                             </thead>
@@ -270,9 +323,13 @@
                                 <thead>
                                     <tr>
                                         <th>Username</th>
+                                        <th>Full name</th>
                                         <th>Email</th>
-                                        <th>Role</th>
+                                        <th>Birthday</th>
+                                        <th>User address</th>
+                                        <th>Contact</th>
                                         <th>Date Created</th>
+                                        <th>Date Updated</th>
                                         <th>Last Login</th>
                                     </tr>
                                 </thead>

@@ -109,6 +109,8 @@ function sendViaAJAX(jsonString){
                     var modalEl = document.getElementById('newAdminModal');
                     var modal = bootstrap.Modal.getInstance(modalEl);
                     modal.hide();
+
+                    window.adminTable.ajax.reload(null, false);
                 });
             
         },
@@ -154,7 +156,11 @@ function deleteAdmin() {
                 var res = JSON.parse(response);
                 if (res.status === "success") {
                     usernameToDelete = formData.username;
-                    console.log(usernameToDelete);
+                    
+                    var modalEl1 = document.getElementById('deleteAdmin1');
+                    var modal1 = bootstrap.Modal.getInstance(modalEl1);
+                    modal1.hide();
+
                     var nextModal = new bootstrap.Modal(document.getElementById('deleteAdmin2'));
                     nextModal.show();
 
@@ -202,16 +208,29 @@ function confirmDelete(){
         success: function(response) {
             try {
                 var res = JSON.parse(response);
+                console.log(response);
                 if (res.status === "success") {
-                    usernameToDelete = formData.username;
-                    console.log(usernameToDelete);
-                    var nextModal = new bootstrap.Modal(document.getElementById('deleteAdmin2'));
-                    nextModal.show();
+                    usernameToDelete = "";
+                    Swal.fire({
+                        icon: "success",
+                        title: res.message,
+                    });
+                        var modalEl1 = document.getElementById('deleteAdmin1');
+                        var modal1 = bootstrap.Modal.getInstance(modalEl1);
+                        modal1.hide();
 
-                } else {
+                        var modalEl2 = document.getElementById('deleteAdmin2');
+                        var modal2 = bootstrap.Modal.getInstance(modalEl2);
+                        modal2.hide();
+
+                        document.getElementById('deleteUsername').value = "";
+                        document.getElementById('adminPassword').value = ""; 
+                        window.adminTable.ajax.reload(null, false);
+                } 
+                else {
                     Swal.fire({
                         icon: "error",
-                        title: res.message || "Invalid username!",
+                        title: res.message || "Invalid password!",
                     });
                 }
             } catch (err) {
@@ -222,10 +241,14 @@ function confirmDelete(){
             Swal.fire({
                 icon: "error",
                 title: "Something went wrong!",
-                text: "Could not verify username."
+                text: "Could not verify password."
             });
         }
     });
 }
 
+function clearInput(){
+    document.getElementById('deleteUsername').value = "";
+    document.getElementById('adminPassword').value = ""; 
+}
 
