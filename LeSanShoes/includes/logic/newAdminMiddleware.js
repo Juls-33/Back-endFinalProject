@@ -115,7 +115,6 @@ function sendViaAJAX(jsonString){
             
         },
         error: function() {
-            // Handle any errors that occur during the request
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -132,6 +131,118 @@ document.addEventListener('DOMContentLoaded', function () {
         newAdminModal.querySelector('form').reset();
     });
 });
+
+//edit admin
+function editAdmin(){
+    var formData = {
+        action: 'updateAdmin',
+        username: document.getElementById("usernameEdit").value.trim(),
+        user_fname: document.getElementById("fnameEdit").value.trim(),
+        user_lname: document.getElementById("lnameEdit").value.trim(),
+        user_email: document.getElementById("emailEdit").value.trim(),
+        user_password: document.getElementById("passwordEdit").value.trim(),
+        user_passwordConf: document.getElementById("passwordConfEdit").value.trim(),
+        user_contact: document.getElementById("contactEdit").value.trim(),
+    };
+    verifyEdit(formData);
+}
+function verifyEdit(formData){
+    //check for errors
+    var errorString = isSignUpError(formData);
+    if(errorString!=""){
+        Swal.fire({
+            icon: "error",
+            title: errorString,
+            width: 600,
+            padding: "3em",
+            color: "#716add",
+            background: "#fff url()",
+            backdrop: `
+                rgba(0,0,123,0.4)
+                url("")
+                center
+                no-repeat
+            `
+            });
+    }
+    else{
+        //sending to php and receiving response from server
+        var jsonString = JSON.stringify(formData);
+        sendEditViaAJAX(jsonString);
+    }  
+}
+
+function sendEditViaAJAX(jsonString){
+    $.ajax({
+        url: "../includes/logic/userAuthToDB.php", 
+        type: "POST",
+        data: {myJson : jsonString},
+        success: function(response) {
+            if(response=="Record was successfully updated."){
+                Swal.fire({
+                    icon: "success",
+                    title: response,
+                    // html: '<pre>' + message(formData) + '</pre>',
+                    width: 600,
+                    padding: "3em",
+                    color: "#716add",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgba(0,0,123,0.4)
+                        url("pictures/yey.gif")
+                        center top
+                        no-repeat
+                    `
+                    }).then(()=>{
+                        // Reset the form
+                        document.querySelector("#editAdminModal form").reset();
+                            
+                        // Close the modal using Bootstrap's modal method
+                        var modalEl = document.getElementById('editAdminModal');
+                        var modal = bootstrap.Modal.getInstance(modalEl);
+                        modal.hide();
+
+                        window.adminTable.ajax.reload(null, false);
+                    });
+            }
+            else{
+                Swal.fire({
+                    icon: "error",
+                    title: response,
+                    // html: '<pre>' + message(formData) + '</pre>',
+                    width: 600,
+                    padding: "3em",
+                    color: "#716add",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgba(0,0,123,0.4)
+                        url("pictures/yey.gif")
+                        center top
+                        no-repeat
+                    `
+                    });
+            }   
+        },
+        error: function() {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Something went wrong! Username does not exist',
+            });
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', function () {
+    var newAdminModal = document.getElementById('editAdminModal');
+
+    newAdminModal.addEventListener('hidden.bs.modal', function () {
+        // Clear the form inside the modal when it closes
+        newAdminModal.querySelector('form').reset();
+    });
+});
+
+
+//delete admin
 
 var usernameToDelete;
 function deleteAdmin() {

@@ -51,6 +51,31 @@
                         }
                         $stmt->close();
                     break;
+                    case 'updateAdmin':
+                        $username = $obj ->username;
+                        $roles = 3;
+                        $user_fname = $obj ->user_fname;
+                        $user_lname = $obj ->user_lname;
+                        $user_email = $obj ->user_email;
+                        $user_password = $obj ->user_password;
+                        $user_contact = $obj ->user_contact;
+                        $date_updated = date('Y-m-d H:i:s');
+
+                        $stmt = $conn->prepare("UPDATE users_tbl SET roles_id = ?, fname = ?, lname = ?, email = ?, user_password = ?, contact = ?, date_updated = ? where username = ?");
+                        $stmt->bind_param("isssssss", $roles, $user_fname, $user_lname, $user_email, $user_password,  $user_contact, $date_updated, $username);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo "Record was successfully updated.";
+                            } else {
+                                echo "Username not found.";
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                        
+                    break;
                     case 'login':
                         $username = $obj->username;
                         $user_password = $obj->user_password;
@@ -131,6 +156,7 @@
                         }
                         $stmt->close();
                     break;
+                    
                 }
             }
         }

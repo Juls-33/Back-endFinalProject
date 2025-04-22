@@ -11,6 +11,11 @@ $(document).ready(function() {
             { data: 'date_created' },
             { data: 'date_updated'},
             { data: 'last_login' }
-        ]
+        ],
+        responsive: true,
+        processing: true,
+        language: {
+            emptyTable: "No admins found."
+        }
     });
 });

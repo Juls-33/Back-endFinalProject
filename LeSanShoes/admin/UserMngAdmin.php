@@ -132,60 +132,67 @@
                 <h1>User Management</h1>
                 <p>Add and delete administrator accounts and manage customer accounts</p>
             </div>
-            <!-- start of edit modal -->
             <div class="d-flex justify-content-end gap-3">
-            <div class="modal fade" id="deleteAdmin1" aria-hidden="true" aria-labelledby="deleteAdmin1ToggleLabel" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
+                <!-- start of edit modal -->
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editAdminModal">Edit Admin Details</button>
+                <div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="deleteAdmin1ToggleLabel">Edit details of administrator</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
+                            <h1 class="modal-title" id="editModalLabel">Edit Admin Details</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Enter the username to delete
+                        <form>
+                            <h2 class="text-center mb-3">Edit details</h2>
                             <hr>
                             <div class="form-group mb-3">
-                                <label for="deleteUsername">Username</label>
-                                <input type="text" id="deleteUsername" name="deleteUsername" class="form-control" maxlength="100" required>
+                                <label for="usernameEdit">Username</label>
+                                <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInput()">Close</button>
-                            <button class="btn btn-danger"   onclick="deleteAdmin()">Delete Administrator</button>
-                            <!-- data-bs-target="#deleteAdmin2" data-bs-toggle="modal"-->
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <!-- secondmodal -->
-                    <div class="modal fade" id="deleteAdmin2" aria-hidden="true" aria-labelledby="deleteAdmin2ToggleLabel" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="deleteAdmin2ToggleLabel">Delete an administrator</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
-                        </div>
-                        <div class="modal-body">
-                            Please enter your password to delete the administrator
-                            <hr>
+
+                            <div class="row mb-3">
+                                <div class="form-group col-xs-12 col-sm-6">
+                                    <label for="fnameEdit">First name</label>
+                                    <input type="text" id="fnameEdit" name="fnameEdit" placeholder="Enter your firstname" class="form-control" required>
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-6">
+                                    <label for="lnameEdit">Last name</label>
+                                    <input type="text" id="lnameEdit" name="lnameEdit" placeholder="Enter your lastname" class="form-control" required>
+                                </div>
+                            </div>
+
                             <div class="form-group mb-3">
-                                <label for="adminPassword">Password</label>
-                                <input type="password" id="adminPassword" name="adminPassword" class="form-control" maxlength="100" required>
+                                <label for="emailEdit">Email Address</label>
+                                <input type="email" id="emailEdit" name="emailEdit" class="form-control" maxlength="100" required>
                             </div>
+
+                            <div class="form-group mb-3">
+                                <label for="passwordEdit">Password</label>
+                                <input type="password" id="passwordEdit" name="passwordEdit" class="form-control" maxlength="100" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="passwordConfEdit">Password confirmation</label>
+                                <input type="password" id="passwordConfEdit" name="passwordConfEdit" class="form-control" maxlength="100" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="contactEdit">Contact Number</label>
+                                <input type="number" id="contactEdit" name="contactEdit" class="form-control" onKeyPress="if(this.value.length==11) return false;" required>
+                            </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#deleteAdmin1" data-bs-toggle="modal">Cancel</button>
-                            <button class="btn btn-danger" onclick="confirmDelete()">Confirm</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editAdmin()">Save changes</button>
                         </div>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-secondary" data-bs-target="#editAdmin1" data-bs-toggle="modal">Edit Admin Details</button>
-                <!-- end of edit modal -->
 
                 <!-- New Admin Modal -->
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newAdminModal">Add New Admin</button>
-                <div class="modal fade" id="newAdminModal" tabindex="-1" aria-labelledby="neweModalLabel" aria-hidden="true">
+                <div class="modal fade" id="newAdminModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
