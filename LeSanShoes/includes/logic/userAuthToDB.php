@@ -51,6 +51,31 @@
                         }
                         $stmt->close();
                     break;
+                    case 'updateAdmin':
+                        $username = $obj ->username;
+                        $roles = 3;
+                        $user_fname = $obj ->user_fname;
+                        $user_lname = $obj ->user_lname;
+                        $user_email = $obj ->user_email;
+                        $user_password = $obj ->user_password;
+                        $user_contact = $obj ->user_contact;
+                        $date_updated = date('Y-m-d H:i:s');
+
+                        $stmt = $conn->prepare("UPDATE users_tbl SET roles_id = ?, fname = ?, lname = ?, email = ?, user_password = ?, contact = ?, date_updated = ? where username = ?");
+                        $stmt->bind_param("isssssss", $roles, $user_fname, $user_lname, $user_email, $user_password,  $user_contact, $date_updated, $username);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo "Record was successfully updated.";
+                            } else {
+                                echo "Username not found.";
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                        
+                    break;
                     case 'login':
                         $username = $obj->username;
                         $user_password = $obj->user_password;
@@ -88,20 +113,50 @@
                         }
                         $stmt->close();
                     break;
-
-                       
-                    //     $user = getSingleRecord($sql, 'ss', [$username, $username]);
-                    //     if (!empty($user)) { // if user was found
-                    //         if (password_verify($password, $user_password)) { // if password matches
-                    //                 // log user in
-                    //                 loginById($user['id']);
-                    //         } else { // if password does not match
-                    //                 $_SESSION['error_msg'] = "Wrong credentials";
-                    //         }
-                    // } else { // if no user found
-                    //         $_SESSION['error_msg'] = "Wrong credentials";
-                    // }
+                    case 'deleteAdmin':
+                        $username = $obj->username;
+                    
+                        $stmt = $conn->prepare("SELECT username FROM users_tbl WHERE username = ?");
+                        $stmt->bind_param("s", $username);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                    
+                        if ($result->num_rows > 0) {
+                            echo json_encode(['status' => 'success']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Username not found.']);
+                        }
+                        $stmt->close();
                     break;
+                    case 'confirmDelete':
+                        $username = $obj->username;
+                        $password = $obj->password;
+                        $adminUsername = $_SESSION['username'];
+                    
+                        $stmt = $conn->prepare("SELECT user_password FROM users_tbl WHERE username=? AND user_password=?");
+                        $stmt->bind_param("ss", $adminUsername, $password);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        
+                        if ($result->num_rows > 0) {
+                            if ($adminUsername === $username) {
+                                echo json_encode(['status' => 'error', 'message' => 'You cannot delete your own account.']);
+                                break;
+                            }
+                            $deleteStmt = $conn->prepare("DELETE FROM users_tbl WHERE username = ?");
+                            $deleteStmt->bind_param("s", $username);
+                            if ($deleteStmt->execute()) {
+                                echo json_encode(['status' => 'success', 'message' => 'User deleted successfully.']);
+                            } else {
+                                echo json_encode(['status' => 'error', 'message' => 'Deletion failed.']);
+                            }
+                            $deleteStmt->close();
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Incorrect admin password.']);
+                        }
+                        $stmt->close();
+                    break;
+                    
                 }
             }
         }

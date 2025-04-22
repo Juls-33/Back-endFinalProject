@@ -225,7 +225,7 @@ p{
 .shoeSlide{
   display: flex;
   flex-direction: column;
-  border: solid blue;
+  /* border: solid blue; */
 }
 .shoeSlide-header{
   color: #B51E1E;
