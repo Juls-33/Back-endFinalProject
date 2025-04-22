@@ -23,6 +23,8 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/AdminPage.css">
     <link rel="stylesheet" href="../assets/css/CustomAdminPage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -141,40 +143,55 @@
                     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
-                                <div class="text-end pt-1">
-                                    <p class="text-sm mb-0">Total Sales</p>
-                                    <h4 class="mb-0">Php 50,000</h4>
-                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">universal_currency_alt</span>
+                                    <div class="text-end">
+                                      <p class="text-sm mb-0">Total Sales</p>
+                                      <h4 class="mb-0">Php 50,000</h4>
+                                    </div>
+                                </div>  
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
-                                <div class="text-end pt-1">
-                                    <p class="text-sm mb-0">Completed Orders</p>
-                                    <h4 class="mb-0">50 Orders</h4>
-                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">check_circle</span>
+                                    <div class="text-end">
+                                      <p class="text-sm mb-0">Completed Orders</p>
+                                      <h4 class="mb-0">50 Orders</h4>
+                                    </div>
+                                </div>     
                             </div>
-                        </div>
+                        </div>  
                     </div>
+                    
                     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
-                                <div class="text-end pt-1">
-                                    <p class="text-sm mb-0">Pending Orders</p>
-                                    <h4 class="mb-0">5 Orders</h4>
-                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">pending_actions</span>
+                                    <div class="text-end">
+                                      <p class="text-sm mb-0">Pending Orders</p>
+                                      <h4 class="mb-0">5 Orders</h4>
+                                    </div>
+                                </div>     
                             </div>
                         </div>
                     </div>
+
                     <div class="col-xl-3 col-sm-6">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
-                                <div class="text-end pt-1">
-                                    <p class="text-sm mb-0">Inventory</p>
-                                    <h4 class="mb-0">150 Items</h4>
-                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">inventory</span>
+                                    <div class="text-end">
+                                      <p class="text-sm mb-0">Inventory</p>
+                                      <h4 class="mb-0">150 Items</h4>
+                                    </div>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -205,7 +222,7 @@
 
             <div class="container-fluid pt-3">
                 <div class="row removable">
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
@@ -221,7 +238,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
@@ -237,23 +254,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-                        <div class="card mb-4">
-                            <div class="card-header p-3 pt-2">
-                                <div class="text-end pt-1">
-                                    <h5 class="text-sm mb-4">Top Selling Products</h5>
-                                </div>
-                            </div>
-                            <div class="card-body pb-4 p-3 mt-0">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                    <li class="list-group-item">A third item</li>
-                                  </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div> 
 
@@ -262,7 +262,7 @@
 
             <div class="container-fluid pt-3">
                 <div class="row removable">
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
@@ -285,44 +285,69 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-8 col-sm-6 mb-xl-0 mb-4">
+
+                    <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
-                                    <p class="text-sm mb-0">Orders Overview</p>
-                                    <p class="mb-0">View the Unfulfilled Orders</p>
+                                    <h5 class="text-sm mb-4">Top Selling Products</h5>
                                 </div>
                             </div>
-                            
-                            <div class="card-body pb-0 p-3 mt-1">
-                                <div class="row"> 
-                                    <br><br><br><br><br><br>
-                                    <br><br>
-                                </div>
+                            <div class="card-body pb-4 p-3 mt-0">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">An item</li>
+                                    <li class="list-group-item">A second item</li>
+                                    <li class="list-group-item">A third item</li>
+                                    <li class="list-group-item">A third item</li>
+                                  </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
+                    
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">Orders Overview</span>
+                            <a href="#" class="text-decoration-none small">View the Unfulfilled Orders</a>
+                        </div>
 
-            <!-- <div class="row mt-4 removable">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="card mb-4">
-                        <div class="card-header pb-3 p-3">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="mb-0">Registered Users</h6>
+                        <div class="card-body pt-3">
+                            <div class="d-flex overflow-auto px-3" style="gap: 1.5rem;">
+                                <!-- Mini Card -->
+                                <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                                    <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
+                                        <h6 class="mb-1">Pending</h6>
+                                    <p class="mb-0 text-muted">3 Orders</p>
+                                </div>
+                            </div>
+
+                            <!-- Mini Card -->
+                            <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                                <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
+                                    <h6 class="mb-1">Canceled</h6>
+                                    <p class="mb-0 text-muted">2 Orders</p>
+                                </div>
+                            </div>
+
+                            <!-- Mini Card -->
+                            <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                                <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
+                                    <h6 class="mb-1">Processing</h6>
+                                    <p class="mb-0 text-muted">5 Orders</p>
+                                </div>
+                            </div>
+
+                            <!-- Mini Card -->
+                            <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                                <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
+                                    <h6 class="mb-1">Completed</h6>
+                                    <p class="mb-0 text-muted">10 Orders</p>
+                                </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body pb-0 p-3 mt-1">
-                            <div class="row"> 
-                                <p>150 Users</p>
-                                <p>1 Registered Admins</p>
-                                <p>5 Admins</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div> -->
+                    </div>   
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
