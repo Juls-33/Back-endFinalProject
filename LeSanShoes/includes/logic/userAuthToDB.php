@@ -88,6 +88,21 @@
                         }
                         $stmt->close();
                     break;
+                    case 'deleteAdmin':
+                        $username = $obj->username;
+                    
+                        $stmt = $conn->prepare("SELECT username FROM users_tbl WHERE username = ?");
+                        $stmt->bind_param("s", $username);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                    
+                        if ($result->num_rows > 0) {
+                            echo json_encode(['status' => 'success']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Username not found.']);
+                        }
+                        $stmt->close();
+                    break;
 
                        
                     //     $user = getSingleRecord($sql, 'ss', [$username, $username]);

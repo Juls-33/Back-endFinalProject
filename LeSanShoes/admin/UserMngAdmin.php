@@ -139,7 +139,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="newModalLabel">Create new admin</h5>
+                            <h1 class="modal-title" id="newModalLabel">Create new admin</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -202,13 +202,14 @@
                             Enter the username to delete
                             <hr>
                             <div class="form-group mb-3">
-                                <label for="username">Username</label>
-                                <input type="text" id="username" name="username" class="form-control" maxlength="100" required>
+                                <label for="deleteUsername">Username</label>
+                                <input type="text" id="deleteUsername" name="deleteUsername" class="form-control" maxlength="100" required>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-danger" data-bs-target="#deleteAdmin2" data-bs-toggle="modal">Delete Administrator</button>
+                            <button class="btn btn-danger"   onclick="deleteAdmin()">Delete Administrator</button>
+                            <!-- data-bs-target="#deleteAdmin2" data-bs-toggle="modal"-->
                         </div>
                         </div>
                     </div>
@@ -225,13 +226,13 @@
                             Please enter your password to delete the administrator
                             <hr>
                             <div class="form-group mb-3">
-                                <label for="password">Password</label>
-                                <input type="password" id="password" name="password" class="form-control" maxlength="100" required>
+                                <label for="adminPassword">Password</label>
+                                <input type="adminPassword" id="password" name="password" class="form-control" maxlength="100" required>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button class="btn btn-danger" data-bs-target="#deleteAdmin1" data-bs-toggle="modal">Confirm</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#deleteAdmin1" data-bs-toggle="modal">Cancel</button>
+                            <button class="btn btn-danger" onclick="test()">Confirm</button>
                         </div>
                         </div>
                     </div>

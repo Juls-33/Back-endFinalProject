@@ -79,6 +79,8 @@ function isSignUpError(formData){
     return errorString;
 }
 
+
+
 function sendViaAJAX(jsonString){
     $.ajax({
         url: "../includes/logic/userAuthToDB.php", 
@@ -128,4 +130,102 @@ document.addEventListener('DOMContentLoaded', function () {
         newAdminModal.querySelector('form').reset();
     });
 });
+
+var usernameToDelete;
+function deleteAdmin() {
+    var formData = {
+        action: 'deleteAdmin',
+        username: document.getElementById("deleteUsername").value.trim(),
+    };
+    if (!formData.username) {
+        Swal.fire({
+            icon: "error",
+            title: "Username is required!",
+        });
+        return;
+    }
+    var jsonString = JSON.stringify(formData);
+    $.ajax({
+        url: "../includes/logic/userAuthToDB.php", 
+        type: "POST",
+        data: { myJson: jsonString },
+        success: function(response) {
+            try {
+                var res = JSON.parse(response);
+                if (res.status === "success") {
+                    usernameToDelete = formData.username;
+                    console.log(usernameToDelete);
+                    var nextModal = new bootstrap.Modal(document.getElementById('deleteAdmin2'));
+                    nextModal.show();
+
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: res.message || "Invalid username!",
+                    });
+                }
+            } catch (err) {
+                console.error("Invalid response format", err);
+            }
+        },
+        error: function() {
+            Swal.fire({
+                icon: "error",
+                title: "Something went wrong!",
+                text: "Could not verify username."
+            });
+        }
+    });
+}
+function test() {
+    alert(usernameToDelete)
+}
+// not yet done
+function confirmDelete(){
+    var formData = {
+        action: 'confirmDelete',
+        username: usernameToDelete,
+        password: document.getElementById("adminPassword").value.trim(),
+    };
+    if (!formData.password) {
+        Swal.fire({
+            icon: "error",
+            title: "Username is required!",
+        });
+        return;
+    }
+    var jsonString = JSON.stringify(formData);
+    $.ajax({
+        url: "../includes/logic/userAuthToDB.php", 
+        type: "POST",
+        data: { myJson: jsonString },
+        success: function(response) {
+            try {
+                var res = JSON.parse(response);
+                if (res.status === "success") {
+                    usernameToDelete = formData.username;
+                    console.log(usernameToDelete);
+                    var nextModal = new bootstrap.Modal(document.getElementById('deleteAdmin2'));
+                    nextModal.show();
+
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: res.message || "Invalid username!",
+                    });
+                }
+            } catch (err) {
+                console.error("Invalid response format", err);
+            }
+        },
+        error: function() {
+            Swal.fire({
+                icon: "error",
+                title: "Something went wrong!",
+                text: "Could not verify username."
+            });
+        }
+    });
+}
+
 
