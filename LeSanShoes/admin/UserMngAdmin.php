@@ -3,7 +3,7 @@
 
     if (!isset($_SESSION['username'])) {
         // Not logged in — redirect to login
-        header("Location: ../users/sampleIndex.php");
+        header("Location: ../users/index.php");
         exit();
     }
 ?>
@@ -190,25 +190,55 @@
                     </div>
                 </div>
                 <!-- Delete Admin Modal -->
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAdminModal">Delete Admin</button>
-                <div class="modal fade" id="deleteAdminModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                 <!-- first modal -->
+                <div class="modal fade" id="deleteAdmin1" aria-hidden="true" aria-labelledby="deleteAdmin1ToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                            <h1 class="modal-title fs-5" id="deleteAdmin1ToggleLabel">Delete an administrator</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            ...
+                            Enter the username to delete
+                            <hr>
+                            <div class="form-group mb-3">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" name="username" class="form-control" maxlength="100" required>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger">Delete user</button>
+                            <button class="btn btn-danger" data-bs-target="#deleteAdmin2" data-bs-toggle="modal">Delete Administrator</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- secondmodal -->
+                    <div class="modal fade" id="deleteAdmin2" aria-hidden="true" aria-labelledby="deleteAdmin2ToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteAdmin2ToggleLabel">Delete an administrator</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Please enter your password to delete the administrator
+                            <hr>
+                            <div class="form-group mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" class="form-control" maxlength="100" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button class="btn btn-danger" data-bs-target="#deleteAdmin1" data-bs-toggle="modal">Confirm</button>
                         </div>
                         </div>
                     </div>
                 </div>
+                <button class="btn btn-danger" data-bs-target="#deleteAdmin1" data-bs-toggle="modal">Delete Admin</button>
             </div>
+            <!-- end of delete modal -->
             
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -250,13 +280,9 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" -->
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
