@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['username'])) {
     // User is already logged in — redirect based on role
     if ($_SESSION['roles_id'] == 1) {
-        header("Location: ../users/sampleIndex.php"); 
+        header("Location: ../users/index.php"); 
     } else {
         header("Location: ../admin/DashboardAdmin.php"); 
     }
