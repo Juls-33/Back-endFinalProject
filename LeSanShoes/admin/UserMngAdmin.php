@@ -168,12 +168,12 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="passwordEdit">Password</label>
+                                <label for="passwordEdit">Edit new password</label>
                                 <input type="password" id="passwordEdit" name="passwordEdit" class="form-control" maxlength="100" required>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="passwordConfEdit">Password confirmation</label>
+                                <label for="passwordConfEdit">Confirm new password</label>
                                 <input type="password" id="passwordConfEdit" name="passwordConfEdit" class="form-control" maxlength="100" required>
                             </div>
                             <div class="form-group mb-3">

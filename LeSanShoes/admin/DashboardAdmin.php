@@ -3,7 +3,7 @@
 
     if (!isset($_SESSION['username'])) {
         // Not logged in — redirect to login
-        header("Location: ../users/sampleIndex.php");
+        header("Location: ../users/index.php");
         exit();
     }
 ?>

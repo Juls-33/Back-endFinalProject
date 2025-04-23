@@ -194,10 +194,8 @@ function sendEditViaAJAX(jsonString){
                         no-repeat
                     `
                     }).then(()=>{
-                        // Reset the form
+                        
                         document.querySelector("#editAdminModal form").reset();
-                            
-                        // Close the modal using Bootstrap's modal method
                         var modalEl = document.getElementById('editAdminModal');
                         var modal = bootstrap.Modal.getInstance(modalEl);
                         modal.hide();
