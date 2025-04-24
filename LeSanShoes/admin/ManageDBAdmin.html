@@ -105,7 +105,7 @@
                             <li class="breadcrumb-item text-sm">
                                 <a class="opacity-5 text-dark" href="javascript:;">Pages</a>
                             </li>
-                            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">User Management</li>
+                            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Manage Database</li>
                         </ol>
                         <!-- <h6 class="font-weight-bolder mb-0">Dashboard</h6> -->
                     </nav>
@@ -120,24 +120,107 @@
                 </div>
             </nav>
             <div class="px-0 mx-4 mt-3">
-                <h1>Orders</h1>
-                <p>Manage and view pending and completed orders</p>
+                <h1>Manage Database</h1>
+                <p>Manage other details store in the database</p>
             </div>
             
             
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-brand-tab" data-bs-toggle="tab" data-bs-target="#nav-brand" type="button" role="tab" aria-controls="nav-brand" aria-selected="true">Completed</button>
-                    <button class="nav-link" id="nav-category-tab" data-bs-toggle="tab" data-bs-target="#nav-category" type="button" role="tab" aria-controls="nav-category" aria-selected="false">Pending</button>
-                    <button class="nav-link" id="nav-shoes-gender-tab" data-bs-toggle="tab" data-bs-target="#nav-shoes-gender" type="button" role="tab" aria-controls="nav-shoes-gender" aria-selected="false">Cancelled</button>
-                    <button class="nav-link" id="nav-status-tab" data-bs-toggle="tab" data-bs-target="#nav-status" type="button" role="tab" aria-controls="nav-status" aria-selected="false">Cancelled</button>
-                    <button class="nav-link" id="nav-roles-tab" data-bs-toggle="tab" data-bs-target="#nav-roles" type="button" role="tab" aria-controls="nav-roles" aria-selected="false">Cancelled</button>
+                    <button class="nav-link active" id="nav-brand-tab" data-bs-toggle="tab" data-bs-target="#nav-brand" type="button" role="tab" aria-controls="nav-brand" aria-selected="true">Brand
+                    <button class="nav-link" id="nav-category-tab" data-bs-toggle="tab" data-bs-target="#nav-category" type="button" role="tab" aria-controls="nav-category" aria-selected="false">Category</button>
+                    <button class="nav-link" id="nav-shoes-gender-tab" data-bs-toggle="tab" data-bs-target="#nav-shoes-gender" type="button" role="tab" aria-controls="nav-shoes-gender" aria-selected="false">Shoes gender</button>
+                    <button class="nav-link" id="nav-status-tab" data-bs-toggle="tab" data-bs-target="#nav-status" type="button" role="tab" aria-controls="nav-status" aria-selected="false">Status</button>
+                    <button class="nav-link" id="nav-roles-tab" data-bs-toggle="tab" data-bs-target="#nav-roles" type="button" role="tab" aria-controls="nav-roles" aria-selected="false">Roles</button>
                 </div>
             </nav>  
-            <!-- brand tab -->
+            
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade" id="nav-brand" role="tabpanel" aria-labelledby="nav-brand-tab"></div>
-                <div class="tab-pane fade show active" id="#nav-brand" role="tabpanel" aria-labelledby="nav-brand-tab">
+                <!-- brand tab -->
+                <div class="tab-pane fade show active" id="nav-brand" role="tabpanel" aria-labelledby="nav-brand-tab">
+                    <br>
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- edit brand -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editBrandModal">Edit</button>
+                        <div class="modal fade" id="editBrandModal" tabindex="-1" aria-labelledby="editBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="editBrandLabel">Edit Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Edit brand in the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editBrand()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- add brand -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addBrandModal">Add</button>
+                        <div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="addBrandLabel">Add Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Add brand to the datababse</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name    </label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addBrand()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- delete brand -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBrandModal">Delete</button>
+                        <div class="modal fade" id="deleteBrandModal" tabindex="-1" aria-labelledby="deleteBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="deleteBrandLabel">Delete a Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Delete a brand from the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteBrand()">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- show table -->
                     <div class="container">
                         <table id="adminTable" class="display" style="width:100%">
                             <thead>
@@ -153,70 +236,394 @@
                 </div>
                 <!-- category tab -->
                 <div class="tab-pane fade" id="nav-category" role="tabpanel" aria-labelledby="nav-category-tab">
-                    <div class="tab-pane fade show active" id="nav-category" role="tabpanel" aria-labelledby="nav-category-tab">
-                        <div class="container">
-                            <table id="usersTable" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Category ID</th>
-                                        <th>Category</th>
-                                        <th>Date created</th>
-                                        <th>Date updated</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                    <br>
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- edit category -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editCategoryModal">Edit</button>
+                        <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="editCategoryLabel">Edit Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Edit shoes category in the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Category name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editCategory()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
                         </div>
+                        <!-- add brand -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Add</button>
+                        <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="addCategoryLabel">Add Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Add shoes category to the datababse</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Category name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addCategory()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- delete brand -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal">Delete</button>
+                        <div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="deleteBrandLabel">Delete a Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Delete a category from the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Category name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteCategory()">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- show table -->
+                    <div class="container">
+                        <table id="categoryTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Category ID</th>
+                                    <th>Category</th>
+                                    <th>Date created</th>
+                                    <th>Date updated</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
                 <!-- shoes-gender tab -->
                 <div class="tab-pane fade" id="nav-shoes-gender" role="tabpanel" aria-labelledby="nav-shoes-gender-tab">
-                    <div class="tab-pane fade show active" id="nav-shoes-gender" role="tabpanel" aria-labelledby="nav-shoes-gender-tab">
-                        <div class="container">
-                            <table id="usersTable" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Shoes gender id</th>
-                                        <th>Gender</th>
-                                        <th>Date created</th>
-                                        <th>Date updated</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                    <br>
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- edit brand -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editBrandModal">Edit</button>
+                        <div class="modal fade" id="editBrandModal" tabindex="-1" aria-labelledby="editBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="editBrandLabel">Edit Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Edit brand in the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editBrand()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
                         </div>
+                        <!-- add brand -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addBrandModal">Add</button>
+                        <div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="addBrandLabel">Add Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Add brand to the datababse</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name    </label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addBrand()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- delete brand -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBrandModal">Delete</button>
+                        <div class="modal fade" id="deleteBrandModal" tabindex="-1" aria-labelledby="deleteBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="deleteBrandLabel">Delete a Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Delete a brand from the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteBrand()">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- show table -->
+                    <div class="container">
+                        <table id="usersTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Shoes gender id</th>
+                                    <th>Gender</th>
+                                    <th>Date created</th>
+                                    <th>Date updated</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
                 <!-- status tab -->
                 <div class="tab-pane fade" id="nav-status" role="tabpanel" aria-labelledby="nav-status-tab">
-                    <div class="tab-pane fade show active" id="nav-status" role="tabpanel" aria-labelledby="nav-status-tab">
-                        <div class="container">
-                            <table id="usersTable" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Status id</th>
-                                        <th>Status</th>
-                                        <th>Date created</th>
-                                        <th>Date updated</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                    <br>
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- edit brand -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editBrandModal">Edit</button>
+                        <div class="modal fade" id="editBrandModal" tabindex="-1" aria-labelledby="editBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="editBrandLabel">Edit Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Edit brand in the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editBrand()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
                         </div>
+                        <!-- add brand -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addBrandModal">Add</button>
+                        <div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="addBrandLabel">Add Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Add brand to the datababse</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name    </label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addBrand()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- delete brand -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBrandModal">Delete</button>
+                        <div class="modal fade" id="deleteBrandModal" tabindex="-1" aria-labelledby="deleteBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="deleteBrandLabel">Delete a Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Delete a brand from the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteBrand()">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- show table -->
+                    <div class="container">
+                        <table id="usersTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Status id</th>
+                                    <th>Status</th>
+                                    <th>Date created</th>
+                                    <th>Date updated</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
                 <!-- roles tab -->
                 <div class="tab-pane fade" id="nav-roles" role="tabpanel" aria-labelledby="nav-roles-tab">
-                    <div class="tab-pane fade show active" id="nav-roles" role="tabpanel" aria-labelledby="nav-roles-tab">
-                        <div class="container">
-                            <table id="usersTable" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Roles id</th>
-                                        <th>Roles</th>
-                                        <th>Date created</th>
-                                        <th>Date updated</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                    <br>
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- edit brand -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editBrandModal">Edit</button>
+                        <div class="modal fade" id="editBrandModal" tabindex="-1" aria-labelledby="editBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="editBrandLabel">Edit Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Edit brand in the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editBrand()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
                         </div>
+                        <!-- add brand -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addBrandModal">Add</button>
+                        <div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="addBrandLabel">Add Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Add brand to the datababse</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name    </label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addBrand()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- delete brand -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBrandModal">Delete</button>
+                        <div class="modal fade" id="deleteBrandModal" tabindex="-1" aria-labelledby="deleteBrandLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="deleteBrandLabel">Delete a Brand</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Delete a brand from the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="usernameEdit">Brand name</label>
+                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteBrand()">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- show table -->
+                    <div class="container">
+                        <table id="usersTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Roles id</th>
+                                    <th>Roles</th>
+                                    <th>Date created</th>
+                                    <th>Date updated</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
                 <!-- end of tabs -->
