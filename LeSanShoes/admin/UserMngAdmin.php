@@ -86,9 +86,9 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="ManageDBAdmin.php" class="sidebar-link">
                         <i class="lni lni-layout-9"></i>
-                        <span>Manage Contents</span>
+                        <span>Manage Database</span>
                     </a>
                 </li>
                 <li class="sidebar-item active-nav">
