@@ -21,7 +21,7 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
-    <link rel="stylesheet" href="../assets/css/AdminPage.css">
+    <!-- <link rel="stylesheet" href="../assets/css/AdminPage.css"> -->
     <link rel="stylesheet" href="../assets/css/CustomAdminPage.css">
 </head>
 
@@ -163,8 +163,10 @@
                                     <h2 class="text-center mb-3">Edit brand in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Brand name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="brandID">Brand ID</label>
+                                        <input type="number" id="brandID" name="brandID" class="form-control" maxlength="100" required>
+                                        <label for="brandEdit">Brand name</label>
+                                        <input type="text" id="brandEdit" name="brandEdit" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
@@ -189,10 +191,11 @@
                                     <h2 class="text-center mb-3">Add brand to the datababse</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Brand name    </label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="brandIDAdd">Brand ID</label>
+                                        <input type="number" id="brandIDAdd" name="brandIDAdd" class="form-control" maxlength="100" required>
+                                        <label for="brandAdd">Brand name    </label>
+                                        <input type="text" id="brandAdd" name="brandAdd" class="form-control" maxlength="100" required>
                                     </div>
-                                    </form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -215,8 +218,8 @@
                                     <h2 class="text-center mb-3">Delete a brand from the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Brand name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="brandDelete">Brand ID</label>
+                                        <input type="number" id="brandDelete" name="brandDelete" class="form-control" maxlength="11" required>
                                     </div>
                                     </form>
                                 </div>
@@ -231,7 +234,7 @@
                     <br>
                     <!-- show table -->
                     <div class="container">
-                        <table id="adminTable" class="display" style="width:100%">
+                        <table id="brandTable" class="display" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Brand ID</th>
@@ -261,8 +264,10 @@
                                     <h2 class="text-center mb-3">Edit shoes category in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Category name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="categoryID">Category ID</label>
+                                        <input type="number" id="categoryID" name="categoryID" class="form-control" maxlength="100" required>
+                                        <label for="categoryEdit">Category name</label>
+                                        <input type="text" id="categoryEdit" name="categoryEdit" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
@@ -287,8 +292,10 @@
                                     <h2 class="text-center mb-3">Add shoes category to the datababse</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Category name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="categoryIDAdd">Category ID</label>
+                                        <input type="number" id="categoryIDAdd" name="categoryIDAdd" class="form-control" maxlength="100" required>
+                                        <label for="categoryAdd">Category name</label>
+                                        <input type="text" id="categoryAdd" name="categoryAdd" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
@@ -313,8 +320,8 @@
                                     <h2 class="text-center mb-3">Delete a shoe category from the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Category name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="categoryDelete">Category ID</label>
+                                        <input type="number" id="categoryDelete" name="categoryDelete" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
@@ -359,14 +366,16 @@
                                     <h2 class="text-center mb-3">Edit shoes gender in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Shoes gender name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="shoesGenderID">Shoes gender ID</label>
+                                        <input type="number" id="shoesGenderID" name="shoesGenderID" class="form-control" maxlength="100" required>
+                                        <label for="shoesGenderEdit">Shoes gender name</label>
+                                        <input type="text" id="shoesGenderEdit" name="shoesGenderEdit" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editGender()">Save changes</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editShoesGender()">Save changes</button>
                                 </div>
                                 </div>
                             </div>
@@ -385,14 +394,16 @@
                                     <h2 class="text-center mb-3">Add shoes gender to the datababse</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Shoes gender name    </label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="shoesGenderIDAdd">Shoes gender ID</label>
+                                        <input type="number" id="shoesGenderIDAdd" name="shoesGenderIDAdd" class="form-control" maxlength="100" required>
+                                        <label for="shoesGenderAdd">Shoes gender name    </label>
+                                        <input type="text" id="shoesGenderAdd" name="shoesGenderAdd" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addGender()">Save changes</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addShoesGender()">Save changes</button>
                                 </div>
                                 </div>
                             </div>
@@ -411,14 +422,14 @@
                                     <h2 class="text-center mb-3">Delete a shoes gender from the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Shoes gender name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="shoesGenderDelete">Shoes gender ID</label>
+                                        <input type="text" id="shoesGenderDelete" name="shoesGenderDelete" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteGender()">Delete</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteShoesGender()">Delete</button>
                                 </div>
                                 </div>
                             </div>
@@ -457,8 +468,10 @@
                                     <h2 class="text-center mb-3">Edit status in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Status name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="statusID">Status ID</label>
+                                        <input type="number" id="statusID" name="statusID" class="form-control" maxlength="100" required>
+                                        <label for="statusEdit">Status name</label>
+                                        <input type="text" id="statusEdit" name="statusEdit" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
@@ -483,8 +496,10 @@
                                     <h2 class="text-center mb-3">Add status to the datababse</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Status name    </label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="statusIDAdd">Status ID</label>
+                                        <input type="number" id="statusIDAdd" name="statusIDAdd" class="form-control" maxlength="100" required>
+                                        <label for="statusAdd">Status name    </label>
+                                        <input type="text" id="statusAdd" name="statusAdd" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
@@ -509,8 +524,8 @@
                                     <h2 class="text-center mb-3">Delete a status from the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">Status name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="statusDelete">Status ID</label>
+                                        <input type="text" id="statusDelete" name="statusDelete" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
@@ -541,7 +556,7 @@
                 <div class="tab-pane fade" id="nav-roles" role="tabpanel" aria-labelledby="nav-roles-tab">
                     <br>
                     <div class="d-flex justify-content-center gap-3">
-                        <!-- edit brand -->
+                        <!-- edit roles -->
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editRolesModal">Edit</button>
                         <div class="modal fade" id="editRolesModal" tabindex="-1" aria-labelledby="editRolesLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -555,8 +570,12 @@
                                     <h2 class="text-center mb-3">Edit user roles in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">User Roles name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="userRolesID">User  Roles ID</label>
+                                        <input type="number" id="userRolesID" name="userRolesID" class="form-control" maxlength="100" required>
+                                        <label for="userRolesEdit">User Roles name</label>
+                                        <input type="text" id="userRolesEdit" name="userRolesEdit" class="form-control" maxlength="100" required>
+                                        <label for="userRolesDesc">User roles description    </label>
+                                        <input type="text" id="userRolesDesc" name="userRolesDesc" class="form-control" maxlength="250" required>
                                     </div>
                                     </form>
                                 </div>
@@ -581,8 +600,12 @@
                                     <h2 class="text-center mb-3">Add user roles to the datababse</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">User roles name    </label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="userRolesIDAdd">User Roles ID</label>
+                                        <input type="number" id="userRolesIDAdd" name="userRolesIDAdd" class="form-control" maxlength="100" required>
+                                        <label for="userRolesAdd">User roles name    </label>
+                                        <input type="text" id="userRolesAdd" name="userRolesAdd" class="form-control" maxlength="250" required>
+                                        <label for="userRolesDescAdd">User roles description    </label>
+                                        <input type="text" id="userRolesDescAdd" name="userRolesDescAdd" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
@@ -607,8 +630,8 @@
                                     <h2 class="text-center mb-3">Delete a user role from the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="usernameEdit">User Roles name</label>
-                                        <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                        <label for="userRolesDelete">User Roles ID</label>
+                                        <input type="number" id="userRolesDelete" name="userRolesDelete" class="form-control" maxlength="100" required>
                                     </div>
                                     </form>
                                 </div>
@@ -628,6 +651,7 @@
                                 <tr>
                                     <th>Roles id</th>
                                     <th>Roles</th>
+                                    <th>Description</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
                                 </tr>
@@ -645,6 +669,8 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="../assets/swal/sweetalert2.min.js"></script>
     <script src="AdminPage.js"></script>
+    <script src="../includes/logic/manageDBMiddleware.js"></script>
+    <script src="../includes/logic/fetchManageDBMiddleware.js"></script>
 </body>
 
 </html>
