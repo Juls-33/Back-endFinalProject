@@ -1,3 +1,4 @@
+loadTables();
 function signUp() {
     var formData = {
         action: 'newAdmin',
@@ -110,7 +111,8 @@ function sendViaAJAX(jsonString){
                     var modal = bootstrap.Modal.getInstance(modalEl);
                     modal.hide();
 
-                    window.adminTable.ajax.reload(null, false);
+                    loadTables();
+                    // window.adminTable.ajax.reload(null, false);
                 });
             
         },
@@ -200,7 +202,8 @@ function sendEditViaAJAX(jsonString){
                         var modal = bootstrap.Modal.getInstance(modalEl);
                         modal.hide();
 
-                        window.adminTable.ajax.reload(null, false);
+                        loadTables();
+                        // window.adminTable.ajax.reload(null, false);
                     });
             }
             else{
@@ -292,10 +295,8 @@ function deleteAdmin() {
         }
     });
 }
-function test() {
-    alert(usernameToDelete)
-}
-// not yet done
+
+
 function confirmDelete(){
     var formData = {
         action: 'confirmDelete',
@@ -305,7 +306,7 @@ function confirmDelete(){
     if (!formData.password) {
         Swal.fire({
             icon: "error",
-            title: "Username is required!",
+            title: "Password is required!",
         });
         return;
     }
@@ -334,7 +335,234 @@ function confirmDelete(){
 
                         document.getElementById('deleteUsername').value = "";
                         document.getElementById('adminPassword').value = ""; 
-                        window.adminTable.ajax.reload(null, false);
+                        loadTables();
+                        // window.adminTable.ajax.reload(null, false);
+                } 
+                else {
+                    Swal.fire({
+                        icon: "error",
+                        title: res.message || "Invalid password!",
+                    });
+                }
+            } catch (err) {
+                console.error("Invalid response format", err);
+            }
+        },
+        error: function() {
+            Swal.fire({
+                icon: "error",
+                title: "Something went wrong!",
+                text: "Could not verify password."
+            });
+        }
+    });
+}
+
+// New Super Admin
+var usernameToUpdate;
+function newSuperAdmin() {
+    var formData = {
+        action: 'newSuperAdmin',
+        username: document.getElementById("newSuperAdmin").value.trim(),
+    };
+    if (!formData.username) {
+        Swal.fire({
+            icon: "error",
+            title: "Username is required!",
+        });
+        return;
+    }
+    var jsonString = JSON.stringify(formData);
+    $.ajax({
+        url: "../includes/logic/userAuthToDB.php", 
+        type: "POST",
+        data: { myJson: jsonString },
+        success: function(response) {
+            try {
+                var res = JSON.parse(response);
+                if (res.status === "success") {
+                    usernameToUpdate = formData.username;
+                    
+                    var modalEl1 = document.getElementById('newSuperAdmin1');
+                    var modal1 = bootstrap.Modal.getInstance(modalEl1);
+                    modal1.hide();
+
+                    var nextModal = new bootstrap.Modal(document.getElementById('newSuperAdmin2'));
+                    nextModal.show();
+
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: res.message || "Invalid username!",
+                    });
+                }
+            } catch (err) {
+                console.error("Invalid response format");
+            }
+        },
+        error: function() {
+            Swal.fire({
+                icon: "error",
+                title: "Something went wrong!",
+                text: "Could not verify username."
+            });
+        }
+    });
+}
+
+function confirmAddSuperAdmin(){
+    var formData = {
+        action: 'confirmAddSuperAdmin',
+        username: usernameToUpdate,
+        password: document.getElementById("adminPassword").value.trim(),
+    };
+    if (!formData.password) {
+        Swal.fire({
+            icon: "error",
+            title: "Password is required!",
+        });
+        return;
+    }
+    var jsonString = JSON.stringify(formData);
+    $.ajax({
+        url: "../includes/logic/userAuthToDB.php", 
+        type: "POST",
+        data: { myJson: jsonString },
+        success: function(response) {
+            try {
+                var res = JSON.parse(response);
+                console.log(response);
+                if (res.status === "success") {
+                    usernameToUpdate = "";
+                    Swal.fire({
+                        icon: "success",
+                        title: res.message,
+                    });
+                        var modalEl1 = document.getElementById('newSuperAdmin1');
+                        var modal1 = bootstrap.Modal.getInstance(modalEl1);
+                        modal1.hide();
+
+                        var modalEl2 = document.getElementById('newSuperAdmin2');
+                        var modal2 = bootstrap.Modal.getInstance(modalEl2);
+                        modal2.hide();
+
+                        document.getElementById('newSuperAdmin').value = "";
+                        document.getElementById('adminPassword').value = ""; 
+                        loadTables();
+                        // window.adminTable.ajax.reload(null, false);
+                } 
+                else {
+                    Swal.fire({
+                        icon: "error",
+                        title: res.message || "Invalid password!",
+                    });
+                }
+            } catch (err) {
+                console.error("Invalid response format", err);
+            }
+        },
+        error: function() {
+            Swal.fire({
+                icon: "error",
+                title: "Something went wrong!",
+                text: "Could not verify password."
+            });
+        }
+    });
+}
+
+var superAdminToDelete;
+function deleteSuperAdmin() {
+    var formData = {
+        action: 'deleteSuperAdmin',
+        username: document.getElementById("deleteSuperAdmin").value.trim(),
+    };
+    if (!formData.username) {
+        Swal.fire({
+            icon: "error",
+            title: "Username is required!",
+        });
+        return;
+    }
+    var jsonString = JSON.stringify(formData);
+    $.ajax({
+        url: "../includes/logic/userAuthToDB.php", 
+        type: "POST",
+        data: { myJson: jsonString },
+        success: function(response) {
+            try {
+                var res = JSON.parse(response);
+                if (res.status === "success") {
+                    superAdminToDelete = formData.username;
+                    
+                    var modalEl1 = document.getElementById('deleteSuperAdmin1');
+                    var modal1 = bootstrap.Modal.getInstance(modalEl1);
+                    modal1.hide();
+
+                    var nextModal = new bootstrap.Modal(document.getElementById('deleteSuperAdmin2'));
+                    nextModal.show();
+
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: res.message || "Invalid username!",
+                    });
+                }
+            } catch (err) {
+                console.error("Invalid response format");
+            }
+        },
+        error: function() {
+            Swal.fire({
+                icon: "error",
+                title: "Something went wrong!",
+                text: "Could not verify username."
+            });
+        }
+    });
+}
+
+function confirmDeleteSuperAdmin(){
+    var formData = {
+        action: 'confirmDeleteSuperAdmin',
+        username: superAdminToDelete,
+        password: document.getElementById("delSuperAdminPass").value.trim(),
+    };
+    if (!formData.password) {
+        Swal.fire({
+            icon: "error",
+            title: "Password is required!",
+        });
+        return;
+    }
+    var jsonString = JSON.stringify(formData);
+    $.ajax({
+        url: "../includes/logic/userAuthToDB.php", 
+        type: "POST",
+        data: { myJson: jsonString },
+        success: function(response) {
+            console.log("Raw server response:", response);
+            try {
+                var res = JSON.parse(response);
+                console.log(response);
+                if (res.status === "success") {
+                    superAdminToDelete = "";
+                    Swal.fire({
+                        icon: "success",
+                        title: res.message,
+                    });
+                        var modalEl1 = document.getElementById('deleteSuperAdmin1');
+                        var modal1 = bootstrap.Modal.getInstance(modalEl1);
+                        modal1.hide();
+
+                        var modalEl2 = document.getElementById('deleteSuperAdmin2');
+                        var modal2 = bootstrap.Modal.getInstance(modalEl2);
+                        modal2.hide();
+
+                        document.getElementById('deleteSuperAdmin').value = "";
+                        document.getElementById('delSuperAdminPass').value = ""; 
+                        loadTables();
+                        // window.adminTable.ajax.reload(null, false);
                 } 
                 else {
                     Swal.fire({
@@ -359,5 +587,69 @@ function confirmDelete(){
 function clearInput(){
     document.getElementById('deleteUsername').value = "";
     document.getElementById('adminPassword').value = ""; 
+    document.getElementById('newSuperAdmin').value = "";
+    document.getElementById('deleteSuperAdmin').value = "";
+    document.getElementById('delSuperAdminPass').value = "";
+}
+
+function loadTables(){
+    $(document).ready(function() {
+        $.ajax({
+            url: '../includes/logic/getUsers.php',
+            method: 'POST',
+            dataType: 'json',
+            success: function(response) {
+                $('#usersTable').DataTable().clear().destroy();
+                $('#adminTable').DataTable().clear().destroy();
+                // Users Table
+                $('#usersTable').DataTable({
+                    destroy: true,
+                    data: response.users,
+                    columns: [
+                        { data: 'username' },
+                        { data: 'full_name' },
+                        { data: 'email' },
+                        { data: 'birthday'},
+                        { data: 'user_address'},
+                        { data: 'contact'},
+                        { data: 'date_created' },
+                        { data: 'date_updated'},
+                        { data: 'last_login' }
+                    ],
+                    responsive: true,
+                    processing: true,
+                    language: {
+                        emptyTable: "No admins found."
+                    }
+                });
+                // admin table
+                $('#adminTable').DataTable({
+                    destroy: true,
+                    data: response.admins,
+                    columns: [
+                        { data: 'username' },
+                        { data: 'full_name' },
+                        { data: 'email' },
+                        { 
+                            data: 'roles_id',
+                            render: function(data) {
+                                return data == 2 ? "Super Admin" : data == 3 ? "Admin" : "Other";
+                            }
+                        },
+                        { data: 'contact' },
+                        { data: 'date_created' },
+                        { data: 'date_updated' },
+                        { data: 'last_login' }
+                    ],
+                    responsive: true,
+                    processing: true,
+                    language: {
+                        emptyTable: "No admins found."
+                    }
+                });
+            },
+        });
+    });
+    
 }
 

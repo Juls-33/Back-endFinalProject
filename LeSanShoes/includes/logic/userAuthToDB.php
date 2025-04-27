@@ -156,6 +156,94 @@
                         }
                         $stmt->close();
                     break;
+                    case 'newSuperAdmin':
+                        $username = $obj->username;
+                        $roles_id = 3;
+                        $stmt = $conn->prepare("SELECT username FROM users_tbl WHERE username = ? and roles_id=?");
+                        $stmt->bind_param("si", $username, $roles_id);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                    
+                        if ($result->num_rows > 0) {
+                            echo json_encode(['status' => 'success']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Username not found.']);
+                        }
+                        $stmt->close();
+                    break;
+                    case 'confirmAddSuperAdmin':
+                        $username = $obj->username;
+                        $password = $obj->password;
+                        $adminUsername = $_SESSION['username'];
+                        $roles_id = 2;
+                    
+                        $stmt = $conn->prepare("SELECT user_password FROM users_tbl WHERE username=? AND user_password=?");
+                        $stmt->bind_param("ss", $adminUsername, $password);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        
+                        if ($result->num_rows > 0) {
+                            if ($adminUsername === $username) {
+                                echo json_encode(['status' => 'error', 'message' => 'You are already a super admin.']);
+                                break;
+                            }
+                            $updateStmt = $conn->prepare("UPDATE users_tbl SET roles_id = ? where username = ?");
+                            $updateStmt->bind_param("is", $roles_id, $username);
+                            if ($updateStmt->execute()) {
+                                echo json_encode(['status' => 'success', 'message' => 'Super Admin added successfully.']);
+                            } else {
+                                echo json_encode(['status' => 'error', 'message' => 'Update failed.']);
+                            }
+                            $updateStmt->close();
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Incorrect admin password.']);
+                        }
+                        $stmt->close();
+                    break;
+                    case 'deleteSuperAdmin':
+                        $username = $obj->username;
+                        $roles_id = 2;
+                        $stmt = $conn->prepare("SELECT username FROM users_tbl WHERE username = ? and roles_id=?");
+                        $stmt->bind_param("si", $username, $roles_id);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                    
+                        if ($result->num_rows > 0) {
+                            echo json_encode(['status' => 'success']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Username not found.']);
+                        }
+                        $stmt->close();
+                    break;
+                    case 'confirmDeleteSuperAdmin':
+                        $username = $obj->username;
+                        $password = $obj->password;
+                        $adminUsername = $_SESSION['username'];
+                        $roles_id = 3;
+                    
+                        $stmt = $conn->prepare("SELECT user_password FROM users_tbl WHERE username=? AND user_password=?");
+                        $stmt->bind_param("ss", $adminUsername, $password);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        
+                        if ($result->num_rows > 0) {
+                            if ($adminUsername === $username) {
+                                echo json_encode(['status' => 'error', 'message' => 'You cannot remove yourself super admin.']);
+                                break;
+                            }
+                            $updateStmt = $conn->prepare("UPDATE users_tbl SET roles_id = ? where username = ?");
+                            $updateStmt->bind_param("is", $roles_id, $username);
+                            if ($updateStmt->execute()) {
+                                echo json_encode(['status' => 'success', 'message' => 'Super Admin added successfully.']);
+                            } else {
+                                echo json_encode(['status' => 'error', 'message' => 'Update failed.']);
+                            }
+                            $updateStmt->close();
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Incorrect admin password.']);
+                        }
+                        $stmt->close();
+                    break;
                     
                 }
             }

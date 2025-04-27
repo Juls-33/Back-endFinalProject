@@ -133,6 +133,106 @@
                 <p>Add and delete administrator accounts and manage customer accounts</p>
             </div>
             <div class="d-flex justify-content-end gap-3">
+                <!-- Add Super Admin Modal -->
+                 <!-- first modal -->
+                 <div class="modal fade" id="newSuperAdmin1" aria-hidden="true" aria-labelledby="newSuperAdmin1ToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="newSuperAdmin1ToggleLabel">Add a new super admin</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
+                        </div>
+                        <div class="modal-body">
+                            Enter an existing admin username
+                            <hr>
+                            <div class="form-group mb-3">
+                                <label for="newSuperAdmin">Username</label>
+                                <input type="text" id="newSuperAdmin" name="newSuperAdmin" class="form-control" maxlength="100" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInput()">Close</button>
+                            <button class="btn btn-success"   onclick="newSuperAdmin()">Update Super Admin</button>
+                            <!-- data-bs-target="#deleteAdmin2" data-bs-toggle="modal"-->
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- secondmodal -->
+                    <div class="modal fade" id="newSuperAdmin2" aria-hidden="true" aria-labelledby="newSuperAdmin2ToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="newSuperAdmin2ToggleLabel">Delete an administrator</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
+                        </div>
+                        <div class="modal-body">
+                            Please enter your password to add a new super admin
+                            <hr>
+                            <div class="form-group mb-3">
+                                <label for="adminPassword">Password</label>
+                                <input type="password" id="adminPassword" name="adminPassword" class="form-control" maxlength="100" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#deleteAdmin1" data-bs-toggle="modal">Cancel</button>
+                            <button class="btn btn-success" onclick="confirmAddSuperAdmin()">Confirm</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" data-bs-target="#newSuperAdmin1" data-bs-toggle="modal">Add New Super Admin</button>
+                <!-- end of new super admin modal -->
+                <!-- Delete a Super Admin Modal -->
+                 <!-- first modal -->
+                 <div class="modal fade" id="deleteSuperAdmin1" aria-hidden="true" aria-labelledby="deleteSuperAdmin1ToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteSuperAdmin1ToggleLabel">Remove a super admin</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
+                        </div>
+                        <div class="modal-body">
+                            Enter the username to remove
+                            <hr>
+                            <div class="form-group mb-3">
+                                <label for="deleteSuperAdmin">Username</label>
+                                <input type="text" id="deleteSuperAdmin" name="deleteSuperAdmin" class="form-control" maxlength="100" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInput()">Close</button>
+                            <button class="btn btn-danger"   onclick="deleteSuperAdmin()">Remove Super Admin</button>
+                            <!-- data-bs-target="#deleteAdmin2" data-bs-toggle="modal"-->
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- secondmodal -->
+                    <div class="modal fade" id="deleteSuperAdmin2" aria-hidden="true" aria-labelledby="deleteSuperAdmin2ToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteSuperAdmin2ToggleLabel">Remove a super admin</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
+                        </div>
+                        <div class="modal-body">
+                            Please enter your password to remove a super admin
+                            <hr>
+                            <div class="form-group mb-3">
+                                <label for="delSuperAdminPass">Password</label>
+                                <input type="password" id="delSuperAdminPass" name="delSuperAdminPass" class="form-control" maxlength="100" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#deleteAdmin1" data-bs-toggle="modal">Cancel</button>
+                            <button class="btn btn-danger" onclick="confirmDeleteSuperAdmin()">Confirm</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-danger" data-bs-target="#deleteSuperAdmin1" data-bs-toggle="modal">Remove a Super Admin</button>
+                <!-- end of delete modal -->
                 <!-- start of edit modal -->
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editAdminModal">Edit Admin Details</button>
                 <div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -295,8 +395,8 @@
                     </div>
                 </div>
                 <button class="btn btn-danger" data-bs-target="#deleteAdmin1" data-bs-toggle="modal">Delete Admin</button>
+                <!-- end of delete modal -->
             </div>
-            <!-- end of delete modal -->
             
             <!-- Navbar table -->
             <nav>
@@ -354,8 +454,6 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="../assets/swal/sweetalert2.min.js"></script>
     <script src="AdminPage.js"></script>
-    <script src="../includes/logic/fetchAdminMiddleware.js"></script>
-    <script src="../includes/logic/fetchUsersMiddleware.js"></script>
     <script src="../includes/logic/newAdminMiddleware.js"></script>
 </body>
 

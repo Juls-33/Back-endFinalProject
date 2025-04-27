@@ -670,7 +670,6 @@
     <script src="../assets/swal/sweetalert2.min.js"></script>
     <script src="AdminPage.js"></script>
     <script src="../includes/logic/manageDBMiddleware.js"></script>
-    <script src="../includes/logic/fetchManageDBMiddleware.js"></script>
 </body>
 
 </html>
