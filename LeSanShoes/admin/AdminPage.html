@@ -188,7 +188,7 @@
 
             <div class="container-fluid pt-3">
                 <div class="row removable">
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
@@ -196,14 +196,14 @@
                                     <!-- <a href="#" class="text-decoration-none small">View the Number of Sales Per Day</a> -->
                                 </div>
                             </div>
-                            <div class="card-body pb-0 p-3 mt-1">
-                                <canvas id="salesPerDayChart" height="200"></canvas>
+                            <div class="chart-container">
+                                <canvas id="salesPerDayChart"></canvas>
                             </div>
                         </div>
                     </div>
                     
 
-                    <div class="col-xl-4 col-md-4 col-sm-12 mb-4">
+                    <div class="col-xl-6 col-md-4 col-sm-12 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
@@ -211,13 +211,17 @@
                                     <!-- <a href="#" class="text-decoration-none small">View the Number of Sales Per Month</a> -->
                                 </div>
                             </div>
-                            <div class="card-body pb-0 p-3 mt-1">
-                                <canvas id="salesPerMonthChart" height="200"></canvas>
+                            <div class="chart-container">
+                                <canvas id="salesPerMonthChart"></canvas>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div> 
 
-                    <div class="col-xl-4 col-md-4 col-sm-12 mb-4">
+            <div class="container-fluid pt-3"> 
+                <div class="row removable">
+                    <div class="col-xl-12 col-md-4 col-sm-12 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
@@ -226,15 +230,16 @@
                                 </div>
                             </div>
                             <div class="card-body pb-0 p-3 mt-1">
-                                <div class="card-body pb-0 p-3 mt-1">
-                                    <canvas id="salesPerYearChart" height="200"></canvas>
+                                <div class="chart-container">
+                                    <canvas id="salesPerYearChart"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
 
+            
 
             <div class="container-fluid pt-3">
                 <div class="row removable">
@@ -393,6 +398,7 @@
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false, 
                 plugins: {
                     legend: {
                         display: true,
@@ -406,7 +412,7 @@
                 }
             }
         });
-    </script>
+</script>
 
 <script>
     const action = document.getElementById('salesPerMonthChart').getContext('2d');
@@ -429,20 +435,21 @@
             }]
         },
         options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top',
+                responsive: true,
+                maintainAspectRatio: false, 
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
                 },
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
 </script>
 
 <script>
@@ -466,20 +473,21 @@
             }]
         },
         options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top',
+                responsive: true,
+                maintainAspectRatio: false, 
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
                 },
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
 </script>
 
 
