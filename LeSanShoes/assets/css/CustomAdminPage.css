@@ -168,3 +168,11 @@ body{
 .nav-link:hover{
     color:#cb4c4c;
 }
+
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 300px; 
+}
+
