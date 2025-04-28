@@ -81,6 +81,18 @@ p{
         'GRAD' 0,
         'opsz' 24
 }
+        /* .img-zoom {
+            width: 100%;
+            height: auto;
+            transition: background-size 0.3s ease;
+            cursor: zoom-in;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .img-zoom:hover {
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        } */
     /*Main Css*/
     body {
         background-color: #FFFFFF;
@@ -106,8 +118,8 @@ p{
     }
 
     .img-fluid:hover{
-        transform: scale(1.05);
         cursor: zoom-in;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
     }
 
     .productDesc h3{
@@ -148,10 +160,6 @@ p{
         border-color: #000 !important;
     }
 
-    /* .btn-outline-secondary {
-    border-color: #B51E1E !important;
-    } */
-
     .btn-outline-secondary:hover {
     border-color: #5f0000 !important;
     }
@@ -176,6 +184,55 @@ p{
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
+ /* Fullscreen modal styles */
+ .modal-fullscreen {
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .thumbnail-list {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .thumbnail-list img {
+            width: 80px;
+            height: auto;
+            margin: 0 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.3s;
+        }
+        .thumbnail-list img:hover {
+            border: 2px solid #B51E1E;
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background-color: transparent; /* Transparent background */
+            border: none; /* No border */
+            color: black; /* Black color */
+            font-size: 2rem; /* Increase font size for better visibility */
+        }
+        .prev-btn {
+            left: 10px;
+        }
+        .next-btn {
+            right: 10px;
+        }
+        .nav-buttons:hover {
+            cursor: pointer; /* Change cursor on hover */
+        }
 </style>
 </head>
 <body>
@@ -217,23 +274,23 @@ p{
     </div>
   </nav>
 </header>
-
+<!-- onmousemove="zoom(event, this)" -->
     <div class="container-fluid main">
         <div class="row row-cols-1 row-cols-lg-2 g-2">
             <div class="col-12 col-lg-9">
             <div class="row row-cols-1 row-cols-md-2 g-1">
-                  <div class="col">
-                    <img src="user-homepage/images/pdimg/kai1.jpg" class="img-fluid" alt="imaj1">
-                  </div>
-                  <div class="col">
-                    <img src="user-homepage/images/pdimg/kai2.jpg" class="img-fluid" alt="imaj2">
-                  </div>
-                  <div class="col">
-                     <img src="user-homepage/images/pdimg/kai3.jpg" class="img-fluid" alt="imaj3">
-                  </div>
-                  <div class="col">
-                    <img src="user-homepage/images/pdimg/kai4.jpg" class="img-fluid" alt="imaj4">
-                  </div>
+                <div class="col">
+                    <img src="user-homepage/images/pdimg/kai1.jpg" class="img-fluid" alt="imaj1" onclick="openModal(0)">
+                </div>
+                <div class="col">
+                    <img src="user-homepage/images/pdimg/kai2.jpg" class="img-fluid" alt="imaj2" onclick="openModal(1)">
+                </div>
+                <div class="col">
+                    <img src="user-homepage/images/pdimg/kai3.jpg" class="img-fluid" alt="imaj3" onclick="openModal(2)">
+                </div>
+                <div class="col">
+                    <img src="user-homepage/images/pdimg/kai4.jpg" class="img-fluid" alt="imaj4" onclick="openModal(3)">
+                </div>
             </div>
             </div>
 
@@ -349,6 +406,21 @@ p{
             </div>
         </div>
     </div>
+    <div class="modal fade modal-fullscreen" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center position-relative">
+                    <button class="btn btn-secondary nav-buttons prev-btn" onclick="changeImage(-1)">&#10094;</button>
+                    <img id="modalImage" src="" class="img-fluid" alt="Modal Image">
+                    <button class="btn btn-secondary nav-buttons next-btn" onclick="changeImage(1)">&#10095;</button>
+                    <div class="thumbnail-list" id="thumbnailList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 <div class="modal fade" id="addCartModal" tabindex="-1" aria-labelledby="addCartModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -359,7 +431,7 @@ p{
             <div class="modal-body">
                 <div class="row align-items-center">
                     <div class="col-md-4">
-                        <img src="kai1.jpg" alt="Product" class="img-fluid rounded">
+                        <img src="user-homepage/images/pdimg/kai1.jpg" alt="Product" class="img-fluid rounded">
                     </div>
                     <div class="col-md-8">
                         <h5>Kaiju 1</h5>
@@ -419,6 +491,53 @@ p{
 </div>
 
 <script>
+    const images = [
+        'user-homepage/images/pdimg/kai1.jpg',
+        'user-homepage/images/pdimg/kai2.jpg',
+        'user-homepage/images/pdimg/kai3.jpg',
+        'user-homepage/images/pdimg/kai4.jpg'
+        ];
+    let currentIndex = 0;
+
+    function openModal(index) {
+        currentIndex = index;
+        document.getElementById('modalImage').src = images[currentIndex];
+        updateThumbnailList();
+        const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        modal.show();
+    }
+
+    function updateThumbnailList() {
+        const thumbnailList = document.getElementById('thumbnailList');
+        thumbnailList.innerHTML = ''; // Clear existing thumbnails
+        images.forEach((image, index) => {
+            const imgElement = document.createElement('img');
+            imgElement.src = image;
+            imgElement.alt = `Thumbnail ${index + 1}`;
+            imgElement.onclick = () => {
+                currentIndex = index;
+                document.getElementById('modalImage').src = images[currentIndex];
+            };
+            thumbnailList.appendChild(imgElement);
+        });
+    }
+
+    function changeImage(direction) {
+        currentIndex = (currentIndex + direction + images.length) % images.length;
+        document.getElementById('modalImage').src = images[currentIndex];
+    }
+    // function zoom(event, img) {
+    //     const x = event.offsetX;
+    //     const y = event.offsetY;
+    //     const width = img.offsetWidth;
+    //     const height = img.offsetHeight;
+    //     const xPercent = (x / width) * 100;
+    //     const yPercent = (y / height) * 100;
+    //     img.style.backgroundImage = `url(${img.src})`;
+    //     img.style.backgroundSize = '200% 200%'; // Adjust zoom level
+    //     img.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
+    // }
+    
 document.addEventListener('DOMContentLoaded', function() {
     const modal = new bootstrap.Modal('#addCartModal');
     
