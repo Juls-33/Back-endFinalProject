@@ -223,14 +223,15 @@ p{
             border: 2px solid #B51E1E;
         }
         .nav-buttons {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            background-color: transparent; /* Transparent background */
-            border: none; /* No border */
-            color: black; /* Black color */
-            font-size: 2rem; /* Increase font size for better visibility */
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        background-color: transparent; /* Transparent background */
+        border: none; /* No border */
+        color: black; /* Black color */
+        font-size: 2rem; /* Increase font size for better visibility */
+        transition: color 0.3s, transform 0.3s; /* Smooth transition for color and transform */
         }
         .prev-btn {
             left: 10px;
@@ -239,7 +240,10 @@ p{
             right: 10px;
         }
         .nav-buttons:hover {
-            cursor: pointer; /* Change cursor on hover */
+            cursor: pointer;
+            color: #575757;
+            background-color: transparent !important;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 </style>
 </head>
