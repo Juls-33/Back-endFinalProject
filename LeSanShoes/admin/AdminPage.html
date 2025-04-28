@@ -203,7 +203,7 @@
                     </div>
                     
 
-                    <div class="col-xl-6 col-md-4 col-sm-12 mb-4">
+                    <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
@@ -221,7 +221,23 @@
 
             <div class="container-fluid pt-3"> 
                 <div class="row removable">
-                    <div class="col-xl-12 col-md-4 col-sm-12 mb-4">
+                    <div class="col-sm-6 mb-xl-0 mb-4">
+                        <div class="card mb-4">
+                            <div class="card-header p-3 pt-2">
+                                <div class="text-end pt-1">
+                                    <p class="text-sm mb-0">Sales Per Quarter</p>
+                                    <!-- <a href="#" class="text-decoration-none small">View the Number of Sales Per Month</a> -->
+                                </div>
+                            </div>
+                            <div class="card-body pb-0 p-3 mt-1">
+                                <div class="chart-container">
+                                    <canvas id="salesPerQuarterChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
@@ -461,6 +477,44 @@
             datasets: [{
                 label: 'Sales Per Year',
                 data: [19, 27, 8, 14, 40],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.4,
+                pointStyle: 'circle',
+                pointRadius: 6,
+                pointHoverRadius: 8,
+                pointBackgroundColor: 'white',
+                pointBorderColor: 'rgba(75, 192, 192, 1)'
+            }]
+        },
+        options: {
+                responsive: true,
+                maintainAspectRatio: false, 
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+</script>
+
+<script>
+    const Aksyon = document.getElementById('salesPerQuarterChart').getContext('2d');
+    const salesPerQuarterChart = new Chart(Aksyon, {
+        type: 'line',
+        data: {
+            labels: ['1st Quarter', '2nd Quarter', '3rd Quarter', '4th Quarter'],
+            datasets: [{
+                label: 'Sales Per Quarter',
+                data: [19, 27, 8, 14],
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: true,
