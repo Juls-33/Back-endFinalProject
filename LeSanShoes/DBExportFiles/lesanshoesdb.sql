@@ -35,12 +35,12 @@ DELETE FROM `ads_tbl`;
 CREATE TABLE IF NOT EXISTS `brand_tbl` (
   `brand_id` int(100) NOT NULL,
   `brand_name` varchar(100) NOT NULL DEFAULT '',
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`brand_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.brand_tbl: ~5 rows (approximately)
+-- Dumping data for table lesanshoes_db.brand_tbl: ~4 rows (approximately)
 DELETE FROM `brand_tbl`;
 INSERT INTO `brand_tbl` (`brand_id`, `brand_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:11:44', '2025-04-29 06:11:44'),
@@ -52,9 +52,9 @@ INSERT INTO `brand_tbl` (`brand_id`, `brand_name`, `date_created`, `date_updated
 -- Dumping structure for table lesanshoes_db.category_tbl
 CREATE TABLE IF NOT EXISTS `category_tbl` (
   `category_id` int(100) NOT NULL,
-  `category_name` varchar(50) NOT NULL DEFAULT '',
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
+  `category_name` varchar(100) NOT NULL DEFAULT '',
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -64,6 +64,44 @@ INSERT INTO `category_tbl` (`category_id`, `category_name`, `date_created`, `dat
 	(0, 'N/A', '2025-04-29 06:11:55', '2025-04-29 06:11:55'),
 	(1, 'Basketball', '2025-04-27 06:27:31', '2025-04-27 06:27:54'),
 	(2, 'Running', '2025-04-27 09:29:56', '2025-04-27 09:30:09');
+
+-- Dumping structure for table lesanshoes_db.colorway_size_tbl
+CREATE TABLE IF NOT EXISTS `colorway_size_tbl` (
+  `colorway_size_id` int(11) NOT NULL AUTO_INCREMENT,
+  `colorway_id` int(11) NOT NULL,
+  `size_id` int(11) NOT NULL,
+  `stock` int(11) DEFAULT 0,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`colorway_size_id`),
+  KEY `colorway_id` (`colorway_id`),
+  KEY `size_id` (`size_id`),
+  CONSTRAINT `colorway_size_tbl_ibfk_1` FOREIGN KEY (`colorway_id`) REFERENCES `colorway_tbl` (`colorway_id`) ON DELETE CASCADE,
+  CONSTRAINT `colorway_size_tbl_ibfk_2` FOREIGN KEY (`size_id`) REFERENCES `size_tbl` (`size_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table lesanshoes_db.colorway_size_tbl: ~0 rows (approximately)
+DELETE FROM `colorway_size_tbl`;
+
+-- Dumping structure for table lesanshoes_db.colorway_tbl
+CREATE TABLE IF NOT EXISTS `colorway_tbl` (
+  `colorway_id` int(11) NOT NULL AUTO_INCREMENT,
+  `shoe_model_id` int(11) NOT NULL,
+  `colorway_name` varchar(100) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `image1` varchar(255) DEFAULT NULL,
+  `image2` varchar(255) DEFAULT NULL,
+  `image3` varchar(255) DEFAULT NULL,
+  `image4` varchar(255) DEFAULT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`colorway_id`),
+  KEY `shoe_model_id` (`shoe_model_id`),
+  CONSTRAINT `colorway_tbl_ibfk_1` FOREIGN KEY (`shoe_model_id`) REFERENCES `shoe_model_tbl` (`shoe_model_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table lesanshoes_db.colorway_tbl: ~0 rows (approximately)
+DELETE FROM `colorway_tbl`;
 
 -- Dumping structure for table lesanshoes_db.faq_tbl
 CREATE TABLE IF NOT EXISTS `faq_tbl` (
@@ -82,38 +120,58 @@ DELETE FROM `faq_tbl`;
 CREATE TABLE IF NOT EXISTS `material_tbl` (
   `material_id` int(11) NOT NULL,
   `material_name` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`material_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.material_tbl: ~1 rows (approximately)
+-- Dumping data for table lesanshoes_db.material_tbl: ~2 rows (approximately)
 DELETE FROM `material_tbl`;
 INSERT INTO `material_tbl` (`material_id`, `material_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:26:05', '2025-04-29 06:28:14');
 
 -- Dumping structure for table lesanshoes_db.orders_tbl
 CREATE TABLE IF NOT EXISTS `orders_tbl` (
-  `orders_id` int(11) DEFAULT NULL,
-  `username` int(11) DEFAULT NULL,
-  `sku` int(11) DEFAULT NULL,
-  `notes` int(11) DEFAULT NULL,
-  `confirmation_receipt` int(11) DEFAULT NULL,
-  `delivery_proof` int(11) DEFAULT NULL,
-  `date_created` int(11) DEFAULT NULL,
-  `date_updated` int(11) DEFAULT NULL
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` enum('pending','processing','completed','cancelled','failed') DEFAULT 'pending',
+  `total_price` decimal(10,2) DEFAULT 0.00,
+  PRIMARY KEY (`order_id`),
+  KEY `username` (`username`),
+  CONSTRAINT `orders_tbl_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users_tbl` (`username`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table lesanshoes_db.orders_tbl: ~0 rows (approximately)
 DELETE FROM `orders_tbl`;
+
+-- Dumping structure for table lesanshoes_db.order_items_tbl
+CREATE TABLE IF NOT EXISTS `order_items_tbl` (
+  `order_item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `colorway_id` int(11) NOT NULL,
+  `size_id` int(11) NOT NULL,
+  `quantity` int(11) DEFAULT 1,
+  `price_at_order` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`order_item_id`),
+  KEY `order_id` (`order_id`),
+  KEY `colorway_id` (`colorway_id`),
+  KEY `size_id` (`size_id`),
+  CONSTRAINT `order_items_tbl_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders_tbl` (`order_id`) ON DELETE CASCADE,
+  CONSTRAINT `order_items_tbl_ibfk_2` FOREIGN KEY (`colorway_id`) REFERENCES `colorway_tbl` (`colorway_id`) ON DELETE CASCADE,
+  CONSTRAINT `order_items_tbl_ibfk_3` FOREIGN KEY (`size_id`) REFERENCES `size_tbl` (`size_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table lesanshoes_db.order_items_tbl: ~0 rows (approximately)
+DELETE FROM `order_items_tbl`;
 
 -- Dumping structure for table lesanshoes_db.roles_tbl
 CREATE TABLE IF NOT EXISTS `roles_tbl` (
   `roles_id` int(100) NOT NULL,
   `roles_name` varchar(100) NOT NULL,
   `roles_desc` text NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`roles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -128,12 +186,12 @@ INSERT INTO `roles_tbl` (`roles_id`, `roles_name`, `roles_desc`, `date_created`,
 CREATE TABLE IF NOT EXISTS `shoes_gender_tbl` (
   `shoes_gender_id` int(100) NOT NULL,
   `shoes_gender_name` varchar(50) NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`shoes_gender_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.shoes_gender_tbl: ~3 rows (approximately)
+-- Dumping data for table lesanshoes_db.shoes_gender_tbl: ~2 rows (approximately)
 DELETE FROM `shoes_gender_tbl`;
 INSERT INTO `shoes_gender_tbl` (`shoes_gender_id`, `shoes_gender_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:12:03', '2025-04-29 06:12:03'),
@@ -141,43 +199,59 @@ INSERT INTO `shoes_gender_tbl` (`shoes_gender_id`, `shoes_gender_name`, `date_cr
 	(2, 'Female', '2025-04-27 08:19:01', '2025-04-27 08:19:01'),
 	(3, 'Unisex', '2025-04-27 09:30:21', '2025-04-27 09:30:39');
 
--- Dumping structure for table lesanshoes_db.shoes_tbl
-CREATE TABLE IF NOT EXISTS `shoes_tbl` (
-  `shoes_id` int(11) DEFAULT NULL,
-  `brand_id` int(11) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `shoes_gender_id` int(11) DEFAULT NULL,
-  `shoes_name` int(11) DEFAULT NULL,
-  `shoes_type` int(11) DEFAULT NULL,
-  `date_created` int(11) DEFAULT NULL,
-  `date_updated` int(11) DEFAULT NULL
+-- Dumping structure for table lesanshoes_db.shoe_model_tbl
+CREATE TABLE IF NOT EXISTS `shoe_model_tbl` (
+  `shoe_model_id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `material_id` int(11) NOT NULL,
+  `traction_id` int(11) NOT NULL,
+  `support_id` int(11) NOT NULL,
+  `technology_id` int(11) NOT NULL,
+  `model_name` varchar(255) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
+  `description` text DEFAULT NULL,
+  PRIMARY KEY (`shoe_model_id`),
+  KEY `brand_id` (`brand_id`),
+  KEY `category_id` (`category_id`),
+  KEY `material_id` (`material_id`),
+  KEY `traction_id` (`traction_id`),
+  KEY `support_id` (`support_id`),
+  KEY `technology_id` (`technology_id`),
+  CONSTRAINT `shoe_model_tbl_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `brand_tbl` (`brand_id`),
+  CONSTRAINT `shoe_model_tbl_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category_tbl` (`category_id`),
+  CONSTRAINT `shoe_model_tbl_ibfk_3` FOREIGN KEY (`material_id`) REFERENCES `material_tbl` (`material_id`),
+  CONSTRAINT `shoe_model_tbl_ibfk_4` FOREIGN KEY (`traction_id`) REFERENCES `traction_tbl` (`traction_id`),
+  CONSTRAINT `shoe_model_tbl_ibfk_5` FOREIGN KEY (`support_id`) REFERENCES `support_tbl` (`support_id`),
+  CONSTRAINT `shoe_model_tbl_ibfk_6` FOREIGN KEY (`technology_id`) REFERENCES `technology_tbl` (`technology_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.shoes_tbl: ~0 rows (approximately)
-DELETE FROM `shoes_tbl`;
+-- Dumping data for table lesanshoes_db.shoe_model_tbl: ~0 rows (approximately)
+DELETE FROM `shoe_model_tbl`;
 
--- Dumping structure for table lesanshoes_db.sku_tbl
-CREATE TABLE IF NOT EXISTS `sku_tbl` (
-  `sku` int(11) DEFAULT NULL,
-  `shoe_id` int(11) DEFAULT NULL,
-  `color` int(11) DEFAULT NULL,
-  `size` int(11) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `is_promo` binary(50) DEFAULT NULL,
-  `date_created` binary(50) DEFAULT NULL,
-  `date_updated` binary(50) DEFAULT NULL
+-- Dumping structure for table lesanshoes_db.size_tbl
+CREATE TABLE IF NOT EXISTS `size_tbl` (
+  `size_id` int(11) NOT NULL,
+  `size_name` varchar(100) NOT NULL DEFAULT '0',
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`size_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.sku_tbl: ~0 rows (approximately)
-DELETE FROM `sku_tbl`;
+-- Dumping data for table lesanshoes_db.size_tbl: ~0 rows (approximately)
+DELETE FROM `size_tbl`;
+INSERT INTO `size_tbl` (`size_id`, `size_name`, `date_created`, `date_updated`) VALUES
+	(0, 'N/A', '2025-04-29 16:21:31', '2025-04-29 16:21:31'),
+	(1, '5.5', '2025-04-29 16:21:39', '2025-04-29 16:21:58'),
+	(2, '6.5', '2025-04-29 16:22:14', '2025-04-29 16:22:14');
 
 -- Dumping structure for table lesanshoes_db.status_tbl
 CREATE TABLE IF NOT EXISTS `status_tbl` (
-  `status_id` int(100) NOT NULL,
+  `status_id` int(11) NOT NULL,
   `status_name` varchar(100) NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -193,13 +267,13 @@ INSERT INTO `status_tbl` (`status_id`, `status_name`, `date_created`, `date_upda
 -- Dumping structure for table lesanshoes_db.support_tbl
 CREATE TABLE IF NOT EXISTS `support_tbl` (
   `support_id` int(11) NOT NULL,
-  `support_name` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
+  `support_name` varchar(100) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`support_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.support_tbl: ~1 rows (approximately)
+-- Dumping data for table lesanshoes_db.support_tbl: ~0 rows (approximately)
 DELETE FROM `support_tbl`;
 INSERT INTO `support_tbl` (`support_id`, `support_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:49:50', '2025-04-29 06:49:50');
@@ -207,9 +281,9 @@ INSERT INTO `support_tbl` (`support_id`, `support_name`, `date_created`, `date_u
 -- Dumping structure for table lesanshoes_db.technology_tbl
 CREATE TABLE IF NOT EXISTS `technology_tbl` (
   `technology_id` int(11) NOT NULL,
-  `technology_name` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
+  `technology_name` varchar(100) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`technology_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -221,13 +295,13 @@ INSERT INTO `technology_tbl` (`technology_id`, `technology_name`, `date_created`
 -- Dumping structure for table lesanshoes_db.traction_tbl
 CREATE TABLE IF NOT EXISTS `traction_tbl` (
   `traction_id` int(11) NOT NULL,
-  `traction_name` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
+  `traction_name` varchar(100) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`traction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.traction_tbl: ~1 rows (approximately)
+-- Dumping data for table lesanshoes_db.traction_tbl: ~0 rows (approximately)
 DELETE FROM `traction_tbl`;
 INSERT INTO `traction_tbl` (`traction_id`, `traction_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:40:41', '2025-04-29 06:40:52');
@@ -243,8 +317,8 @@ CREATE TABLE IF NOT EXISTS `users_tbl` (
   `birthday` date DEFAULT NULL,
   `user_address` varchar(200) DEFAULT '',
   `contact` varchar(11) NOT NULL DEFAULT '',
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   `last_login` datetime DEFAULT NULL,
   PRIMARY KEY (`username`) USING BTREE,
   KEY `roles_id` (`roles_id`),

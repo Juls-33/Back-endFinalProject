@@ -375,6 +375,53 @@
                         }
                         $deleteStmt->close();
                     break;  
+                    case 'sizeEdit':
+                        $sizeID= $obj ->tblID;
+                        $formField= $obj ->formField;
+                        $date_updated = date('Y-m-d H:i:s');
+                    
+                        $stmt = $conn->prepare("UPDATE size_tbl SET size_name = ?, date_updated = ? where size_id = ?");
+                        $stmt->bind_param("ssi", $formField, $date_updated, $sizeID);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo json_encode(['status' => 'success', 'message' => 'Shoe size name is updated successfully.']);
+                            } else {
+                                echo json_encode(['status' => 'error', 'message' => 'Failed to update Shoe size name.']);
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                    break;   
+                    case 'sizeAdd':
+                        $sizeID= $obj ->tblID;
+                        $formField = $obj ->formField;
+                        $date_created = date('Y-m-d H:i:s');
+                    
+                        $stmt = $conn->prepare("INSERT INTO size_tbl(size_id, size_name, date_created, date_updated) VALUES (?,?,?,?)");
+                        $stmt->bind_param("isss", $sizeID, $formField, $date_created, $date_created);
+                        if ($stmt->execute()) {
+                            echo json_encode(['status' => 'success', 'message' => 'Shoe size name saved successfully.']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to save the Shoe sizename.']);
+                        }
+                        $stmt->close();
+                    break;    
+                    case 'sizeDelete':
+                        $formField = $obj ->formField;
+                        $date_created = date('Y-m-d H:i:s');
+                    
+                        $deleteStmt = $conn->prepare("DELETE FROM size_tbl WHERE size_id = ?");
+                        $deleteStmt->bind_param("i", $formField);
+                        if ($deleteStmt->execute()) {
+                            echo json_encode(['status' => 'success', 'message' => 'Shoe category deleted successfully.']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to delete the shoe category name.']);
+                        }
+                        $deleteStmt->close();
+                    break;  
+                    
                     case 'userRolesEdit':
                         $rolesID= $obj ->tblID;
                         $userRolesDesc= $obj ->userRolesDesc;

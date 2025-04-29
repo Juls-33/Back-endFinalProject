@@ -69,6 +69,14 @@ try{
         while ($row = $technology_result->fetch_assoc()) {
             $technologies[] = $row;
         }
+        // Sizes query
+        $size_sql = "SELECT size_id, size_name, date_created, date_updated FROM size_tbl";
+        $size_result = $conn->query($size_sql);
+        $sizes = [];
+
+        while ($row = $size_result->fetch_assoc()) {
+            $sizes[] = $row;
+        }
         // roles query
         $roles_sql = "SELECT roles_id, roles_name, roles_desc, date_created, date_updated FROM roles_tbl";
         $roles_result = $conn->query($roles_sql);
@@ -87,6 +95,7 @@ try{
             "tractions" => $tractions,
             "supports" => $supports,
             "technologies" => $technologies,
+            "sizes" => $sizes,
             "roles" => $roles
         ]);
     }

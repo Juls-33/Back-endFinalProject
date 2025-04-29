@@ -131,6 +131,7 @@
             <div class="px-0 mx-4 mt-3">
                 <h1>Manage Database</h1>
                 <p>Manage other details store in the database</p>
+                <p class="text-danger">Warning: Updating the database may affect the overall behavior of the website. Proceed with caution!</p>
             </div>
             
             
@@ -144,6 +145,7 @@
                     <button class="nav-link" id="nav-traction-tab" data-bs-toggle="tab" data-bs-target="#nav-traction" type="button" role="tab" aria-controls="nav-traction" aria-selected="false">Traction</button>
                     <button class="nav-link" id="nav-support-tab" data-bs-toggle="tab" data-bs-target="#nav-support" type="button" role="tab" aria-controls="nav-support" aria-selected="false">Support</button>
                     <button class="nav-link" id="nav-technology-tab" data-bs-toggle="tab" data-bs-target="#nav-technology" type="button" role="tab" aria-controls="nav-technology" aria-selected="false">Technology</button>
+                    <button class="nav-link" id="nav-size-tab" data-bs-toggle="tab" data-bs-target="#nav-size" type="button" role="tab" aria-controls="nav-size" aria-selected="false">Size</button>
                     <button class="nav-link" id="nav-roles-tab" data-bs-toggle="tab" data-bs-target="#nav-roles" type="button" role="tab" aria-controls="nav-roles" aria-selected="false">User Roles</button>
                 </div>
             </nav>  
@@ -863,8 +865,8 @@
                     </div>
                 </div>
                 
-<!-- Technology tab -->
-<div class="tab-pane fade" id="nav-technology" role="tabpanel" aria-labelledby="nav-technology-tab">
+                <!-- Technology tab -->
+                <div class="tab-pane fade" id="nav-technology" role="tabpanel" aria-labelledby="nav-technology-tab">
                     <br>
                     <div class="d-flex justify-content-center gap-3">
                         <!-- edit Technology -->
@@ -958,6 +960,108 @@
                                 <tr>
                                     <th>Technology id</th>
                                     <th>Technology</th>
+                                    <th>Date created</th>
+                                    <th>Date updated</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <!-- Size tab -->
+                <div class="tab-pane fade" id="nav-size" role="tabpanel" aria-labelledby="nav-size-tab">
+                    <br>
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- edit Size -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editSizeModal">Edit</button>
+                        <div class="modal fade" id="editSizeModal" tabindex="-1" aria-labelledby="editSizeLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="editSizeLabel">Edit Size</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Edit size in the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="sizeID">Size ID</label>
+                                        <input type="number" id="sizeID" name="sizeID" class="form-control" maxlength="100" required>
+                                        <label for="sizeEdit">Size name</label>
+                                        <input type="text" id="sizeEdit" name="sizeEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editSize()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- add Size -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SizeModal">Add</button>
+                        <div class="modal fade" id="SizeModal" tabindex="-1" aria-labelledby="SizeLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="addBrandLabel">Add Size</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Add size to the datababse</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="sizeIDAdd">Size ID</label>
+                                        <input type="number" id="sizeIDAdd" name="sizeIDAdd" class="form-control" maxlength="100" required>
+                                        <label for="sizeAdd">Size name    </label>
+                                        <input type="text" id="sizeAdd" name="sizeAdd" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addSize()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- delete Size -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSizeModal">Delete</button>
+                        <div class="modal fade" id="deleteSizeModal" tabindex="-1" aria-labelledby="deleteSizeLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="deleteSizeLabel">Delete a Size</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Delete a size from the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="sizeDelete">Size ID</label>
+                                        <input type="text" id="sizeDelete" name="sizeDelete" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteSize()">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- show table -->
+                    <div class="container">
+                        <table id="sizeTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Size id</th>
+                                    <th>Size</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
                                 </tr>

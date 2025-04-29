@@ -249,6 +249,34 @@ function deleteTechnology() {
     var isError = checkOneField(formData);
     if(isError=="error") return; sendViaAJAX(formData);
 }
+// Size
+function editSize() {
+    var formData = {
+        action: 'sizeEdit',
+        tblID: document.getElementById("sizeID").value.trim(),
+        formField: document.getElementById("sizeEdit").value.trim(),
+    };
+    var isError = checkTwoFields(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+function addSize() {
+    var formData = {
+        action: 'sizeAdd',
+        tblID: document.getElementById("sizeIDAdd").value.trim(),
+        formField: document.getElementById("sizeAdd").value.trim(),
+    };
+    var isError = checkTwoFields(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+function deleteSize() {
+    var formData = {
+        action: 'sizeDelete',
+        formField: document.getElementById("sizeDelete").value.trim(),
+    };
+    var isError = checkOneField(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+
 
 // User Roles
 function editRoles() {
@@ -437,6 +465,17 @@ function loadTables(){
                     columns: [
                         { data: 'technology_id' },
                         { data: 'technology_name' },
+                        { data: 'date_created' },
+                        { data: 'date_updated' }
+                    ]
+                });
+                // size table
+                $('#sizeTable').DataTable({
+                    destroy: true,
+                    data: response.sizes,
+                    columns: [
+                        { data: 'size_id' },
+                        { data: 'size_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
                     ]
