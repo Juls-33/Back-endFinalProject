@@ -80,11 +80,6 @@
                         $username = $obj->username;
                         $user_password = $obj->user_password;
                         
-                        /*
-                        $sql = "SELECT * FROM users_tbl WHERE username='$username' AND user_password='$user_password'";
-                        $result = $conn->query($sql);
-                        $user = $result->fetch_assoc(); // Get user row as associative array
-                        $roles_id = $user['roles_id'];*/
                         $stmt = $conn->prepare("SELECT * FROM users_tbl WHERE (username=? OR email=?) AND user_password=?");
                         $stmt->bind_param("sss", $username, $username, $user_password);
                         $stmt->execute();
@@ -176,6 +171,7 @@
                         $password = $obj->password;
                         $adminUsername = $_SESSION['username'];
                         $roles_id = 2;
+                        $date_updated = date('Y-m-d H:i:s');
                     
                         $stmt = $conn->prepare("SELECT user_password FROM users_tbl WHERE username=? AND user_password=?");
                         $stmt->bind_param("ss", $adminUsername, $password);
@@ -187,8 +183,8 @@
                                 echo json_encode(['status' => 'error', 'message' => 'You are already a super admin.']);
                                 break;
                             }
-                            $updateStmt = $conn->prepare("UPDATE users_tbl SET roles_id = ? where username = ?");
-                            $updateStmt->bind_param("is", $roles_id, $username);
+                            $updateStmt = $conn->prepare("UPDATE users_tbl SET roles_id = ?, date_updated=? where username = ?");
+                            $updateStmt->bind_param("iss", $roles_id, $date_updated, $username);
                             if ($updateStmt->execute()) {
                                 echo json_encode(['status' => 'success', 'message' => 'Super Admin added successfully.']);
                             } else {
@@ -220,6 +216,7 @@
                         $password = $obj->password;
                         $adminUsername = $_SESSION['username'];
                         $roles_id = 3;
+                        $date_updated = date('Y-m-d H:i:s');
                     
                         $stmt = $conn->prepare("SELECT user_password FROM users_tbl WHERE username=? AND user_password=?");
                         $stmt->bind_param("ss", $adminUsername, $password);
@@ -231,8 +228,8 @@
                                 echo json_encode(['status' => 'error', 'message' => 'You cannot remove yourself super admin.']);
                                 break;
                             }
-                            $updateStmt = $conn->prepare("UPDATE users_tbl SET roles_id = ? where username = ?");
-                            $updateStmt->bind_param("is", $roles_id, $username);
+                            $updateStmt = $conn->prepare("UPDATE users_tbl SET roles_id = ?, date_updated=? where username = ?");
+                            $updateStmt->bind_param("iss", $roles_id, $date_updated, $username);
                             if ($updateStmt->execute()) {
                                 echo json_encode(['status' => 'success', 'message' => 'Super Admin added successfully.']);
                             } else {
