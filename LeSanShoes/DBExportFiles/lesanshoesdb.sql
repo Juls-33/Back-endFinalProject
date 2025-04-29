@@ -40,9 +40,10 @@ CREATE TABLE IF NOT EXISTS `brand_tbl` (
   PRIMARY KEY (`brand_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.brand_tbl: ~4 rows (approximately)
+-- Dumping data for table lesanshoes_db.brand_tbl: ~5 rows (approximately)
 DELETE FROM `brand_tbl`;
 INSERT INTO `brand_tbl` (`brand_id`, `brand_name`, `date_created`, `date_updated`) VALUES
+	(0, 'N/A', '2025-04-29 06:11:44', '2025-04-29 06:11:44'),
 	(1, 'Apple', '2025-04-27 05:54:50', '2025-04-27 05:55:24'),
 	(2, 'Samsung', '2025-04-25 07:48:02', '2025-04-25 07:48:02'),
 	(3, 'Nike', '2025-04-25 07:49:23', '2025-04-25 07:49:23'),
@@ -57,9 +58,10 @@ CREATE TABLE IF NOT EXISTS `category_tbl` (
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.category_tbl: ~2 rows (approximately)
+-- Dumping data for table lesanshoes_db.category_tbl: ~3 rows (approximately)
 DELETE FROM `category_tbl`;
 INSERT INTO `category_tbl` (`category_id`, `category_name`, `date_created`, `date_updated`) VALUES
+	(0, 'N/A', '2025-04-29 06:11:55', '2025-04-29 06:11:55'),
 	(1, 'Basketball', '2025-04-27 06:27:31', '2025-04-27 06:27:54'),
 	(2, 'Running', '2025-04-27 09:29:56', '2025-04-27 09:30:09');
 
@@ -75,6 +77,20 @@ CREATE TABLE IF NOT EXISTS `faq_tbl` (
 
 -- Dumping data for table lesanshoes_db.faq_tbl: ~0 rows (approximately)
 DELETE FROM `faq_tbl`;
+
+-- Dumping structure for table lesanshoes_db.material_tbl
+CREATE TABLE IF NOT EXISTS `material_tbl` (
+  `material_id` int(11) NOT NULL,
+  `material_name` varchar(255) NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  PRIMARY KEY (`material_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table lesanshoes_db.material_tbl: ~1 rows (approximately)
+DELETE FROM `material_tbl`;
+INSERT INTO `material_tbl` (`material_id`, `material_name`, `date_created`, `date_updated`) VALUES
+	(0, 'N/A', '2025-04-29 06:26:05', '2025-04-29 06:28:14');
 
 -- Dumping structure for table lesanshoes_db.orders_tbl
 CREATE TABLE IF NOT EXISTS `orders_tbl` (
@@ -101,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `roles_tbl` (
   PRIMARY KEY (`roles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.roles_tbl: ~3 rows (approximately)
+-- Dumping data for table lesanshoes_db.roles_tbl: ~4 rows (approximately)
 DELETE FROM `roles_tbl`;
 INSERT INTO `roles_tbl` (`roles_id`, `roles_name`, `roles_desc`, `date_created`, `date_updated`) VALUES
 	(1, 'User', 'Accesses the website and order product different products', '0000-00-00 00:00:00', '2025-04-27 09:57:35'),
@@ -117,9 +133,10 @@ CREATE TABLE IF NOT EXISTS `shoes_gender_tbl` (
   PRIMARY KEY (`shoes_gender_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.shoes_gender_tbl: ~2 rows (approximately)
+-- Dumping data for table lesanshoes_db.shoes_gender_tbl: ~3 rows (approximately)
 DELETE FROM `shoes_gender_tbl`;
 INSERT INTO `shoes_gender_tbl` (`shoes_gender_id`, `shoes_gender_name`, `date_created`, `date_updated`) VALUES
+	(0, 'N/A', '2025-04-29 06:12:03', '2025-04-29 06:12:03'),
 	(1, 'Male', '2025-04-27 08:22:20', '2025-04-27 08:22:47'),
 	(2, 'Female', '2025-04-27 08:19:01', '2025-04-27 08:19:01'),
 	(3, 'Unisex', '2025-04-27 09:30:21', '2025-04-27 09:30:39');
@@ -164,12 +181,56 @@ CREATE TABLE IF NOT EXISTS `status_tbl` (
   PRIMARY KEY (`status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.status_tbl: ~3 rows (approximately)
+-- Dumping data for table lesanshoes_db.status_tbl: ~5 rows (approximately)
 DELETE FROM `status_tbl`;
 INSERT INTO `status_tbl` (`status_id`, `status_name`, `date_created`, `date_updated`) VALUES
+	(0, 'N/A', '2025-04-29 06:12:17', '2025-04-29 06:27:50'),
 	(1, 'Pending', '2025-04-27 08:56:59', '2025-04-27 08:56:59'),
 	(2, 'Out for delivery', '2025-04-27 08:57:07', '2025-04-27 08:57:07'),
-	(3, 'Completed', '2025-04-27 08:57:17', '2025-04-27 08:57:17');
+	(3, 'Completed', '2025-04-27 08:57:17', '2025-04-27 08:57:17'),
+	(4, 'Cancelled', '2025-04-29 04:20:47', '2025-04-29 04:20:47');
+
+-- Dumping structure for table lesanshoes_db.support_tbl
+CREATE TABLE IF NOT EXISTS `support_tbl` (
+  `support_id` int(11) NOT NULL,
+  `support_name` varchar(255) NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  PRIMARY KEY (`support_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table lesanshoes_db.support_tbl: ~1 rows (approximately)
+DELETE FROM `support_tbl`;
+INSERT INTO `support_tbl` (`support_id`, `support_name`, `date_created`, `date_updated`) VALUES
+	(0, 'N/A', '2025-04-29 06:49:50', '2025-04-29 06:49:50');
+
+-- Dumping structure for table lesanshoes_db.technology_tbl
+CREATE TABLE IF NOT EXISTS `technology_tbl` (
+  `technology_id` int(11) NOT NULL,
+  `technology_name` varchar(255) NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  PRIMARY KEY (`technology_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table lesanshoes_db.technology_tbl: ~0 rows (approximately)
+DELETE FROM `technology_tbl`;
+INSERT INTO `technology_tbl` (`technology_id`, `technology_name`, `date_created`, `date_updated`) VALUES
+	(0, 'N/A', '2025-04-29 06:55:45', '2025-04-29 06:55:45');
+
+-- Dumping structure for table lesanshoes_db.traction_tbl
+CREATE TABLE IF NOT EXISTS `traction_tbl` (
+  `traction_id` int(11) NOT NULL,
+  `traction_name` varchar(255) NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  PRIMARY KEY (`traction_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table lesanshoes_db.traction_tbl: ~1 rows (approximately)
+DELETE FROM `traction_tbl`;
+INSERT INTO `traction_tbl` (`traction_id`, `traction_name`, `date_created`, `date_updated`) VALUES
+	(0, 'N/A', '2025-04-29 06:40:41', '2025-04-29 06:40:52');
 
 -- Dumping structure for table lesanshoes_db.users_tbl
 CREATE TABLE IF NOT EXISTS `users_tbl` (
@@ -190,14 +251,14 @@ CREATE TABLE IF NOT EXISTS `users_tbl` (
   CONSTRAINT `users_tbl_ibfk_1` FOREIGN KEY (`roles_id`) REFERENCES `roles_tbl` (`roles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.users_tbl: ~6 rows (approximately)
+-- Dumping data for table lesanshoes_db.users_tbl: ~8 rows (approximately)
 DELETE FROM `users_tbl`;
 INSERT INTO `users_tbl` (`username`, `roles_id`, `fname`, `lname`, `email`, `user_password`, `birthday`, `user_address`, `contact`, `date_created`, `date_updated`, `last_login`) VALUES
-	('admin', 3, 'JULIUS AUSTIN', 'sdda', 'unrealdamianlillard@gmail.com', '123', NULL, '', '11111111111', '2025-04-22 15:23:38', '2025-04-22 15:23:38', NULL),
+	('admin', 3, 'JULIUS AUSTIN', 'sdda', 'unrealdamianlillard@gmail.com', '123', NULL, '', '11111111111', '2025-04-22 15:23:38', '2025-04-22 15:23:38', '2025-04-29 09:04:54'),
 	('damian', 2, 'damian', 'lillard', 'damian@gmail.com', '123', '2025-04-23', '167-B 21st Avenue, East Rembo', '09664282161', '2025-04-20 18:25:14', '2025-04-20 18:25:14', '2025-04-23 07:24:42'),
-	('he', 3, 'JULIUS AUSTIN', 'JULIUS AUSTIN', 'giansenensantos@yahoo.com.ph', '123', NULL, '', '54545454545', '2025-04-27 14:34:06', '2025-04-27 14:34:06', NULL),
+	('he', 2, 'JULIUS AUSTIN', 'JULIUS AUSTIN', 'giansenensantos@yahoo.com.ph', '123', NULL, '', '54545454545', '2025-04-27 14:34:06', '2025-04-29 02:47:02', NULL),
 	('julius', 1, 'JULIUS AUSTIN', 'SANTOS', 'Juliusaustin.santos.cics@ust.edu.ph', '123', '2004-08-28', '167-B 21st Avenue, East Rembo', '09664282161', '2025-04-21 16:11:52', '2025-04-21 16:11:52', '2025-04-24 19:44:39'),
-	('lebron', 2, 'LeBron', 'James', 'lebronjamesking@gmail.com', '123', NULL, '', '12312312312', '2025-04-27 15:17:55', '2025-04-27 15:17:55', '2025-04-27 21:18:57'),
+	('lebron', 2, 'LeBron', 'James', 'lebronjamesking@gmail.com', '123', NULL, '', '12312312312', '2025-04-27 15:17:55', '2025-04-27 15:17:55', '2025-04-29 10:19:37'),
 	('marc', 1, 'marc', 'yaeger', 'marc@gmail.com', '123', '2025-04-17', '167-B 21st Avenue, East Rembo', '09664282161', '2025-04-22 01:13:14', '2025-04-22 01:13:14', '2025-04-23 14:41:30'),
 	('sky', 3, 'Sky', 'Ubaldo', 'sky@gmail.com', '123', NULL, '', '12313123123', '2025-04-22 06:06:22', '2025-04-22 15:25:29', '2025-04-27 14:46:20'),
 	('soracakiesz', 1, 'Elizabeth Jean', 'Ubaldo', 'skyjean@gmail.com', '123', '2005-09-02', 'Caloocan City', '22222222222', '2025-04-24 13:43:35', '2025-04-24 13:43:35', '2025-04-24 19:44:21');
