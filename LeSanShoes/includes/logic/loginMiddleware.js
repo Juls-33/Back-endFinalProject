@@ -49,9 +49,12 @@ function sendViaAJAX(formData){
                 if (res.status === "success") {
                     if (res.roles_id == 1) {
                         window.location.href = "../users/index.php";
-                    } else if (res.roles_id == 2 || res.roles_id == 3) {
+                    } else if (res.roles_id == 3) {
                         window.location.href = "../admin/DashboardAdmin.php";
-                    } else {
+                    } else if(res.roles_id == 2){
+                        window.location.href = "../adminSuper/DashboardSuperAdmin.php";
+                    }
+                    else {
                         Swal.fire({
                             icon: "warning",
                             title: "Unknown role",

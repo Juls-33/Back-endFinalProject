@@ -191,6 +191,190 @@
                         }
                         $deleteStmt->close();
                     break;  
+                    case 'materialEdit':
+                        $materialID= $obj ->tblID;
+                        $formField= $obj ->formField;
+                        $date_updated = date('Y-m-d H:i:s');
+                    
+                        $stmt = $conn->prepare("UPDATE material_tbl SET material_name = ?, date_updated = ? where material_id = ?");
+                        $stmt->bind_param("ssi", $formField, $date_updated, $materialID);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo json_encode(['status' => 'success', 'message' => 'Shoe material name is updated successfully.']);
+                            } else {
+                                echo json_encode(['status' => 'error', 'message' => 'Failed to update Shoe material name.']);
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                    break;   
+                    case 'materialAdd':
+                        $materialID= $obj ->tblID;
+                        $formField = $obj ->formField;
+                        $date_created = date('Y-m-d H:i:s');
+                    
+                        $stmt = $conn->prepare("INSERT INTO material_tbl(material_id, material_name, date_created, date_updated) VALUES (?,?,?,?)");
+                        $stmt->bind_param("isss", $materialID, $formField, $date_created, $date_created);
+                        if ($stmt->execute()) {
+                            echo json_encode(['status' => 'success', 'message' => 'Shoe material name saved successfully.']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to save the Shoe materialname.']);
+                        }
+                        $stmt->close();
+                    break;    
+                    case 'materialDelete':
+                        $formField = $obj ->formField;
+                        $date_created = date('Y-m-d H:i:s');
+                    
+                        $deleteStmt = $conn->prepare("DELETE FROM material_tbl WHERE material_id = ?");
+                        $deleteStmt->bind_param("i", $formField);
+                        if ($deleteStmt->execute()) {
+                            echo json_encode(['status' => 'success', 'message' => 'Shoe category deleted successfully.']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to delete the shoe category name.']);
+                        }
+                        $deleteStmt->close();
+                    break;  
+                    case 'tractionEdit':
+                        $tractionID= $obj ->tblID;
+                        $formField= $obj ->formField;
+                        $date_updated = date('Y-m-d H:i:s');
+                    
+                        $stmt = $conn->prepare("UPDATE traction_tbl SET traction_name = ?, date_updated = ? where traction_id = ?");
+                        $stmt->bind_param("ssi", $formField, $date_updated, $tractionID);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo json_encode(['status' => 'success', 'message' => 'Shoe traction name is updated successfully.']);
+                            } else {
+                                echo json_encode(['status' => 'error', 'message' => 'Failed to update Shoe traction name.']);
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                    break;   
+                    case 'tractionAdd':
+                        $tractionID= $obj ->tblID;
+                        $formField = $obj ->formField;
+                        $date_created = date('Y-m-d H:i:s');
+                    
+                        $stmt = $conn->prepare("INSERT INTO traction_tbl(traction_id, traction_name, date_created, date_updated) VALUES (?,?,?,?)");
+                        $stmt->bind_param("isss", $tractionID, $formField, $date_created, $date_created);
+                        if ($stmt->execute()) {
+                            echo json_encode(['status' => 'success', 'message' => 'Shoe traction name saved successfully.']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to save the Shoe tractionname.']);
+                        }
+                        $stmt->close();
+                    break;    
+                    case 'tractionDelete':
+                        $formField = $obj ->formField;
+                        $date_created = date('Y-m-d H:i:s');
+                    
+                        $deleteStmt = $conn->prepare("DELETE FROM traction_tbl WHERE traction_id = ?");
+                        $deleteStmt->bind_param("i", $formField);
+                        if ($deleteStmt->execute()) {
+                            echo json_encode(['status' => 'success', 'message' => 'Shoe category deleted successfully.']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to delete the shoe category name.']);
+                        }
+                        $deleteStmt->close();
+                    break;  
+                    case 'supportEdit':
+                        $supportID= $obj ->tblID;
+                        $formField= $obj ->formField;
+                        $date_updated = date('Y-m-d H:i:s');
+                    
+                        $stmt = $conn->prepare("UPDATE support_tbl SET support_name = ?, date_updated = ? where support_id = ?");
+                        $stmt->bind_param("ssi", $formField, $date_updated, $supportID);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo json_encode(['status' => 'success', 'message' => 'Shoe support name is updated successfully.']);
+                            } else {
+                                echo json_encode(['status' => 'error', 'message' => 'Failed to update Shoe support name.']);
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                    break;   
+                    case 'supportAdd':
+                        $supportID= $obj ->tblID;
+                        $formField = $obj ->formField;
+                        $date_created = date('Y-m-d H:i:s');
+                    
+                        $stmt = $conn->prepare("INSERT INTO support_tbl(support_id, support_name, date_created, date_updated) VALUES (?,?,?,?)");
+                        $stmt->bind_param("isss", $supportID, $formField, $date_created, $date_created);
+                        if ($stmt->execute()) {
+                            echo json_encode(['status' => 'success', 'message' => 'Shoe support name saved successfully.']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to save the Shoe supportname.']);
+                        }
+                        $stmt->close();
+                    break;    
+                    case 'supportDelete':
+                        $formField = $obj ->formField;
+                        $date_created = date('Y-m-d H:i:s');
+                    
+                        $deleteStmt = $conn->prepare("DELETE FROM support_tbl WHERE support_id = ?");
+                        $deleteStmt->bind_param("i", $formField);
+                        if ($deleteStmt->execute()) {
+                            echo json_encode(['status' => 'success', 'message' => 'Shoe category deleted successfully.']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to delete the shoe category name.']);
+                        }
+                        $deleteStmt->close();
+                    break;  
+                    case 'technologyEdit':
+                        $technologyID= $obj ->tblID;
+                        $formField= $obj ->formField;
+                        $date_updated = date('Y-m-d H:i:s');
+                    
+                        $stmt = $conn->prepare("UPDATE technology_tbl SET technology_name = ?, date_updated = ? where technology_id = ?");
+                        $stmt->bind_param("ssi", $formField, $date_updated, $technologyID);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo json_encode(['status' => 'success', 'message' => 'Shoe technology name is updated successfully.']);
+                            } else {
+                                echo json_encode(['status' => 'error', 'message' => 'Failed to update Shoe technology name.']);
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                    break;   
+                    case 'technologyAdd':
+                        $technologyID= $obj ->tblID;
+                        $formField = $obj ->formField;
+                        $date_created = date('Y-m-d H:i:s');
+                    
+                        $stmt = $conn->prepare("INSERT INTO technology_tbl(technology_id, technology_name, date_created, date_updated) VALUES (?,?,?,?)");
+                        $stmt->bind_param("isss", $technologyID, $formField, $date_created, $date_created);
+                        if ($stmt->execute()) {
+                            echo json_encode(['status' => 'success', 'message' => 'Shoe technology name saved successfully.']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to save the Shoe technologyname.']);
+                        }
+                        $stmt->close();
+                    break;    
+                    case 'technologyDelete':
+                        $formField = $obj ->formField;
+                        $date_created = date('Y-m-d H:i:s');
+                    
+                        $deleteStmt = $conn->prepare("DELETE FROM technology_tbl WHERE technology_id = ?");
+                        $deleteStmt->bind_param("i", $formField);
+                        if ($deleteStmt->execute()) {
+                            echo json_encode(['status' => 'success', 'message' => 'Shoe category deleted successfully.']);
+                        } else {
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to delete the shoe category name.']);
+                        }
+                        $deleteStmt->close();
+                    break;  
                     case 'userRolesEdit':
                         $rolesID= $obj ->tblID;
                         $userRolesDesc= $obj ->userRolesDesc;

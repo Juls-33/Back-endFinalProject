@@ -87,6 +87,18 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item">
+                    <a href="ManageDBSuperAdmin.php" class="sidebar-link">
+                        <i class="lni lni-layout-9"></i>
+                        <span>Manage Database</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="UserMngSuperAdmin.php" class="sidebar-link">
+                        <i class="lni lni-user-multiple-4"></i>
+                        <span>User Management</span>
+                    </a>
+                </li>
             </ul>
             <div class="sidebar-footer">
                 <a href="../userAuth/logoutAdmin.php" class="sidebar-link">
@@ -103,7 +115,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm">
-                                <a class="opacity-5 text-dark" href="javascript:;">Admin</a>
+                                <a class="opacity-5 text-dark" href="javascript:;">Super Admin</a>
                             </li>
                             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
                         </ol>

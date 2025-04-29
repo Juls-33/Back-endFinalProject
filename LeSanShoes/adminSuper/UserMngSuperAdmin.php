@@ -37,14 +37,8 @@
                 </div>
             </div>
             <ul class="sidebar-nav">
-                <!-- <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-user-4"></i>
-                        <span>Profile</span>
-                    </a>
-                </li> -->
                 <li class="sidebar-item">
-                    <a href="DashboardAdmin.php" class="sidebar-link">
+                    <a href="DashboardSuperAdmin.php" class="sidebar-link">
                         <i class="lni lni-dashboard-square-1"></i>
                         <span>Dashboard</span>
                     </a>
@@ -80,13 +74,14 @@
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="#" class="sidebar-link">Link 2</a>
+              
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="ManageDBAdmin.php" class="sidebar-link">
+                    <a href="ManageDBSuperAdmin.php" class="sidebar-link">
                         <i class="lni lni-layout-9"></i>
                         <span>Manage Database</span>
                     </a>
@@ -112,7 +107,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm">
-                                <a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                                <a class="opacity-5 text-dark" href="javascript:;">Super Admin</a>
                             </li>
                             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">User Management</li>
                         </ol>

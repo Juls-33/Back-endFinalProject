@@ -44,7 +44,7 @@
                     </a>
                 </li> -->
                 <li class="sidebar-item">
-                    <a href="DashboardAdmin.php" class="sidebar-link">
+                    <a href="DashboardSuperAdmin.php" class="sidebar-link">
                         <i class="lni lni-dashboard-square-1"></i>
                         <span>Dashboard</span>
                     </a>
@@ -92,7 +92,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="UserMngAdmin.php" class="sidebar-link">
+                    <a href="UserMngSuperAdmin.php" class="sidebar-link">
                         <i class="lni lni-user-multiple-4"></i>
                         <span>User Management</span>
                     </a>
@@ -112,7 +112,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm">
-                                <a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                                <a class="opacity-5 text-dark" href="javascript:;">Super Admin</a>
                             </li>
                             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Manage Database</li>
                         </ol>
@@ -140,6 +140,10 @@
                     <button class="nav-link" id="nav-category-tab" data-bs-toggle="tab" data-bs-target="#nav-category" type="button" role="tab" aria-controls="nav-category" aria-selected="false">Shoes Category</button>
                     <button class="nav-link" id="nav-shoes-gender-tab" data-bs-toggle="tab" data-bs-target="#nav-shoes-gender" type="button" role="tab" aria-controls="nav-shoes-gender" aria-selected="false">Shoes gender</button>
                     <button class="nav-link" id="nav-status-tab" data-bs-toggle="tab" data-bs-target="#nav-status" type="button" role="tab" aria-controls="nav-status" aria-selected="false">Status</button>
+                    <button class="nav-link" id="nav-material-tab" data-bs-toggle="tab" data-bs-target="#nav-material" type="button" role="tab" aria-controls="nav-material" aria-selected="false">Material</button>
+                    <button class="nav-link" id="nav-traction-tab" data-bs-toggle="tab" data-bs-target="#nav-traction" type="button" role="tab" aria-controls="nav-traction" aria-selected="false">Traction</button>
+                    <button class="nav-link" id="nav-support-tab" data-bs-toggle="tab" data-bs-target="#nav-support" type="button" role="tab" aria-controls="nav-support" aria-selected="false">Support</button>
+                    <button class="nav-link" id="nav-technology-tab" data-bs-toggle="tab" data-bs-target="#nav-technology" type="button" role="tab" aria-controls="nav-technology" aria-selected="false">Technology</button>
                     <button class="nav-link" id="nav-roles-tab" data-bs-toggle="tab" data-bs-target="#nav-roles" type="button" role="tab" aria-controls="nav-roles" aria-selected="false">User Roles</button>
                 </div>
             </nav>  
@@ -545,6 +549,415 @@
                                 <tr>
                                     <th>Status id</th>
                                     <th>Status</th>
+                                    <th>Date created</th>
+                                    <th>Date updated</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <!-- Material tab -->
+                <div class="tab-pane fade" id="nav-material" role="tabpanel" aria-labelledby="nav-material-tab">
+                    <br>
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- edit Material -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editMaterialModal">Edit</button>
+                        <div class="modal fade" id="editMaterialModal" tabindex="-1" aria-labelledby="editMaterialLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="editMaterialLabel">Edit Material</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Edit material in the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="materialID">Material ID</label>
+                                        <input type="number" id="materialID" name="materialID" class="form-control" maxlength="100" required>
+                                        <label for="materialEdit">Material name</label>
+                                        <input type="text" id="materialEdit" name="materialEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editMaterial()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- add Material -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#MaterialModal">Add</button>
+                        <div class="modal fade" id="MaterialModal" tabindex="-1" aria-labelledby="MaterialLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="addBrandLabel">Add Material</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Add material to the datababse</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="materialIDAdd">Material ID</label>
+                                        <input type="number" id="materialIDAdd" name="materialIDAdd" class="form-control" maxlength="100" required>
+                                        <label for="materialAdd">Material name    </label>
+                                        <input type="text" id="materialAdd" name="materialAdd" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addMaterial()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- delete Material -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMaterialModal">Delete</button>
+                        <div class="modal fade" id="deleteMaterialModal" tabindex="-1" aria-labelledby="deleteMaterialLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="deleteMaterialLabel">Delete a Material</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Delete a material from the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="materialDelete">Material ID</label>
+                                        <input type="text" id="materialDelete" name="materialDelete" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteMaterial()">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- show table -->
+                    <div class="container">
+                        <table id="materialTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Material id</th>
+                                    <th>Material</th>
+                                    <th>Date created</th>
+                                    <th>Date updated</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <!-- Traction tab -->
+                <div class="tab-pane fade" id="nav-traction" role="tabpanel" aria-labelledby="nav-traction-tab">
+                    <br>
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- edit Traction -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editTractionModal">Edit</button>
+                        <div class="modal fade" id="editTractionModal" tabindex="-1" aria-labelledby="editTractionLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="editTractionLabel">Edit Traction</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Edit traction in the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="tractionID">Traction ID</label>
+                                        <input type="number" id="tractionID" name="tractionID" class="form-control" maxlength="100" required>
+                                        <label for="tractionEdit">Traction name</label>
+                                        <input type="text" id="tractionEdit" name="tractionEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editTraction()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- add Traction -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#TractionModal">Add</button>
+                        <div class="modal fade" id="TractionModal" tabindex="-1" aria-labelledby="TractionLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="addBrandLabel">Add Traction</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Add traction to the datababse</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="tractionIDAdd">Traction ID</label>
+                                        <input type="number" id="tractionIDAdd" name="tractionIDAdd" class="form-control" maxlength="100" required>
+                                        <label for="tractionAdd">Traction name    </label>
+                                        <input type="text" id="tractionAdd" name="tractionAdd" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addTraction()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- delete Traction -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTractionModal">Delete</button>
+                        <div class="modal fade" id="deleteTractionModal" tabindex="-1" aria-labelledby="deleteTractionLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="deleteTractionLabel">Delete a Traction</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Delete a traction from the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="tractionDelete">Traction ID</label>
+                                        <input type="text" id="tractionDelete" name="tractionDelete" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteTraction()">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- show table -->
+                    <div class="container">
+                        <table id="tractionTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Traction id</th>
+                                    <th>Traction</th>
+                                    <th>Date created</th>
+                                    <th>Date updated</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <!-- Support tab -->
+                <div class="tab-pane fade" id="nav-support" role="tabpanel" aria-labelledby="nav-support-tab">
+                    <br>
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- edit Support -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editSupportModal">Edit</button>
+                        <div class="modal fade" id="editSupportModal" tabindex="-1" aria-labelledby="editSupportLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="editSupportLabel">Edit Support</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Edit support in the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="supportID">Support ID</label>
+                                        <input type="number" id="supportID" name="supportID" class="form-control" maxlength="100" required>
+                                        <label for="supportEdit">Support name</label>
+                                        <input type="text" id="supportEdit" name="supportEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editSupport()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- add Support -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SupportModal">Add</button>
+                        <div class="modal fade" id="SupportModal" tabindex="-1" aria-labelledby="SupportLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="addBrandLabel">Add Support</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Add support to the datababse</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="supportIDAdd">Support ID</label>
+                                        <input type="number" id="supportIDAdd" name="supportIDAdd" class="form-control" maxlength="100" required>
+                                        <label for="supportAdd">Support name    </label>
+                                        <input type="text" id="supportAdd" name="supportAdd" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addSupport()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- delete Support -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSupportModal">Delete</button>
+                        <div class="modal fade" id="deleteSupportModal" tabindex="-1" aria-labelledby="deleteSupportLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="deleteSupportLabel">Delete a Support</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Delete a support from the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="supportDelete">Support ID</label>
+                                        <input type="text" id="supportDelete" name="supportDelete" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteSupport()">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- show table -->
+                    <div class="container">
+                        <table id="supportTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Support id</th>
+                                    <th>Support</th>
+                                    <th>Date created</th>
+                                    <th>Date updated</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                
+<!-- Technology tab -->
+<div class="tab-pane fade" id="nav-technology" role="tabpanel" aria-labelledby="nav-technology-tab">
+                    <br>
+                    <div class="d-flex justify-content-center gap-3">
+                        <!-- edit Technology -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editTechnologyModal">Edit</button>
+                        <div class="modal fade" id="editTechnologyModal" tabindex="-1" aria-labelledby="editTechnologyLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="editTechnologyLabel">Edit Technology</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Edit technology in the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="technologyID">Technology ID</label>
+                                        <input type="number" id="technologyID" name="technologyID" class="form-control" maxlength="100" required>
+                                        <label for="technologyEdit">Technology name</label>
+                                        <input type="text" id="technologyEdit" name="technologyEdit" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editTechnology()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- add Technology -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#TechnologyModal">Add</button>
+                        <div class="modal fade" id="TechnologyModal" tabindex="-1" aria-labelledby="TechnologyLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="addBrandLabel">Add Technology</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Add technology to the datababse</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="technologyIDAdd">Technology ID</label>
+                                        <input type="number" id="technologyIDAdd" name="technologyIDAdd" class="form-control" maxlength="100" required>
+                                        <label for="technologyAdd">Technology name    </label>
+                                        <input type="text" id="technologyAdd" name="technologyAdd" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addTechnology()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- delete Technology -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTechnologyModal">Delete</button>
+                        <div class="modal fade" id="deleteTechnologyModal" tabindex="-1" aria-labelledby="deleteTechnologyLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="deleteTechnologyLabel">Delete a Technology</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <form>
+                                    <h2 class="text-center mb-3">Delete a technology from the database</h2>
+                                    <hr>
+                                    <div class="form-group mb-3">
+                                        <label for="technologyDelete">Technology ID</label>
+                                        <input type="text" id="technologyDelete" name="technologyDelete" class="form-control" maxlength="100" required>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteTechnology()">Delete</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- show table -->
+                    <div class="container">
+                        <table id="technologyTable" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Technology id</th>
+                                    <th>Technology</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
                                 </tr>

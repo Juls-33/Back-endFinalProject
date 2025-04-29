@@ -138,6 +138,117 @@ function deleteStatus() {
     var isError = checkOneField(formData);
     if(isError=="error") return; sendViaAJAX(formData);
 }
+// Material
+function editMaterial() {
+    var formData = {
+        action: 'materialEdit',
+        tblID: document.getElementById("materialID").value.trim(),
+        formField: document.getElementById("materialEdit").value.trim(),
+    };
+    var isError = checkTwoFields(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+function addMaterial() {
+    var formData = {
+        action: 'materialAdd',
+        tblID: document.getElementById("materialIDAdd").value.trim(),
+        formField: document.getElementById("materialAdd").value.trim(),
+    };
+    var isError = checkTwoFields(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+function deleteMaterial() {
+    var formData = {
+        action: 'materialDelete',
+        formField: document.getElementById("materialDelete").value.trim(),
+    };
+    var isError = checkOneField(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+// Traction
+function editTraction() {
+    var formData = {
+        action: 'tractionEdit',
+        tblID: document.getElementById("tractionID").value.trim(),
+        formField: document.getElementById("tractionEdit").value.trim(),
+    };
+    var isError = checkTwoFields(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+function addTraction() {
+    var formData = {
+        action: 'tractionAdd',
+        tblID: document.getElementById("tractionIDAdd").value.trim(),
+        formField: document.getElementById("tractionAdd").value.trim(),
+    };
+    var isError = checkTwoFields(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+function deleteTraction() {
+    var formData = {
+        action: 'tractionDelete',
+        formField: document.getElementById("tractionDelete").value.trim(),
+    };
+    var isError = checkOneField(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+// Support
+function editSupport() {
+    var formData = {
+        action: 'supportEdit',
+        tblID: document.getElementById("supportID").value.trim(),
+        formField: document.getElementById("supportEdit").value.trim(),
+    };
+    var isError = checkTwoFields(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+function addSupport() {
+    var formData = {
+        action: 'supportAdd',
+        tblID: document.getElementById("supportIDAdd").value.trim(),
+        formField: document.getElementById("supportAdd").value.trim(),
+    };
+    var isError = checkTwoFields(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+function deleteSupport() {
+    var formData = {
+        action: 'supportDelete',
+        formField: document.getElementById("supportDelete").value.trim(),
+    };
+    var isError = checkOneField(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+
+
+
+// Technology
+function editTechnology() {
+    var formData = {
+        action: 'technologyEdit',
+        tblID: document.getElementById("technologyID").value.trim(),
+        formField: document.getElementById("technologyEdit").value.trim(),
+    };
+    var isError = checkTwoFields(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+function addTechnology() {
+    var formData = {
+        action: 'technologyAdd',
+        tblID: document.getElementById("technologyIDAdd").value.trim(),
+        formField: document.getElementById("technologyAdd").value.trim(),
+    };
+    var isError = checkTwoFields(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
+function deleteTechnology() {
+    var formData = {
+        action: 'technologyDelete',
+        formField: document.getElementById("technologyDelete").value.trim(),
+    };
+    var isError = checkOneField(formData);
+    if(isError=="error") return; sendViaAJAX(formData);
+}
 
 // User Roles
 function editRoles() {
@@ -282,6 +393,50 @@ function loadTables(){
                     columns: [
                         { data: 'status_id' },
                         { data: 'status_name' },
+                        { data: 'date_created' },
+                        { data: 'date_updated' }
+                    ]
+                });
+                // material table
+                $('#materialTable').DataTable({
+                    destroy: true,
+                    data: response.materials,
+                    columns: [
+                        { data: 'material_id' },
+                        { data: 'material_name' },
+                        { data: 'date_created' },
+                        { data: 'date_updated' }
+                    ]
+                });
+                // traction table
+                $('#tractionTable').DataTable({
+                    destroy: true,
+                    data: response.tractions,
+                    columns: [
+                        { data: 'traction_id' },
+                        { data: 'traction_name' },
+                        { data: 'date_created' },
+                        { data: 'date_updated' }
+                    ]
+                });
+                // support table
+                $('#supportTable').DataTable({
+                    destroy: true,
+                    data: response.supports,
+                    columns: [
+                        { data: 'support_id' },
+                        { data: 'support_name' },
+                        { data: 'date_created' },
+                        { data: 'date_updated' }
+                    ]
+                });
+                // technology table
+                $('#technologyTable').DataTable({
+                    destroy: true,
+                    data: response.technologies,
+                    columns: [
+                        { data: 'technology_id' },
+                        { data: 'technology_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
                     ]
