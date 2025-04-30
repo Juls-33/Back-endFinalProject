@@ -69,6 +69,9 @@ function sendViaAJAX(data){
                     `
                     });
                     loadTables();
+                    document.getElementById("addShoeForm").reset();
+                    document.getElementById("editShoeForm").reset();
+
             }
             else{
                 Swal.fire({
@@ -97,6 +100,11 @@ function sendViaAJAX(data){
             });
         }
     });
+}
+
+function closeModal() {
+    document.getElementById("addShoeForm").reset();
+    document.getElementById("editShoeForm").reset();
 }
 
 
@@ -134,7 +142,9 @@ function loadTables(){
                                 `;
                             }
                         }
-                    ]
+                    ],
+                    responsive: true,
+                    processing: true,
                 });
             },
         });

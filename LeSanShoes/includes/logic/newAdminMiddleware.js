@@ -22,13 +22,13 @@ function verifySignUp(formData){
             title: errorString,
             width: 600,
             padding: "3em",
-            color: "#716add",
+            color: "#B51E1E",
             background: "#fff url()",
             backdrop: `
-                rgba(0,0,123,0.4)
-                url("")
-                center
+                rgb(0,0,0, 0.1)
+                center top
                 no-repeat
+                    
             `
             });
     }
@@ -94,13 +94,12 @@ function sendViaAJAX(jsonString){
                 // html: '<pre>' + message(formData) + '</pre>',
                 width: 600,
                 padding: "3em",
-                color: "#716add",
-                background: "#fff url()",
-                backdrop: `
-                    rgba(0,0,123,0.4)
-                    url("pictures/yey.gif")
-                    center top
-                    no-repeat
+                color: "#36714b",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgb(0,0,0, 0.1)
+                        center top
+                        no-repeat
                 `
                 }).then(() => {
                     // Reset the form
@@ -121,6 +120,12 @@ function sendViaAJAX(jsonString){
                 icon: "error",
                 title: "Oops...",
                 text: 'Something went wrong! Username already exist',
+                color: "#B51E1E",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgb(0,0,0, 0.1)
+                        center top
+                        no-repeat`
             });
         }
     });
@@ -157,13 +162,12 @@ function verifyEdit(formData){
             title: errorString,
             width: 600,
             padding: "3em",
-            color: "#716add",
+            color: "#B51E1E",
             background: "#fff url()",
             backdrop: `
-                rgba(0,0,123,0.4)
-                url("")
-                center
-                no-repeat
+                rgb(0,0,0, 0.1)
+                center top
+                no-repeat   
             `
             });
     }
@@ -187,11 +191,10 @@ function sendEditViaAJAX(jsonString){
                     // html: '<pre>' + message(formData) + '</pre>',
                     width: 600,
                     padding: "3em",
-                    color: "#716add",
+                    color: "#36714b",
                     background: "#fff url()",
                     backdrop: `
-                        rgba(0,0,123,0.4)
-                        url("pictures/yey.gif")
+                        rgb(0,0,0, 0.1)
                         center top
                         no-repeat
                     `
@@ -213,11 +216,10 @@ function sendEditViaAJAX(jsonString){
                     // html: '<pre>' + message(formData) + '</pre>',
                     width: 600,
                     padding: "3em",
-                    color: "#716add",
+                    color: "#B51E1E",
                     background: "#fff url()",
                     backdrop: `
-                        rgba(0,0,123,0.4)
-                        url("pictures/yey.gif")
+                        rgb(0,0,0, 0.1)
                         center top
                         no-repeat
                     `
@@ -229,6 +231,12 @@ function sendEditViaAJAX(jsonString){
                 icon: "error",
                 title: "Oops...",
                 text: 'Something went wrong! Username does not exist',
+                color: "#B51E1E",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgb(0,0,0, 0.1)
+                        center top
+                        no-repeat`
             });
         }
     });
@@ -255,6 +263,13 @@ function deleteAdmin() {
         Swal.fire({
             icon: "error",
             title: "Username is required!",
+            color: "#B51E1E",
+            background: "#fff url()",
+            backdrop: `
+                rgb(0,0,0, 0.1)
+                center top
+                no-repeat`
+            
         });
         return;
     }
@@ -280,6 +295,12 @@ function deleteAdmin() {
                     Swal.fire({
                         icon: "error",
                         title: res.message || "Invalid username!",
+                        color: "#B51E1E",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgb(0,0,0, 0.1)
+                            center top
+                            no-repeat`
                     });
                 }
             } catch (err) {
@@ -290,7 +311,13 @@ function deleteAdmin() {
             Swal.fire({
                 icon: "error",
                 title: "Something went wrong!",
-                text: "Could not verify username."
+                text: "Could not verify username.",
+                color: "#B51E1E",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgb(0,0,0, 0.1)
+                        center top
+                        no-repeat`
             });
         }
     });
@@ -307,6 +334,12 @@ function confirmDelete(){
         Swal.fire({
             icon: "error",
             title: "Password is required!",
+            color: "#B51E1E",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgb(0,0,0, 0.1)
+                        center top
+                        no-repeat`
         });
         return;
     }
@@ -324,6 +357,13 @@ function confirmDelete(){
                     Swal.fire({
                         icon: "success",
                         title: res.message,
+                        color: "#36714b",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgb(0,0,0, 0.1)
+                            center top
+                            no-repeat
+                        `
                     });
                         var modalEl1 = document.getElementById('deleteAdmin1');
                         var modal1 = bootstrap.Modal.getInstance(modalEl1);
@@ -342,6 +382,14 @@ function confirmDelete(){
                     Swal.fire({
                         icon: "error",
                         title: res.message || "Invalid password!",
+                        color: "#B51E1E",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgb(0,0,0, 0.1)
+                            center top
+                            no-repeat
+                        `
+
                     });
                 }
             } catch (err) {
@@ -352,7 +400,14 @@ function confirmDelete(){
             Swal.fire({
                 icon: "error",
                 title: "Something went wrong!",
-                text: "Could not verify password."
+                text: "Could not verify password.",
+                color: "#B51E1E",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgb(0,0,0, 0.1)
+                        center top
+                        no-repeat
+                    `
             });
         }
     });
@@ -369,6 +424,13 @@ function newSuperAdmin() {
         Swal.fire({
             icon: "error",
             title: "Username is required!",
+            color: "#B51E1E",
+            background: "#fff url()",
+            backdrop: `
+                rgb(0,0,0, 0.1)
+                center top
+                no-repeat
+            `
         });
         return;
     }
@@ -394,6 +456,13 @@ function newSuperAdmin() {
                     Swal.fire({
                         icon: "error",
                         title: res.message || "Invalid username!",
+                        color: "#B51E1E",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgb(0,0,0, 0.1)
+                            center top
+                            no-repeat
+                        `
                     });
                 }
             } catch (err) {
@@ -404,7 +473,14 @@ function newSuperAdmin() {
             Swal.fire({
                 icon: "error",
                 title: "Something went wrong!",
-                text: "Could not verify username."
+                text: "Could not verify username.",
+                color: "#B51E1E",
+                background: "#fff url()",
+                backdrop: `
+                    rgb(0,0,0, 0.1)
+                    center top
+                    no-repeat
+                `
             });
         }
     });
@@ -420,6 +496,13 @@ function confirmAddSuperAdmin(){
         Swal.fire({
             icon: "error",
             title: "Password is required!",
+            color: "#B51E1E",
+            background: "#fff url()",
+            backdrop: `
+                rgb(0,0,0, 0.1)
+                center top
+                no-repeat
+            `
         });
         return;
     }
@@ -437,6 +520,13 @@ function confirmAddSuperAdmin(){
                     Swal.fire({
                         icon: "success",
                         title: res.message,
+                        color: "#36714b",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgb(0,0,0, 0.1)
+                            center top
+                            no-repeat
+                        `
                     });
                         var modalEl1 = document.getElementById('newSuperAdmin1');
                         var modal1 = bootstrap.Modal.getInstance(modalEl1);
@@ -455,6 +545,13 @@ function confirmAddSuperAdmin(){
                     Swal.fire({
                         icon: "error",
                         title: res.message || "Invalid password!",
+                        color: "#B51E1E",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgb(0,0,0, 0.1)
+                            center top
+                            no-repeat
+                        `
                     });
                 }
             } catch (err) {
@@ -465,7 +562,14 @@ function confirmAddSuperAdmin(){
             Swal.fire({
                 icon: "error",
                 title: "Something went wrong!",
-                text: "Could not verify password."
+                text: "Could not verify password.",
+                color: "#B51E1E",
+                background: "#fff url()",
+                backdrop: `
+                    rgb(0,0,0, 0.1)
+                    center top
+                    no-repeat
+                `
             });
         }
     });
@@ -481,6 +585,13 @@ function deleteSuperAdmin() {
         Swal.fire({
             icon: "error",
             title: "Username is required!",
+            color: "#B51E1E",
+            background: "#fff url()",
+            backdrop: `
+                rgb(0,0,0, 0.1)
+                center top
+                no-repeat
+            `
         });
         return;
     }
@@ -506,6 +617,13 @@ function deleteSuperAdmin() {
                     Swal.fire({
                         icon: "error",
                         title: res.message || "Invalid username!",
+                        color: "#B51E1E",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgb(0,0,0, 0.1)
+                            center top
+                            no-repeat
+                        `
                     });
                 }
             } catch (err) {
@@ -516,7 +634,14 @@ function deleteSuperAdmin() {
             Swal.fire({
                 icon: "error",
                 title: "Something went wrong!",
-                text: "Could not verify username."
+                text: "Could not verify username.",
+                color: "#B51E1E",
+                background: "#fff url()",
+                backdrop: `
+                    rgb(0,0,0, 0.1)
+                    center top
+                    no-repeat
+                `
             });
         }
     });
@@ -532,6 +657,13 @@ function confirmDeleteSuperAdmin(){
         Swal.fire({
             icon: "error",
             title: "Password is required!",
+            color: "#B51E1E",
+            background: "#fff url()",
+            backdrop: `
+                rgb(0,0,0, 0.1)
+                center top
+                no-repeat
+            `
         });
         return;
     }
@@ -550,6 +682,13 @@ function confirmDeleteSuperAdmin(){
                     Swal.fire({
                         icon: "success",
                         title: res.message,
+                        color: "#36714b",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgb(0,0,0, 0.1)
+                            center top
+                            no-repeat
+                        `
                     });
                         var modalEl1 = document.getElementById('deleteSuperAdmin1');
                         var modal1 = bootstrap.Modal.getInstance(modalEl1);
@@ -568,6 +707,13 @@ function confirmDeleteSuperAdmin(){
                     Swal.fire({
                         icon: "error",
                         title: res.message || "Invalid password!",
+                        color: "#B51E1E",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgb(0,0,0, 0.1)
+                            center top
+                            no-repeat
+                        `
                     });
                 }
             } catch (err) {
@@ -578,7 +724,14 @@ function confirmDeleteSuperAdmin(){
             Swal.fire({
                 icon: "error",
                 title: "Something went wrong!",
-                text: "Could not verify password."
+                text: "Could not verify password.",
+                color: "#B51E1E",
+                background: "#fff url()",
+                backdrop: `
+                    rgb(0,0,0, 0.1)
+                    center top
+                    no-repeat
+                `
             });
         }
     });
@@ -604,6 +757,7 @@ function loadTables(){
                 // Users Table
                 $('#usersTable').DataTable({
                     destroy: true,
+                    scrollX: true,
                     data: response.users,
                     columns: [
                         { data: 'username' },
@@ -625,6 +779,7 @@ function loadTables(){
                 // admin table
                 $('#adminTable').DataTable({
                     destroy: true,
+                    scrollX: true,
                     data: response.admins,
                     columns: [
                         { data: 'username' },

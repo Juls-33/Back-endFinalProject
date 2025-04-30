@@ -326,11 +326,10 @@ function sendViaAJAX(formData){
                     // html: '<pre>' + message(formData) + '</pre>',
                     width: 600,
                     padding: "3em",
-                    color: "#716add",
+                    color: "#36714b",
                     background: "#fff url()",
                     backdrop: `
-                        rgba(0,0,123,0.4)
-                        url("pictures/yey.gif")
+                        rgb(0,0,0, 0.1)
                         center top
                         no-repeat
                     `
@@ -344,11 +343,10 @@ function sendViaAJAX(formData){
                     // html: '<pre>' + message(formData) + '</pre>',
                     width: 600,
                     padding: "3em",
-                    color: "#716add",
+                    color: "#B51E1E",
                     background: "#fff url()",
                     backdrop: `
-                        rgba(0,0,123,0.4)
-                        url("pictures/yey.gif")
+                        rgb(0,0,0, 0.1)
                         center top
                         no-repeat
                     `
@@ -406,7 +404,9 @@ function loadTables(){
                         { data: 'category_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
-                    ]
+                    ],
+                    responsive: true,
+                    processing: true,
                 });
                 // Shoes gender Table
                 $('#genderTable').DataTable({
@@ -417,7 +417,9 @@ function loadTables(){
                         { data: 'shoes_gender_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
-                    ]
+                    ],
+                    responsive: true,
+                    processing: true,
                 });
                 // Status Table
                 $('#statusTable').DataTable({
@@ -428,7 +430,9 @@ function loadTables(){
                         { data: 'status_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
-                    ]
+                    ],
+                    responsive: true,
+                    processing: true,
                 });
                 // material table
                 $('#materialTable').DataTable({
@@ -439,7 +443,9 @@ function loadTables(){
                         { data: 'material_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
-                    ]
+                    ],
+                    responsive: true,
+                    processing: true,
                 });
                 // traction table
                 $('#tractionTable').DataTable({
@@ -450,7 +456,9 @@ function loadTables(){
                         { data: 'traction_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
-                    ]
+                    ],
+                    responsive: true,
+                    processing: true,
                 });
                 // support table
                 $('#supportTable').DataTable({
@@ -461,7 +469,9 @@ function loadTables(){
                         { data: 'support_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
-                    ]
+                    ],
+                    responsive: true,
+                    processing: true,
                 });
                 // technology table
                 $('#technologyTable').DataTable({
@@ -472,7 +482,9 @@ function loadTables(){
                         { data: 'technology_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
-                    ]
+                    ],
+                    responsive: true,
+                    processing: true,
                 });
                 // size table
                 $('#sizeTable').DataTable({
@@ -483,7 +495,9 @@ function loadTables(){
                         { data: 'size_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
-                    ]
+                    ],
+                    responsive: true,
+                    processing: true,
                 });
                 $('#rolesTable').DataTable({
                     destroy: true,
@@ -494,7 +508,9 @@ function loadTables(){
                         { data: 'roles_desc' },
                         { data: 'date_created' },
                         { data: 'date_updated' }
-                    ]
+                    ],
+                    responsive: true,
+                    processing: true,
                 });
             },
         });

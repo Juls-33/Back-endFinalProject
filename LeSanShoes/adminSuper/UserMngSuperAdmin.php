@@ -58,7 +58,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="InventorySuperAdmin.php" class="sidebar-link">
                         <i class="lni lni-box-archive-1"></i>
                         <span>Inventory</span>
                     </a>
@@ -403,7 +403,7 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="container">
-                        <table id="adminTable" class="display" style="width:100%">
+                        <table id="adminTable" class="display nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Username</th>
@@ -422,7 +422,7 @@
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <!-- <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"> -->
                         <div class="container">
-                            <table id="usersTable" class="display" style="width:100%">
+                            <table id="usersTable" class="display nowrap" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Username</th>

@@ -66,7 +66,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="InventorySuperAdmin.php" class="sidebar-link">
                         <i class="lni lni-box-archive-1"></i>
                         <span>Inventory</span>
                     </a>

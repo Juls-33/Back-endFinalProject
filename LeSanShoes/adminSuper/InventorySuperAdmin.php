@@ -38,14 +38,8 @@
                 </div>
             </div>
             <ul class="sidebar-nav">
-                <!-- <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-user-4"></i>
-                        <span>Profile</span>
-                    </a>
-                </li> -->
                 <li class="sidebar-item">
-                    <a href="DashboardAdmin.php" class="sidebar-link">
+                    <a href="DashboardSuperAdmin.php" class="sidebar-link">
                         <i class="lni lni-dashboard-square-1"></i>
                         <span>Dashboard</span>
                     </a>
@@ -65,7 +59,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="#" class="sidebar-link active-nav">
                         <i class="lni lni-box-archive-1"></i>
                         <span>Inventory</span>
                     </a>
@@ -87,13 +81,13 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="ManageDBSuperAdmin.php" class="sidebar-link">
                         <i class="lni lni-layout-9"></i>
-                        <span>Manage Contents</span>
+                        <span>Manage Database</span>
                     </a>
                 </li>
-                <li class="sidebar-item active-nav">
-                    <a href="#" class="sidebar-link">
+                <li class="sidebar-item ">
+                    <a href="UserMngSuperAdmin.php" class="sidebar-link">
                         <i class="lni lni-user-multiple-4"></i>
                         <span>User Management</span>
                     </a>
@@ -113,7 +107,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm">
-                                <a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                                <a class="opacity-5 text-dark" href="javascript:;">Super Admin</a>
                             </li>
                             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Inventory</li>
                         </ol>
@@ -136,20 +130,18 @@
             <div class="d-flex justify-content-center gap-3">
                 
                 <!-- Add new shoe model -->
-                 
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newAdminModal">Add New Admin</button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newAdminModal">Add New Shoe Model</button>
                 <div class="modal fade" id="newAdminModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title" id="newModalLabel">Create new admin</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+                        
+                        <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="newModalLabel">Add Shoe Model</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
+                                </div>
                         <div class="modal-body">
                             <!-- FORM -->
                             <form id="addShoeForm">
-                                <h2 class="text-center mb-3">New Admin</h2>
-                                <hr>
                                 <div class="form-group mb-3">
                                     <label for="model_name">Model Name:</label>
                                     <input type="text" id="model_name" name="model_name" class="form-control" maxlength="100" required>
@@ -227,7 +219,104 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+                            <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="newShoeModel()">Save changes</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add new Colorway -->
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newAdminModal">Add New Admin</button>
+                <div class="modal fade" id="newAdminModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        
+                        <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="newModalLabel">Add Shoe Model</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
+                                </div>
+                        <div class="modal-body">
+                            <!-- FORM -->
+                            <form id="addShoeForm">
+                                <div class="form-group mb-3">
+                                    <label for="model_name">Model Name:</label>
+                                    <input type="text" id="model_name" name="model_name" class="form-control" maxlength="100" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Brand</label>
+                                        <div class="form-floating">
+                                        <select class="form-select" id="brandSelect" name="brand_id" aria-label="Select Brand" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'brand_tbl', 'brand_id', 'brand_name'); ?>
+                                        </select>
+                                        <label for="brandSelect">Select a Brand</label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label >Category</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="categorySelect" name="category_id" aria-label="Select Category" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'category_tbl', 'category_id', 'category_name'); ?>
+                                        </select>
+                                        <label for="categorySelect">Select a Category</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label >Material</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="materialSelect" name="material_id" aria-label="Select Material" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'material_tbl', 'material_id', 'material_name'); ?>
+                                        </select>
+                                        <label for="materialSelect">Select a Material</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label >Traction</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="tractionSelect" name="traction_id" aria-label="Select Traction" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'traction_tbl', 'traction_id', 'traction_name'); ?>
+                                        </select>
+                                        <label for="tractionSelect">Select a Traction</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label >Support</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="supportSelect" name="support_id" aria-label="Select Support" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'support_tbl', 'support_id', 'support_name'); ?>
+                                        </select>
+                                        <label for="supportSelect">Select a Support</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label >Technology</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="technologySelect" name="technology_id" aria-label="Select Technology" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'technology_tbl', 'technology_id', 'technology_name'); ?>
+                                        </select>
+                                        <label for="technologySelect">Select a Technology</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="description">Shoe Description</label>
+                                    <textarea name="description" id="description" name="description" class="form-control" rows="5" cols="40" required></textarea><br>
+                                </div> 
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
                             <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="newShoeModel()">Save changes</button>
                         </div>
                         </div>
@@ -269,17 +358,21 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-Colorway" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <div class="tab-pane fade show active" id="nav-Brands" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="tab-pane fade" id="nav-Colorway" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="container">
-                            <table id="usersTable" class="display" style="width:100%">
+                            <table id="colorwayTable" class="display" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>SKU</th>
-                                        <th>Product name</th>
-                                        <th>Size</th>
-                                        <th>Color</th>
+                                        <th>Colorway ID</th>
+                                        <th>Shoe Model ID</th>
+                                        <th>Colorway Name</th>
                                         <th>Price</th>
-                                        <th>Total Stock</th>
+                                        <th>Image 1</th>
+                                        <th>Image 2</th>
+                                        <th>Image 3</th>
+                                        <th>Image 4</th>
+                                        <th>date_created</th>
+                                        <th>date_updated</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -312,13 +405,13 @@
                         <div class="modal-content">
                         <div class="modal-header bg-danger text-white">
                             <h5 class="modal-title" id="deleteModalLabel">Delete Shoe Model</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
                         </div>
                         <div class="modal-body">
                             Are you sure you want to delete <strong id="deleteModelName">this shoe</strong>?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Cancel</button>
                             <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
                         </div>
                         </div>
@@ -332,7 +425,7 @@
                             <form id="editShoeForm">
                                 <div class="modal-header bg-primary text-white">
                                     <h5 class="modal-title" id="editModalLabel">Edit Shoe Model</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeModal()"></button>
                                 </div>
                                 <!-- nandito yung id -->
                                 <div class="modal-body row g-3">
@@ -413,7 +506,7 @@
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-success" onclick="editShoeModel()">Save Changes</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Cancel</button>
                                 </div>
                             </form>
                         </div>
