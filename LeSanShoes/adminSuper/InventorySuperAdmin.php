@@ -136,7 +136,7 @@
             <div class="d-flex justify-content-center gap-3">
                 
                 <!-- Add new shoe model -->
-                 <!--brand_id, category_id, material_id, traction_id, support-id, technology_id, model_name, description -->
+                 
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newAdminModal">Add New Admin</button>
                 <div class="modal fade" id="newAdminModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -244,20 +244,24 @@
                 </div>
             </nav>  
             <div class="tab-content" id="nav-tabContent">
-                
-                
                 <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="container">
-                            <table id="shoesTable" class="display" style="width:100%">
+                            <table id="shoesTable" class="display nowrap" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>SKU</th>
-                                        <th>Product name</th>
-                                        <th>Size</th>
-                                        <th>Color</th>
-                                        <th>Price</th>
-                                        <th>Total Stock</th>
+                                        <th>Shoe Model ID</th>
+                                        <th>Model Name</th>
+                                        <th>Description</th>
+                                        <th>Brand</th>
+                                        <th>Category</th>
+                                        <th>Material</th>
+                                        <th>Traction</th>
+                                        <th>Support</th>
+                                        <th>Technology</th>
+                                        <th>Date created</th>
+                                        <th>Date updated</th>
+                                        <th>Edit/Delete</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -297,6 +301,121 @@
                                     </tr>
                                 </thead>
                             </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODALS -->
+                 <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header bg-danger text-white">
+                            <h5 class="modal-title" id="deleteModalLabel">Delete Shoe Model</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete <strong id="deleteModelName">this shoe</strong>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+               
+                 <!-- Edit Shoe Model Modal -->
+                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <form id="editShoeForm">
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="editModalLabel">Edit Shoe Model</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <!-- nandito yung id -->
+                                <div class="modal-body row g-3">
+                                    <input type="hidden" id="edit_model_id" name="shoe_model_id">
+                                <div class="form-group mb-3">
+                                    <label for="model_name">Model Name:</label>
+                                    <input type="text" id="edit_model_name" name="model_name" class="form-control" maxlength="100" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Brand</label>
+                                        <div class="form-floating">
+                                        <select class="form-select" id="brandSelect" name="brand_id" aria-label="Select Brand" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'brand_tbl', 'brand_id', 'brand_name'); ?>
+                                        </select>
+                                        <label for="brandSelect">Select a Brand</label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label >Category</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="categorySelect" name="category_id" aria-label="Select Category" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'category_tbl', 'category_id', 'category_name'); ?>
+                                        </select>
+                                        <label for="categorySelect">Select a Category</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label >Material</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="materialSelect" name="material_id" aria-label="Select Material" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'material_tbl', 'material_id', 'material_name'); ?>
+                                        </select>
+                                        <label for="materialSelect">Select a Material</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label >Traction</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="tractionSelect" name="traction_id" aria-label="Select Traction" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'traction_tbl', 'traction_id', 'traction_name'); ?>
+                                        </select>
+                                        <label for="tractionSelect">Select a Traction</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label >Support</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="supportSelect" name="support_id" aria-label="Select Support" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'support_tbl', 'support_id', 'support_name'); ?>
+                                        </select>
+                                        <label for="supportSelect">Select a Support</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label >Technology</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="technologySelect" name="technology_id" aria-label="Select Technology" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'technology_tbl', 'technology_id', 'technology_name'); ?>
+                                        </select>
+                                        <label for="technologySelect">Select a Technology</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="description">Shoe Description</label>
+                                    <textarea name="description" id="edit_description" name="description" class="form-control" rows="5" cols="40" required></textarea><br>
+                                </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="editShoeModel()">Save Changes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
