@@ -43,8 +43,37 @@ try{
             $shoe_models[] = $row;
         }
 
+        /*
+        $colorway_sql = "SELECT 
+                    c.image1,
+                    c.image2,
+                    c.image3,
+                    c.image4,
+                    c.colorway_id,  
+                    CONCAT(c.shoe_model_id, ': ', sm.model_name) AS model_name,
+                    c.colorway_name,
+                    c.price,
+                    c.date_created,
+                    c.date_updated
+                    
+                    FROM colorway_tbl c
+                    JOIN shoe_model_tbl sm ON c.shoe_model_id = sm.shoe_model_id";
+        $colorway_result = $conn->query($colorway_sql);
+
+        $colorways = [];
+        while ($row = $colorways->fetch_assoc()) {
+            // Optionally prepend image paths with relative URL path
+            for ($i = 1; $i <= 4; $i++) {
+                $imgField = "c.image$i";
+                $row[$imgField] = '<img src="' . $row[$imgField] . '" width="80" height="80" style="object-fit:cover;" />';
+            }
+            $colorways[] = $row;
+        }*/
+
+
         echo json_encode([
             "shoe_models" => $shoe_models,
+            // "colorways" => $colorways,
         ]);
     }
 }

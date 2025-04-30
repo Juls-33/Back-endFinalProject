@@ -44,6 +44,77 @@ function editShoeModel() {
     sendViaAJAX(data);
 }
 
+function addColorway() {
+    var form = document.getElementById('addColorwayForm');
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return; 
+    }
+    if (!validateAllImagesUploaded()) {
+        return; 
+    }
+    var formData = new FormData(form);
+
+    // var data = {
+    //     action: "addColorway",
+    //     shoe_model_id: formData.get("shoe_model_id"),
+    //     colorway_name: formData.get("colorway_name"),
+    //     price: formData.get("price"),
+    //     image1: formData.get("image1"),
+    //     image2: formData.get("image2"),
+    //     image3: formData.get("image3"),
+    //     image4: formData.get("image4"),
+    //     description: formData.get("description")
+    //   };
+    var formData = new FormData(form);
+    formData.append("action", "addColorway");
+
+    $.ajax({
+        url: "../includes/logic/colorway    ToDB.php", 
+        type: "POST",
+        data: formData,
+        processData: false,  // Important: don't process the data
+        contentType: false,  // Important: don't set contentType
+        success: function(response) {
+            try {
+                const res = JSON.parse(response);
+                if (res.status === "success") {
+                    Swal.fire({
+                        icon: "success",
+                        title: res.message,
+                        width: 600,
+                        padding: "3em",
+                        color: "#36714b"
+                    });
+                    document.getElementById("addColorwayForm").reset();
+                    loadTables();
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: res.message,
+                        width: 600,
+                        padding: "3em",
+                        color: "#B51E1E"
+                    });
+                }
+            } catch (e) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid response from server",
+                    text: response
+                });
+            }
+        },
+        error: function() {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Error sending data',
+            });
+        }
+    });
+}
+
 function sendViaAJAX(data){
     var jsonString = JSON.stringify(data);
     //sending to php and receiving response from server
@@ -71,6 +142,7 @@ function sendViaAJAX(data){
                     loadTables();
                     document.getElementById("addShoeForm").reset();
                     document.getElementById("editShoeForm").reset();
+                    document.getElementById("addColorwayForm").reset();
 
             }
             else{
@@ -105,6 +177,7 @@ function sendViaAJAX(data){
 function closeModal() {
     document.getElementById("addShoeForm").reset();
     document.getElementById("editShoeForm").reset();
+    document.getElementById("addColorwayForm").reset();
 }
 
 
@@ -146,12 +219,52 @@ function loadTables(){
                     responsive: true,
                     processing: true,
                 });
+                // $(document).ready(function () {
+                //     $('#colorwayTable').DataTable({
+                //         ajax: '../includes/logic/getColorways.php', // Adjust path if needed
+                //         columns: [
+                //             { data: 'colorway_id' },
+                //             { data: 'shoe_model_id' },
+                //             { data: 'colorway_name' },
+                //             { data: 'price' },
+                //             { data: 'image1' },
+                //             { data: 'image2' },
+                //             { data: 'image3' },
+                //             { data: 'image4' },
+                //             { data: 'date_created' },
+                //             { data: 'date_updated' }
+                //         ]
+                //     });
+                // });
             },
         });
     });   
 }
+function previewImage(input, previewId) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById(previewId).src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+function validateAllImagesUploaded() {
+    for (let i = 1; i <= 4; i++) {
+        const fileInput = document.getElementById(`image${i}`);
+        if (!fileInput.files || fileInput.files.length === 0) {
+            Swal.fire({
+                icon: "warning",
+                title: `Image ${i} is required.`,
+            });
+            return false;
+        }
+    }
+    return true;
+}
 
-let deleteModelId = null;
+var deleteModelId = null;
 
 $(document).on('click', '.delete-btn', function () {
     deleteModelId = $(this).data('id');
