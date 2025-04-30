@@ -239,8 +239,8 @@
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Shoes" type="button" role="tab" aria-controls="nav-Shoes" aria-selected="true">Manage Shoes</button> 
-                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-NewStocks" type="button" role="tab" aria-controls="nav-NewStocks" aria-selected="false">Add new Stocks</button>
                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Colorway" type="button" role="tab" aria-controls="nav-Colorway" aria-selected="false">Add Colorway</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-NewStocks" type="button" role="tab" aria-controls="nav-NewStocks" aria-selected="false">Add new Stocks</button>
                 </div>
             </nav>  
             <div class="tab-content" id="nav-tabContent">
