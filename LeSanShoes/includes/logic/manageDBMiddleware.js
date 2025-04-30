@@ -380,6 +380,11 @@ function loadTables(){
                 $('#genderTable').DataTable().clear().destroy();
                 $('#statusTable').DataTable().clear().destroy();
                 $('#rolesTable').DataTable().clear().destroy();
+                $('#materialTable').DataTable().clear().destroy();
+                $('#tractionTable').DataTable().clear().destroy();
+                $('#supportTable').DataTable().clear().destroy();
+                $('#technologyTable').DataTable().clear().destroy();
+                $('#sizeTable').DataTable().clear().destroy();
                 // Brand Table
                 $('#brandTable').DataTable({
                     destroy: true,

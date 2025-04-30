@@ -1,3 +1,13 @@
+<?php
+    // session_start();
+    include("../includes/logic/inventoryGetOptions.php");
+
+    if (!isset($_SESSION['username'])) {
+        // Not logged in — redirect to login
+        header("Location: ../users/index.php");
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,28 +146,89 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <!-- FORM -->
+                            <form id="addShoeForm">
                                 <h2 class="text-center mb-3">New Admin</h2>
                                 <hr>
                                 <div class="form-group mb-3">
-                                    <label for="username">Username</label>
-                                    <input type="text" id="username" name="username" class="form-control" maxlength="100" required>
+                                    <label for="model_name">Model Name:</label>
+                                    <input type="text" id="model_name" name="model_name" class="form-control" maxlength="100" required>
                                 </div>
-                                <div class="form-floating">
-                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                      <option selected>Open this select menu</option>
-                                      <option value="1">One</option>
-                                      <option value="2">Two</option>
-                                      <option value="3">Three</option>
-                                    </select>
-                                    <label for="floatingSelect">Works with selects</label>
-                                  </div>
+                                <div class="form-group mb-3">
+                                    <label>Brand</label>
+                                        <div class="form-floating">
+                                        <select class="form-select" id="brandSelect" name="brand_id" aria-label="Select Brand" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'brand_tbl', 'brand_id', 'brand_name'); ?>
+                                        </select>
+                                        <label for="brandSelect">Select a Brand</label>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label >Category</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="categorySelect" name="category_id" aria-label="Select Category" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'category_tbl', 'category_id', 'category_name'); ?>
+                                        </select>
+                                        <label for="categorySelect">Select a Category</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label >Material</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="materialSelect" name="material_id" aria-label="Select Material" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'material_tbl', 'material_id', 'material_name'); ?>
+                                        </select>
+                                        <label for="materialSelect">Select a Material</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label >Traction</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="tractionSelect" name="traction_id" aria-label="Select Traction" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'traction_tbl', 'traction_id', 'traction_name'); ?>
+                                        </select>
+                                        <label for="tractionSelect">Select a Traction</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label >Support</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="supportSelect" name="support_id" aria-label="Select Support" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'support_tbl', 'support_id', 'support_name'); ?>
+                                        </select>
+                                        <label for="supportSelect">Select a Support</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label >Technology</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="technologySelect" name="technology_id" aria-label="Select Technology" required>
+                                            <option value="" disabled selected>Open this select menu</option>
+                                            <?= getOptions($conn, 'technology_tbl', 'technology_id', 'technology_name'); ?>
+                                        </select>
+                                        <label for="technologySelect">Select a Technology</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="description">Shoe Description</label>
+                                    <textarea name="description" id="description" name="description" class="form-control" rows="5" cols="40" required></textarea><br>
+                                </div> 
 
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="signUp()">Save changes</button>
+                            <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="newShoeModel()">Save changes</button>
                         </div>
                         </div>
                     </div>
@@ -167,18 +238,18 @@
             
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Shoes" type="button" role="tab" aria-controls="nav-Shoes" aria-selected="true">Manage Shoes</button> 
                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-NewStocks" type="button" role="tab" aria-controls="nav-NewStocks" aria-selected="false">Add new Stocks</button>
-                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Shoes" type="button" role="tab" aria-controls="nav-Shoes" aria-selected="false">Manage Shoes</button> 
                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Colorway" type="button" role="tab" aria-controls="nav-Colorway" aria-selected="false">Add Colorway</button>
                 </div>
             </nav>  
             <div class="tab-content" id="nav-tabContent">
                 
                 
-                <div class="tab-pane fade" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <div class="tab-pane fade show active" id="nav-Brands" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="container">
-                            <table id="usersTable" class="display" style="width:100%">
+                            <table id="shoesTable" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>SKU</th>
@@ -233,10 +304,13 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
-    <script src="AdminPage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/swal/sweetalert2.min.js"></script>
+    <script src="../includes/logic/AdminPage.js"></script>
+    <script src="../includes/logic/inventoryMiddleware.js"></script>
 
     </body>
 
