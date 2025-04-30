@@ -16,10 +16,12 @@
 
 
 -- Dumping database structure for lesanshoes_db
+DROP DATABASE IF EXISTS `lesanshoes_db`;
 CREATE DATABASE IF NOT EXISTS `lesanshoes_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `lesanshoes_db`;
 
 -- Dumping structure for table lesanshoes_db.ads_tbl
+DROP TABLE IF EXISTS `ads_tbl`;
 CREATE TABLE IF NOT EXISTS `ads_tbl` (
   `ads_id` int(11) NOT NULL AUTO_INCREMENT,
   `image_add` text NOT NULL,
@@ -32,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `ads_tbl` (
 DELETE FROM `ads_tbl`;
 
 -- Dumping structure for table lesanshoes_db.brand_tbl
+DROP TABLE IF EXISTS `brand_tbl`;
 CREATE TABLE IF NOT EXISTS `brand_tbl` (
   `brand_id` int(100) NOT NULL,
   `brand_name` varchar(100) NOT NULL DEFAULT '',
@@ -40,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `brand_tbl` (
   PRIMARY KEY (`brand_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.brand_tbl: ~4 rows (approximately)
+-- Dumping data for table lesanshoes_db.brand_tbl: ~5 rows (approximately)
 DELETE FROM `brand_tbl`;
 INSERT INTO `brand_tbl` (`brand_id`, `brand_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:11:44', '2025-04-29 06:11:44'),
@@ -50,6 +53,7 @@ INSERT INTO `brand_tbl` (`brand_id`, `brand_name`, `date_created`, `date_updated
 	(4, 'Hi', '2025-04-25 07:49:59', '2025-04-25 07:49:59');
 
 -- Dumping structure for table lesanshoes_db.category_tbl
+DROP TABLE IF EXISTS `category_tbl`;
 CREATE TABLE IF NOT EXISTS `category_tbl` (
   `category_id` int(100) NOT NULL,
   `category_name` varchar(100) NOT NULL DEFAULT '',
@@ -66,6 +70,7 @@ INSERT INTO `category_tbl` (`category_id`, `category_name`, `date_created`, `dat
 	(2, 'Running', '2025-04-27 09:29:56', '2025-04-27 09:30:09');
 
 -- Dumping structure for table lesanshoes_db.colorway_size_tbl
+DROP TABLE IF EXISTS `colorway_size_tbl`;
 CREATE TABLE IF NOT EXISTS `colorway_size_tbl` (
   `colorway_size_id` int(11) NOT NULL AUTO_INCREMENT,
   `colorway_id` int(11) NOT NULL,
@@ -84,6 +89,7 @@ CREATE TABLE IF NOT EXISTS `colorway_size_tbl` (
 DELETE FROM `colorway_size_tbl`;
 
 -- Dumping structure for table lesanshoes_db.colorway_tbl
+DROP TABLE IF EXISTS `colorway_tbl`;
 CREATE TABLE IF NOT EXISTS `colorway_tbl` (
   `colorway_id` int(11) NOT NULL AUTO_INCREMENT,
   `shoe_model_id` int(11) NOT NULL,
@@ -104,6 +110,7 @@ CREATE TABLE IF NOT EXISTS `colorway_tbl` (
 DELETE FROM `colorway_tbl`;
 
 -- Dumping structure for table lesanshoes_db.faq_tbl
+DROP TABLE IF EXISTS `faq_tbl`;
 CREATE TABLE IF NOT EXISTS `faq_tbl` (
   `faq_id` int(11) NOT NULL AUTO_INCREMENT,
   `question` mediumtext NOT NULL,
@@ -117,6 +124,7 @@ CREATE TABLE IF NOT EXISTS `faq_tbl` (
 DELETE FROM `faq_tbl`;
 
 -- Dumping structure for table lesanshoes_db.material_tbl
+DROP TABLE IF EXISTS `material_tbl`;
 CREATE TABLE IF NOT EXISTS `material_tbl` (
   `material_id` int(11) NOT NULL,
   `material_name` varchar(255) NOT NULL,
@@ -125,12 +133,13 @@ CREATE TABLE IF NOT EXISTS `material_tbl` (
   PRIMARY KEY (`material_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.material_tbl: ~2 rows (approximately)
+-- Dumping data for table lesanshoes_db.material_tbl: ~1 rows (approximately)
 DELETE FROM `material_tbl`;
 INSERT INTO `material_tbl` (`material_id`, `material_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:26:05', '2025-04-29 06:28:14');
 
 -- Dumping structure for table lesanshoes_db.orders_tbl
+DROP TABLE IF EXISTS `orders_tbl`;
 CREATE TABLE IF NOT EXISTS `orders_tbl` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -148,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `orders_tbl` (
 DELETE FROM `orders_tbl`;
 
 -- Dumping structure for table lesanshoes_db.order_items_tbl
+DROP TABLE IF EXISTS `order_items_tbl`;
 CREATE TABLE IF NOT EXISTS `order_items_tbl` (
   `order_item_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -170,6 +180,7 @@ CREATE TABLE IF NOT EXISTS `order_items_tbl` (
 DELETE FROM `order_items_tbl`;
 
 -- Dumping structure for table lesanshoes_db.roles_tbl
+DROP TABLE IF EXISTS `roles_tbl`;
 CREATE TABLE IF NOT EXISTS `roles_tbl` (
   `roles_id` int(100) NOT NULL,
   `roles_name` varchar(100) NOT NULL,
@@ -179,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `roles_tbl` (
   PRIMARY KEY (`roles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.roles_tbl: ~4 rows (approximately)
+-- Dumping data for table lesanshoes_db.roles_tbl: ~3 rows (approximately)
 DELETE FROM `roles_tbl`;
 INSERT INTO `roles_tbl` (`roles_id`, `roles_name`, `roles_desc`, `date_created`, `date_updated`) VALUES
 	(1, 'User', 'Accesses the website and order product different products', '0000-00-00 00:00:00', '2025-04-27 09:57:35'),
@@ -187,6 +198,7 @@ INSERT INTO `roles_tbl` (`roles_id`, `roles_name`, `roles_desc`, `date_created`,
 	(3, 'Admin', 'Have the ability to accommodate orders, manage inventory, and view statistics', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- Dumping structure for table lesanshoes_db.shoes_gender_tbl
+DROP TABLE IF EXISTS `shoes_gender_tbl`;
 CREATE TABLE IF NOT EXISTS `shoes_gender_tbl` (
   `shoes_gender_id` int(100) NOT NULL,
   `shoes_gender_name` varchar(50) NOT NULL,
@@ -195,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `shoes_gender_tbl` (
   PRIMARY KEY (`shoes_gender_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.shoes_gender_tbl: ~2 rows (approximately)
+-- Dumping data for table lesanshoes_db.shoes_gender_tbl: ~4 rows (approximately)
 DELETE FROM `shoes_gender_tbl`;
 INSERT INTO `shoes_gender_tbl` (`shoes_gender_id`, `shoes_gender_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:12:03', '2025-04-29 06:12:03'),
@@ -204,6 +216,7 @@ INSERT INTO `shoes_gender_tbl` (`shoes_gender_id`, `shoes_gender_name`, `date_cr
 	(3, 'Unisex', '2025-04-27 09:30:21', '2025-04-27 09:30:39');
 
 -- Dumping structure for table lesanshoes_db.shoe_model_tbl
+DROP TABLE IF EXISTS `shoe_model_tbl`;
 CREATE TABLE IF NOT EXISTS `shoe_model_tbl` (
   `shoe_model_id` int(11) NOT NULL AUTO_INCREMENT,
   `brand_id` int(11) NOT NULL,
@@ -231,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `shoe_model_tbl` (
   CONSTRAINT `shoe_model_tbl_ibfk_6` FOREIGN KEY (`technology_id`) REFERENCES `technology_tbl` (`technology_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.shoe_model_tbl: ~8 rows (approximately)
+-- Dumping data for table lesanshoes_db.shoe_model_tbl: ~5 rows (approximately)
 DELETE FROM `shoe_model_tbl`;
 INSERT INTO `shoe_model_tbl` (`shoe_model_id`, `brand_id`, `category_id`, `material_id`, `traction_id`, `support_id`, `technology_id`, `model_name`, `date_created`, `date_updated`, `description`) VALUES
 	(2, 2, 1, 0, 0, 0, 0, 'Dame Timeee', '2025-04-30 07:09:46', '2025-04-30 07:09:46', 'Hello Worlddd'),
@@ -241,6 +254,7 @@ INSERT INTO `shoe_model_tbl` (`shoe_model_id`, `brand_id`, `category_id`, `mater
 	(7, 1, 0, 0, 0, 0, 0, 'aaa', '2025-04-30 04:08:25', '2025-04-30 04:08:25', 'asdasda');
 
 -- Dumping structure for table lesanshoes_db.size_tbl
+DROP TABLE IF EXISTS `size_tbl`;
 CREATE TABLE IF NOT EXISTS `size_tbl` (
   `size_id` int(11) NOT NULL,
   `size_name` varchar(100) NOT NULL DEFAULT '0',
@@ -257,6 +271,7 @@ INSERT INTO `size_tbl` (`size_id`, `size_name`, `date_created`, `date_updated`) 
 	(2, '6.5', '2025-04-29 16:22:14', '2025-04-29 16:22:14');
 
 -- Dumping structure for table lesanshoes_db.status_tbl
+DROP TABLE IF EXISTS `status_tbl`;
 CREATE TABLE IF NOT EXISTS `status_tbl` (
   `status_id` int(11) NOT NULL,
   `status_name` varchar(100) NOT NULL,
@@ -275,6 +290,7 @@ INSERT INTO `status_tbl` (`status_id`, `status_name`, `date_created`, `date_upda
 	(4, 'Cancelled', '2025-04-29 04:20:47', '2025-04-29 04:20:47');
 
 -- Dumping structure for table lesanshoes_db.support_tbl
+DROP TABLE IF EXISTS `support_tbl`;
 CREATE TABLE IF NOT EXISTS `support_tbl` (
   `support_id` int(11) NOT NULL,
   `support_name` varchar(100) NOT NULL,
@@ -283,12 +299,13 @@ CREATE TABLE IF NOT EXISTS `support_tbl` (
   PRIMARY KEY (`support_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.support_tbl: ~0 rows (approximately)
+-- Dumping data for table lesanshoes_db.support_tbl: ~1 rows (approximately)
 DELETE FROM `support_tbl`;
 INSERT INTO `support_tbl` (`support_id`, `support_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:49:50', '2025-04-29 06:49:50');
 
 -- Dumping structure for table lesanshoes_db.technology_tbl
+DROP TABLE IF EXISTS `technology_tbl`;
 CREATE TABLE IF NOT EXISTS `technology_tbl` (
   `technology_id` int(11) NOT NULL,
   `technology_name` varchar(100) NOT NULL,
@@ -297,12 +314,13 @@ CREATE TABLE IF NOT EXISTS `technology_tbl` (
   PRIMARY KEY (`technology_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.technology_tbl: ~0 rows (approximately)
+-- Dumping data for table lesanshoes_db.technology_tbl: ~1 rows (approximately)
 DELETE FROM `technology_tbl`;
 INSERT INTO `technology_tbl` (`technology_id`, `technology_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:55:45', '2025-04-29 06:55:45');
 
 -- Dumping structure for table lesanshoes_db.traction_tbl
+DROP TABLE IF EXISTS `traction_tbl`;
 CREATE TABLE IF NOT EXISTS `traction_tbl` (
   `traction_id` int(11) NOT NULL,
   `traction_name` varchar(100) NOT NULL,
@@ -311,12 +329,13 @@ CREATE TABLE IF NOT EXISTS `traction_tbl` (
   PRIMARY KEY (`traction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.traction_tbl: ~0 rows (approximately)
+-- Dumping data for table lesanshoes_db.traction_tbl: ~1 rows (approximately)
 DELETE FROM `traction_tbl`;
 INSERT INTO `traction_tbl` (`traction_id`, `traction_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:40:41', '2025-04-29 06:40:52');
 
 -- Dumping structure for table lesanshoes_db.users_tbl
+DROP TABLE IF EXISTS `users_tbl`;
 CREATE TABLE IF NOT EXISTS `users_tbl` (
   `username` varchar(100) NOT NULL DEFAULT '',
   `roles_id` int(11) DEFAULT NULL,
