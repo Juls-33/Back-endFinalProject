@@ -2,7 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
+
+
 
 body{
     display: flex;
@@ -97,9 +100,11 @@ p{
 } 
 
 .col-2 h1{
-    font-size: 50px;
-    line-height: 60px;
+    font-size: 60px;
+    line-height: 80px;
     margin: 25px 0;
+      -webkit-text-stroke: 1px #740505; /* width and color */
+      color: #B51E1E;
 }
 
 .btn{
@@ -117,6 +122,7 @@ p{
 }
 .header{
     background: linear-gradient(#B51E1E, #fff,#B51E1E);
+    /* background-image: url("2020-finals-court.jpg"); */
 }
 .header .row{
     margin-top: 70px;
