@@ -127,174 +127,7 @@
                 <h1>Inventory</h1>
                 <p>Manage and view remaining stocks and daily inventory</p>
             </div>
-            <div class="d-flex justify-content-center gap-3">
-                
-                <!-- Add new shoe model -->
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newAdminModal">Add New Shoe Model</button>
-                <div class="modal fade" id="newAdminModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        
-                        <div class="modal-header bg-primary text-white">
-                                    <h5 class="modal-title" id="newModalLabel">Add Shoe Model</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
-                                </div>
-                        <div class="modal-body">
-                            <!-- FORM -->
-                            <form id="addShoeForm">
-                                <div class="form-group mb-3">
-                                    <label for="model_name">Model Name:</label>
-                                    <input type="text" id="model_name" name="model_name" class="form-control" maxlength="100" required>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label>Brand</label>
-                                        <div class="form-floating">
-                                        <select class="form-select" id="brandSelect" name="brand_id" aria-label="Select Brand" required>
-                                            <option value="" disabled selected>Open this select menu</option>
-                                            <?= getOptions($conn, 'brand_tbl', 'brand_id', 'brand_name'); ?>
-                                        </select>
-                                        <label for="brandSelect">Select a Brand</label>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label >Category</label>
-                                    <div class="form-floating">
-                                        <select class="form-select" id="categorySelect" name="category_id" aria-label="Select Category" required>
-                                            <option value="" disabled selected>Open this select menu</option>
-                                            <?= getOptions($conn, 'category_tbl', 'category_id', 'category_name'); ?>
-                                        </select>
-                                        <label for="categorySelect">Select a Category</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label >Material</label>
-                                    <div class="form-floating">
-                                        <select class="form-select" id="materialSelect" name="material_id" aria-label="Select Material" required>
-                                            <option value="" disabled selected>Open this select menu</option>
-                                            <?= getOptions($conn, 'material_tbl', 'material_id', 'material_name'); ?>
-                                        </select>
-                                        <label for="materialSelect">Select a Material</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label >Traction</label>
-                                    <div class="form-floating">
-                                        <select class="form-select" id="tractionSelect" name="traction_id" aria-label="Select Traction" required>
-                                            <option value="" disabled selected>Open this select menu</option>
-                                            <?= getOptions($conn, 'traction_tbl', 'traction_id', 'traction_name'); ?>
-                                        </select>
-                                        <label for="tractionSelect">Select a Traction</label>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group mb-3">
-                                    <label >Support</label>
-                                    <div class="form-floating">
-                                        <select class="form-select" id="supportSelect" name="support_id" aria-label="Select Support" required>
-                                            <option value="" disabled selected>Open this select menu</option>
-                                            <?= getOptions($conn, 'support_tbl', 'support_id', 'support_name'); ?>
-                                        </select>
-                                        <label for="supportSelect">Select a Support</label>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group mb-3">
-                                    <label >Technology</label>
-                                    <div class="form-floating">
-                                        <select class="form-select" id="technologySelect" name="technology_id" aria-label="Select Technology" required>
-                                            <option value="" disabled selected>Open this select menu</option>
-                                            <?= getOptions($conn, 'technology_tbl', 'technology_id', 'technology_name'); ?>
-                                        </select>
-                                        <label for="technologySelect">Select a Technology</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label for="description">Shoe Description</label>
-                                    <textarea name="description" id="description" name="description" class="form-control" rows="5" cols="40" required></textarea><br>
-                                </div> 
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
-                            <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="newShoeModel()">Save changes</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Add new Colorway -->
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#colorwayModal">Add New Colorway</button>
-                <div class="modal fade" id="colorwayModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        
-                        <div class="modal-header bg-primary text-white">
-                            <h5 class="modal-title" id="newModalLabel">Add New Colorway</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- FORM -->
-                            <form id="addColorwayForm" enctype="multipart/form-data">
-                                <div class="form-group mb-3">
-                                    <label>Shoe Model</label>
-                                    <div class="form-floating">
-                                        <select class="form-select" id="shoeModelSelect" name="shoe_model_id" id="shoe_model_id" aria-label="Select a shoe model" required>
-                                            <option value="" disabled selected>Open this select menu</option>
-                                            <?= getOptions($conn, 'shoe_model_tbl', 'shoe_model_id', 'model_name'); ?>
-                                        </select>
-                                        <label for="shoeModelSelect">Select a a shoe model</label>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="colorway_name">Colorway Name:</label>
-                                    <input type="text" id="colorway_name" name="colorway_name" class="form-control" maxlength="100" required>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="price">Price</label>
-                                    <input type="number" id="price" name="price" class="form-control" maxlength="100" required>
-                                </div>
-                                
-                                <!-- Image inputs and previews -->
-                                <div class="form-group col-md-12">
-                                    <label>Upload Images</label>
-                                    <div class="row g-2">
-                                        <!-- Repeat for image1 to image4 -->
-                                        <div class="col-md-6">
-                                            <input type="file" name="image1" id="image1" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview1')" required>
-                                            <img id="imgPreview1" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="file" name="image2" id="image2" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview2')" required>
-                                            <img id="imgPreview2" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
-                                        </div>
-                                    </div>
-                                    <div class="row g-2">
-                                        <div class="col-md-6">
-                                            <input type="file" name="image3" id="image3" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview3')" required>
-                                            <img id="imgPreview3" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="file" name="image4" id="image4" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview4')" required>
-                                            <img id="imgPreview4" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
-                            <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addColorway()">Save changes</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
+            
             
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -304,7 +137,106 @@
                 </div>
             </nav>  
             <div class="tab-content" id="nav-tabContent">
+                
                 <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div class="d-flex justify-content-end gap-3">
+                        <!-- Add new shoe model -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newAdminModal">Add New Shoe Model</button>
+                        <div class="modal fade" id="newAdminModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                
+                                <div class="modal-header bg-primary text-white">
+                                            <h5 class="modal-title" id="newModalLabel">Add Shoe Model</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
+                                        </div>
+                                <div class="modal-body">
+                                    <!-- FORM -->
+                                    <form id="addShoeForm">
+                                        <div class="form-group mb-3">
+                                            <label for="model_name">Model Name:</label>
+                                            <input type="text" id="model_name" name="model_name" class="form-control" maxlength="100" required>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label>Brand</label>
+                                                <div class="form-floating">
+                                                <select class="form-select" id="brandSelect" name="brand_id" aria-label="Select Brand" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'brand_tbl', 'brand_id', 'brand_name'); ?>
+                                                </select>
+                                                <label for="brandSelect">Select a Brand</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label >Category</label>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="categorySelect" name="category_id" aria-label="Select Category" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'category_tbl', 'category_id', 'category_name'); ?>
+                                                </select>
+                                                <label for="categorySelect">Select a Category</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label >Material</label>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="materialSelect" name="material_id" aria-label="Select Material" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'material_tbl', 'material_id', 'material_name'); ?>
+                                                </select>
+                                                <label for="materialSelect">Select a Material</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label >Traction</label>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="tractionSelect" name="traction_id" aria-label="Select Traction" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'traction_tbl', 'traction_id', 'traction_name'); ?>
+                                                </select>
+                                                <label for="tractionSelect">Select a Traction</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group mb-3">
+                                            <label >Support</label>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="supportSelect" name="support_id" aria-label="Select Support" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'support_tbl', 'support_id', 'support_name'); ?>
+                                                </select>
+                                                <label for="supportSelect">Select a Support</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group mb-3">
+                                            <label >Technology</label>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="technologySelect" name="technology_id" aria-label="Select Technology" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'technology_tbl', 'technology_id', 'technology_name'); ?>
+                                                </select>
+                                                <label for="technologySelect">Select a Technology</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="description">Shoe Description</label>
+                                            <textarea name="description" id="description" name="description" class="form-control" rows="5" cols="40" required></textarea><br>
+                                        </div> 
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="newShoeModel()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="container">
                             <table id="shoesTable" class="display nowrap" style="width:100%">
@@ -329,6 +261,77 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-Colorway" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="d-flex justify-content-end gap-3">
+                    <!-- Add new Colorway -->
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#colorwayModal">Add New Colorway</button>
+                    <div class="modal fade" id="colorwayModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                            <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title" id="newModalLabel">Add New Colorway</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- FORM -->
+                                <form id="addColorwayForm" enctype="multipart/form-data">
+                                    <div class="form-group mb-3">
+                                        <label>Shoe Model</label>
+                                        <div class="form-floating">
+                                            <select class="form-select" id="shoeModelSelect" name="shoe_model_id" id="shoe_model_id" aria-label="Select a shoe model" required>
+                                                <option value="" disabled selected>Open this select menu</option>
+                                                <?= getOptions($conn, 'shoe_model_tbl', 'shoe_model_id', 'model_name'); ?>
+                                            </select>
+                                            <label for="shoeModelSelect">Select a a shoe model</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="colorway_name">Colorway Name:</label>
+                                        <input type="text" id="colorway_name" name="colorway_name" class="form-control" maxlength="100" required>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="price">Price</label>
+                                        <input type="number" id="price" name="price" class="form-control" maxlength="100" required>
+                                    </div>
+                                    
+                                    <!-- Image inputs and previews -->
+                                    <div class="form-group col-md-12">
+                                        <label>Upload Images</label>
+                                        <div class="row g-2">
+                                            <!-- Repeat for image1 to image4 -->
+                                            <div class="col-md-6">
+                                                <input type="file" name="image1" id="image1" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview1')" required>
+                                                <img id="imgPreview1" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="file" name="image2" id="image2" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview2')" required>
+                                                <img id="imgPreview2" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                            </div>
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="col-md-6">
+                                                <input type="file" name="image3" id="image3" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview3')" required>
+                                                <img id="imgPreview3" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="file" name="image4" id="image4" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview4')" required>
+                                                <img id="imgPreview4" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+                                <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addColorway()">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
                     <!-- card container -->
                     <div class="container mt-4">
                         <div id="colorwayCardContainer" class="row gy-4"></div>
