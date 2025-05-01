@@ -137,7 +137,7 @@
                 </div>
             </nav>  
             <div class="tab-content" id="nav-tabContent">
-                
+                <br>
                 <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <div class="d-flex justify-content-end gap-3">
                         <!-- Add new shoe model -->
@@ -237,6 +237,7 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="container">
                             <table id="shoesTable" class="display nowrap" style="width:100%">
@@ -331,7 +332,6 @@
                     </div>
                     
                 </div>
-
                     <!-- card container -->
                     <div class="container mt-4">
                         <div id="colorwayCardContainer" class="row gy-4"></div>
