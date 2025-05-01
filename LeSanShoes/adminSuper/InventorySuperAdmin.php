@@ -233,7 +233,7 @@
                         <div class="modal-content">
                         
                         <div class="modal-header bg-primary text-white">
-                            <h5 class="modal-title" id="newModalLabel">Add Shoe Model</h5>
+                            <h5 class="modal-title" id="newModalLabel">Add New Colorway</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
                         </div>
                         <div class="modal-body">
@@ -299,7 +299,7 @@
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Shoes" type="button" role="tab" aria-controls="nav-Shoes" aria-selected="true">Manage Shoes</button> 
-                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Colorway" type="button" role="tab" aria-controls="nav-Colorway" aria-selected="false">Add Colorway</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Colorway" type="button" role="tab" aria-controls="nav-Colorway" aria-selected="false">Manage Colorways</button>
                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-NewStocks" type="button" role="tab" aria-controls="nav-NewStocks" aria-selected="false">Add new Stocks</button>
                 </div>
             </nav>  
@@ -378,11 +378,11 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header bg-danger text-white">
-                            <h5 class="modal-title" id="deleteColorwayLabel">Delete Shoe Model</h5>
+                            <h5 class="modal-title" id="deleteColorwayLabel">Delete Colorway</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
                         </div>
                         <div class="modal-body">
-                            Are you sure you want to delete <strong id="deleteColorwayName">this shoe</strong>?
+                            Are you sure you want to delete <strong id="deleteColorwayName">this colorway</strong>?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Cancel</button>
@@ -484,6 +484,72 @@
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Cancel</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- EDIT COLORWAY -->
+                <div class="modal fade" id="editColorwayModal" tabindex="-1" aria-labelledby="editColorwayModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <form id="editColorwayForm" enctype="multipart/form-data">
+                            <div class="modal-header bg-primary text-white">
+                            <h5 class="modal-title">Edit Colorway</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <input type="hidden" name="colorway_id" id="edit_colorway_id">
+
+                            <div class="form-group mb-3">
+                                <label>Shoe Model</label>
+                                <div class="form-floating">
+                                    <select class="form-select"  name="shoe_model_id" id="shoe_model_id" aria-label="Select a shoe model" required>
+                                        <option value="" disabled selected>Open this select menu</option>
+                                        <?= getOptions($conn, 'shoe_model_tbl', 'shoe_model_id', 'model_name'); ?>
+                                    </select>
+                                    <label for="shoe_model_id">Select a a shoe model</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="edit_colorway_name" class="form-label">Colorway Name</label>
+                                <input type="text" class="form-control" id="edit_colorway_name" name="edit_colorway_name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="edit_price" class="form-label">Price</label>
+                                <input type="text" class="form-control" id="edit_price" name="edit_price" required>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>Upload Images</label>
+                                <div class="row g-2">
+                                    <div class="col-md-6">
+                                        <input type="file" name="image1" id="edit_image1" class="form-control" accept="image/*" onchange="previewImage(this, 'editPreview1')">
+                                        <img id="editPreview1" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="file" name="image2" id="edit_image2" class="form-control" accept="image/*" onchange="previewImage(this, 'editPreview2')">
+                                        <img id="editPreview2" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                    </div>
+                                </div>
+                                <div class="row g-2 mt-2">
+                                    <div class="col-md-6">
+                                        <input type="file" name="image3" id="edit_image3" class="form-control" accept="image/*" onchange="previewImage(this, 'editPreview3')">
+                                        <img id="editPreview3" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="file" name="image4" id="edit_image4" class="form-control" accept="image/*" onchange="previewImage(this, 'editPreview4')">
+                                        <img id="editPreview4" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+                                <button type="button" class="btn btn-success" onclick="updateColorway()">Update</button>
+                            </div>
+                        </form>
                         </div>
                     </div>
                 </div>
