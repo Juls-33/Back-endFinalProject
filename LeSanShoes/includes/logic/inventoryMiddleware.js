@@ -58,6 +58,21 @@ function addColorway() {
     var formData = new FormData(form);
     formData.append("action", "addColorway");
 
+    sendViaAJAXPOST(formData);
+}
+
+function updateColorway(){
+    var form = document.getElementById('editColorwayForm');
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return; 
+    }
+    
+    var formData = new FormData(form);
+    formData.append("action", "updateColorway");
+    sendViaAJAXPOST(formData);
+}
+function sendViaAJAXPOST(formData){
     $.ajax({
         url: "../includes/logic/colorwayToDB.php", 
         type: "POST",
@@ -78,6 +93,8 @@ function addColorway() {
                     document.getElementById("addColorwayForm").reset();
                     loadTables();
                     document.getElementById("addColorwayForm").reset();
+                    document.getElementById("editColorwayForm").reset();
+                    $('#editColorwayModal').modal('hide');
                 } else {
                     Swal.fire({
                         icon: "error",
@@ -219,7 +236,7 @@ function loadTables(){
                         <div class="card shadow-sm">
                             <div class="card-header bg-primary text-white">
                                 <h5 class="card-title mb-0">${item.colorway_name}</h5>
-                                <small>Shoe Model ID: ${item.model_name}</small>
+                                <small>Shoe Model ID ${item.model_name}</small>
                             </div>
                             <div class="card-body">
                                 <div class="row g-2">
@@ -231,13 +248,24 @@ function loadTables(){
                                 <p class="mt-2"><strong>Price:</strong> ₱${item.price}</p>
                             </div>
                             <div class="card-footer d-flex justify-content-between">
-                                <button class="btn btn-sm btn-warning" onclick="editColorway(${item.colorway_id})">Edit</button>
+                                <button 
+                                    class="btn btn-sm btn-warning btn-edit-colorway"
+                                    data-id="${item.colorway_id}"
+                                    data-name="${item.colorway_name}"
+                                    data-price="${item.price}"
+                                    data-image1="${item.image1}"
+                                    data-image2="${item.image2}"
+                                    data-image3="${item.image3}"
+                                    data-image4="${item.image4}">
+                                    Edit
+                                </button>
                                 <button class="btn btn-sm btn-danger btn-delete-colorway" data-id="${item.colorway_id}" data-name="${item.colorway_name}" data-bs-toggle="modal" data-bs-target="#deleteColorwayModal" onclick="deleteColorway(${item.colorway_id})">Delete</button>
                             </div>
                         </div>
                     </div>
                     `;
                     container.append(card);
+                    // onclick="editColorway(${item.colorway_id}) SA EDIT BUTTON TOH
                 });
             },
         });
@@ -352,6 +380,24 @@ $('#confirmDeleteColorway').on('click', function () {
         }
     });
 });
+});
+
+// EDIT COLORWAY
+$(document).on('click', '.btn-edit-colorway', function () {
+    const button = $(this);
+    console.log(button.data('id'));
+    $('#edit_colorway_id').val(button.data('id'));
+    $('#edit_shoe_model_id').val(button.data('model'));
+    $('#edit_colorway_name').val(button.data('name'));
+    $('#edit_price').val(button.data('price'));
+
+    // Set image previews
+    $('#editPreview1').attr('src', button.data('image1'));
+    $('#editPreview2').attr('src', button.data('image2'));
+    $('#editPreview3').attr('src', button.data('image3'));
+    $('#editPreview4').attr('src', button.data('image4'));
+
+    $('#editColorwayModal').modal('show');
 });
 
   
