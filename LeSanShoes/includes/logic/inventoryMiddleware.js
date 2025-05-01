@@ -232,7 +232,7 @@ function loadTables(){
                             </div>
                             <div class="card-footer d-flex justify-content-between">
                                 <button class="btn btn-sm btn-warning" onclick="editColorway(${item.colorway_id})">Edit</button>
-                                <button class="btn btn-sm btn-danger" onclick="deleteColorway(${item.colorway_id})">Delete</button>
+                                <button class="btn btn-sm btn-danger btn-delete-colorway" data-id="${item.colorway_id}" data-name="${item.colorway_name}" data-bs-toggle="modal" data-bs-target="#deleteColorwayModal" onclick="deleteColorway(${item.colorway_id})">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -309,6 +309,49 @@ $(document).on('click', '.edit-btn', function () {
     $('#technologySelect').val(data.technology_name.split(":")[0]);
 
     $('#editModal').modal('show');
+});
+
+// DELETE COLORWAY 
+var deleteColorwayId = null;
+$(document).on('click', '.btn-delete-colorway', function () {
+    deleteColorwayId = $(this).data('id');
+    const colorwayName = $(this).data('name');
+    $('#deleteColorwayName').text(colorwayName);
+
+$('#confirmDeleteColorway').on('click', function () {
+    if (!deleteColorwayId) return;
+    $.ajax({
+        url: '../includes/logic/colorwayToDB.php',
+        method: 'POST',
+        data: {
+            action: 'deleteColorway',
+            colorway_id: deleteColorwayId
+        },
+        dataType: 'json',
+        success: function (res) {
+            if (res.status=="success") {
+                Swal.fire({
+                    icon: "success",
+                    title: res.message,
+                    width: 600,
+                    padding: "3em",
+                    color: "#36714b",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgb(0,0,0, 0.1)
+                        center top
+                        no-repeat
+                    `
+                    });
+                $('#deleteColorwayModal').modal('hide');
+                loadTables();
+            }
+        },
+        error: function () {
+            alert("Failed to delete shoe model.");
+        }
+    });
+});
 });
 
   

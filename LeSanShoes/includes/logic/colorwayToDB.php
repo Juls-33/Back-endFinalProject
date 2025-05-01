@@ -78,7 +78,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $stmt->close();
             break;
-
+            case 'deleteColorway':
+                $colorway_id = $_POST['colorway_id'] ?? null;
+            
+                if (!$colorway_id) {
+                    echo json_encode(['status' => 'error', 'message' => 'No colorway ID provided.']);
+                    exit;
+                }
+            
+                // Optionally delete images here if stored in filesystem
+            
+                $stmt = $conn->prepare("DELETE FROM colorway_tbl WHERE colorway_id = ?");
+                $stmt->bind_param("i", $colorway_id);
+            
+                if ($stmt->execute()) {
+                    echo json_encode(['status' => 'success', 'message' => 'Colorway deleted successfully.']);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Failed to delete colorway.']);
+                }
+            
+                $stmt->close();
+                break;
         default:
             echo json_encode(['status' => 'error', 'message' => 'Invalid action.']);
     }
