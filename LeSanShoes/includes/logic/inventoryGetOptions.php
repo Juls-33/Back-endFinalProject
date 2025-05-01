@@ -43,7 +43,7 @@ try{
             $shoe_models[] = $row;
         }
 
-        /*
+        
         $colorway_sql = "SELECT 
                     c.image1,
                     c.image2,
@@ -61,19 +61,14 @@ try{
         $colorway_result = $conn->query($colorway_sql);
 
         $colorways = [];
-        while ($row = $colorways->fetch_assoc()) {
-            // Optionally prepend image paths with relative URL path
-            for ($i = 1; $i <= 4; $i++) {
-                $imgField = "c.image$i";
-                $row[$imgField] = '<img src="' . $row[$imgField] . '" width="80" height="80" style="object-fit:cover;" />';
-            }
+        while ($row = $colorway_result->fetch_assoc()) {
             $colorways[] = $row;
-        }*/
+        }
 
 
         echo json_encode([
             "shoe_models" => $shoe_models,
-            // "colorways" => $colorways,
+            "colorways" => $colorways,
         ]);
     }
 }

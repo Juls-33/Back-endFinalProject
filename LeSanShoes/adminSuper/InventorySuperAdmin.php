@@ -329,26 +329,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-Colorway" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <!-- <div class="tab-pane fade" id="nav-Colorway" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <div class="container">
-                            <table id="colorwayTable" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Colorway ID</th>
-                                        <th>Shoe Model ID</th>
-                                        <th>Colorway Name</th>
-                                        <th>Price</th>
-                                        <th>Image 1</th>
-                                        <th>Image 2</th>
-                                        <th>Image 3</th>
-                                        <th>Image 4</th>
-                                        <th>date_created</th>
-                                        <th>date_updated</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div> -->
+                    <!-- card container -->
                     <div class="container mt-4">
                         <div id="colorwayCardContainer" class="row gy-4"></div>
                     </div>

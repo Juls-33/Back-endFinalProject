@@ -55,22 +55,11 @@ function addColorway() {
     }
     var formData = new FormData(form);
 
-    // var data = {
-    //     action: "addColorway",
-    //     shoe_model_id: formData.get("shoe_model_id"),
-    //     colorway_name: formData.get("colorway_name"),
-    //     price: formData.get("price"),
-    //     image1: formData.get("image1"),
-    //     image2: formData.get("image2"),
-    //     image3: formData.get("image3"),
-    //     image4: formData.get("image4"),
-    //     description: formData.get("description")
-    //   };
     var formData = new FormData(form);
     formData.append("action", "addColorway");
 
     $.ajax({
-        url: "../includes/logic/colorway    ToDB.php", 
+        url: "../includes/logic/colorwayToDB.php", 
         type: "POST",
         data: formData,
         processData: false,  // Important: don't process the data
@@ -88,6 +77,7 @@ function addColorway() {
                     });
                     document.getElementById("addColorwayForm").reset();
                     loadTables();
+                    document.getElementById("addColorwayForm").reset();
                 } else {
                     Swal.fire({
                         icon: "error",
@@ -219,23 +209,36 @@ function loadTables(){
                     responsive: true,
                     processing: true,
                 });
-                // $(document).ready(function () {
-                //     $('#colorwayTable').DataTable({
-                //         ajax: '../includes/logic/getColorways.php', // Adjust path if needed
-                //         columns: [
-                //             { data: 'colorway_id' },
-                //             { data: 'shoe_model_id' },
-                //             { data: 'colorway_name' },
-                //             { data: 'price' },
-                //             { data: 'image1' },
-                //             { data: 'image2' },
-                //             { data: 'image3' },
-                //             { data: 'image4' },
-                //             { data: 'date_created' },
-                //             { data: 'date_updated' }
-                //         ]
-                //     });
-                // });
+                // colorway
+                const container = $('#colorwayCardContainer');
+                container.empty(); 
+                
+                response.colorways.forEach(item => {
+                    const card = `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="card-title mb-0">${item.colorway_name}</h5>
+                                <small>Shoe Model ID: ${item.model_name}</small>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2">
+                                    <div class="col-6"><img src="${item.image1}" class="img-fluid rounded" /></div>
+                                    <div class="col-6"><img src="${item.image2}" class="img-fluid rounded" /></div>
+                                    <div class="col-6"><img src="${item.image3}" class="img-fluid rounded" /></div>
+                                    <div class="col-6"><img src="${item.image4}" class="img-fluid rounded" /></div>
+                                </div>
+                                <p class="mt-2"><strong>Price:</strong> ₱${item.price}</p>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <button class="btn btn-sm btn-warning" onclick="editColorway(${item.colorway_id})">Edit</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteColorway(${item.colorway_id})">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    container.append(card);
+                });
             },
         });
     });   

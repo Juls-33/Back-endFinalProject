@@ -14,10 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $shoe_model_id = $_POST['shoe_model_id'];
             $colorway_name = $_POST['colorway_name'];
             $price = $_POST['price'];
-            $description = $_POST['description'];
+            // $description = $_POST['description'];
             $date_updated = date('Y-m-d H:i:s');
 
             $upload_dir = "../../assets/images/";
+            $dbUpload_dir = "../assets/images/";
             if (!file_exists($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
@@ -31,13 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $extension = pathinfo($original_name, PATHINFO_EXTENSION);
                     $new_filename = "colorway_" . uniqid() . ".$extension";
                     $target_path = $upload_dir . $new_filename;
+                    $dbTarget_path = $dbUpload_dir . $new_filename;
 
-                    if (move_uploaded_file($tmp_name, $target_path)) {
-                        $image_paths["image$i"] = $target_path;
-                    } else {
-                        echo json_encode(['status' => 'error', 'message' => "Failed to upload image $i"]);
-                        exit;
-                    }
+                    $temp_files["image$i"] = [
+                        "tmp" => $tmp_name,
+                        "path" => $target_path
+                    ];
+                    $image_paths["image$i"] = $dbTarget_path;
                 } else {
                     echo json_encode(['status' => 'error', 'message' => "Image $i is missing or invalid"]);
                     exit;
@@ -60,9 +61,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             );
 
             if ($stmt->execute()) {
+                foreach ($temp_files as $img) {
+                    move_uploaded_file($img["tmp"], $img["path"]);
+                }
                 echo json_encode(['status' => 'success', 'message' => 'New colorway added successfully.']);
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Failed to add new colorway.']);
+                if ($conn->errno == 1062) {
+                    echo json_encode([
+                        'status' => 'error', 
+                        'message' => 'This colorway name already exists for the selected shoe model.'
+                    ]);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Failed to add new colorway.']);
+                }
             }
 
             $stmt->close();
