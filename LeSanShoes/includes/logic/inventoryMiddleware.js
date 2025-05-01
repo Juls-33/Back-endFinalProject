@@ -1,4 +1,6 @@
 loadTables();
+
+// ADD AND EDIT SHOE MODEL
 function newShoeModel() {
     var form = document.getElementById('addShoeForm');
     if (!form.checkValidity()) {
@@ -44,6 +46,110 @@ function editShoeModel() {
     sendViaAJAX(data);
 }
 
+function sendViaAJAX(data){
+    var jsonString = JSON.stringify(data);
+    //sending to php and receiving response from server
+    $.ajax({
+        url: "../includes/logic/inventoryToDB.php", 
+        type: "POST",
+        data: {myJson : jsonString},
+        success: function(response) {
+            var res = JSON.parse(response);
+            if(res.status=="success"){
+                Swal.fire({
+                    icon: "success",
+                    title: res.message,
+                    // html: '<pre>' + message(formData) + '</pre>',
+                    width: 600,
+                    padding: "3em",
+                    color: "#36714b",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgb(0,0,0, 0.1)
+                        center top
+                        no-repeat
+                    `
+                    });
+                    loadTables();
+                    document.getElementById("addShoeForm").reset();
+                    document.getElementById("editShoeForm").reset();
+                    document.getElementById("addColorwayForm").reset();
+
+            }
+            else{
+                Swal.fire({
+                    icon: "error",
+                    title: res.message,
+                    // html: '<pre>' + message(formData) + '</pre>',
+                    width: 600,
+                    padding: "3em",
+                    color: "#B51E1E",
+                    background: "#fff url()",
+                    backdrop: `
+                        rgb(0,0,0, 0.1)
+                        center top
+                        no-repeat
+                    `
+                    });
+            }   
+        
+            
+        },
+        error: function() {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: 'Error sending data',
+            });
+        }
+    });
+}
+//DELETE SHOE MODEL
+var deleteModelId = null;
+
+$(document).on('click', '.delete-btn', function () {
+    deleteModelId = $(this).data('id');
+    const modelName = $(this).data('name');
+    $('#deleteModelName').text(modelName);
+});
+
+$('#confirmDeleteBtn').on('click', function () {
+    if (!deleteModelId) return;
+    var jsonStringDel = JSON.stringify({ shoe_model_id: deleteModelId, action: 'deleteShoeModel' });
+    $.ajax({
+        url: '../includes/logic/inventoryToDB.php',
+        method: 'POST',
+        data: {myJson : jsonStringDel},
+        success: function (res) {
+            $('#deleteModal').modal('hide');
+            loadTables();
+        },
+        error: function () {
+            alert("Failed to delete shoe model.");
+        }
+    });
+});
+
+// EDIT SHOE MODEL
+$(document).on('click', '.edit-btn', function () {
+    const data = $('#shoesTable').DataTable().row($(this).parents('tr')).data();
+
+    $('#edit_model_id').val(data.shoe_model_id);
+    $('#edit_model_name').val(data.model_name);
+    $('#edit_description').val(data.description);
+
+    // Match the actual select IDs in the form
+    $('#brandSelect').val(data.brand_name.split(":")[0]);
+    $('#categorySelect').val(data.category_name.split(":")[0]);
+    $('#materialSelect').val(data.material_name.split(":")[0]);
+    $('#tractionSelect').val(data.traction_name.split(":")[0]);
+    $('#supportSelect').val(data.support_name.split(":")[0]);
+    $('#technologySelect').val(data.technology_name.split(":")[0]);
+
+    $('#editModal').modal('show');
+});
+
+//ADD AND EDIT COLORWAY
 function addColorway() {
     var form = document.getElementById('addColorwayForm');
     if (!form.checkValidity()) {
@@ -122,20 +228,48 @@ function sendViaAJAXPOST(formData){
     });
 }
 
-function sendViaAJAX(data){
-    var jsonString = JSON.stringify(data);
-    //sending to php and receiving response from server
+// EDIT COLORWAY
+$(document).on('click', '.btn-edit-colorway', function () {
+    const button = $(this);
+    console.log(button.data('id'));
+    $('#edit_colorway_id').val(button.data('id'));
+    $('#edit_shoe_model_id').val(button.data('model'));
+    $('#edit_colorway_name').val(button.data('name'));
+    $('#edit_price').val(button.data('price'));
+
+    // Set image previews
+    $('#editPreview1').attr('src', button.data('image1'));
+    $('#editPreview2').attr('src', button.data('image2'));
+    $('#editPreview3').attr('src', button.data('image3'));
+    $('#editPreview4').attr('src', button.data('image4'));
+
+    $('#editColorwayModal').modal('show');
+});
+
+
+
+// DELETE COLORWAY 
+var deleteColorwayId = null;
+$(document).on('click', '.btn-delete-colorway', function () {
+    deleteColorwayId = $(this).data('id');
+    const colorwayName = $(this).data('name');
+    $('#deleteColorwayName').text(colorwayName);
+
+$('#confirmDeleteColorway').on('click', function () {
+    if (!deleteColorwayId) return;
     $.ajax({
-        url: "../includes/logic/inventoryToDB.php", 
-        type: "POST",
-        data: {myJson : jsonString},
-        success: function(response) {
-            var res = JSON.parse(response);
-            if(res.status=="success"){
+        url: '../includes/logic/colorwayToDB.php',
+        method: 'POST',
+        data: {
+            action: 'deleteColorway',
+            colorway_id: deleteColorwayId
+        },
+        dataType: 'json',
+        success: function (res) {
+            if (res.status=="success") {
                 Swal.fire({
                     icon: "success",
                     title: res.message,
-                    // html: '<pre>' + message(formData) + '</pre>',
                     width: 600,
                     padding: "3em",
                     color: "#36714b",
@@ -146,48 +280,28 @@ function sendViaAJAX(data){
                         no-repeat
                     `
                     });
-                    loadTables();
-                    document.getElementById("addShoeForm").reset();
-                    document.getElementById("editShoeForm").reset();
-                    document.getElementById("addColorwayForm").reset();
-
+                $('#deleteColorwayModal').modal('hide');
+                loadTables();
             }
-            else{
-                Swal.fire({
-                    icon: "error",
-                    title: res.message,
-                    // html: '<pre>' + message(formData) + '</pre>',
-                    width: 600,
-                    padding: "3em",
-                    color: "#B51E1E",
-                    background: "#fff url()",
-                    backdrop: `
-                        rgb(0,0,0, 0.1)
-                        center top
-                        no-repeat
-                    `
-                    });
-            }   
-        
-            
         },
-        error: function() {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: 'Error sending data',
-            });
+        error: function () {
+            alert("Failed to delete shoe model.");
         }
     });
-}
+});
+});
 
+
+
+
+//ESSENTIAL FUNCTIONS
 function closeModal() {
     document.getElementById("addShoeForm").reset();
     document.getElementById("editShoeForm").reset();
     document.getElementById("addColorwayForm").reset();
 }
 
-
+//LOAD TABLES LOAD SHOE MODEL LOAD COLORWAY
 function loadTables(){
     $(document).ready(function() {
         $.ajax({
@@ -294,110 +408,5 @@ function validateAllImagesUploaded() {
     }
     return true;
 }
-
-var deleteModelId = null;
-
-$(document).on('click', '.delete-btn', function () {
-    deleteModelId = $(this).data('id');
-    const modelName = $(this).data('name');
-    $('#deleteModelName').text(modelName);
-});
-
-$('#confirmDeleteBtn').on('click', function () {
-    if (!deleteModelId) return;
-    var jsonStringDel = JSON.stringify({ shoe_model_id: deleteModelId, action: 'deleteShoeModel' });
-    $.ajax({
-        url: '../includes/logic/inventoryToDB.php',
-        method: 'POST',
-        data: {myJson : jsonStringDel},
-        success: function (res) {
-            $('#deleteModal').modal('hide');
-            loadTables();
-        },
-        error: function () {
-            alert("Failed to delete shoe model.");
-        }
-    });
-});
-
-// EDIT
-$(document).on('click', '.edit-btn', function () {
-    const data = $('#shoesTable').DataTable().row($(this).parents('tr')).data();
-
-    $('#edit_model_id').val(data.shoe_model_id);
-    $('#edit_model_name').val(data.model_name);
-    $('#edit_description').val(data.description);
-
-    // Match the actual select IDs in the form
-    $('#brandSelect').val(data.brand_name.split(":")[0]);
-    $('#categorySelect').val(data.category_name.split(":")[0]);
-    $('#materialSelect').val(data.material_name.split(":")[0]);
-    $('#tractionSelect').val(data.traction_name.split(":")[0]);
-    $('#supportSelect').val(data.support_name.split(":")[0]);
-    $('#technologySelect').val(data.technology_name.split(":")[0]);
-
-    $('#editModal').modal('show');
-});
-
-// DELETE COLORWAY 
-var deleteColorwayId = null;
-$(document).on('click', '.btn-delete-colorway', function () {
-    deleteColorwayId = $(this).data('id');
-    const colorwayName = $(this).data('name');
-    $('#deleteColorwayName').text(colorwayName);
-
-$('#confirmDeleteColorway').on('click', function () {
-    if (!deleteColorwayId) return;
-    $.ajax({
-        url: '../includes/logic/colorwayToDB.php',
-        method: 'POST',
-        data: {
-            action: 'deleteColorway',
-            colorway_id: deleteColorwayId
-        },
-        dataType: 'json',
-        success: function (res) {
-            if (res.status=="success") {
-                Swal.fire({
-                    icon: "success",
-                    title: res.message,
-                    width: 600,
-                    padding: "3em",
-                    color: "#36714b",
-                    background: "#fff url()",
-                    backdrop: `
-                        rgb(0,0,0, 0.1)
-                        center top
-                        no-repeat
-                    `
-                    });
-                $('#deleteColorwayModal').modal('hide');
-                loadTables();
-            }
-        },
-        error: function () {
-            alert("Failed to delete shoe model.");
-        }
-    });
-});
-});
-
-// EDIT COLORWAY
-$(document).on('click', '.btn-edit-colorway', function () {
-    const button = $(this);
-    console.log(button.data('id'));
-    $('#edit_colorway_id').val(button.data('id'));
-    $('#edit_shoe_model_id').val(button.data('model'));
-    $('#edit_colorway_name').val(button.data('name'));
-    $('#edit_price').val(button.data('price'));
-
-    // Set image previews
-    $('#editPreview1').attr('src', button.data('image1'));
-    $('#editPreview2').attr('src', button.data('image2'));
-    $('#editPreview3').attr('src', button.data('image3'));
-    $('#editPreview4').attr('src', button.data('image4'));
-
-    $('#editColorwayModal').modal('show');
-});
 
   
