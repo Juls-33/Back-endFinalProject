@@ -86,61 +86,49 @@
                             }
                             $deleteStmt->close();
                         break;
-                        case 'addColorway':
-                            $shoe_model_id = $_POST['shoe_model_id'];
-                            $colorway_name = $_POST['colorway_name'];
-                            $price = $_POST['price'];
-                            $description = $_POST['description'];
+                        case 'addColorwaySize':
+                            $colorway_id = $obj->colorway_id;
+                            $size_id = $obj->size_id;
+                            $stock = $obj->stock;
                             $date_updated = date('Y-m-d H:i:s');
-                        
-                            $upload_dir = "../../assets/images/";
-                            $image_paths = [];
-                        
-                            // Handle up to 4 images
-                            for ($i = 1; $i <= 4; $i++) {
-                                if (isset($_FILES["image$i"]) && $_FILES["image$i"]["error"] === 0) {
-                                    $tmp_name = $_FILES["image$i"]["tmp_name"];
-                                    $original_name = basename($_FILES["image$i"]["name"]);
-                                    $extension = pathinfo($original_name, PATHINFO_EXTENSION);
-                                    $new_filename = "colorway_" . uniqid() . ".$extension";
-                                    $target_path = $upload_dir . $new_filename;
-                        
-                                    if (move_uploaded_file($tmp_name, $target_path)) {
-                                        $image_paths["image$i"] = $target_path;
-                                    } else {
-                                        echo json_encode(['status' => 'error', 'message' => "Failed to upload image $i"]);
-                                        exit;
-                                    }
-                                } else {
-                                    echo json_encode(['status' => 'error', 'message' => "Image $i is missing or invalid"]);
-                                    exit;
-                                }
-                            }
-                        
-                            $stmt = $conn->prepare("INSERT INTO shoe_model_tbl 
-                                (shoe_model_id, colorway_name, price, description, image1, image2, image3, image4, date_created, date_updated)
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                            $stmt->bind_param("isssssssss",
-                                $shoe_model_id,
-                                $colorway_name,
-                                $price,
-                                $description,
-                                $image_paths['image1'],
-                                $image_paths['image2'],
-                                $image_paths['image3'],
-                                $image_paths['image4'],
-                                $date_updated,
-                                $date_updated
-                            );
-                        
+    
+                            $stmt = $conn->prepare("INSERT INTO colorway_size_tbl
+                                                        (colorway_id, size_id, stock, date_created, date_updated)
+                                                        VALUES (?, ?, ?, ?, ?)
+                                                    ");
+                            $stmt->bind_param("iiiss", $colorway_id, $size_id, $stock, $date_updated, $date_updated);
                             if ($stmt->execute()) {
-                                echo json_encode(['status' => 'success', 'message' => 'New colorway added successfully.']);
+                                if ($stmt->affected_rows > 0) {
+                                    echo json_encode(['status' => 'success', 'message' => 'New shoe model added successfully.']);
+                                } else {
+                                    echo json_encode(['status' => 'error', 'message' => 'Failed to add new shoe model.']);
+                                }
+                                
                             } else {
-                                echo json_encode(['status' => 'error', 'message' => 'Failed to add new colorway.']);
+                                echo "Failed to execute";
                             }
-                        
                             $stmt->close();
                         break;
+                        case 'updateStock':
+                            $colorway_size_id = $obj->colorway_size_id;
+                            $change = $obj->change;
+                            $date_updated = date('Y-m-d H:i:s');
+    
+                            $stmt = $conn->prepare("UPDATE colorway_size_tbl SET stock = stock + ?, date_updated = ? WHERE colorway_size_id = ?");
+                            $stmt->bind_param("isi", $change, $date_updated, $colorway_size_id);
+                            if ($stmt->execute()) {
+                                if ($stmt->affected_rows > 0) {
+                                    echo json_encode(['status' => 'success', 'message' => 'New shoe model added successfully.']);
+                                } else {
+                                    echo json_encode(['status' => 'error', 'message' => 'Failed to add new shoe model.']);
+                                }
+                                
+                            } else {
+                                echo "Failed to execute";
+                            }
+                            $stmt->close();
+                        break;
+                                                        
                     }
                 }
             }

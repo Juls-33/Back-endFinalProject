@@ -46,6 +46,23 @@ function editShoeModel() {
     sendViaAJAX(data);
 }
 
+// ADD NEW STOCKS
+function addNewStock(){
+    var form = document.getElementById('addColorwaySizeForm');
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return; 
+      }
+    var formData = new FormData(form);
+    var data = {
+        action: "addColorwaySize",
+        colorway_id: formData.get("colorway_id"),
+        size_id: formData.get("size_id"),
+        stock: formData.get("stock"),
+      };
+      console.log(data.colorway_id, data.size_id, data.stock);
+    sendViaAJAX(data);
+}
 function sendViaAJAX(data){
     var jsonString = JSON.stringify(data);
     //sending to php and receiving response from server
@@ -310,6 +327,7 @@ function loadTables(){
             dataType: 'json',
             success: function(response) {
                 $('#shoesTable').DataTable().clear().destroy();
+                $('#colorwaySizeTable').DataTable().clear().destroy();
                 // Brand Table
                 $('#shoesTable').DataTable({
                     scrollX: true,
@@ -381,10 +399,105 @@ function loadTables(){
                     container.append(card);
                     // onclick="editColorway(${item.colorway_id}) SA EDIT BUTTON TOH
                 });
+                // Stock Table for Colorway Sizes
+                const colorwaySizeTable = $('#colorwaySizeTable');
+                // if ($.fn.DataTable.isDataTable(colorwaySizeTable)) {
+                //     colorwaySizeTable.DataTable().clear().destroy();
+                // }
+
+                colorwaySizeTable.DataTable({
+                    scrollX: true,
+                    destroy: true,
+                    data: response.colorway_sizes,
+                    columns: [
+                        { data: 'colorway_size_id' },
+                        { data: 'colorway_id' },
+                        { data: 'size_id' },
+                        { data: 'price' },
+                        {
+                            data: 'stock',
+                            render: function(data, type, row) {
+                                return `
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-sm btn-outline-secondary me-2 stock-decrease" data-id="${row.colorway_size_id}">-</button>
+                                        <span class="stock-count" id="stock-count-${row.colorway_size_id}">${data}</span>
+                                        <button class="btn btn-sm btn-outline-secondary ms-2 stock-increase" data-id="${row.colorway_size_id}">+</button>
+                                    </div>
+                                `;
+                            }
+                        },
+                        { data: 'date_created' },
+                        { data: 'date_updated' },
+                        {
+                            data: null,
+                            render: function (data, type, row) {
+                                return `
+                                    <button class="btn btn-sm btn-warning edit-stock-btn" data-id="${row.colorway_size_id}">Edit</button>
+                                    <button class="btn btn-sm btn-danger delete-stock-btn" data-id="${row.colorway_size_id}">Delete</button>
+                                `;
+                            }
+                        }
+                    ]
+                });
             },
         });
     });   
 }
+// Binding stock increase and decrease onclicks once the table loads.
+$(document).ready(function () {
+    loadTables();
+    $('#colorwaySizeTable').on('click', '.delete-stock-btn', function () {
+        const id = $(this).data('id');
+        if (confirm("Are you sure you want to delete this stock entry?")) {
+            $.ajax({
+                url: '../includes/logic/inventoryToDB.php',
+                method: 'POST',
+                data: {
+                    myJson: JSON.stringify({
+                        action: 'deleteStock',
+                        colorway_size_id: id
+                    })
+                },
+                success: function (res) {
+                    loadTables(); // Refresh after deletion
+                },
+                error: function () {
+                    alert("Failed to delete stock.");
+                }
+            });
+        }
+    });
+    // Stock increase
+    $('#colorwaySizeTable').on('click', '.stock-increase', function () {
+        const id = $(this).data('id');
+        updateStock(id, 1);
+    });
+    // stock decrease
+    $('#colorwaySizeTable').on('click', '.stock-decrease', function () {
+        const id = $(this).data('id');
+        updateStock(id, -1);
+    });
+    // called to update stocks in database
+    function updateStock(id, change) {
+        var data = {
+            action: "updateStock",
+            colorway_size_id: id,
+            change: change
+        };
+        var jsonString = JSON.stringify(data);
+        $.ajax({
+            url: '../includes/logic/inventoryToDB.php',
+            method: 'POST',
+            data: { myJson : jsonString },
+            success: function(res) {
+                loadTables(); // Refresh the table safely
+            },
+            error: function() {
+                alert("Stock update failed");
+            }
+        });
+    }
+});
 function previewImage(input, previewId) {
     const file = input.files[0];
     if (file) {

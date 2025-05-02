@@ -131,14 +131,14 @@
             
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Shoes" type="button" role="tab" aria-controls="nav-Shoes" aria-selected="true">Manage Shoes</button> 
-                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Colorway" type="button" role="tab" aria-controls="nav-Colorway" aria-selected="false">Manage Colorways</button>
-                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-NewStocks" type="button" role="tab" aria-controls="nav-NewStocks" aria-selected="false">Add new Stocks</button>
+                    <button class="nav-link active" id="nav-shoes-tab" data-bs-toggle="tab" data-bs-target="#nav-Shoes" type="button" role="tab" aria-controls="nav-Shoes" aria-selected="true">Manage Shoes</button> 
+                    <button class="nav-link" id="nav-colorway-tab" data-bs-toggle="tab" data-bs-target="#nav-Colorway" type="button" role="tab" aria-controls="nav-Colorway" aria-selected="false">Manage Colorways</button>
+                    <button class="nav-link" id="nav-colorway-size-tab" data-bs-toggle="tab" data-bs-target="#nav-colorway-size" type="button" role="tab" aria-controls="nav-colorway-size" aria-selected="false">Add new Stocks</button>
                 </div>
             </nav>  
             <div class="tab-content" id="nav-tabContent">
                 <br>
-                <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-shoes-tab">
                     <div class="d-flex justify-content-end gap-3">
                         <!-- Add new shoe model -->
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newAdminModal">Add New Shoe Model</button>
@@ -238,7 +238,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-shoes-tab">
                         <div class="container">
                             <table id="shoesTable" class="display nowrap" style="width:100%">
                                 <thead>
@@ -261,101 +261,152 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="nav-Colorway" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <div class="d-flex justify-content-end gap-3">
-                    <!-- Add new Colorway -->
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#colorwayModal">Add New Colorway</button>
-                    <div class="modal fade" id="colorwayModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            
-                            <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title" id="newModalLabel">Add New Colorway</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- FORM -->
-                                <form id="addColorwayForm" enctype="multipart/form-data">
-                                    <div class="form-group mb-3">
-                                        <label>Shoe Model</label>
-                                        <div class="form-floating">
-                                            <select class="form-select" id="shoeModelSelect" name="shoe_model_id" id="shoe_model_id" aria-label="Select a shoe model" required>
-                                                <option value="" disabled selected>Open this select menu</option>
-                                                <?= getOptions($conn, 'shoe_model_tbl', 'shoe_model_id', 'model_name'); ?>
-                                            </select>
-                                            <label for="shoeModelSelect">Select a a shoe model</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="colorway_name">Colorway Name:</label>
-                                        <input type="text" id="colorway_name" name="colorway_name" class="form-control" maxlength="100" required>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="price">Price</label>
-                                        <input type="number" id="price" name="price" class="form-control" maxlength="100" required>
-                                    </div>
-                                    
-                                    <!-- Image inputs and previews -->
-                                    <div class="form-group col-md-12">
-                                        <label>Upload Images</label>
-                                        <div class="row g-2">
-                                            <!-- Repeat for image1 to image4 -->
-                                            <div class="col-md-6">
-                                                <input type="file" name="image1" id="image1" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview1')" required>
-                                                <img id="imgPreview1" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="file" name="image2" id="image2" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview2')" required>
-                                                <img id="imgPreview2" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                <div class="tab-pane fade" id="nav-Colorway" role="tabpanel" aria-labelledby="nav-colorway-tab">
+                    <div class="d-flex justify-content-end gap-3">
+                        <!-- Add new Colorway -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#colorwayModal">Add New Colorway</button>
+                        <div class="modal fade" id="colorwayModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="newModalLabel">Add New Colorway</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- FORM -->
+                                    <form id="addColorwayForm" enctype="multipart/form-data">
+                                        <div class="form-group mb-3">
+                                            <label>Shoe Model</label>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="shoeModelSelect" name="shoe_model_id" id="shoe_model_id" aria-label="Select a shoe model" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'shoe_model_tbl', 'shoe_model_id', 'model_name'); ?>
+                                                </select>
+                                                <label for="shoeModelSelect">Select a a shoe model</label>
                                             </div>
                                         </div>
-                                        <div class="row g-2">
-                                            <div class="col-md-6">
-                                                <input type="file" name="image3" id="image3" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview3')" required>
-                                                <img id="imgPreview3" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                        <div class="form-group mb-3">
+                                            <label for="colorway_name">Colorway Name:</label>
+                                            <input type="text" id="colorway_name" name="colorway_name" class="form-control" maxlength="100" required>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="price">Price</label>
+                                            <input type="number" id="price" name="price" class="form-control" maxlength="100" required>
+                                        </div>
+                                        
+                                        <!-- Image inputs and previews -->
+                                        <div class="form-group col-md-12">
+                                            <label>Upload Images</label>
+                                            <div class="row g-2">
+                                                <!-- Repeat for image1 to image4 -->
+                                                <div class="col-md-6">
+                                                    <input type="file" name="image1" id="image1" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview1')" required>
+                                                    <img id="imgPreview1" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="file" name="image2" id="image2" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview2')" required>
+                                                    <img id="imgPreview2" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                                </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <input type="file" name="image4" id="image4" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview4')" required>
-                                                <img id="imgPreview4" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                            <div class="row g-2">
+                                                <div class="col-md-6">
+                                                    <input type="file" name="image3" id="image3" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview3')" required>
+                                                    <img id="imgPreview3" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="file" name="image4" id="image4" class="form-control" accept="image/*" onchange="previewImage(this, 'imgPreview4')" required>
+                                                    <img id="imgPreview4" class="img-fluid mt-2 border" style="width: 100%; height: 200px; object-fit: cover;" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
-                                <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addColorway()">Save changes</button>
-                            </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addColorway()">Save changes</button>
+                                </div>
+                                </div>
                             </div>
                         </div>
+                        
                     </div>
-                    
-                </div>
                     <!-- card container -->
                     <div class="container mt-4">
                         <div id="colorwayCardContainer" class="row gy-4"></div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="nav-NewStocks" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <div class="tab-pane fade show active" id="nav-Brands" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <div class="container">
-                            <table id="usersTable" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>SKU</th>
-                                        <th>Product name</th>
-                                        <th>Size</th>
-                                        <th>Color</th>
-                                        <th>Price</th>
-                                        <th>Total Stock</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                <!-- new size tab -->
+                <div class="tab-pane fade" id="nav-colorway-size" role="tabpanel" aria-labelledby="nav-colorway-size-tab">
+                    <div class="d-flex justify-content-end gap-3">
+                        <!-- Add new Size -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#colorwaySizeModal">Add New Sizes</button>     
+                        <div class="modal fade" id="colorwaySizeModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="newModalLabel">Add New Size</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- FORM -->
+                                    <form id="addColorwaySizeForm" enctype="multipart/form-data">
+                                        <div class="form-group mb-3">
+                                            <label>Colorway</label>
+                                            <div class="form-floating">
+                                                <select class="form-select" name="colorway_id" id="colorwaySelect" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'colorway_tbl', 'colorway_id', 'colorway_name'); ?>
+                                                </select>
+                                                <label for="colorwaySelect">Select a Colorway</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label>Size</label>
+                                            <div class="form-floating">
+                                                <select class="form-select" name="size_id" id="sizeSelect" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'size_tbl', 'size_id', 'size_name'); ?>
+                                                </select>
+                                                <label for="sizeSelect">Select a Size</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="stock" class="form-label">Stock</label>
+                                            <input type="number" class="form-control" name="stock" id="stock" required min="0">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addNewStock()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <br>
+                    <div class="container">
+                        <table id="colorwaySizeTable" class="display nowrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Colorway Size ID</th>
+                                    <th>Colorway</th>
+                                    <th>Size</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Date Created</th>
+                                    <th>Date Updated</th>
+                                    <th>Edit/Delete</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
-
+            
                 <!-- MODALS -->
                  <!-- Delete Shoe Confirmation Modal -->
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

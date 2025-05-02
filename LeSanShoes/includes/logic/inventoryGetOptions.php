@@ -66,12 +66,34 @@ try{
         }
 
 
+        // Add after colorway_sql section
+        $colorway_size_sql = "SELECT 
+        cs.colorway_size_id,
+        CONCAT(cs.colorway_id, ': ',cw.colorway_name) AS colorway_id,
+        CONCAT(cs.size_id, ': ',sz.size_name) AS size_id,
+        cw.price,
+        cs.stock,
+        cs.date_created,
+        cs.date_updated
+        FROM colorway_size_tbl cs
+        JOIN colorway_tbl cw ON cs.colorway_id = cw.colorway_id
+        JOIN size_tbl sz ON cs.size_id = sz.size_id";
+
+        $colorway_size_result = $conn->query($colorway_size_sql);
+
+        $colorway_sizes = [];
+        while ($row = $colorway_size_result->fetch_assoc()) {
+        $colorway_sizes[] = $row;
+        }
+
         echo json_encode([
-            "shoe_models" => $shoe_models,
-            "colorways" => $colorways,
+        "shoe_models" => $shoe_models,
+        "colorways" => $colorways,
+        "colorway_sizes" => $colorway_sizes
         ]);
-    }
-}
+
+            }
+        }
 catch(Exception $e){
     http_response_code(404);
 }
