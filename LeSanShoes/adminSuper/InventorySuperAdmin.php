@@ -131,16 +131,88 @@
             
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-shoes-tab" data-bs-toggle="tab" data-bs-target="#nav-Shoes" type="button" role="tab" aria-controls="nav-Shoes" aria-selected="true">Manage Shoes</button> 
+                    <button class="nav-link active" id="nav-colorway-size-tab" data-bs-toggle="tab" data-bs-target="#nav-colorway-size" type="button" role="tab" aria-controls="nav-colorway-size" aria-selected="true">Manage Stocks</button>
+                    <button class="nav-link" id="nav-shoes-tab" data-bs-toggle="tab" data-bs-target="#nav-Shoes" type="button" role="tab" aria-controls="nav-Shoes" aria-selected="false">Manage Shoes</button> 
                     <button class="nav-link" id="nav-colorway-tab" data-bs-toggle="tab" data-bs-target="#nav-Colorway" type="button" role="tab" aria-controls="nav-Colorway" aria-selected="false">Manage Colorways</button>
-                    <button class="nav-link" id="nav-colorway-size-tab" data-bs-toggle="tab" data-bs-target="#nav-colorway-size" type="button" role="tab" aria-controls="nav-colorway-size" aria-selected="false">Add new Stocks</button>
                 </div>
             </nav>  
             <div class="tab-content" id="nav-tabContent">
                 <br>
-                <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-shoes-tab">
+                <!-- new size tab -->
+                <div class="tab-pane fade show active" id="nav-colorway-size" role="tabpanel" aria-labelledby="nav-colorway-size-tab">
                     <div class="d-flex justify-content-end gap-3">
+                        <!-- Add new Size -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#colorwaySizeModal">Add New Sizes</button>     
+                        <div class="modal fade" id="colorwaySizeModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="newModalLabel">Add New Size</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    
+                                    <!-- FORM -->
+                                    <form id="addColorwaySizeForm" enctype="multipart/form-data">
+                                        <div class="form-group mb-3">
+                                            <label>Colorway</label>
+                                            <div class="form-floating">
+                                                <select class="form-select" name="colorway_id" id="colorwaySelect" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'colorway_tbl', 'colorway_id', 'colorway_name'); ?>
+                                                </select>
+                                                <label for="colorwaySelect">Select a Colorway</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label>Size</label>
+                                            <div class="form-floating">
+                                                <select class="form-select" name="size_id" id="sizeSelect" required>
+                                                    <option value="" disabled selected>Open this select menu</option>
+                                                    <?= getOptions($conn, 'size_tbl', 'size_id', 'size_name'); ?>
+                                                </select>
+                                                <label for="sizeSelect">Select a Size</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="stock" class="form-label">Stock</label>
+                                            <input type="number" class="form-control" name="stock" id="stock" required min="0">
+                                        </div>
+                                    </form>
+                                    <p class="text-warning-emphasis">Missing colorway or size? Go to Manage Colorway or <a href="ManageDBSuperAdmin.php">Manage Database</a> to add shoe colorway.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addNewStock()">Save changes</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="container">
+                        <table id="colorwaySizeTable" class="display nowrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Colorway Size ID</th>
+                                    <th>Colorway</th>
+                                    <th>Size</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Date Created</th>
+                                    <th>Date Updated</th>
+                                    <th>Edit/Delete</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-shoes-tab">
+                    <div class="d-flex justify-content-between gap-6">
                         <!-- Add new shoe model -->
+                        <p class="text-danger">Warning: Deleting a shoe model will also delete all associated colorways.</p>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#newAdminModal">Add New Shoe Model</button>
                         <div class="modal fade" id="newAdminModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -226,7 +298,7 @@
                                             <label for="description">Shoe Description</label>
                                             <textarea name="description" id="description" name="description" class="form-control" rows="5" cols="40" required></textarea><br>
                                         </div> 
-
+                                        <p class="text-warning-emphasis">Missing options? Go to <a href="ManageDBSuperAdmin.php">Manage Database</a> to add missing options.</p>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -262,8 +334,9 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-Colorway" role="tabpanel" aria-labelledby="nav-colorway-tab">
-                    <div class="d-flex justify-content-end gap-3">
+                    <div class="d-flex justify-content-between gap-3">
                         <!-- Add new Colorway -->
+                        <p class="text-danger">Warning: Deleting a colorway will also delete all associated sizes.</p>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#colorwayModal">Add New Colorway</button>
                         <div class="modal fade" id="colorwayModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -322,6 +395,7 @@
                                         </div>
 
                                     </form>
+                                    <p class="text-warning-emphasis">Missing options? Go to <a href="ManageDBSuperAdmin.php">Manage Database</a> to add missing options.</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
@@ -337,75 +411,7 @@
                         <div id="colorwayCardContainer" class="row gy-4"></div>
                     </div>
                 </div>
-                <!-- new size tab -->
-                <div class="tab-pane fade" id="nav-colorway-size" role="tabpanel" aria-labelledby="nav-colorway-size-tab">
-                    <div class="d-flex justify-content-end gap-3">
-                        <!-- Add new Size -->
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#colorwaySizeModal">Add New Sizes</button>     
-                        <div class="modal fade" id="colorwaySizeModal" tabindex="-1" aria-labelledby="newModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                
-                                <div class="modal-header bg-primary text-white">
-                                    <h5 class="modal-title" id="newModalLabel">Add New Size</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="closeModal()"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- FORM -->
-                                    <form id="addColorwaySizeForm" enctype="multipart/form-data">
-                                        <div class="form-group mb-3">
-                                            <label>Colorway</label>
-                                            <div class="form-floating">
-                                                <select class="form-select" name="colorway_id" id="colorwaySelect" required>
-                                                    <option value="" disabled selected>Open this select menu</option>
-                                                    <?= getOptions($conn, 'colorway_tbl', 'colorway_id', 'colorway_name'); ?>
-                                                </select>
-                                                <label for="colorwaySelect">Select a Colorway</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mb-3">
-                                            <label>Size</label>
-                                            <div class="form-floating">
-                                                <select class="form-select" name="size_id" id="sizeSelect" required>
-                                                    <option value="" disabled selected>Open this select menu</option>
-                                                    <?= getOptions($conn, 'size_tbl', 'size_id', 'size_name'); ?>
-                                                </select>
-                                                <label for="sizeSelect">Select a Size</label>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="stock" class="form-label">Stock</label>
-                                            <input type="number" class="form-control" name="stock" id="stock" required min="0">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
-                                    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addNewStock()">Save changes</button>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="container">
-                        <table id="colorwaySizeTable" class="display nowrap" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>Colorway Size ID</th>
-                                    <th>Colorway</th>
-                                    <th>Size</th>
-                                    <th>Price</th>
-                                    <th>Stock</th>
-                                    <th>Date Created</th>
-                                    <th>Date Updated</th>
-                                    <th>Edit/Delete</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
+                
             
                 <!-- MODALS -->
                  <!-- Delete Shoe Confirmation Modal -->
@@ -550,12 +556,14 @@
                                     <label for="description">Shoe Description</label>
                                     <textarea name="description" id="edit_description" name="description" class="form-control" rows="5" cols="40" required></textarea><br>
                                 </div>
+                                <p class="text-warning-emphasis">Missing options? Go to <a href="ManageDBSuperAdmin.php">Manage Database</a> to add missing options.</p>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-success" onclick="editShoeModel()">Save Changes</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Cancel</button>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -615,7 +623,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <p class="text-warning-emphasis">Missing options? Go to <a href="ManageDBSuperAdmin.php">Manage Database</a> to add missing options.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
@@ -658,6 +666,7 @@
                                             <label for="sizeSelect">Select a Size</label>
                                         </div>
                                     </div>
+                                    <p class="text-warning-emphasis">Missing colorway or size? Go to Manage Colorway or <a href="ManageDBSuperAdmin.php">Manage Database</a> to add shoe colorway.</p>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-success" onclick="editColorwaySize()">Save Changes</button>
