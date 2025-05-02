@@ -79,14 +79,16 @@ CREATE TABLE IF NOT EXISTS `colorway_size_tbl` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`colorway_size_id`),
-  KEY `colorway_id` (`colorway_id`),
+  UNIQUE KEY `colorway_id` (`colorway_id`,`size_id`),
   KEY `size_id` (`size_id`),
   CONSTRAINT `colorway_size_tbl_ibfk_1` FOREIGN KEY (`colorway_id`) REFERENCES `colorway_tbl` (`colorway_id`) ON DELETE CASCADE,
   CONSTRAINT `colorway_size_tbl_ibfk_2` FOREIGN KEY (`size_id`) REFERENCES `size_tbl` (`size_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.colorway_size_tbl: ~0 rows (approximately)
+-- Dumping data for table lesanshoes_db.colorway_size_tbl: ~1 rows (approximately)
 DELETE FROM `colorway_size_tbl`;
+INSERT INTO `colorway_size_tbl` (`colorway_size_id`, `colorway_id`, `size_id`, `stock`, `date_created`, `date_updated`) VALUES
+	(3, 12, 2, 4, '2025-05-02 09:11:40', '2025-05-02 11:20:05');
 
 -- Dumping structure for table lesanshoes_db.colorway_tbl
 DROP TABLE IF EXISTS `colorway_tbl`;
@@ -249,13 +251,13 @@ CREATE TABLE IF NOT EXISTS `shoe_model_tbl` (
   CONSTRAINT `shoe_model_tbl_ibfk_6` FOREIGN KEY (`technology_id`) REFERENCES `technology_tbl` (`technology_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.shoe_model_tbl: ~5 rows (approximately)
+-- Dumping data for table lesanshoes_db.shoe_model_tbl: ~4 rows (approximately)
 DELETE FROM `shoe_model_tbl`;
 INSERT INTO `shoe_model_tbl` (`shoe_model_id`, `brand_id`, `category_id`, `material_id`, `traction_id`, `support_id`, `technology_id`, `model_name`, `date_created`, `date_updated`, `description`) VALUES
 	(3, 2, 1, 0, 0, 0, 0, 'AAA', '2025-04-30 04:04:19', '2025-04-30 04:04:19', 'AAAA'),
 	(4, 2, 1, 0, 0, 0, 0, 'AAA', '2025-04-30 04:04:58', '2025-04-30 04:04:58', 'AAAA'),
 	(7, 1, 0, 0, 0, 0, 0, 'aaa', '2025-04-30 04:08:25', '2025-04-30 04:08:25', 'asdasda'),
-	(9, 3, 1, 0, 0, 0, 0, 'LeBron James', '2025-05-01 04:04:00', '2025-05-01 04:04:00', 'lebron lebron lebron jaaamesss');
+	(9, 3, 1, 0, 0, 1, 0, 'LeBron James', '2025-05-01 04:04:00', '2025-05-02 10:41:01', 'lebron lebron lebron jaaamesssasdadasdas');
 
 -- Dumping structure for table lesanshoes_db.size_tbl
 DROP TABLE IF EXISTS `size_tbl`;
