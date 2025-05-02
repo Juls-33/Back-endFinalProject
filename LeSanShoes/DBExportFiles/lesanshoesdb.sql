@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `brand_tbl` (
   PRIMARY KEY (`brand_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.brand_tbl: ~4 rows (approximately)
+-- Dumping data for table lesanshoes_db.brand_tbl: ~5 rows (approximately)
 DELETE FROM `brand_tbl`;
 INSERT INTO `brand_tbl` (`brand_id`, `brand_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:11:44', '2025-04-29 06:11:44'),
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `material_tbl` (
   PRIMARY KEY (`material_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.material_tbl: ~2 rows (approximately)
+-- Dumping data for table lesanshoes_db.material_tbl: ~1 rows (approximately)
 DELETE FROM `material_tbl`;
 INSERT INTO `material_tbl` (`material_id`, `material_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:26:05', '2025-04-29 06:28:14');
@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `roles_tbl` (
   PRIMARY KEY (`roles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.roles_tbl: ~4 rows (approximately)
+-- Dumping data for table lesanshoes_db.roles_tbl: ~3 rows (approximately)
 DELETE FROM `roles_tbl`;
 INSERT INTO `roles_tbl` (`roles_id`, `roles_name`, `roles_desc`, `date_created`, `date_updated`) VALUES
 	(1, 'User', 'Accesses the website and order product different products', '0000-00-00 00:00:00', '2025-04-27 09:57:35'),
@@ -214,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `shoes_gender_tbl` (
   PRIMARY KEY (`shoes_gender_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.shoes_gender_tbl: ~2 rows (approximately)
+-- Dumping data for table lesanshoes_db.shoes_gender_tbl: ~4 rows (approximately)
 DELETE FROM `shoes_gender_tbl`;
 INSERT INTO `shoes_gender_tbl` (`shoes_gender_id`, `shoes_gender_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:12:03', '2025-04-29 06:12:03'),
@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `support_tbl` (
   PRIMARY KEY (`support_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.support_tbl: ~0 rows (approximately)
+-- Dumping data for table lesanshoes_db.support_tbl: ~2 rows (approximately)
 DELETE FROM `support_tbl`;
 INSERT INTO `support_tbl` (`support_id`, `support_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:49:50', '2025-04-29 06:49:50'),
@@ -321,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `technology_tbl` (
   PRIMARY KEY (`technology_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.technology_tbl: ~0 rows (approximately)
+-- Dumping data for table lesanshoes_db.technology_tbl: ~1 rows (approximately)
 DELETE FROM `technology_tbl`;
 INSERT INTO `technology_tbl` (`technology_id`, `technology_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:55:45', '2025-04-29 06:55:45');
@@ -336,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `traction_tbl` (
   PRIMARY KEY (`traction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.traction_tbl: ~0 rows (approximately)
+-- Dumping data for table lesanshoes_db.traction_tbl: ~1 rows (approximately)
 DELETE FROM `traction_tbl`;
 INSERT INTO `traction_tbl` (`traction_id`, `traction_name`, `date_created`, `date_updated`) VALUES
 	(0, 'N/A', '2025-04-29 06:40:41', '2025-04-29 06:40:52');
@@ -361,7 +361,7 @@ CREATE TABLE IF NOT EXISTS `users_tbl` (
   CONSTRAINT `users_tbl_ibfk_1` FOREIGN KEY (`roles_id`) REFERENCES `roles_tbl` (`roles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.users_tbl: ~8 rows (approximately)
+-- Dumping data for table lesanshoes_db.users_tbl: ~9 rows (approximately)
 DELETE FROM `users_tbl`;
 INSERT INTO `users_tbl` (`username`, `roles_id`, `fname`, `lname`, `email`, `user_password`, `birthday`, `user_address`, `contact`, `date_created`, `date_updated`, `last_login`) VALUES
 	('admin', 3, 'JULIUS AUSTIN', 'sdda', 'unrealdamianlillard@gmail.com', '123', NULL, '', '11111111111', '2025-04-22 15:23:38', '2025-04-22 15:23:38', '2025-04-29 09:04:54'),
