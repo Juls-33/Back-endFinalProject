@@ -58,15 +58,15 @@
                             $description = $obj->description;
                             $date_updated = date('Y-m-d H:i:s');
     
-                            $stmt = $conn->prepare("UPDATE shoe_model_tbl SET brand_id=?, category_id=?, material_id=?, traction_id=?, support_id=?, technology_id=?, model_name=?, description=?, date_created=?, date_updated=?
+                            $stmt = $conn->prepare("UPDATE shoe_model_tbl SET brand_id=?, category_id=?, material_id=?, traction_id=?, support_id=?, technology_id=?, model_name=?, description=?, date_updated=?
                                                     WHERE shoe_model_id=?   
                                                     ");
-                            $stmt->bind_param("iiiiiissssi", $brand_id, $category_id, $material_id, $traction_id, $support_id, $technology_id, $model_name, $description, $date_updated, $date_updated, $shoe_model_id);
+                            $stmt->bind_param("iiiiiisssi", $brand_id, $category_id, $material_id, $traction_id, $support_id, $technology_id, $model_name, $description,  $date_updated, $shoe_model_id);
                             if ($stmt->execute()) {
                                 if ($stmt->affected_rows > 0) {
-                                    echo json_encode(['status' => 'success', 'message' => 'New shoe model added successfully.']);
+                                    echo json_encode(['status' => 'success', 'message' => 'Shoe model updated successfully.']);
                                 } else {
-                                    echo json_encode(['status' => 'error', 'message' => 'Failed to add new shoe model.']);
+                                    echo json_encode(['status' => 'error', 'message' => 'Failed to update shoe model.']);
                                 }
                                 
                             } else {
@@ -99,9 +99,9 @@
                             $stmt->bind_param("iiiss", $colorway_id, $size_id, $stock, $date_updated, $date_updated);
                             if ($stmt->execute()) {
                                 if ($stmt->affected_rows > 0) {
-                                    echo json_encode(['status' => 'success', 'message' => 'New shoe model added successfully.']);
+                                    echo json_encode(['status' => 'success', 'message' => 'Newcolorway size added successfully.']);
                                 } else {
-                                    echo json_encode(['status' => 'error', 'message' => 'Failed to add new shoe model.']);
+                                    echo json_encode(['status' => 'error', 'message' => 'Failed to add new colorway size.']);
                                 }
                                 
                             } else {
@@ -121,6 +121,41 @@
                                     echo json_encode(['status' => 'success', 'message' => 'New shoe model added successfully.']);
                                 } else {
                                     echo json_encode(['status' => 'error', 'message' => 'Failed to add new shoe model.']);
+                                }
+                                
+                            } else {
+                                echo "Failed to execute";
+                            }
+                            $stmt->close();
+                        break;
+                        case 'deleteColorwaySize':
+                            $colorway_size_id = $obj->colorway_size_id;
+    
+                            $deleteStmt = $conn->prepare("DELETE FROM colorway_size_tbl WHERE colorway_size_id = ?");
+                            $deleteStmt->bind_param("i", $colorway_size_id);
+                            if ($deleteStmt->execute()) {
+                                echo json_encode(['status' => 'success', 'message' => 'Size for the specific colorway is deleted successfully.']);
+                            } else {
+                                echo json_encode(['status' => 'error', 'message' => 'Failed to delete size for the specific colorway.']);
+                            }
+                            $deleteStmt->close();
+                        break;
+                        case 'editColorwaySize':
+                            $colorway_size_id = $obj->colorway_size_id;
+                            $size_id = $obj->size_id;
+                            $colorway_id = $obj->colorway_id;
+                            
+                            $date_updated = date('Y-m-d H:i:s');
+    
+                            $stmt = $conn->prepare("UPDATE colorway_size_tbl SET colorway_id=?, size_id=?, date_updated=?
+                                                    WHERE colorway_size_id=?   
+                                                    ");
+                            $stmt->bind_param("iisi", $colorway_id, $size_id, $date_updated, $colorway_size_id);
+                            if ($stmt->execute()) {
+                                if ($stmt->affected_rows > 0) {
+                                    echo json_encode(['status' => 'success', 'message' => ' Sizes updated successfully.']);
+                                } else {
+                                    echo json_encode(['status' => 'error', 'message' => 'Failed to update size.']);
                                 }
                                 
                             } else {

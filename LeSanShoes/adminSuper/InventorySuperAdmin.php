@@ -445,6 +445,24 @@
                         </div>
                     </div>
                 </div>
+                <!-- Delete colorway size Confirmation Modal -->
+                <div class="modal fade" id="deleteColorwaySizeModal" tabindex="-1" aria-labelledby="deleteColorwaySizeLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header bg-danger text-white">
+                            <h5 class="modal-title" id="deleteColorwaySizeLabel">Delete Colorway Size</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete <strong id="deleteColorwaySizeName">this colorway size?</strong>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Cancel</button>
+                            <button type="button" class="btn btn-danger" id="confirmDeleteColorwaySize">Delete</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
 
             
                  <!-- Edit Shoe Model Modal -->
@@ -604,6 +622,48 @@
                                 <button type="button" class="btn btn-success" onclick="updateColorway()">Update</button>
                             </div>
                         </form>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Edit Colorway Size Modal -->
+                 <div class="modal fade" id="editColorwaySizeModal" tabindex="-1" aria-labelledby="editColorwatSizeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <form id="editColorwaySizeForm">
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="editColorwatSizeModalLabel">Edit Shoe Model</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeModal()"></button>
+                                </div>
+                                <!-- nandito yung id -->
+                                <div class="modal-body row g-3">
+                                    <input type="hidden" id="colorway_size_id" name="colorway_size_id">
+                                    <div class="form-group mb-3">
+                                        <label>Colorway</label>
+                                        <div class="form-floating">
+                                            <select class="form-select" name="edit_colorway_id" id="colorwaySelect" required>
+                                                <option value="" disabled selected>Open this select menu</option>
+                                                <?= getOptions($conn, 'colorway_tbl', 'colorway_id', 'colorway_name'); ?>
+                                            </select>
+                                            <label for="colorwaySelect">Select a Colorway</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label>Size</label>
+                                        <div class="form-floating">
+                                            <select class="form-select" name="edit_size_id" id="sizeSelect" required>
+                                                <option value="" disabled selected>Open this select menu</option>
+                                                <?= getOptions($conn, 'size_tbl', 'size_id', 'size_name'); ?>
+                                            </select>
+                                            <label for="sizeSelect">Select a Size</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="editColorwaySize()">Save Changes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Cancel</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

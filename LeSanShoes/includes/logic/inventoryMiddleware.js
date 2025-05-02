@@ -91,6 +91,8 @@ function sendViaAJAX(data){
                     document.getElementById("addShoeForm").reset();
                     document.getElementById("editShoeForm").reset();
                     document.getElementById("addColorwayForm").reset();
+                    document.getElementById("editColorwaySizeForm").reset();
+                    $('#editColorwaySizeModal').modal('hide');
 
             }
             else{
@@ -321,6 +323,7 @@ function closeModal() {
 //LOAD TABLES LOAD SHOE MODEL LOAD COLORWAY
 function loadTables(){
     $(document).ready(function() {
+        
         $.ajax({
             url: '../includes/logic/inventoryGetOptions.php',
             method: 'POST',
@@ -401,9 +404,6 @@ function loadTables(){
                 });
                 // Stock Table for Colorway Sizes
                 const colorwaySizeTable = $('#colorwaySizeTable');
-                // if ($.fn.DataTable.isDataTable(colorwaySizeTable)) {
-                //     colorwaySizeTable.DataTable().clear().destroy();
-                // }
 
                 colorwaySizeTable.DataTable({
                     scrollX: true,
@@ -432,8 +432,8 @@ function loadTables(){
                             data: null,
                             render: function (data, type, row) {
                                 return `
-                                    <button class="btn btn-sm btn-warning edit-stock-btn" data-id="${row.colorway_size_id}">Edit</button>
-                                    <button class="btn btn-sm btn-danger delete-stock-btn" data-id="${row.colorway_size_id}">Delete</button>
+                                    <button class="btn btn-sm btn-warning edit-colorway-size-btn" data-id="${row.colorway_size_id}">Edit</button>
+                                    <button class="btn btn-sm btn-danger delete-colorway-size-btn" data-id="${row.colorway_size_id}" data-bs-toggle="modal" data-bs-target="#deleteColorwaySizeModal">Delete</button>
                                 `;
                             }
                         }
@@ -443,29 +443,70 @@ function loadTables(){
         });
     });   
 }
+
+// EDIT SHOE MODEL
+$(document).on('click', '.edit-colorway-size-btn', function () {
+    const data = $('#colorwaySizeTable').DataTable().row($(this).parents('tr')).data();
+    
+    $('#colorway_size_id').val(data.colorway_size_id);
+    $('#editColorwaySizeModal').modal('show');
+});
+function editColorwaySize() {
+    var form = document.getElementById('editColorwaySizeForm');
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return; 
+      }
+    var formData = new FormData(form);
+
+    var data = {
+        action: "editColorwaySize",
+        colorway_size_id: formData.get("colorway_size_id"),
+        colorway_id: formData.get("edit_colorway_id"),
+        size_id: formData.get("edit_size_id"),
+      };
+      console.log(data.colorway_size_id, data.colorway_id, data.size_id);
+    sendViaAJAX(data);
+}
 // Binding stock increase and decrease onclicks once the table loads.
 $(document).ready(function () {
     loadTables();
-    $('#colorwaySizeTable').on('click', '.delete-stock-btn', function () {
-        const id = $(this).data('id');
-        if (confirm("Are you sure you want to delete this stock entry?")) {
+    var deleteColorwaySizeId = null;
+    $(document).on('click', '.delete-colorway-size-btn', function () {
+        deleteColorwaySizeId = $(this).data('id');
+        console.log(deleteColorwaySizeId);
+        var jsonStringDel = JSON.stringify({ colorway_size_id: deleteColorwaySizeId, action: 'deleteColorwaySize' });
+        $('#confirmDeleteColorwaySize').on('click', function () {
+            if (!deleteColorwaySizeId) return;
             $.ajax({
                 url: '../includes/logic/inventoryToDB.php',
                 method: 'POST',
-                data: {
-                    myJson: JSON.stringify({
-                        action: 'deleteStock',
-                        colorway_size_id: id
-                    })
-                },
+                data: {myJson : jsonStringDel},
+                dataType: 'json',
                 success: function (res) {
-                    loadTables(); // Refresh after deletion
+                    if (res.status=="success") {
+                        Swal.fire({
+                            icon: "success",
+                            title: res.message,
+                            width: 600,
+                            padding: "3em",
+                            color: "#36714b",
+                            background: "#fff url()",
+                            backdrop: `
+                                rgb(0,0,0, 0.1)
+                                center top
+                                no-repeat
+                            `
+                            });
+                        $('#deleteColorwaySizeModal').modal('hide');
+                        loadTables();
+                    }
                 },
                 error: function () {
-                    alert("Failed to delete stock.");
+                    alert("Failed to delete shoe model.");
                 }
             });
-        }
+        });
     });
     // Stock increase
     $('#colorwaySizeTable').on('click', '.stock-increase', function () {
