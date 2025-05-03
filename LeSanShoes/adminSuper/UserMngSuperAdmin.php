@@ -1,6 +1,5 @@
 <?php
     session_start();
-    // include("../includes/logic/getAdminSelect.php");
 
     if (!isset($_SESSION['username'])) {
         // Not logged in — redirect to login
@@ -330,11 +329,11 @@
                             <div class="row mb-3">
                                 <div class="form-group col-xs-12 col-sm-6">
                                     <label for="fname">First name</label>
-                                    <input type="text" id="fname" name="fname" placeholder="Enter your firstname" class="form-control" required>
+                                    <input type="text" id="fname" name="fname" placeholder="Enter your firstname" class="form-control" maxlength="100" required>
                                 </div>
                                 <div class="form-group col-xs-12 col-sm-6">
                                     <label for="lname">Last name</label>
-                                    <input type="text" id="lname" name="lname" placeholder="Enter your lastname" class="form-control" required>
+                                    <input type="text" id="lname" name="lname" placeholder="Enter your lastname" class="form-control" maxlength="100" required>
                                 </div>
                             </div>
 

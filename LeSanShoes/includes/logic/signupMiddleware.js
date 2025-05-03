@@ -1,17 +1,23 @@
 function signUp() {
-    var formData = {
+    var form = document.getElementById('signupForm');
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return; 
+      }
+    var formData = new FormData(form);
+    var data = {
         action: 'signUp',
-        username: document.getElementById("username").value.trim(),
-        user_fname: document.getElementById("fname").value.trim(),
-        user_lname: document.getElementById("lname").value.trim(),
-        user_email: document.getElementById("email").value.trim(),
-        user_password: document.getElementById("password").value.trim(),
-        user_passwordConf: document.getElementById("passwordConf").value.trim(),
-        user_birthday: document.getElementById("birthdate").value.trim(),
-        user_address: document.getElementById("address").value.trim(),
-        user_contact: document.getElementById("contact").value.trim(),
+        username: formData.get("username").trim(),
+        user_fname: formData.get("fname").trim(),
+        user_lname: formData.get("lname").trim(),
+        user_email: formData.get("email").trim(),
+        user_password: formData.get("password").trim(),
+        user_passwordConf: formData.get("passwordConf").trim(),
+        user_birthday: formData.get("birthdate").trim(),
+        user_address: formData.get("address").trim(),
+        user_contact: formData.get("contact").trim(),
     };
-    verifySignUp(formData);
+    verifySignUp(data);
 }
 
 function verifySignUp(formData){
@@ -64,8 +70,11 @@ function isSignUpError(formData){
     if(!formData.user_contact){
         errorString +="--Contact is empty--\n";
     }
-    if((int)(formData.user_contact)<0){
-        errorString +="--Contact should not be negative--\n";
+    // if((int)(formData.user_contact)<0){
+    //     errorString +="--Contact should not be negative--\n";
+    // }
+    if(formData.user_contact.length!=11){
+        errorString +="--Contact number should be 11 digits--\n";
     }
     let emailCtr = 0;
     for (let i = 0; i < formData.user_email.length; i++) {
