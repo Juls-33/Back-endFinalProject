@@ -28,12 +28,13 @@
                             $model_name = $obj->model_name;
                             $description = $obj->description;
                             $date_updated = date('Y-m-d H:i:s');
+                            $modified_by = $_SESSION['username'];
     
                             $stmt = $conn->prepare("INSERT INTO shoe_model_tbl 
-                                                        (brand_id, category_id, material_id, traction_id, support_id, technology_id, model_name, description, date_created, date_updated)
-                                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                                                        (brand_id, category_id, material_id, traction_id, support_id, technology_id, model_name, description, date_created, date_updated, modified_by)
+                                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                                                     ");
-                            $stmt->bind_param("iiiiiissss", $brand_id, $category_id, $material_id, $traction_id, $support_id, $technology_id, $model_name, $description, $date_updated, $date_updated);
+                            $stmt->bind_param("iiiiiisssss", $brand_id, $category_id, $material_id, $traction_id, $support_id, $technology_id, $model_name, $description, $date_updated, $date_updated, $modified_by);
                             if ($stmt->execute()) {
                                 if ($stmt->affected_rows > 0) {
                                     echo json_encode(['status' => 'success', 'message' => 'New shoe model added successfully.']);
@@ -57,11 +58,12 @@
                             $model_name = $obj->model_name;
                             $description = $obj->description;
                             $date_updated = date('Y-m-d H:i:s');
+                            $modified_by = $_SESSION['username'];
     
-                            $stmt = $conn->prepare("UPDATE shoe_model_tbl SET brand_id=?, category_id=?, material_id=?, traction_id=?, support_id=?, technology_id=?, model_name=?, description=?, date_updated=?
+                            $stmt = $conn->prepare("UPDATE shoe_model_tbl SET brand_id=?, category_id=?, material_id=?, traction_id=?, support_id=?, technology_id=?, model_name=?, description=?, date_updated=?, modified_by=?
                                                     WHERE shoe_model_id=?   
                                                     ");
-                            $stmt->bind_param("iiiiiisssi", $brand_id, $category_id, $material_id, $traction_id, $support_id, $technology_id, $model_name, $description,  $date_updated, $shoe_model_id);
+                            $stmt->bind_param("iiiiiissssi", $brand_id, $category_id, $material_id, $traction_id, $support_id, $technology_id, $model_name, $description,  $date_updated, $modified_by, $shoe_model_id);
                             if ($stmt->execute()) {
                                 if ($stmt->affected_rows > 0) {
                                     echo json_encode(['status' => 'success', 'message' => 'Shoe model updated successfully.']);
@@ -91,12 +93,13 @@
                             $size_id = $obj->size_id;
                             $stock = $obj->stock;
                             $date_updated = date('Y-m-d H:i:s');
+                            $modified_by = $_SESSION['username'];
     
                             $stmt = $conn->prepare("INSERT INTO colorway_size_tbl
-                                                        (colorway_id, size_id, stock, date_created, date_updated)
-                                                        VALUES (?, ?, ?, ?, ?)
+                                                        (colorway_id, size_id, stock, date_created, date_updated, modified_by)
+                                                        VALUES (?, ?, ?, ?, ?, ?)
                                                     ");
-                            $stmt->bind_param("iiiss", $colorway_id, $size_id, $stock, $date_updated, $date_updated);
+                            $stmt->bind_param("iiisss", $colorway_id, $size_id, $stock, $date_updated, $date_updated, $modified_by);
                             if ($stmt->execute()) {
                                 if ($stmt->affected_rows > 0) {
                                     echo json_encode(['status' => 'success', 'message' => 'Newcolorway size added successfully.']);
@@ -113,9 +116,10 @@
                             $colorway_size_id = $obj->colorway_size_id;
                             $change = $obj->change;
                             $date_updated = date('Y-m-d H:i:s');
+                            $modified_by = $_SESSION['username'];
     
-                            $stmt = $conn->prepare("UPDATE colorway_size_tbl SET stock = stock + ?, date_updated = ? WHERE colorway_size_id = ?");
-                            $stmt->bind_param("isi", $change, $date_updated, $colorway_size_id);
+                            $stmt = $conn->prepare("UPDATE colorway_size_tbl SET stock = stock + ?, date_updated = ?, modified_by=? WHERE colorway_size_id = ?");
+                            $stmt->bind_param("issi", $change, $date_updated, $modified_by, $colorway_size_id);
                             if ($stmt->execute()) {
                                 if ($stmt->affected_rows > 0) {
                                     echo json_encode(['status' => 'success', 'message' => 'New shoe model added successfully.']);
@@ -144,13 +148,14 @@
                             $colorway_size_id = $obj->colorway_size_id;
                             $size_id = $obj->size_id;
                             $colorway_id = $obj->colorway_id;
+                            $modified_by = $_SESSION['username'];
                             
                             $date_updated = date('Y-m-d H:i:s');
     
-                            $stmt = $conn->prepare("UPDATE colorway_size_tbl SET colorway_id=?, size_id=?, date_updated=?
+                            $stmt = $conn->prepare("UPDATE colorway_size_tbl SET colorway_id=?, size_id=?, date_updated=?, modified_by=?
                                                     WHERE colorway_size_id=?   
                                                     ");
-                            $stmt->bind_param("iisi", $colorway_id, $size_id, $date_updated, $colorway_size_id);
+                            $stmt->bind_param("iissi", $colorway_id, $size_id, $date_updated, $modified_by, $colorway_size_id);
                             if ($stmt->execute()) {
                                 if ($stmt->affected_rows > 0) {
                                     echo json_encode(['status' => 'success', 'message' => ' Sizes updated successfully.']);
