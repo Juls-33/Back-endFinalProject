@@ -1,21 +1,42 @@
 loadTables();
+reloadAdminSelect();
 function signUp() {
-    var formData = {
-        action: 'newAdmin',
-        username: document.getElementById("username").value.trim(),
-        user_fname: document.getElementById("fname").value.trim(),
-        user_lname: document.getElementById("lname").value.trim(),
-        user_email: document.getElementById("email").value.trim(),
-        user_password: document.getElementById("password").value.trim(),
-        user_passwordConf: document.getElementById("passwordConf").value.trim(),
-        user_contact: document.getElementById("contact").value.trim(),
-    };
-    verifySignUp(formData);
+    // var formData = {
+    //     action: 'newAdmin',
+    //     username: document.getElementById("username").value.trim(),
+    //     user_fname: document.getElementById("fname").value.trim(),
+    //     user_lname: document.getElementById("lname").value.trim(),
+    //     user_email: document.getElementById("email").value.trim(),
+    //     user_password: document.getElementById("password").value.trim(),
+    //     user_passwordConf: document.getElementById("passwordConf").value.trim(),
+    //     user_contact: document.getElementById("contact").value.trim(),
+    // };
+    // verifySignUp(formData);
+
+    var form = document.getElementById('newAdminForm');
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return; 
+      }
+    var formData = new FormData(form);
+    var data = {
+        action: "newAdmin",
+        username: formData.get("username").trim(),
+        user_fname: formData.get("fname").trim(),
+        user_lname: formData.get("lname").trim(),
+        user_email: formData.get("email").trim(),
+        user_password: formData.get("password").trim(),
+        user_passwordConf: formData.get("passwordConf").trim(),
+        user_contact: formData.get("contact").trim(),
+      };
+    // var jsonString = JSON.stringify(data);
+    verifySignUp(data);
 }
 
 function verifySignUp(formData){
     //check for errors
     var errorString = isSignUpError(formData);
+    console.log(errorString);
     if(errorString!=""){
         Swal.fire({
             icon: "error",
@@ -56,6 +77,9 @@ function isSignUpError(formData){
     }
     if(!formData.user_contact){
         errorString +="--Contact is empty--\n";
+    }
+    if(formData.user_contact.length!=11){
+        errorString +="--Contact number should be 11 digits--\n";
     }
     let emailCtr = 0;
     for (let i = 0; i < formData.user_email.length; i++) {
@@ -144,6 +168,7 @@ function editAdmin(){
     var formData = {
         action: 'updateAdmin',
         username: document.getElementById("usernameEdit").value.trim(),
+        username_update: document.getElementById("updateUsername").value.trim(),
         user_fname: document.getElementById("fnameEdit").value.trim(),
         user_lname: document.getElementById("lnameEdit").value.trim(),
         user_email: document.getElementById("emailEdit").value.trim(),
@@ -153,6 +178,47 @@ function editAdmin(){
     };
     verifyEdit(formData);
 }
+
+document.getElementById('usernameEdit').addEventListener('change', function () {
+    var username = this.value;
+    var formData = {
+        action: 'getEditDetails',
+        username: username,
+        // username: document.getElementById("usernameEdit").value.trim(),
+    };
+    var jsonString = JSON.stringify(formData);
+    if (username) {
+        $.ajax({
+            url: "../includes/logic/userAuthToDB.php", 
+            type: "POST",
+            data: {myJson : jsonString},
+            dataType: 'json',
+            success: function(response) {
+                document.getElementById('updateUsername').value = response.admin.username || '';
+                document.getElementById('fnameEdit').value = response.admin.fname || '';
+                document.getElementById('lnameEdit').value = response.admin.lname || '';
+                document.getElementById('emailEdit').value = response.admin.email || '';
+                document.getElementById('contactEdit').value = response.admin.contact || '';
+                document.getElementById('passwordEdit').value = response.admin.user_password || '';
+                document.getElementById('passwordConfEdit').value = response.admin.user_password || '';
+            },
+            error: function() {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Error fetching data',
+                    color: "#B51E1E",
+                        background: "#fff url()",
+                        backdrop: `
+                            rgb(0,0,0, 0.1)
+                            center top
+                            no-repeat`
+                });
+            }
+        });
+        
+    }
+});
 function verifyEdit(formData){
     //check for errors
     var errorString = isSignUpError(formData);
@@ -328,7 +394,7 @@ function confirmDelete(){
     var formData = {
         action: 'confirmDelete',
         username: usernameToDelete,
-        password: document.getElementById("adminPassword").value.trim(),
+        password: document.getElementById("delAdminPassword").value.trim(),
     };
     if (!formData.password) {
         Swal.fire({
@@ -372,9 +438,10 @@ function confirmDelete(){
                         var modalEl2 = document.getElementById('deleteAdmin2');
                         var modal2 = bootstrap.Modal.getInstance(modalEl2);
                         modal2.hide();
-
+                        
                         document.getElementById('deleteUsername').value = "";
                         document.getElementById('adminPassword').value = ""; 
+                        document.getElementById('delAdminPassword').value = ""; 
                         loadTables();
                         // window.adminTable.ajax.reload(null, false);
                 } 
@@ -746,6 +813,7 @@ function clearInput(){
 }
 
 function loadTables(){
+    reloadAdminSelect();
     $(document).ready(function() {
         $.ajax({
             url: '../includes/logic/getUsers.php',
@@ -807,4 +875,25 @@ function loadTables(){
     });
     
 }
+function reloadAdminSelect() {
+    $('.dynamic-admin-select').each(function () {
+        const $select = $(this);
+        const role = $select.data('role');
+
+        $.ajax({
+            url: '../includes/logic/loadAdminSelect.php',
+            type: 'POST',
+            data: { role: role },
+            success: function (data) {
+                $select.html(data);
+            },
+            error: function () {
+                $select.html('<option disabled>Error loading options</option>');
+            }
+        });
+    });
+}
+
+// Call this after inserting/updating the database
+reloadAdminSelect();
 

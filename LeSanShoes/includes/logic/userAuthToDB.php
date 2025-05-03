@@ -53,6 +53,7 @@
                     break;
                     case 'updateAdmin':
                         $username = $obj ->username;
+                        $username_update = $obj ->username_update;
                         $roles = 3;
                         $user_fname = $obj ->user_fname;
                         $user_lname = $obj ->user_lname;
@@ -61,8 +62,8 @@
                         $user_contact = $obj ->user_contact;
                         $date_updated = date('Y-m-d H:i:s');
 
-                        $stmt = $conn->prepare("UPDATE users_tbl SET roles_id = ?, fname = ?, lname = ?, email = ?, user_password = ?, contact = ?, date_updated = ? where username = ?");
-                        $stmt->bind_param("isssssss", $roles, $user_fname, $user_lname, $user_email, $user_password,  $user_contact, $date_updated, $username);
+                        $stmt = $conn->prepare("UPDATE users_tbl SET username = ?, roles_id = ?, fname = ?, lname = ?, email = ?, user_password = ?, contact = ?, date_updated = ? where username = ?");
+                        $stmt->bind_param("sisssssss", $username_update, $roles, $user_fname, $user_lname, $user_email, $user_password,  $user_contact, $date_updated, $username);
                         if ($stmt->execute()) {
                             if ($stmt->affected_rows > 0) {
                                 echo "Record was successfully updated.";
@@ -240,6 +241,19 @@
                             echo json_encode(['status' => 'error', 'message' => 'Incorrect admin password.']);
                         }
                         $stmt->close();
+                    break;
+                    case 'getEditDetails':
+                        $username = $obj->username;
+                        $sql = "SELECT username, fname, lname, email, user_password, contact FROM users_tbl WHERE username = ?";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("s", $username);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        $admin = $result->fetch_assoc();
+                        echo json_encode([
+                            "admin" => $admin,
+                        ]);
                     break;
                     
                 }

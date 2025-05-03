@@ -20,7 +20,7 @@
     </head>
     <body>
         <div class="form-wrapper">
-            <form>
+            <form id="signupForm">
             <h2 class="text-center">Sign up</h2>
             <hr>
             <div class="form-group">
@@ -31,11 +31,11 @@
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-6">
                     <label for="fname">First name</label>
-                    <input type="text" id="fname" name="fname" placeholder="Enter your firstname" class="form-control" required>
+                    <input type="text" id="fname" name="fname" placeholder="Enter your firstname" class="form-control" maxlength="100" required>
                 </div>
                 <div class="form-group col-xs-12 col-sm-6">
                     <label for="lname">Last name</label>
-                    <input type="text" id="lname" name="lname" placeholder="Enter your lastname" class="form-control" required>
+                    <input type="text" id="lname" name="lname" placeholder="Enter your lastname" class="form-control" maxlength="100" required>
                 </div>
             </div>
 
@@ -66,7 +66,7 @@
 
             <div class="form-group">
                 <label for="contact">Contact Number</label>
-                <input type="number" id="contact" name="contact" class="form-control" onKeyPress="if(this.value.length==11) return false;" required>
+                <input type="number" id="contact" name="contact" class="form-control" min="0" onKeyPress="if(this.value.length==11) return false;" required>
             </div>
 
             <div class="checkbox">

@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     switch ($action) {
         case 'addColorway':
-            $shoe_model_id = $_POST['shoe_model_id'];
-            $colorway_name = $_POST['colorway_name'];
+            $shoe_model_id = trim($_POST['shoe_model_id']);
+            $colorway_name = trim($_POST['colorway_name']);
             $price = $_POST['price'];
             $date_updated = date('Y-m-d H:i:s');
             $modified_by = $_SESSION['username'];
@@ -120,8 +120,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             break;
         case 'updateColorway':
             $colorway_id = $_POST['colorway_id'];
-            $shoe_model_id = $_POST['shoe_model_id'];
-            $colorway_name = $_POST['edit_colorway_name'];
+            $shoe_model_id = trim($_POST['shoe_model_id']);
+            $colorway_name = trim($_POST['edit_colorway_name']);
             $price = $_POST['edit_price'];
             $date_updated = date('Y-m-d H:i:s');
             $modified_by = $_SESSION['username'];
