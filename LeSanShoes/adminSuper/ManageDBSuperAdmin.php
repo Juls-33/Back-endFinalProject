@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // session_start();
+    include("../includes/logic/inventoryGetOptions.php");
 
     if (!isset($_SESSION['username'])) {
         // Not logged in — redirect to login
@@ -23,6 +24,11 @@
     <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
     <!-- <link rel="stylesheet" href="../assets/css/AdminPage.css"> -->
     <link rel="stylesheet" href="../assets/css/CustomAdminPage.css">
+    <!-- Selectize CSS -->
+<link href="https://cdn.jsdelivr.net/npm/selectize/dist/css/selectize.default.css" rel="stylesheet" />
+<!-- Selectize JS -->
+<script src="https://cdn.jsdelivr.net/npm/selectize/dist/js/standalone/selectize.min.js"></script>
+
 </head>
 
 <body>
@@ -169,10 +175,15 @@
                                     <h2 class="text-center mb-3">Edit brand in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="brandID">Brand ID</label>
-                                        <input type="number" id="brandID" name="brandID" class="form-control" maxlength="100" required>
-                                        <label for="brandEdit">Brand name</label>
+
+                                    <label for="brandID">Brand ID</label>
+                                        <select id="brandID" name="brandID" class="form-control" required>
+                                            <option value="">-- Select Brand --</option>
+                                            <?= getOptions($conn, 'brand_tbl', 'brand_id', 'brand_name'); ?>
+                                        </select> 
+                                        <label for="brandEdit">Brand Name</label>
                                         <input type="text" id="brandEdit" name="brandEdit" class="form-control" maxlength="100" required>
+
                                     </div>
                                     </form>
                                 </div>
@@ -270,8 +281,11 @@
                                     <h2 class="text-center mb-3">Edit shoes category in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="categoryID">Category ID</label>
-                                        <input type="number" id="categoryID" name="categoryID" class="form-control" maxlength="100" required>
+                                    <label for="brandID">Category ID</label>
+                                    <select id="categoryID" name="categoryID" class="form-control" required>
+                                            <option value="">-- Select Category --</option>
+                                            <?= getOptions($conn, 'category_tbl', 'category_id', 'category_name'); ?>
+                                        </select> 
                                         <label for="categoryEdit">Category name</label>
                                         <input type="text" id="categoryEdit" name="categoryEdit" class="form-control" maxlength="100" required>
                                     </div>
@@ -372,8 +386,11 @@
                                     <h2 class="text-center mb-3">Edit shoes gender in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="shoesGenderID">Shoes gender ID</label>
-                                        <input type="number" id="shoesGenderID" name="shoesGenderID" class="form-control" maxlength="100" required>
+                                    <label for="shoesGenderID">Shoes Gender ID</label>
+                                    <select id="shoesGenderID" name="shoesGenderID" class="form-control" required>
+                                            <option value="">-- Select Gender --</option>
+                                            <?= getOptions($conn, 'shoes_gender_tbl', 'shoes_gender_id', 'shoes_gender_name'); ?>
+                                        </select> 
                                         <label for="shoesGenderEdit">Shoes gender name</label>
                                         <input type="text" id="shoesGenderEdit" name="shoesGenderEdit" class="form-control" maxlength="100" required>
                                     </div>
@@ -474,8 +491,11 @@
                                     <h2 class="text-center mb-3">Edit status in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="statusID">Status ID</label>
-                                        <input type="number" id="statusID" name="statusID" class="form-control" maxlength="100" required>
+                                    <label for="statusID">Status ID</label>
+                                    <select id="statusID" name="statusID" class="form-control" required>
+                                            <option value="">-- Select Status --</option>
+                                            <?= getOptions($conn, 'status_tbl', 'status_id', 'status_name'); ?>
+                                        </select> 
                                         <label for="statusEdit">Status name</label>
                                         <input type="text" id="statusEdit" name="statusEdit" class="form-control" maxlength="100" required>
                                     </div>
@@ -576,8 +596,11 @@
                                     <h2 class="text-center mb-3">Edit material in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="materialID">Material ID</label>
-                                        <input type="number" id="materialID" name="materialID" class="form-control" maxlength="100" required>
+                                    <label for="materialID">Material ID</label>
+                                    <select id="materialID" name="materialID" class="form-control" required>
+                                            <option value="">-- Select material --</option>
+                                            <?= getOptions($conn, 'material_tbl', 'material_id', 'material_name'); ?>
+                                        </select> 
                                         <label for="materialEdit">Material name</label>
                                         <input type="text" id="materialEdit" name="materialEdit" class="form-control" maxlength="100" required>
                                     </div>
@@ -678,8 +701,11 @@
                                     <h2 class="text-center mb-3">Edit traction in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="tractionID">Traction ID</label>
-                                        <input type="number" id="tractionID" name="tractionID" class="form-control" maxlength="100" required>
+                                    <label for="tractionID">Traction ID</label>
+                                    <select id="tractionID" name="tractionID" class="form-control" required>
+                                            <option value="">-- Select traction --</option>
+                                            <?= getOptions($conn, 'traction_tbl', 'traction_id', 'traction_name'); ?>
+                                        </select> 
                                         <label for="tractionEdit">Traction name</label>
                                         <input type="text" id="tractionEdit" name="tractionEdit" class="form-control" maxlength="100" required>
                                     </div>
@@ -780,8 +806,11 @@
                                     <h2 class="text-center mb-3">Edit support in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="supportID">Support ID</label>
-                                        <input type="number" id="supportID" name="supportID" class="form-control" maxlength="100" required>
+                                    <label for="supportID">Support ID</label>
+                                    <select id="supportID" name="supportID" class="form-control" required>
+                                            <option value="">-- Select support --</option>
+                                            <?= getOptions($conn, 'support_tbl', 'support_id', 'support_name'); ?>
+                                        </select> 
                                         <label for="supportEdit">Support name</label>
                                         <input type="text" id="supportEdit" name="supportEdit" class="form-control" maxlength="100" required>
                                     </div>
@@ -883,8 +912,11 @@
                                     <h2 class="text-center mb-3">Edit technology in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="technologyID">Technology ID</label>
-                                        <input type="number" id="technologyID" name="technologyID" class="form-control" maxlength="100" required>
+                                    <label for="technologyID">Technology ID</label>
+                                    <select id="technologyID" name="technologyID" class="form-control" required>
+                                            <option value="">-- Select technology --</option>
+                                            <?= getOptions($conn, 'technology_tbl', 'technology_id', 'technology_name'); ?>
+                                        </select> 
                                         <label for="technologyEdit">Technology name</label>
                                         <input type="text" id="technologyEdit" name="technologyEdit" class="form-control" maxlength="100" required>
                                     </div>
@@ -985,8 +1017,11 @@
                                     <h2 class="text-center mb-3">Edit size in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="sizeID">Size ID</label>
-                                        <input type="number" id="sizeID" name="sizeID" class="form-control" maxlength="100" required>
+                                    <label for="sizeID">Size ID</label>
+                                    <select id="sizeID" name="sizeID" class="form-control" required>
+                                            <option value="">-- Select size --</option>
+                                            <?= getOptions($conn, 'size_tbl', 'size_id', 'size_name'); ?>
+                                        </select> 
                                         <label for="sizeEdit">Size name</label>
                                         <input type="text" id="sizeEdit" name="sizeEdit" class="form-control" maxlength="100" required>
                                     </div>
@@ -1087,12 +1122,18 @@
                                     <h2 class="text-center mb-3">Edit user roles in the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <label for="userRolesID">User  Roles ID</label>
-                                        <input type="number" id="userRolesID" name="userRolesID" class="form-control" maxlength="100" required>
+                                        
+                                        <label for="userRolesID">User Roles ID</label>
+                                        <select id="userRolesID" name="userRolesID" class="form-control" required>
+                                            <option value="">-- Select user role --</option>
+                                            <?= getOptions($conn, 'roles_tbl', 'roles_id', 'roles_name'); ?>
+                                        </select>
+
                                         <label for="userRolesEdit">User Roles name</label>
                                         <input type="text" id="userRolesEdit" name="userRolesEdit" class="form-control" maxlength="100" required>
-                                        <label for="userRolesDesc">User roles description    </label>
+                                        <label for="userRolesDesc">User roles description</label>
                                         <input type="text" id="userRolesDesc" name="userRolesDesc" class="form-control" maxlength="250" required>
+
                                     </div>
                                     </form>
                                 </div>
