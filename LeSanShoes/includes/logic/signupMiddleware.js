@@ -64,6 +64,9 @@ function isSignUpError(formData){
     if(!formData.user_contact){
         errorString +="--Contact is empty--\n";
     }
+    if((int)(formData.user_contact)<0){
+        errorString +="--Contact should not be negative--\n";
+    }
     let emailCtr = 0;
     for (let i = 0; i < formData.user_email.length; i++) {
         let ch = formData.user_email.charCodeAt(i);
@@ -84,6 +87,7 @@ function isSignUpError(formData){
     if (formData.user_password!==formData.user_passwordConf){
         errorString +="--The password must match--\n";
     }
+    
     return errorString;
 }
 

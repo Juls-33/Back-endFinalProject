@@ -1,5 +1,6 @@
 <?php
     session_start();
+    // include("../includes/logic/getAdminSelect.php");
 
     if (!isset($_SESSION['username'])) {
         // Not logged in — redirect to login
@@ -141,14 +142,20 @@
                             Enter an existing admin username
                             <hr>
                             <div class="form-group mb-3">
-                                <label for="newSuperAdmin">Username</label>
-                                <input type="text" id="newSuperAdmin" name="newSuperAdmin" class="form-control" maxlength="100" required>
+                                <label>Username</label>
+                                <!-- <input type="text" id="newSuperAdmin" name="newSuperAdmin" class="form-control" maxlength="100" required> -->
+                                <div class="form-floating">
+                                    <select class="form-select dynamic-admin-select" data-role="admin" id="newSuperAdmin" name="newSuperAdmin" aria-label="Select an admin" required>
+                                        <option value="" disabled selected>Open this select menu</option>
+                                        
+                                    </select>
+                                    <label for="newSuperAdmin">Select an admin</label>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInput()">Close</button>
                             <button class="btn btn-success"   onclick="newSuperAdmin()">Update Super Admin</button>
-                            <!-- data-bs-target="#deleteAdmin2" data-bs-toggle="modal"-->
                         </div>
                         </div>
                     </div>
@@ -192,7 +199,14 @@
                             <hr>
                             <div class="form-group mb-3">
                                 <label for="deleteSuperAdmin">Username</label>
-                                <input type="text" id="deleteSuperAdmin" name="deleteSuperAdmin" class="form-control" maxlength="100" required>
+                                <!-- <input type="text" id="deleteSuperAdmin" name="deleteSuperAdmin" class="form-control" maxlength="100" required> -->
+                                <div class="form-floating">
+                                    <select class="form-select dynamic-admin-select" data-role="superadmin" id="deleteSuperAdmin" name="deleteSuperAdmin" aria-label="Select an admin" required>
+                                        <option value="" disabled selected>Open this select menu</option>
+                                        
+                                    </select>
+                                    <label for="deleteSuperAdmin">Select an admin</label>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -243,9 +257,19 @@
                             <hr>
                             <div class="form-group mb-3">
                                 <label for="usernameEdit">Username</label>
-                                <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required>
+                                <!-- <input type="text" id="usernameEdit" name="usernameEdit" class="form-control" maxlength="100" required> -->
+                                <div class="form-floating">
+                                    <select class="form-select dynamic-admin-select" data-role="all" id="usernameEdit" name="usernameEdit" aria-label="Select an admin" required>
+                                        <option value="" disabled selected>Open this select menu</option>
+                                        
+                                    </select>
+                                    <label for="usernameEdit">Select an admin</label>
+                                </div>
                             </div>
-
+                            <div class="form-group mb-3">
+                                <label for="updateUsername">Update username</label>
+                                <input type="text" id="updateUsername" name="updateUsername" class="form-control" maxlength="100" required>
+                            </div>
                             <div class="row mb-3">
                                 <div class="form-group col-xs-12 col-sm-6">
                                     <label for="fnameEdit">First name</label>
@@ -273,7 +297,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="contactEdit">Contact Number</label>
-                                <input type="number" id="contactEdit" name="contactEdit" class="form-control" onKeyPress="if(this.value.length==11) return false;" required>
+                                <input type="number" id="contactEdit" name="contactEdit" class="form-control" min="0" pattern="\d{11}" maxlength="11" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==11) return false;" required>
                             </div>
                             </form>
                         </div>
@@ -295,7 +319,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        <form>
+                        <form id="newAdminForm">
                             <h2 class="text-center mb-3">New Admin</h2>
                             <hr>
                             <div class="form-group mb-3">
@@ -330,7 +354,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="contact">Contact Number</label>
-                                <input type="number" id="contact" name="contact" class="form-control" onKeyPress="if(this.value.length==11) return false;" required>
+                                <input type="number" id="contact" name="contact" class="form-control" min="0"  maxlength="11" onKeyPress="if(this.value.length==11) return false;" required>
                             </div>
                             </form>
                         </div>
@@ -351,11 +375,18 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInput()"></button>
                         </div>
                         <div class="modal-body">
-                            Enter the username to delete
+                            Select the admin to delete
+                            <p class="text-danger">Before deleting a super admin, they must first be demoted to an admin.</p>
                             <hr>
                             <div class="form-group mb-3">
                                 <label for="deleteUsername">Username</label>
-                                <input type="text" id="deleteUsername" name="deleteUsername" class="form-control" maxlength="100" required>
+                                <div class="form-floating">
+                                    <select class="form-select dynamic-admin-select" id="deleteUsername" data-role="admin" name="deleteUsername" aria-label="Select an admin to delete" required>
+                                        <option value="" disabled selected>Open this select menu</option>
+                                        
+                                    </select>
+                                    <label for="deleteUsername">Select an admin to delete</label>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -378,8 +409,8 @@
                             Please enter your password to delete the administrator
                             <hr>
                             <div class="form-group mb-3">
-                                <label for="adminPassword">Password</label>
-                                <input type="password" id="adminPassword" name="adminPassword" class="form-control" maxlength="100" required>
+                                <label for="delAdminPassword">Password</label>
+                                <input type="password" id="delAdminPassword" name="delAdminPassword" class="form-control" maxlength="100" required>
                             </div>
                         </div>
                         <div class="modal-footer">

@@ -17,8 +17,8 @@ function newShoeModel() {
         traction_id: formData.get("traction_id"),
         support_id: formData.get("support_id"),
         technology_id: formData.get("technology_id"),
-        model_name: formData.get("model_name"),
-        description: formData.get("description")
+        model_name: formData.get("model_name").trim(),
+        description: formData.get("description").trim()
       };
     sendViaAJAX(data);
 }
@@ -40,8 +40,8 @@ function editShoeModel() {
         traction_id: formData.get("traction_id"),
         support_id: formData.get("support_id"),
         technology_id: formData.get("technology_id"),
-        model_name: formData.get("model_name"),
-        description: formData.get("description")
+        model_name: formData.get("model_name").trim(),
+        description: formData.get("description").trim()
       };
     sendViaAJAX(data);
 }
@@ -58,9 +58,8 @@ function addNewStock(){
         action: "addColorwaySize",
         colorway_id: formData.get("colorway_id"),
         size_id: formData.get("size_id"),
-        stock: formData.get("stock"),
+        stock: formData.get("stock").trim(),
       };
-      console.log(data.colorway_id, data.size_id, data.stock);
     sendViaAJAX(data);
 }
 function sendViaAJAX(data){
@@ -76,7 +75,6 @@ function sendViaAJAX(data){
                 Swal.fire({
                     icon: "success",
                     title: res.message,
-                    // html: '<pre>' + message(formData) + '</pre>',
                     width: 600,
                     padding: "3em",
                     color: "#36714b",
@@ -99,7 +97,6 @@ function sendViaAJAX(data){
                 Swal.fire({
                     icon: "error",
                     title: res.message,
-                    // html: '<pre>' + message(formData) + '</pre>',
                     width: 600,
                     padding: "3em",
                     color: "#B51E1E",
