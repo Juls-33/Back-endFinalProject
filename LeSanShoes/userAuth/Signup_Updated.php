@@ -209,6 +209,24 @@
 
       const password = document.getElementById('password');
       const rePassword = document.getElementById('re_password');
+      const passwordVal = password.value.trim();
+
+      const requirements = [
+      { test: (val) => val.length >= 10, text: 'At least 10 Characters' },
+      { test: (val) => /[A-Z]/.test(val), text: 'One Uppercase letter' },
+      { test: (val) => /[a-z]/.test(val), text: 'One lowercase letter' },
+      { test: (val) => /\d/.test(val), text: 'One number' },
+      { test: (val) => /[^A-Za-z0-9]/.test(val), text: 'One special character' },
+      ];
+
+      for (let requirement of requirements){
+        if(!requirement.test(passwordVal)){
+          password.classList.add('is-invalid');
+          showToast(`Password requirement not met: ${requirement.text}`);
+          password.focus();
+          return;
+        }
+      }
 
       if (password.value.trim() !== rePassword.value.trim()) {
         rePassword.classList.add('is-invalid');
