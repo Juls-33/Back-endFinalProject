@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $shoe_model_id = $_POST['shoe_model_id'];
             $colorway_name = $_POST['colorway_name'];
             $price = $_POST['price'];
-            // $description = $_POST['description'];
             $date_updated = date('Y-m-d H:i:s');
+            $modified_by = $_SESSION['username'];
 
             $upload_dir = "../../assets/images/";
             $dbUpload_dir = "../assets/images/";
@@ -46,9 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
 
             $stmt = $conn->prepare("INSERT INTO colorway_tbl 
-                (shoe_model_id, colorway_name, price, image1, image2, image3, image4, date_created, date_updated)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("issssssss",
+                (shoe_model_id, colorway_name, price, image1, image2, image3, image4, date_created, date_updated, modified_by)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?)");
+            $stmt->bind_param("isssssssss",
                 $shoe_model_id,
                 $colorway_name,
                 $price,
@@ -57,7 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $image_paths['image3'],
                 $image_paths['image4'],
                 $date_updated,
-                $date_updated
+                $date_updated, 
+                $modified_by
             );
 
             if ($stmt->execute()) {
@@ -123,6 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $colorway_name = $_POST['edit_colorway_name'];
             $price = $_POST['edit_price'];
             $date_updated = date('Y-m-d H:i:s');
+            $modified_by = $_SESSION['username'];
+
             // Fetch existing image paths
             $query = $conn->prepare("SELECT image1, image2, image3, image4 FROM colorway_tbl WHERE colorway_id = ?");
             $query->bind_param("i", $colorway_id);
@@ -167,10 +170,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
             $stmt = $conn->prepare("UPDATE colorway_tbl 
                 SET shoe_model_id = ?, colorway_name = ?, price = ?, 
-                    image1 = ?, image2 = ?, image3 = ?, image4 = ?, date_updated = ? 
+                    image1 = ?, image2 = ?, image3 = ?, image4 = ?, date_updated = ?, modified_by=?
                 WHERE colorway_id = ?");
         
-            $stmt->bind_param("isssssssi",
+            $stmt->bind_param("issssssssi",
                 $shoe_model_id,
                 $colorway_name,
                 $price,
@@ -179,6 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $image_paths['image3'],
                 $image_paths['image4'],
                 $date_updated,
+                $modified_by,
                 $colorway_id
             );
 

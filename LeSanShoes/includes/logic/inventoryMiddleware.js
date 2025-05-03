@@ -348,6 +348,7 @@ function loadTables(){
                         { data: 'technology_name' },
                         { data: 'date_created' },
                         { data: 'date_updated' },
+                        { data: 'modified_by'},
                         {
                             data: null,
                             render: function (data, type, row) {
@@ -381,6 +382,9 @@ function loadTables(){
                                     <div class="col-6"><img src="${item.image4}" class="img-fluid rounded" /></div>
                                 </div>
                                 <p class="mt-2"><strong>Price:</strong> ₱${item.price}</p>
+                                <p class="mt-2"><strong>Date created:</strong> ${item.date_created}</p>
+                                <p class="mt-2"><strong>Date updated:</strong> ${item.date_updated}</p>
+                                <p class="mt-2"><strong>Last modified by:</strong> ${item.modified_by}</p>
                             </div>
                             <div class="card-footer d-flex justify-content-between">
                                 <button 
@@ -428,6 +432,7 @@ function loadTables(){
                         },
                         { data: 'date_created' },
                         { data: 'date_updated' },
+                        { data: 'modified_by'},
                         {
                             data: null,
                             render: function (data, type, row) {

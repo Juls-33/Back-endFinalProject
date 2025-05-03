@@ -25,7 +25,8 @@ try{
             CONCAT(sm.support_id, ': ', s.support_name) AS support_name,
             CONCAT(sm.technology_id, ': ', tech.technology_name) AS technology_name,
             sm.date_created,
-            sm.date_updated
+            sm.date_updated,
+            sm.modified_by
 
         FROM shoe_model_tbl sm
         JOIN brand_tbl b ON sm.brand_id = b.brand_id
@@ -54,7 +55,8 @@ try{
                     c.colorway_name,
                     c.price,
                     c.date_created,
-                    c.date_updated
+                    c.date_updated,
+                    c.modified_by
                     
                     FROM colorway_tbl c
                     JOIN shoe_model_tbl sm ON c.shoe_model_id = sm.shoe_model_id";
@@ -74,7 +76,8 @@ try{
                     cw.price,
                     cs.stock,
                     cs.date_created,
-                    cs.date_updated
+                    cs.date_updated,
+                    cs.modified_by
                     FROM colorway_size_tbl cs
                     JOIN colorway_tbl cw ON cs.colorway_id = cw.colorway_id
                     JOIN size_tbl sz ON cs.size_id = sz.size_id";

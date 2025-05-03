@@ -203,6 +203,7 @@
                                     <th>Stock</th>
                                     <th>Date Created</th>
                                     <th>Date Updated</th>
+                                    <th>Last modified by</th>
                                     <th>Edit/Delete</th>
                                 </tr>
                             </thead>
@@ -326,6 +327,7 @@
                                         <th>Technology</th>
                                         <th>Date created</th>
                                         <th>Date updated</th>
+                                        <th>Lastt modified by</th>
                                         <th>Edit/Delete</th>
                                     </tr>
                                 </thead>
