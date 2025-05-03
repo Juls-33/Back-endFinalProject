@@ -35,8 +35,11 @@ function editBrand() {
         formField: document.getElementById("brandEdit").value.trim(),
     };
     var isError = checkTwoFields(formData);
-    if(isError=="error") return; sendViaAJAX(formData);
+    if (isError == "error") return;
+    sendViaAJAX(formData);
 }
+
+
 function addBrand() {
     var formData = {
         action: 'brandAdd',
@@ -63,7 +66,8 @@ function editCategory() {
         formField: document.getElementById("categoryEdit").value.trim(),
     };
     var isError = checkTwoFields(formData);
-    if(isError=="error") return; sendViaAJAX(formData);
+    if(isError=="error") return;
+     sendViaAJAX(formData);
 }
 function addCategory() {
     var formData = {
