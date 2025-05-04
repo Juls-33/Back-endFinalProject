@@ -339,6 +339,7 @@ function sendViaAJAX(formData){
                     `
                     });
                     loadTables();
+                    closeModal();
             }
             else{
                 Swal.fire({
@@ -364,13 +365,15 @@ function sendViaAJAX(formData){
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: 'Error sending data',
+                text: 'Table name or table ID should be unique',
             });
         }
     });
 }
 
 function loadTables(){
+    clearInputs();
+    
     $(document).ready(function() {
         $.ajax({
             url: '../includes/logic/getManageDB.php',
@@ -518,8 +521,113 @@ function loadTables(){
                 });
             },
         });
-    });
-    
+    });  
 }
 
+
+
+function clearInputs() {
+    document.getElementById("brandID").value = "";
+    document.getElementById("brandEdit").value = "";
+    document.getElementById("brandIDAdd").value = "";
+    document.getElementById("brandAdd").value = "";
+    document.getElementById("brandDelete").value = "";
+    
+    document.getElementById("categoryID").value = "";
+    document.getElementById("categoryEdit").value = "";
+    document.getElementById("categoryIDAdd").value = "";
+    document.getElementById("categoryAdd").value = "";
+    document.getElementById("categoryDelete").value = "";
+
+    document.getElementById("shoesGenderID").value = "";
+    document.getElementById("shoesGenderEdit").value = "";
+    document.getElementById("shoesGenderIDAdd").value = "";
+    document.getElementById("shoesGenderAdd").value = "";
+    document.getElementById("shoesGenderDelete").value = "";
+
+    document.getElementById("statusID").value = "";
+    document.getElementById("statusEdit").value = "";
+    document.getElementById("statusIDAdd").value = "";
+    document.getElementById("statusAdd").value = "";
+    document.getElementById("statusDelete").value = "";
+
+    document.getElementById("materialID").value = "";
+    document.getElementById("materialEdit").value = "";
+    document.getElementById("materialIDAdd").value = "";
+    document.getElementById("materialAdd").value = "";
+    document.getElementById("materialDelete").value = "";
+
+    document.getElementById("tractionID").value = "";
+    document.getElementById("tractionEdit").value = "";
+    document.getElementById("tractionIDAdd").value = "";
+    document.getElementById("tractionAdd").value = "";
+    document.getElementById("tractionDelete").value = "";
+
+    document.getElementById("supportID").value = "";
+    document.getElementById("supportEdit").value = "";
+    document.getElementById("supportIDAdd").value = "";
+    document.getElementById("supportAdd").value = "";
+    document.getElementById("supportDelete").value = "";
+
+    document.getElementById("technologyID").value = "";
+    document.getElementById("technologyEdit").value = "";
+    document.getElementById("technologyIDAdd").value = "";
+    document.getElementById("technologyAdd").value = "";
+    document.getElementById("technologyDelete").value = "";
+
+    document.getElementById("sizeID").value = "";
+    document.getElementById("sizeEdit").value = "";
+    document.getElementById("sizeIDAdd").value = "";
+    document.getElementById("sizeAdd").value = "";
+    document.getElementById("sizeDelete").value = "";
+
+    document.getElementById("userRolesID").value = "";
+    document.getElementById("userRolesEdit").value = "";
+    document.getElementById("userRolesIDAdd").value = "";
+    document.getElementById("userRolesAdd").value = "";
+    document.getElementById("userRolesDelete").value = "";
+
+}
+
+function closeModal() {
+    $('#addBrandModal').modal('hide');
+    $('#editBrandModal').modal('hide');
+    $('#deleteBrandModal').modal('hide');
+
+    $('#addCategoryModal').modal('hide');
+    $('#editCategoryModal').modal('hide');
+    $('#deleteCategoryModal').modal('hide');
+
+    $('#addGenderModal').modal('hide');
+    $('#editGenderModal').modal('hide');
+    $('#deleteGenderModal').modal('hide');
+
+    $('#addStatusModal').modal('hide');
+    $('#editStatusModal').modal('hide');
+    $('#deleteStatusModal').modal('hide');
+
+    $('#MaterialModal').modal('hide');
+    $('#editMaterialModal').modal('hide');
+    $('#deleteMaterialModal').modal('hide');
+
+    $('#TractionModal').modal('hide');
+    $('#editTractionModal').modal('hide');
+    $('#deleteTractionModal').modal('hide');
+
+    $('#SupportModal').modal('hide');
+    $('#editSupportModal').modal('hide');
+    $('#deleteSupportModal').modal('hide');
+    
+    $('#TechnologyModal').modal('hide');
+    $('#editTechnologyModal').modal('hide');
+    $('#deleteTechnologyModal').modal('hide');
+    
+    $('#SizeModal').modal('hide');
+    $('#editSizeModal').modal('hide');
+    $('#deleteSizeModal').modal('hide');
+
+    $('#addRolesModal').modal('hide');
+    $('#editRolesModal').modal('hide');
+    $('#deleteRolesModal').modal('hide');
+}
 

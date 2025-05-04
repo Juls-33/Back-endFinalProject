@@ -168,7 +168,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="editBrandLabel">Edit Brand</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -188,7 +188,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editBrand()">Save changes</button>
                                 </div>
                                 </div>
@@ -201,7 +201,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="addBrandLabel">Add Brand</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -209,13 +209,13 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="brandIDAdd">Brand ID</label>
-                                        <input type="number" id="brandIDAdd" name="brandIDAdd" class="form-control" maxlength="100" required>
+                                        <input type="number" id="brandIDAdd" name="brandIDAdd" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                         <label for="brandAdd">Brand name    </label>
-                                        <input type="text" id="brandAdd" name="brandAdd" class="form-control" maxlength="100" required>
+                                        <input type="text" id="brandAdd" name="brandAdd" class="form-control" maxlength="50" required>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addBrand()">Save changes</button>
                                 </div>
                                 </div>
@@ -228,7 +228,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="deleteBrandLabel">Delete a Brand</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -236,12 +236,12 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="brandDelete">Brand ID</label>
-                                        <input type="number" id="brandDelete" name="brandDelete" class="form-control" maxlength="11" required>
+                                        <input type="number" id="brandDelete" name="brandDelete" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteBrand()">Delete</button>
                                 </div>
                                 </div>
@@ -274,7 +274,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="editCategoryLabel">Edit Shoes Category</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -292,7 +292,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editCategory()">Save changes</button>
                                 </div>
                                 </div>
@@ -305,7 +305,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="addCategoryLabel">Add Shoes Category</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -313,14 +313,14 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="categoryIDAdd">Category ID</label>
-                                        <input type="number" id="categoryIDAdd" name="categoryIDAdd" class="form-control" maxlength="100" required>
+                                        <input type="number" id="categoryIDAdd" name="categoryIDAdd" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                         <label for="categoryAdd">Category name</label>
-                                        <input type="text" id="categoryAdd" name="categoryAdd" class="form-control" maxlength="100" required>
+                                        <input type="text" id="categoryAdd" name="categoryAdd" class="form-control" maxlength="50" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addCategory()">Save changes</button>
                                 </div>
                                 </div>
@@ -333,7 +333,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="deleteBrandLabel">Delete a Shoe Category</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -341,12 +341,12 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="categoryDelete">Category ID</label>
-                                        <input type="number" id="categoryDelete" name="categoryDelete" class="form-control" maxlength="100" required>
+                                        <input type="number" id="categoryDelete" name="categoryDelete" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteCategory()">Delete</button>
                                 </div>
                                 </div>
@@ -379,7 +379,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="editGenderLabel">Edit Shoes Gender</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -397,7 +397,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editShoesGender()">Save changes</button>
                                 </div>
                                 </div>
@@ -410,7 +410,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="addGenderLabel">Add Shoes Gender</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -418,14 +418,14 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="shoesGenderIDAdd">Shoes gender ID</label>
-                                        <input type="number" id="shoesGenderIDAdd" name="shoesGenderIDAdd" class="form-control" maxlength="100" required>
+                                        <input type="number" id="shoesGenderIDAdd" name="shoesGenderIDAdd" oninput="this.value = Math.abs(this.value)" class="form-control" onKeyPress="if(this.value.length==7) return false" required>
                                         <label for="shoesGenderAdd">Shoes gender name    </label>
-                                        <input type="text" id="shoesGenderAdd" name="shoesGenderAdd" class="form-control" maxlength="100" required>
+                                        <input type="text" id="shoesGenderAdd" name="shoesGenderAdd" class="form-control" maxlength="50" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addShoesGender()">Save changes</button>
                                 </div>
                                 </div>
@@ -438,7 +438,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="deleteGenderLabel">Delete a Shoes Gender</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -446,12 +446,12 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="shoesGenderDelete">Shoes gender ID</label>
-                                        <input type="text" id="shoesGenderDelete" name="shoesGenderDelete" class="form-control" maxlength="100" required>
+                                        <input type="number" id="shoesGenderDelete" name="shoesGenderDelete" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteShoesGender()">Delete</button>
                                 </div>
                                 </div>
@@ -484,7 +484,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="editStatusLabel">Edit Status</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -502,7 +502,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editStatus()">Save changes</button>
                                 </div>
                                 </div>
@@ -515,7 +515,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="addBrandLabel">Add Status</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -523,14 +523,14 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="statusIDAdd">Status ID</label>
-                                        <input type="number" id="statusIDAdd" name="statusIDAdd" class="form-control" maxlength="100" required>
+                                        <input type="number" id="statusIDAdd" name="statusIDAdd" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                         <label for="statusAdd">Status name    </label>
-                                        <input type="text" id="statusAdd" name="statusAdd" class="form-control" maxlength="100" required>
+                                        <input type="text" id="statusAdd" name="statusAdd" class="form-control" maxlength="50" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addStatus()">Save changes</button>
                                 </div>
                                 </div>
@@ -543,7 +543,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="deleteStatusLabel">Delete a Status</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -551,12 +551,12 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="statusDelete">Status ID</label>
-                                        <input type="text" id="statusDelete" name="statusDelete" class="form-control" maxlength="100" required>
+                                        <input type="number" id="statusDelete" name="statusDelete" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteStatus()">Delete</button>
                                 </div>
                                 </div>
@@ -589,7 +589,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="editMaterialLabel">Edit Material</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -607,7 +607,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editMaterial()">Save changes</button>
                                 </div>
                                 </div>
@@ -620,7 +620,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="addBrandLabel">Add Material</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -628,14 +628,14 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="materialIDAdd">Material ID</label>
-                                        <input type="number" id="materialIDAdd" name="materialIDAdd" class="form-control" maxlength="100" required>
+                                        <input type="number" id="materialIDAdd" name="materialIDAdd" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                         <label for="materialAdd">Material name    </label>
-                                        <input type="text" id="materialAdd" name="materialAdd" class="form-control" maxlength="100" required>
+                                        <input type="text" id="materialAdd" name="materialAdd" class="form-control" maxlength="50" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addMaterial()">Save changes</button>
                                 </div>
                                 </div>
@@ -648,7 +648,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="deleteMaterialLabel">Delete a Material</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -656,12 +656,12 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="materialDelete">Material ID</label>
-                                        <input type="text" id="materialDelete" name="materialDelete" class="form-control" maxlength="100" required>
+                                        <input type="material" id="materialDelete" name="materialDelete" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteMaterial()">Delete</button>
                                 </div>
                                 </div>
@@ -694,7 +694,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="editTractionLabel">Edit Traction</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -712,7 +712,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editTraction()">Save changes</button>
                                 </div>
                                 </div>
@@ -725,7 +725,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="addBrandLabel">Add Traction</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -733,14 +733,14 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="tractionIDAdd">Traction ID</label>
-                                        <input type="number" id="tractionIDAdd" name="tractionIDAdd" class="form-control" maxlength="100" required>
+                                        <input type="number" id="tractionIDAdd" name="tractionIDAdd" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                         <label for="tractionAdd">Traction name    </label>
-                                        <input type="text" id="tractionAdd" name="tractionAdd" class="form-control" maxlength="100" required>
+                                        <input type="text" id="tractionAdd" name="tractionAdd" class="form-control" maxlength="50" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addTraction()">Save changes</button>
                                 </div>
                                 </div>
@@ -753,7 +753,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="deleteTractionLabel">Delete a Traction</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -761,12 +761,12 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="tractionDelete">Traction ID</label>
-                                        <input type="text" id="tractionDelete" name="tractionDelete" class="form-control" maxlength="100" required>
+                                        <input type="number" id="tractionDelete" name="tractionDelete" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteTraction()">Delete</button>
                                 </div>
                                 </div>
@@ -799,7 +799,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="editSupportLabel">Edit Support</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -817,7 +817,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editSupport()">Save changes</button>
                                 </div>
                                 </div>
@@ -830,7 +830,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="addBrandLabel">Add Support</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -838,14 +838,14 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="supportIDAdd">Support ID</label>
-                                        <input type="number" id="supportIDAdd" name="supportIDAdd" class="form-control" maxlength="100" required>
+                                        <input type="number" id="supportIDAdd" name="supportIDAdd" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                         <label for="supportAdd">Support name    </label>
-                                        <input type="text" id="supportAdd" name="supportAdd" class="form-control" maxlength="100" required>
+                                        <input type="text" id="supportAdd" name="supportAdd" class="form-control" maxlength="50" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addSupport()">Save changes</button>
                                 </div>
                                 </div>
@@ -858,7 +858,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="deleteSupportLabel">Delete a Support</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -866,12 +866,12 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="supportDelete">Support ID</label>
-                                        <input type="text" id="supportDelete" name="supportDelete" class="form-control" maxlength="100" required>
+                                        <input type="number" id="supportDelete" name="supportDelete" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteSupport()">Delete</button>
                                 </div>
                                 </div>
@@ -905,7 +905,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="editTechnologyLabel">Edit Technology</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -923,7 +923,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editTechnology()">Save changes</button>
                                 </div>
                                 </div>
@@ -936,7 +936,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="addBrandLabel">Add Technology</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -944,14 +944,14 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="technologyIDAdd">Technology ID</label>
-                                        <input type="number" id="technologyIDAdd" name="technologyIDAdd" class="form-control" maxlength="100" required>
+                                        <input type="number" id="technologyIDAdd" name="technologyIDAdd" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                         <label for="technologyAdd">Technology name    </label>
-                                        <input type="text" id="technologyAdd" name="technologyAdd" class="form-control" maxlength="100" required>
+                                        <input type="text" id="technologyAdd" name="technologyAdd" class="form-control" maxlength="50" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addTechnology()">Save changes</button>
                                 </div>
                                 </div>
@@ -964,7 +964,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="deleteTechnologyLabel">Delete a Technology</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -972,12 +972,12 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="technologyDelete">Technology ID</label>
-                                        <input type="text" id="technologyDelete" name="technologyDelete" class="form-control" maxlength="100" required>
+                                        <input type="number" id="technologyDelete" name="technologyDelete" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteTechnology()">Delete</button>
                                 </div>
                                 </div>
@@ -1010,7 +1010,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="editSizeLabel">Edit Size</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -1028,7 +1028,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editSize()">Save changes</button>
                                 </div>
                                 </div>
@@ -1041,7 +1041,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="addBrandLabel">Add Size</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -1049,14 +1049,14 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="sizeIDAdd">Size ID</label>
-                                        <input type="number" id="sizeIDAdd" name="sizeIDAdd" class="form-control" maxlength="100" required>
+                                        <input type="number" id="sizeIDAdd" name="sizeIDAdd" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                         <label for="sizeAdd">Size name    </label>
-                                        <input type="text" id="sizeAdd" name="sizeAdd" class="form-control" maxlength="100" required>
+                                        <input type="text" id="sizeAdd" name="sizeAdd" class="form-control" maxlength="50" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addSize()">Save changes</button>
                                 </div>
                                 </div>
@@ -1069,7 +1069,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="deleteSizeLabel">Delete a Size</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -1077,12 +1077,12 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="sizeDelete">Size ID</label>
-                                        <input type="text" id="sizeDelete" name="sizeDelete" class="form-control" maxlength="100" required>
+                                        <input type="number" id="sizeDelete" name="sizeDelete" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteSize()">Delete</button>
                                 </div>
                                 </div>
@@ -1115,7 +1115,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="editRolesLabel">Edit User Roles</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -1138,7 +1138,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="editRoles()">Save changes</button>
                                 </div>
                                 </div>
@@ -1151,7 +1151,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="addRolesLabel">Add User Roles</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -1159,16 +1159,16 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="userRolesIDAdd">User Roles ID</label>
-                                        <input type="number" id="userRolesIDAdd" name="userRolesIDAdd" class="form-control" maxlength="100" required>
+                                        <input type="number" id="userRolesIDAdd" name="userRolesIDAdd" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false" required>
                                         <label for="userRolesAdd">User roles name    </label>
-                                        <input type="text" id="userRolesAdd" name="userRolesAdd" class="form-control" maxlength="250" required>
+                                        <input type="text" id="userRolesAdd" name="userRolesAdd" class="form-control" maxlength="50" required>
                                         <label for="userRolesDescAdd">User roles description    </label>
-                                        <input type="text" id="userRolesDescAdd" name="userRolesDescAdd" class="form-control" maxlength="100" required>
+                                        <input type="text" id="userRolesDescAdd" name="userRolesDescAdd" class="form-control" maxlength="250" required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addRoles()">Save changes</button>
                                 </div>
                                 </div>
@@ -1181,7 +1181,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title" id="deleteRolesLabel">Delete a User Role</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                                 </div>
                                 <div class="modal-body">
                                 <form>
@@ -1189,12 +1189,12 @@
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="userRolesDelete">User Roles ID</label>
-                                        <input type="number" id="userRolesDelete" name="userRolesDelete" class="form-control" maxlength="100" required>
+                                        <input type="number" id="userRolesDelete" name="userRolesDelete" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==7) return false"required>
                                     </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                                     <button type="button" class="btn btn-danger" name="signup_btn" value="signup_btn" onclick="deleteRoles()">Delete</button>
                                 </div>
                                 </div>
