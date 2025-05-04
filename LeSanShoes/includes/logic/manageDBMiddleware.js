@@ -398,7 +398,8 @@ function loadTables(){
                         { data: 'brand_id' },
                         { data: 'brand_name' },
                         { data: 'date_created' },
-                        { data: 'date_updated' }
+                        { data: 'date_updated' },
+                        { data: 'modified_by' }
                     ]
                 });
     
@@ -410,7 +411,8 @@ function loadTables(){
                         { data: 'category_id' },
                         { data: 'category_name' },
                         { data: 'date_created' },
-                        { data: 'date_updated' }
+                        { data: 'date_updated' },
+                        { data: 'modified_by' }
                     ],
                     responsive: true,
                     processing: true,
@@ -423,7 +425,8 @@ function loadTables(){
                         { data: 'shoes_gender_id' },
                         { data: 'shoes_gender_name' },
                         { data: 'date_created' },
-                        { data: 'date_updated' }
+                        { data: 'date_updated' },
+                        { data: 'modified_by' }
                     ],
                     responsive: true,
                     processing: true,
@@ -436,7 +439,8 @@ function loadTables(){
                         { data: 'status_id' },
                         { data: 'status_name' },
                         { data: 'date_created' },
-                        { data: 'date_updated' }
+                        { data: 'date_updated' },
+                        { data: 'modified_by' }
                     ],
                     responsive: true,
                     processing: true,
@@ -449,7 +453,8 @@ function loadTables(){
                         { data: 'material_id' },
                         { data: 'material_name' },
                         { data: 'date_created' },
-                        { data: 'date_updated' }
+                        { data: 'date_updated' },
+                        { data: 'modified_by' }
                     ],
                     responsive: true,
                     processing: true,
@@ -462,7 +467,8 @@ function loadTables(){
                         { data: 'traction_id' },
                         { data: 'traction_name' },
                         { data: 'date_created' },
-                        { data: 'date_updated' }
+                        { data: 'date_updated' },
+                        { data: 'modified_by' }
                     ],
                     responsive: true,
                     processing: true,
@@ -475,7 +481,8 @@ function loadTables(){
                         { data: 'support_id' },
                         { data: 'support_name' },
                         { data: 'date_created' },
-                        { data: 'date_updated' }
+                        { data: 'date_updated' },
+                        { data: 'modified_by' }
                     ],
                     responsive: true,
                     processing: true,
@@ -488,7 +495,8 @@ function loadTables(){
                         { data: 'technology_id' },
                         { data: 'technology_name' },
                         { data: 'date_created' },
-                        { data: 'date_updated' }
+                        { data: 'date_updated' },
+                        { data: 'modified_by' }
                     ],
                     responsive: true,
                     processing: true,
@@ -501,7 +509,8 @@ function loadTables(){
                         { data: 'size_id' },
                         { data: 'size_name' },
                         { data: 'date_created' },
-                        { data: 'date_updated' }
+                        { data: 'date_updated' },
+                        { data: 'modified_by' }
                     ],
                     responsive: true,
                     processing: true,

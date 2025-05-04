@@ -4,7 +4,7 @@ include("config.php");
 try{
     if($_SERVER["REQUEST_METHOD"]==="POST"){
         // Brands query
-        $brand_sql = "SELECT brand_id, brand_name, date_created, date_updated FROM brand_tbl";
+        $brand_sql = "SELECT brand_id, brand_name, date_created, date_updated, modified_by FROM brand_tbl";
         $brand_result = $conn->query($brand_sql);
         $brands = [];
 
@@ -13,7 +13,7 @@ try{
         }
 
         // Categories query
-        $category_sql = "SELECT category_id, category_name, date_created, date_updated FROM category_tbl";
+        $category_sql = "SELECT category_id, category_name, date_created, date_updated, modified_by FROM category_tbl";
         $category_result = $conn->query($category_sql);
         $categories = [];
 
@@ -21,7 +21,7 @@ try{
             $categories[] = $row;
         }
         // shoes gender query
-        $shoes_gender_sql = "SELECT shoes_gender_id, shoes_gender_name, date_created, date_updated FROM shoes_gender_tbl";
+        $shoes_gender_sql = "SELECT shoes_gender_id, shoes_gender_name, date_created, date_updated, modified_by FROM shoes_gender_tbl";
         $shoes_gender_result = $conn->query($shoes_gender_sql);
         $shoes_gender = [];
 
@@ -30,7 +30,7 @@ try{
         }
 
         // status query
-        $status_sql = "SELECT status_id, status_name, date_created, date_updated FROM status_tbl";
+        $status_sql = "SELECT status_id, status_name, date_created, date_updated, modified_by FROM status_tbl";
         $status_result = $conn->query($status_sql);
         $statusData = [];
 
@@ -38,7 +38,7 @@ try{
             $statusData[] = $row;
         }
         // Materials query
-        $material_sql = "SELECT material_id, material_name, date_created, date_updated FROM material_tbl";
+        $material_sql = "SELECT material_id, material_name, date_created, date_updated, modified_by FROM material_tbl";
         $material_result = $conn->query($material_sql);
         $materials = [];
 
@@ -46,7 +46,7 @@ try{
             $materials[] = $row;
         }
         // Tractions query
-        $traction_sql = "SELECT traction_id, traction_name, date_created, date_updated FROM traction_tbl";
+        $traction_sql = "SELECT traction_id, traction_name, date_created, date_updated, modified_by FROM traction_tbl";
         $traction_result = $conn->query($traction_sql);
         $tractions = [];
 
@@ -54,7 +54,7 @@ try{
             $tractions[] = $row;
         }
         // Supports query
-        $support_sql = "SELECT support_id, support_name, date_created, date_updated FROM support_tbl";
+        $support_sql = "SELECT support_id, support_name, date_created, date_updated, modified_by FROM support_tbl";
         $support_result = $conn->query($support_sql);
         $supports = [];
 
@@ -62,7 +62,7 @@ try{
             $supports[] = $row;
         }
         // Technologies query
-        $technology_sql = "SELECT technology_id, technology_name, date_created, date_updated FROM technology_tbl";
+        $technology_sql = "SELECT technology_id, technology_name, date_created, date_updated, modified_by FROM technology_tbl";
         $technology_result = $conn->query($technology_sql);
         $technologies = [];
 
@@ -70,7 +70,7 @@ try{
             $technologies[] = $row;
         }
         // Sizes query
-        $size_sql = "SELECT size_id, size_name, date_created, date_updated FROM size_tbl";
+        $size_sql = "SELECT size_id, size_name, date_created, date_updated, modified_by FROM size_tbl";
         $size_result = $conn->query($size_sql);
         $sizes = [];
 

@@ -258,6 +258,7 @@
                                     <th>Brand</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
+                                    <th>Last modified by</th>
                                 </tr>
                             </thead>
                         </table>
@@ -363,6 +364,7 @@
                                     <th>Category</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
+                                    <th>Last modified by</th>
                                 </tr>
                             </thead>
                         </table>
@@ -468,6 +470,7 @@
                                     <th>Gender</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
+                                    <th>Last modified by</th>
                                 </tr>
                             </thead>
                         </table>
@@ -573,6 +576,7 @@
                                     <th>Status</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
+                                    <th>Last modified by</th>
                                 </tr>
                             </thead>
                         </table>
@@ -678,6 +682,7 @@
                                     <th>Material</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
+                                    <th>Last modified by</th>
                                 </tr>
                             </thead>
                         </table>
@@ -783,6 +788,7 @@
                                     <th>Traction</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
+                                    <th>Last modified by</th>
                                 </tr>
                             </thead>
                         </table>
@@ -888,6 +894,7 @@
                                     <th>Support</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
+                                    <th>Last modified by</th>
                                 </tr>
                             </thead>
                         </table>
@@ -994,6 +1001,7 @@
                                     <th>Technology</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
+                                    <th>Last modified by</th>
                                 </tr>
                             </thead>
                         </table>
@@ -1099,6 +1107,7 @@
                                     <th>Size</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
+                                    <th>Last modified by</th>
                                 </tr>
                             </thead>
                         </table>
