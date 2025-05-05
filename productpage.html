@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <title class = "pageTitle">Product Page</title>
+    <title class = "pageTitle">Product Name</title>
 <style>
 /*nav*/
     .navbar-brand, .nav-link, .navbar-text {
@@ -243,6 +243,14 @@ p{
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
        
+        #sizeDropdown {
+            background-color: transparent !important; /* Make the dropdown background transparent */
+            color: black !important;
+        }
+        .dropdown-item {
+            color: black !important; /* Set the text color to black */
+        }
+
         /* Ensure modal body doesn't overflow */
         #scModalBody {
         overflow-y: auto; /* Allow vertical scroll if content is too tall */
@@ -265,7 +273,6 @@ p{
             padding: 0.5rem; /* Reduce cell padding */
         }
         }
-        
 </style>
 </head>
 <body>
@@ -485,7 +492,7 @@ p{
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse">
                               <div class="accordion-body">
-                                <strong>SanShoes currently offers free standard nationwide shipping in the Philippines. Orders amounting to ₱6,000 or more qualify for free shipping.</strong><br><br>
+                                <strong>SanShoes currently offers free standard nationwide shipping in the Philippines.</strong><br><br>
 
                                 Metro Manila Orders: 5-7 business days <br><br>
                                 
@@ -618,10 +625,47 @@ p{
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="cartModalBody">
-                <!-- Cart items will be dynamically added here -->
-                <div id="cartItems"></div>
+                <div id="cartItems">
+                    <div class="card mb-3" style="max-width: fit-content;">
+                        <div class="row g-0">
+                            <div class="col-md-4" style="padding-left: 10px;">
+                                <img src="user-homepage/images/pdimg/kai1.jpg" class="img-fluid rounded-start" alt="Nike V2K Run" style="object-fit: contain;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Kaiju 1</h5>
+                                    <p class="card-text">Men's Shoes</p>
+                                    <p class="card-text">
+                                        <small class="text-muted">Vintage Green/Mineral Spruce/Wolf Grey/Vintage Green</small>
+                                    </p>
+                                    <div class="dropdown mb-2">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="sizeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Size: US 10.5
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="sizeDropdown">
+                                            <li><a class="dropdown-item" href="#">US 9.5</a></li>
+                                            <li><a class="dropdown-item" href="#">US 9</a></li>
+                                            <li><a class="dropdown-item" href="#">US 8.5</a></li>
+                                            <li><a class="dropdown-item" href="#">US 8</a></li>
+                                        </ul>
+                                    </div>
+                                    <p class="card-text"><strong>₱6,895.00</strong></p>
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-outline-secondary me-2">-</button>
+                                        <span>1</span>
+                                        <button class="btn btn-outline-secondary ms-2">+</button>
+                                        <button class="btn btn-outline-danger ms-2">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Additional items can be added here -->
+                </div>
             </div>
-            <div class="modal-footer justify-content-between">
+            <div class="modal-footer d-flex justify-content-between" style="display: none;" id="cartFooter">
                 <div>
                     <h6>Subtotal</h6>
                     <h5 id="cartSubtotal">₱0</h5>
@@ -752,6 +796,13 @@ function updateThumbnailList() {
         element.style.backgroundSize = 'cover';
     }
     
+
+    // Show footer only if there are items in the cart
+function updateCartFooter(isEmpty) {
+        const footer = document.getElementById('cartFooter');
+        footer.style.display = isEmpty ? 'none' : 'flex'; // Show or hide footer based on cart status
+    }
+
 document.addEventListener('DOMContentLoaded', function() {
     const modal = new bootstrap.Modal('#addCartModal');
     
