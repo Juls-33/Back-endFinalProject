@@ -522,6 +522,12 @@ $(document).ready(function () {
     });
     // called to update stocks in database
     function updateStock(id, change) {
+        const stockElement = $(`#stock-count-${id}`);
+        const currentStock = parseInt(stockElement.text(), 10);
+
+        if (currentStock + change < 0) {
+            return;
+        }
         var data = {
             action: "updateStock",
             colorway_size_id: id,

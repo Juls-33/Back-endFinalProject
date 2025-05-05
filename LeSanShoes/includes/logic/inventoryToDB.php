@@ -117,6 +117,20 @@
                             $change = $obj->change;
                             $date_updated = date('Y-m-d H:i:s');
                             $modified_by = $_SESSION['username'];
+
+                            // CHECK IF STOCK IS <0
+                            $stmt = $conn->prepare("SELECT stock FROM colorway_size_tbl WHERE colorway_size_id = ?");
+                            $stmt->bind_param("i", $colorway_size_id);
+                            $stmt->execute();
+                            $stmt->bind_result($currentStock);
+                            $stmt->fetch();
+                            $stmt->close();
+                            $newStock = $currentStock + $change;
+                            if ($newStock < 0) {
+                                http_response_code(400);
+                                echo "Stock can't go negative";
+                                exit;
+                            }
     
                             $stmt = $conn->prepare("UPDATE colorway_size_tbl SET stock = stock + ?, date_updated = ?, modified_by=? WHERE colorway_size_id = ?");
                             $stmt->bind_param("issi", $change, $date_updated, $modified_by, $colorway_size_id);
