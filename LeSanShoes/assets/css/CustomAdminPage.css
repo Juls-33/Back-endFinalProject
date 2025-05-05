@@ -176,3 +176,21 @@ body{
     height: 300px; 
 }
 
+.wrap-text {
+    white-space: normal !important;
+    word-wrap: break-word;
+    max-width: 300px;
+}
+
+#shoesTable td {
+    white-space: nowrap;
+}
+
+#shoesTable td, #shoesTable th {
+    white-space: nowrap;
+  }
+  
+  #shoesTable td.wrap-text, #shoesTable th.wrap-text {
+    white-space: normal !important;
+  }
+

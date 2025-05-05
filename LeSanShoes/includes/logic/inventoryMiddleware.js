@@ -336,7 +336,10 @@ function loadTables(){
                     columns: [
                         { data: 'shoe_model_id' },
                         { data: 'model_name' },
-                        { data: 'description' },
+                        {
+                            data: 'description',
+                            className: 'wrap-text'
+                        },
                         { data: 'brand_name' },
                         { data: 'category_name' },
                         { data: 'material_name' },
