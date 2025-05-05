@@ -12,7 +12,7 @@ function getOptions($conn, $table, $id_field, $name_field) {
 
 try {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        // Get shoe models with brand and image
+        
         $sql = "SELECT 
                     sm.shoe_model_id,
                     sm.model_name,
@@ -39,4 +39,7 @@ try {
     http_response_code(500);
     echo json_encode(["error" => $e->getMessage()]);
 }
+
 ?>
+
+ 
