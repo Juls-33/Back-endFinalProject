@@ -49,6 +49,18 @@ function verifySignUp(formData){
 function isSignUpError(formData){
 
     var errorString = "";
+
+    const birthdayInput = formData.user_birthday;
+    const year = new Date(birthdayInput).getFullYear();
+    var date = new Date();
+
+    if (year.toString().length !== 4) {
+        errorString +="--Year input  must be 4 digits only--\n";
+    }
+    if(new Date(birthdayInput) > date || new Date(birthdayInput).getFullYear() <= (date.getFullYear()-150) ){
+        errorString +="--Invalid date input--\n";
+    }
+    
     if (!formData.username) {
         errorString +="--Username is empty--\n";
     }

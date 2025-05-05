@@ -11,9 +11,10 @@
                         $brandID= $obj ->tblID;
                         $formField= $obj ->formField;
                         $date_updated = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
 
-                        $stmt = $conn->prepare("UPDATE brand_tbl SET brand_name = ?, date_updated = ? where brand_id = ?");
-                        $stmt->bind_param("ssi", $formField, $date_updated, $brandID);
+                        $stmt = $conn->prepare("UPDATE brand_tbl SET brand_name = ?, date_updated = ?, modified_by=? where brand_id = ?");
+                        $stmt->bind_param("sssi", $formField, $date_updated, $modified_by, $brandID);
                         if ($stmt->execute()) {
                             if ($stmt->affected_rows > 0) {
                                 echo json_encode(['status' => 'success', 'message' => 'Brand name is updated successfully.']);
@@ -30,9 +31,10 @@
                         $brandID= $obj ->tblID;
                         $formField = $obj ->formField;
                         $date_created = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
 
-                        $stmt = $conn->prepare("INSERT INTO brand_tbl(brand_id, brand_name, date_created, date_updated) VALUES (?,?,?,?)");
-                        $stmt->bind_param("isss", $brandID, $formField, $date_created, $date_created);
+                        $stmt = $conn->prepare("INSERT INTO brand_tbl(brand_id, brand_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
+                        $stmt->bind_param("issss", $brandID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Brand name saved successfully.']);
                         } else {
@@ -57,9 +59,10 @@
                         $categoryID= $obj ->tblID;
                         $formField= $obj ->formField;
                         $date_updated = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
 
-                        $stmt = $conn->prepare("UPDATE category_tbl SET category_name = ?, date_updated = ? where category_id = ?");
-                        $stmt->bind_param("ssi", $formField, $date_updated, $categoryID);
+                        $stmt = $conn->prepare("UPDATE category_tbl SET category_name = ?, date_updated = ?, modified_by=? where category_id = ?");
+                        $stmt->bind_param("sssi", $formField, $date_updated,  $modified_by, $categoryID);
                         if ($stmt->execute()) {
                             if ($stmt->affected_rows > 0) {
                                 echo json_encode(['status' => 'success', 'message' => 'Shoe category name is updated successfully.']);
@@ -76,9 +79,10 @@
                         $categoryID= $obj ->tblID;
                         $formField = $obj ->formField;
                         $date_created = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
 
-                        $stmt = $conn->prepare("INSERT INTO category_tbl(category_id, category_name, date_created, date_updated) VALUES (?,?,?,?)");
-                        $stmt->bind_param("isss", $categoryID, $formField, $date_created, $date_created);
+                        $stmt = $conn->prepare("INSERT INTO category_tbl(category_id, category_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
+                        $stmt->bind_param("issss", $categoryID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Shoe category name saved successfully.']);
                         } else {
@@ -103,9 +107,10 @@
                         $shoesGenderID= $obj ->tblID;
                         $formField= $obj ->formField;
                         $date_updated = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
 
-                        $stmt = $conn->prepare("UPDATE shoes_gender_tbl SET shoes_gender_name = ?, date_updated = ? where shoes_gender_id = ?");
-                        $stmt->bind_param("ssi", $formField, $date_updated, $shoesGenderID);
+                        $stmt = $conn->prepare("UPDATE shoes_gender_tbl SET shoes_gender_name = ?, date_updated = ?, modified_by=? where shoes_gender_id = ?");
+                        $stmt->bind_param("sssi", $formField, $date_updated, $modified_by, $shoesGenderID);
                         if ($stmt->execute()) {
                             if ($stmt->affected_rows > 0) {
                                 echo json_encode(['status' => 'success', 'message' => 'Shoe gender name is updated successfully.']);
@@ -123,8 +128,8 @@
                         $formField = $obj ->formField;
                         $date_created = date('Y-m-d H:i:s');
 
-                        $stmt = $conn->prepare("INSERT INTO shoes_gender_tbl(shoes_gender_id, shoes_gender_name, date_created, date_updated) VALUES (?,?,?,?)");
-                        $stmt->bind_param("isss", $shoesGenderID, $formField, $date_created, $date_created);
+                        $stmt = $conn->prepare("INSERT INTO shoes_gender_tbl(shoes_gender_id, shoes_gender_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
+                        $stmt->bind_param("issss", $shoesGenderID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Order status name saved successfully.']);
                         } else {
@@ -149,9 +154,10 @@
                         $statusID= $obj ->tblID;
                         $formField= $obj ->formField;
                         $date_updated = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
 
-                        $stmt = $conn->prepare("UPDATE status_tbl SET status_name = ?, date_updated = ? where status_id = ?");
-                        $stmt->bind_param("ssi", $formField, $date_updated, $statusID);
+                        $stmt = $conn->prepare("UPDATE status_tbl SET status_name = ?, date_updated = ?, modified_by=? where status_id = ?");
+                        $stmt->bind_param("sssi", $formField, $date_updated, $modified_by, $statusID);
                         if ($stmt->execute()) {
                             if ($stmt->affected_rows > 0) {
                                 echo json_encode(['status' => 'success', 'message' => 'Order status name is updated successfully.']);
@@ -169,8 +175,8 @@
                         $formField = $obj ->formField;
                         $date_created = date('Y-m-d H:i:s');
 
-                        $stmt = $conn->prepare("INSERT INTO status_tbl(status_id, status_name, date_created, date_updated) VALUES (?,?,?,?)");
-                        $stmt->bind_param("isss", $statusID, $formField, $date_created, $date_created);
+                        $stmt = $conn->prepare("INSERT INTO status_tbl(status_id, status_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
+                        $stmt->bind_param("issss", $statusID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Order status name saved successfully.']);
                         } else {
@@ -195,9 +201,10 @@
                         $materialID= $obj ->tblID;
                         $formField= $obj ->formField;
                         $date_updated = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
                     
-                        $stmt = $conn->prepare("UPDATE material_tbl SET material_name = ?, date_updated = ? where material_id = ?");
-                        $stmt->bind_param("ssi", $formField, $date_updated, $materialID);
+                        $stmt = $conn->prepare("UPDATE material_tbl SET material_name = ?, date_updated = ?, modified_by=? where material_id = ?");
+                        $stmt->bind_param("sssi", $formField, $date_updated, $modified_by, $materialID);
                         if ($stmt->execute()) {
                             if ($stmt->affected_rows > 0) {
                                 echo json_encode(['status' => 'success', 'message' => 'Shoe material name is updated successfully.']);
@@ -214,9 +221,10 @@
                         $materialID= $obj ->tblID;
                         $formField = $obj ->formField;
                         $date_created = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
                     
-                        $stmt = $conn->prepare("INSERT INTO material_tbl(material_id, material_name, date_created, date_updated) VALUES (?,?,?,?)");
-                        $stmt->bind_param("isss", $materialID, $formField, $date_created, $date_created);
+                        $stmt = $conn->prepare("INSERT INTO material_tbl(material_id, material_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
+                        $stmt->bind_param("issss", $materialID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Shoe material name saved successfully.']);
                         } else {
@@ -241,9 +249,10 @@
                         $tractionID= $obj ->tblID;
                         $formField= $obj ->formField;
                         $date_updated = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
                     
-                        $stmt = $conn->prepare("UPDATE traction_tbl SET traction_name = ?, date_updated = ? where traction_id = ?");
-                        $stmt->bind_param("ssi", $formField, $date_updated, $tractionID);
+                        $stmt = $conn->prepare("UPDATE traction_tbl SET traction_name = ?, date_updated = ?, modified_by=? where traction_id = ?");
+                        $stmt->bind_param("sssi", $formField, $date_updated, $modified_by, $tractionID);
                         if ($stmt->execute()) {
                             if ($stmt->affected_rows > 0) {
                                 echo json_encode(['status' => 'success', 'message' => 'Shoe traction name is updated successfully.']);
@@ -260,9 +269,10 @@
                         $tractionID= $obj ->tblID;
                         $formField = $obj ->formField;
                         $date_created = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
                     
-                        $stmt = $conn->prepare("INSERT INTO traction_tbl(traction_id, traction_name, date_created, date_updated) VALUES (?,?,?,?)");
-                        $stmt->bind_param("isss", $tractionID, $formField, $date_created, $date_created);
+                        $stmt = $conn->prepare("INSERT INTO traction_tbl(traction_id, traction_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
+                        $stmt->bind_param("issss", $tractionID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Shoe traction name saved successfully.']);
                         } else {
@@ -287,9 +297,10 @@
                         $supportID= $obj ->tblID;
                         $formField= $obj ->formField;
                         $date_updated = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
                     
-                        $stmt = $conn->prepare("UPDATE support_tbl SET support_name = ?, date_updated = ? where support_id = ?");
-                        $stmt->bind_param("ssi", $formField, $date_updated, $supportID);
+                        $stmt = $conn->prepare("UPDATE support_tbl SET support_name = ?, date_updated = ?, modified_by=? where support_id = ?");
+                        $stmt->bind_param("sssi", $formField, $date_updated, $modified_by, $supportID);
                         if ($stmt->execute()) {
                             if ($stmt->affected_rows > 0) {
                                 echo json_encode(['status' => 'success', 'message' => 'Shoe support name is updated successfully.']);
@@ -306,9 +317,10 @@
                         $supportID= $obj ->tblID;
                         $formField = $obj ->formField;
                         $date_created = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
                     
-                        $stmt = $conn->prepare("INSERT INTO support_tbl(support_id, support_name, date_created, date_updated) VALUES (?,?,?,?)");
-                        $stmt->bind_param("isss", $supportID, $formField, $date_created, $date_created);
+                        $stmt = $conn->prepare("INSERT INTO support_tbl(support_id, support_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
+                        $stmt->bind_param("issss", $supportID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Shoe support name saved successfully.']);
                         } else {
@@ -333,9 +345,10 @@
                         $technologyID= $obj ->tblID;
                         $formField= $obj ->formField;
                         $date_updated = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
                     
-                        $stmt = $conn->prepare("UPDATE technology_tbl SET technology_name = ?, date_updated = ? where technology_id = ?");
-                        $stmt->bind_param("ssi", $formField, $date_updated, $technologyID);
+                        $stmt = $conn->prepare("UPDATE technology_tbl SET technology_name = ?, date_updated = ?, modified_by=? where technology_id = ?");
+                        $stmt->bind_param("sssi", $formField, $date_updated, $modified_by, $technologyID);
                         if ($stmt->execute()) {
                             if ($stmt->affected_rows > 0) {
                                 echo json_encode(['status' => 'success', 'message' => 'Shoe technology name is updated successfully.']);
@@ -352,9 +365,10 @@
                         $technologyID= $obj ->tblID;
                         $formField = $obj ->formField;
                         $date_created = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
                     
-                        $stmt = $conn->prepare("INSERT INTO technology_tbl(technology_id, technology_name, date_created, date_updated) VALUES (?,?,?,?)");
-                        $stmt->bind_param("isss", $technologyID, $formField, $date_created, $date_created);
+                        $stmt = $conn->prepare("INSERT INTO technology_tbl(technology_id, technology_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
+                        $stmt->bind_param("isss", $technologyID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Shoe technology name saved successfully.']);
                         } else {
@@ -379,9 +393,10 @@
                         $sizeID= $obj ->tblID;
                         $formField= $obj ->formField;
                         $date_updated = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
                     
-                        $stmt = $conn->prepare("UPDATE size_tbl SET size_name = ?, date_updated = ? where size_id = ?");
-                        $stmt->bind_param("ssi", $formField, $date_updated, $sizeID);
+                        $stmt = $conn->prepare("UPDATE size_tbl SET size_name = ?, date_updated = ?, modified_by=? where size_id = ?");
+                        $stmt->bind_param("sssi", $formField, $date_updated, $modified_by, $sizeID);
                         if ($stmt->execute()) {
                             if ($stmt->affected_rows > 0) {
                                 echo json_encode(['status' => 'success', 'message' => 'Shoe size name is updated successfully.']);
@@ -398,9 +413,10 @@
                         $sizeID= $obj ->tblID;
                         $formField = $obj ->formField;
                         $date_created = date('Y-m-d H:i:s');
+                        $modified_by = $_SESSION['username'];
                     
-                        $stmt = $conn->prepare("INSERT INTO size_tbl(size_id, size_name, date_created, date_updated) VALUES (?,?,?,?)");
-                        $stmt->bind_param("isss", $sizeID, $formField, $date_created, $date_created);
+                        $stmt = $conn->prepare("INSERT INTO size_tbl(size_id, size_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
+                        $stmt->bind_param("issss", $sizeID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Shoe size name saved successfully.']);
                         } else {
