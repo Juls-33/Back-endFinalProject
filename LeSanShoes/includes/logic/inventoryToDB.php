@@ -182,6 +182,18 @@
                             }
                             $stmt->close();
                         break;
+                        case 'search':
+                            $sql = "SELECT name, description FROM cards_tbl";
+                            $result = $conn->query($sql);
+                            
+                            $cards = [];
+                            while ($row = $result->fetch_assoc()) {
+                                $cards[] = $row;
+                            }
+                            
+                            header('Content-Type: application/json');
+                            echo json_encode($cards);
+                        break;
                                                         
                     }
                 }

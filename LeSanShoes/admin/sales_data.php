@@ -20,7 +20,8 @@
         $data[] = (int)$row['total'];
     }
 
-    $conn->close();
+    //$conn->close();
 
     echo json_encode(['labels' => $labels, 'data' => $data]);
+    
 ?>
