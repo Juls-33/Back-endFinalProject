@@ -62,6 +62,13 @@
   </header>
 
   <main>
+  <div class="header">
+   <div class="pic">
+    <img src="../assets/images/jordan.jpg">
+   </div>
+  </div>
+
+  
     <div class="container mt-4">
       <div class="row">
         <!-- Filters -->
@@ -137,7 +144,7 @@
 
         <!-- Product Display -->
         <div class="col-md-9">
-          <h4>Basketball Shoes</h4>
+          <h4>Shoes</h4>
           <div class="row card-container" id="cardContainer"></div>
         </div>
       </div>
