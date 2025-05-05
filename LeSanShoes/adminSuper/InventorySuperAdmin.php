@@ -410,6 +410,8 @@
                         </div>
                         
                     </div>
+                    <br>
+                    <input type="text" id="searchInput" placeholder="Search..." class="form-control mb-3" />
                     <!-- card container -->
                     <div class="container mt-4">
                         <div id="colorwayCardContainer" class="row gy-4"></div>
@@ -688,9 +690,11 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <script src="../assets/swal/sweetalert2.min.js"></script>
     <script src="../includes/logic/AdminPage.js"></script>
     <script src="../includes/logic/inventoryMiddleware.js"></script>
+    <script src="../includes/logic/inventorySearch.js"></script>
 
     </body>
 

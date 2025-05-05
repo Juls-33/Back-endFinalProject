@@ -322,8 +322,8 @@ function loadTables(){
     $(document).ready(function() {
         
         $.ajax({
-            url: '../includes/logic/inventoryGetOptions.php',
-            method: 'POST',
+        url: '../includes/logic/inventoryGetOptions.php',
+        method: 'POST',
             dataType: 'json',
             success: function(response) {
                 $('#shoesTable').DataTable().clear().destroy();
