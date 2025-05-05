@@ -411,7 +411,7 @@
                         
                     </div>
                     <br>
-                    <input type="text" id="searchInput" placeholder="Search..." class="form-control mb-3" />
+                    <input type="text" id="colorwaySearch" class="form-control mb-3" placeholder="Search colorways...">
                     <!-- card container -->
                     <div class="container mt-4">
                         <div id="colorwayCardContainer" class="row gy-4"></div>

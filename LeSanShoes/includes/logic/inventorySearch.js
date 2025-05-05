@@ -18,25 +18,7 @@ $.ajax({
     }
 });
 
-    /*
-fetch('../api/cardsAPI.php')
-  .then(response => response.json())
-  .then(data => {
-    allCards = data;
 
-    // Initialize Fuse
-    fuse = new Fuse(allCards, {
-      keys: ['name', 'description'], // Search in these fields
-      threshold: 0.4, // Lower = stricter match
-    });
-
-    renderCards(allCards);
-  })
-  .catch(error => console.error('Error loading cards:', error));
-
-  */
-
-// Search input listener
 document.getElementById('searchInput').addEventListener('input', function () {
   const query = this.value.trim();
 
