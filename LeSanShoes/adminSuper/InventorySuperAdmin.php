@@ -228,7 +228,7 @@
                                     <form id="addShoeForm">
                                         <div class="form-group mb-3">
                                             <label for="model_name">Model Name:</label>
-                                            <input type="text" id="model_name" name="model_name" class="form-control" maxlength="100" required>
+                                            <input type="text" id="model_name" name="model_name" class="form-control" maxlength="50" required>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label>Brand</label>
@@ -297,7 +297,7 @@
 
                                         <div class="form-group mb-3">
                                             <label for="description">Shoe Description</label>
-                                            <textarea name="description" id="description" name="description" class="form-control" rows="5" cols="40" required></textarea><br>
+                                            <textarea name="description" id="description" name="description" class="form-control" rows="5" cols="40" maxlength="500" required></textarea><br>
                                         </div> 
                                         <p class="text-warning-emphasis">Missing options? Go to <a href="ManageDBSuperAdmin.php">Manage Database</a> to add missing options.</p>
                                     </form>
@@ -311,29 +311,31 @@
                         </div>
                     </div>
                     <br>
-                    <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-shoes-tab">
+                    <!-- <div class="tab-pane fade show active" id="nav-Shoes" role="tabpanel" aria-labelledby="nav-shoes-tab"> -->
                         <div class="container">
-                            <table id="shoesTable" class="display nowrap" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Shoe Model ID</th>
-                                        <th>Model Name</th>
-                                        <th>Description</th>
-                                        <th>Brand</th>
-                                        <th>Category</th>
-                                        <th>Material</th>
-                                        <th>Traction</th>
-                                        <th>Support</th>
-                                        <th>Technology</th>
-                                        <th>Date created</th>
-                                        <th>Date updated</th>
-                                        <th>Lastt modified by</th>
-                                        <th>Edit/Delete</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                            <div style="overflow-x: auto;">
+                                <table id="shoesTable" class="display nowrap" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Shoe Model ID</th>
+                                            <th>Model Name</th>
+                                            <th >Description</th>
+                                            <th>Brand</th>
+                                            <th>Category</th>
+                                            <th>Material</th>
+                                            <th>Traction</th>
+                                            <th>Support</th>
+                                            <th>Technology</th>
+                                            <th>Date created</th>
+                                            <th>Date updated</th>
+                                            <th>Lastt modified by</th>
+                                            <th>Edit/Delete</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
-                    </div>
+                    <!-- </div> -->
                 </div>
                 <div class="tab-pane fade" id="nav-Colorway" role="tabpanel" aria-labelledby="nav-colorway-tab">
                     <div class="d-flex justify-content-between gap-3">
@@ -367,7 +369,7 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="price">Price</label>
-                                            <input type="number" id="price" name="price" class="form-control" maxlength="100" required>
+                                            <input type="number" id="price" name="price" class="form-control" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==9) return false;" required>
                                         </div>
                                         
                                         <!-- Image inputs and previews -->
@@ -487,7 +489,7 @@
                                     <input type="hidden" id="edit_model_id" name="shoe_model_id">
                                 <div class="form-group mb-3">
                                     <label for="model_name">Model Name:</label>
-                                    <input type="text" id="edit_model_name" name="model_name" class="form-control" maxlength="100" required>
+                                    <input type="text" id="edit_model_name" name="model_name" class="form-control" maxlength="50" required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Brand</label>
@@ -556,7 +558,7 @@
 
                                 <div class="form-group mb-3">
                                     <label for="description">Shoe Description</label>
-                                    <textarea name="description" id="edit_description" name="description" class="form-control" rows="5" cols="40" required></textarea><br>
+                                    <textarea name="description" id="edit_description" name="description" class="form-control" rows="5" cols="40" maxlength="500" required></textarea><br>
                                 </div>
                                 <p class="text-warning-emphasis">Missing options? Go to <a href="ManageDBSuperAdmin.php">Manage Database</a> to add missing options.</p>
                                 </div>
@@ -594,12 +596,12 @@
 
                             <div class="mb-3">
                                 <label for="edit_colorway_name" class="form-label">Colorway Name</label>
-                                <input type="text" class="form-control" id="edit_colorway_name" name="edit_colorway_name" required>
+                                <input type="text" class="form-control" id="edit_colorway_name" name="edit_colorway_name" maxlength="100" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="edit_price" class="form-label">Price</label>
-                                <input type="text" class="form-control" id="edit_price" name="edit_price" required>
+                                <input type="text" class="form-control" id="edit_price" name="edit_price" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==9) return false;" required>
                             </div>
 
                             <div class="form-group col-md-12">

@@ -1,5 +1,13 @@
 <?php
     session_start();
+    include("sales_data.php");
+
+    $sql = "INSERT INTO sales_tbl (date, amount) VALUES ('2023-10-01', 100.00), ('2023-10-02', 150.00), ('2023-10-03', 200.00)"; 
+    if ($conn->query($sql) === TRUE) {
+        echo "New Record Created Successfully";
+    } else {
+        echo "Error: " . $conn->error; 
+    }
 
     if (!isset($_SESSION['username'])) {
         // Not logged in — redirect to login
@@ -405,23 +413,21 @@
 
 
     <script>
+        fetch('sales_data.php')
+    .then(response => response.json())
+    .then(json => {
         const actions = document.getElementById('salesPerDayChart').getContext('2d');
         const salesPerDayChart = new Chart(actions, {
             type: 'line',
             data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                labels: json.labels,
                 datasets: [{
                     label: 'Sales Per Day',
-                    data: [12, 19, 3, 5, 2, 3, 9],
+                    data: json.data,
                     borderColor: 'rgba(75, 192, 192, 1)',
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     fill: true,
                     tension: 0.4,
-                    pointStyle: 'circle',
-                    pointRadius: 6,
-                    pointHoverRadius: 8,
-                    pointBackgroundColor: 'white',
-                    pointBorderColor: 'rgba(75, 192, 192, 1)'
                 }]
             },
             options: {
@@ -439,7 +445,44 @@
                     }
                 }
             }
-        });
+        }); 
+    }); 
+
+        // const actions = document.getElementById('salesPerDayChart').getContext('2d');
+        // const salesPerDayChart = new Chart(actions, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        //         datasets: [{
+        //             label: 'Sales Per Day',
+        //             data: [12, 19, 3, 5, 2, 3, 9],
+        //             borderColor: 'rgba(75, 192, 192, 1)',
+        //             backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        //             fill: true,
+        //             tension: 0.4,
+        //             pointStyle: 'circle',
+        //             pointRadius: 6,
+        //             pointHoverRadius: 8,
+        //             pointBackgroundColor: 'white',
+        //             pointBorderColor: 'rgba(75, 192, 192, 1)'
+        //         }]
+        //     },
+            // options: {
+            //     responsive: true,
+            //     maintainAspectRatio: false, 
+            //     plugins: {
+            //         legend: {
+            //             display: true,
+            //             position: 'top',
+            //         },
+            //     },
+            //     scales: {
+            //         y: {
+            //             beginAtZero: true
+            //         }
+            //     }
+            // }
+        // });
 </script>
 
 <script>

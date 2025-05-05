@@ -336,7 +336,10 @@ function loadTables(){
                     columns: [
                         { data: 'shoe_model_id' },
                         { data: 'model_name' },
-                        { data: 'description' },
+                        {
+                            data: 'description',
+                            className: 'wrap-text'
+                        },
                         { data: 'brand_name' },
                         { data: 'category_name' },
                         { data: 'material_name' },
@@ -522,6 +525,12 @@ $(document).ready(function () {
     });
     // called to update stocks in database
     function updateStock(id, change) {
+        const stockElement = $(`#stock-count-${id}`);
+        const currentStock = parseInt(stockElement.text(), 10);
+
+        if (currentStock + change < 0) {
+            return;
+        }
         var data = {
             action: "updateStock",
             colorway_size_id: id,
