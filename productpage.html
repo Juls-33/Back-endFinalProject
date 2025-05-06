@@ -125,9 +125,22 @@ p{
     .accordion-spacing{
       margin-top: 1.8vh;
     }
+    .accordion-header{
+        border-color: transparent !important;
+    }
     .accordion-button{
         font-size: 1.15rem;
     }
+    .accordion-button:not(.collapsed) {
+        background-color: transparent;
+        color: #B51E1E;
+        border-color: #B51E1E;
+    }
+    .accordion-button:focus, .accordion-button:active {
+        box-shadow: none;
+        outline: none;
+    }
+
     #sizes a {
         color: #000 !important;
         transition: all 0.2s ease-in-out;
@@ -159,11 +172,11 @@ p{
         border-color: #000 !important;
     }
 
-    .unavailable {
+    /* .unavailable {
     text-decoration: line-through;
     pointer-events: none;
     opacity: 0.3 !important;
-    }
+    } */
 
     .btn-outline-secondary:hover {
     border-color: #5f0000 !important;
@@ -224,11 +237,11 @@ p{
         top: 50%;
         transform: translateY(-50%);
         z-index: 10;
-        background-color: transparent; /* Transparent background */
-        border: none; /* No border */
-        color: black; /* Black color */
-        font-size: 2rem; /* Increase font size for better visibility */
-        transition: color 0.3s, transform 0.3s; /* Smooth transition for color and transform */
+        background-color: transparent;
+        border: none;
+        color: black;
+        font-size: 2rem;
+        transition: color 0.3s, transform 0.3s;
         }
         .prev-btn {
             left: 10px;
@@ -244,33 +257,31 @@ p{
         }
        
         #sizeDropdown {
-            background-color: transparent !important; /* Make the dropdown background transparent */
+            background-color: transparent !important;
             color: black !important;
         }
         .dropdown-item {
-            color: black !important; /* Set the text color to black */
+            color: black !important;
         }
 
-        /* Ensure modal body doesn't overflow */
         #scModalBody {
-        overflow-y: auto; /* Allow vertical scroll if content is too tall */
-        max-height: 70vh; /* Limit modal body height */
+        overflow-y: auto; 
+        max-height: 70vh; 
         }
         .modal-table-container {
-            overflow-x: auto; /* Force horizontal scroll */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
-            max-width: 100%; /* Ensure it doesn't exceed modal width */
-            margin-bottom: 1rem; /* Add spacing between tables */
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+            margin-bottom: 1rem;
         }
 
-        /* Optional: Reduce padding in tables for smaller screens */
         @media (max-width: 768px) {
         .modal-table-container table {
-            font-size: 14px; /* Smaller font */
+            font-size: 14px;
         }
         .modal-table-container th,
         .modal-table-container td {
-            padding: 0.5rem; /* Reduce cell padding */
+            padding: 0.5rem;
         }
         }
 </style>
@@ -432,7 +443,7 @@ p{
                             <label class="btn btn-outline-secondary size-button" for="option9">US 10</label>
                         </div>
                         <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option10" autocomplete="off" disabled>
+                            <input type="radio" class="btn-check" name="options-size" id="option10" autocomplete="off">
                             <label class="btn btn-outline-secondary size-button unavailable" for="option10">US 10.5</label>
                         </div>
                         <div class="col">
@@ -474,7 +485,6 @@ p{
                                     </div>
                                     <div class="col">
                                         <ul class="list-group">
-                                            <li>Cushioning: Air Unit</li>
                                             <li>Traction: Rubber Outsole</li>
                                             <li>Support: High Ankle</li>
                                             <li>Technology: Impact Protection</li>
@@ -797,10 +807,9 @@ function updateThumbnailList() {
     }
     
 
-    // Show footer only if there are items in the cart
 function updateCartFooter(isEmpty) {
         const footer = document.getElementById('cartFooter');
-        footer.style.display = isEmpty ? 'none' : 'flex'; // Show or hide footer based on cart status
+        footer.style.display = isEmpty ? 'none' : 'flex';
     }
 
 document.addEventListener('DOMContentLoaded', function() {
