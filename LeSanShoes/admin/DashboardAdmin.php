@@ -2,7 +2,7 @@
     session_start();
     include("sales_data.php");
 
-    $sql = "INSERT INTO sales_tbl (date, amount) VALUES ('2023-10-01', 100.00), ('2023-10-02', 150.00), ('2023-10-03', 200.00)"; 
+    $sql = "INSERT INTO sales_tbl (date, amount) VALUES ('2025-06-05', 100.00), ('2025-06-06', 150.00), ('2025-06-07', 200.00)"; 
     if ($conn->query($sql) === TRUE) {
         echo "New Record Created Successfully";
     } else {
