@@ -62,7 +62,7 @@
   </header>
 
   <main>
-  <div class="header">
+     <div class="header">
    <div class="pic">
     <img src="../assets/images/jordan.jpg">
    </div>
@@ -219,7 +219,7 @@
             response.shoe_models.forEach(item => {
               let imgPath = item.image1 || 'assets/images/default.jpg';  // Default if no image
               cardsHtml += `
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 colorway-card" data-search=" ${item.model_name}${item.brand_name}">
                   <div class="card" style="width: 18rem;">
                     <img src="${imgPath}" class="card-img-top" alt="Shoe Image 1">
                     <div class="card-body p-2 text-center">

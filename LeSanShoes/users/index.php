@@ -45,7 +45,7 @@ session_start();
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="../users/andrei.php">Products</a></li>
           <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
         </ul>
@@ -74,7 +74,7 @@ session_start();
         <div class="col-2">
           <h1>Give your Workout <br>A New Style!</h1>
           <p>Success isn't always about greatness. It's about consistency. Consistent<br>hard work gains success. Greatness will come.</p>
-          <a href="andrei.php" class="btn">Explore Now &#8594;</a>
+          <a href="products.html" class="btn">Explore Now &#8594;</a>
         </div>
         <div class="col-2">
           <img src="../assets/images/image3.png" alt="Hero">
