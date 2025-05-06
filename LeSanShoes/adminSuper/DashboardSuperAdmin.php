@@ -1,5 +1,17 @@
 <?php
     session_start();
+    include("sales_perDay.php");
+
+    ob_start();
+    include('get_inventoryCount.php');
+    $inventoryCount = ob_get_clean();
+    
+    $sql = "INSERT INTO sales_tbl (date, amount) VALUES ('2025-06-05', 100.00), ('2025-06-06', 150.00), ('2025-06-07', 200.00)"; 
+    if ($conn->query($sql) === TRUE) {
+        echo "New Record Created Successfully";
+    } else {
+        echo "Error: " . $conn->error; 
+    }
 
     if (!isset($_SESSION['username'])) {
         // Not logged in — redirect to login
@@ -189,7 +201,7 @@
                                     <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">inventory</span>
                                     <div class="text-end">
                                       <p class="text-sm mb-0">Inventory</p>
-                                      <h4 class="mb-0">150 Items</h4>
+                                      <h4 class="mb-0"><?php echo htmlspecialchars($inventoryCount); ?> Items</h4>
                                     </div>
                                   </div>
                             </div>
@@ -198,67 +210,75 @@
                 </div>
             </div> 
 
-        
-            <!-- <div class="row mt-4 removable">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="card mb-4">
-                        <div class="card-header pb-0 p-3">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="mb-0">Website Views</h6>
-                            </div>
-
-                            <div class="d-flex justify-content-between">
-                                <p>Total website views per day</p>
-                            </div>
-                        </div>
-                        <div class="card-body pb-0 p-3 mt-4">
-                            <div class="row"></div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-
-
+            
             <div class="container-fluid pt-3">
                 <div class="row removable">
                     <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
-                                    <p class="text-sm mb-0">Website Views</p>
-                                    <p class="mb-0">Total website views per day</p>
+                                    <p class="text-sm mb-0">Sales Per Day</p>
+                                    <!-- <a href="#" class="text-decoration-none small">View the Number of Sales Per Day</a> -->
                                 </div>
                             </div>
-                            <div class="card-body pb-0 p-3 mt-1">
-                                <div class="row"> 
-                                    <br><br><br><br><br><br>
-                                    <br><br>
-                                </div>
+                            <div class="chart-container">
+                                <canvas id="salesPerDayChart"></canvas>
                             </div>
                         </div>
                     </div>
+                    
+
                     <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
                                     <p class="text-sm mb-0">Sales Per Month</p>
-                                    <p class="mb-0">View the number of sales per month</p>
+                                    <!-- <a href="#" class="text-decoration-none small">View the Number of Sales Per Month</a> -->
                                 </div>
                             </div>
-                            <div class="card-body pb-0 p-3 mt-1">
-                                <div class="row"> 
-                                    <br><br><br><br><br><br>
-                                    <br><br>
-                                </div>
+                            <div class="chart-container">
+                                <canvas id="salesPerMonthChart"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </div> 
 
-
-
+            <div class="container-fluid pt-3"> 
+                <div class="row removable">
+                    <div class="col-sm-6 mb-xl-0 mb-4">
+                        <div class="card mb-4">
+                            <div class="card-header p-3 pt-2">
+                                <div class="text-end pt-1">
+                                    <p class="text-sm mb-0">Sales Per Quarter</p>
+                                    <!-- <a href="#" class="text-decoration-none small">View the Number of Sales Per Month</a> -->
+                                </div>
+                            </div>
+                            <div class="card-body pb-0 p-3 mt-1">
+                                <div class="chart-container">
+                                    <canvas id="salesPerQuarterChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6 mb-xl-0 mb-4">
+                        <div class="card mb-4">
+                            <div class="card-header p-3 pt-2">
+                                <div class="text-end pt-1">
+                                    <p class="text-sm mb-0">Sales Per Year</p>
+                                    <!-- <a href="#" class="text-decoration-none small">View the Number of Sales Per Month</a> -->
+                                </div>
+                            </div>
+                            <div class="card-body pb-0 p-3 mt-1">
+                                <div class="chart-container">
+                                    <canvas id="salesPerYearChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="container-fluid pt-3">
                 <div class="row removable">
@@ -290,7 +310,47 @@
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
-                                    <h5 class="text-sm mb-4">Top Selling Products</h5>
+                                    <h5 class="text-sm mb-4">Top Selling Products Per Day</h5>
+                                </div>
+                            </div>
+                            <div class="card-body pb-4 p-3 mt-0">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">An item</li>
+                                    <li class="list-group-item">A second item</li>
+                                    <li class="list-group-item">A third item</li>
+                                    <li class="list-group-item">A third item</li>
+                                  </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid pt-3">
+                <div class="row removable">
+                    <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card mb-4">
+                            <div class="card-header p-3 pt-2">
+                                <div class="text-end pt-1">
+                                    <h5 class="text-sm mb-4">Top Selling Products Per Month</h5>
+                                </div>
+                            </div>
+                            <div class="card-body pb-4 p-3 mt-0">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">An item</li>
+                                    <li class="list-group-item">A second item</li>
+                                    <li class="list-group-item">A third item</li>
+                                    <li class="list-group-item">A third item</li>
+                                  </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card mb-4">
+                            <div class="card-header p-3 pt-2">
+                                <div class="text-end pt-1">
+                                    <h5 class="text-sm mb-4">Top Selling Products Per Year</h5>
                                 </div>
                             </div>
                             <div class="card-body pb-4 p-3 mt-0">
@@ -350,10 +410,49 @@
                     </div>   
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    fetch('sales_perDay.php')
+        .then(response => response.json())
+        .then(json => {
+            const actions = document.getElementById('salesPerDayChart').getContext('2d');
+            const salesPerDayChart = new Chart(actions, {
+                type: 'line',
+                data: {
+                    labels: json.labels,
+                    datasets: [{
+                        label: 'Sales Per Day',
+                        data: json.data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, 
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }); 
+        }); 
+        </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
         <script src="../includes/logic/AdminPage.js"></script>
 </body>
-
 </html>

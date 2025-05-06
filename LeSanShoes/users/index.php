@@ -45,21 +45,19 @@ session_start();
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../users/andrei.php">Products</a></li>
           <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
         </ul>
         <div class="d-lg-flex flex-lg-row align-items-center gap-2">
-            <!-- temporary login and logout -->
-            <div><a href="../userAuth/login.php">Login</a></div>
-            <p>Username: <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?></p>
-            <a href="../userAuth/logoutUser.php">Logout</a>
-            <!-- end of temporary login and logout -->
-          <div class="mb-2">
-            <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
-            <span class="icon-text d-inline d-lg-none">User Account</span>
-          </div>
-          <div>
+               <div><a href="../userAuth/login.php">Login</a></div>
+              <p>Username: <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?></p>
+              <a href="../userAuth/logoutUser.php">Logout</a> 
+              <div class="mb-2" role="button" data-bs-toggle="modal" data-bs-target="#userModal">
+  <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
+  <span class="icon-text d-inline d-lg-none">User Account</span>
+</div>
+            <div>
             <span class="material-symbols-outlined d-none d-lg-inline">shopping_cart</span>
             <span class="icon-text d-inline d-lg-none">Cart</span>
           </div>
@@ -79,7 +77,7 @@ session_start();
           <a href="products.html" class="btn">Explore Now &#8594;</a>
         </div>
         <div class="col-2">
-          <img src="../assets/images/image1.png" alt="Hero">
+          <img src="../assets/images/image3.png" alt="Hero">
         </div>
       </div>
     </div>
@@ -262,8 +260,88 @@ session_start();
     </div>
   </div>
 
+  
 </main>
+ <!-- Footer -->
+ <br> <br>
+ <footer class="text-white text-center text-lg-start w-100" style="width: 100%; background-color: #B51E1E;">
+    <div class="p-4" style="max-width: 100%;">
+      <div class="d-flex flex-wrap justify-content-around text-start">
+        <!-- Column 1 -->
+        <div class="p-3" style="min-width: 250px; max-width: 300px;">
+          <div class="shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto">
+            <img src="../assets/images/sanshoes logo white.png" height="70" alt="" loading="lazy" />
+          </div>
+          <p class="text-center" style="color: white;">Find your perfect pair and step into comfort and style</p>
+          <ul class="list-unstyled d-flex justify-content-center">
+            <li><a class="text-white px-2" href="#"><i class="fab fa-facebook-square"></i></a></li>
+            <li><a class="text-white px-2" href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a class="text-white px-2" href="#"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+        </div>
+  
+        <!-- Column 2 -->
+        <div class="p-3" style="min-width: 250px; max-width: 300px;">
+          <h5 class="text-uppercase mb-4">Products</h5>
+          <ul>
+            <li class="mb-2"><a href="#" class="text-white">Anta</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Nike</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Under Armour</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Adidas</a></li>
+          </ul>
+        </div>
+  
+        <!-- Column 3 -->
+        <div class="p-3" style="min-width: 250px; max-width: 300px;">
+          <h5 class="text-uppercase mb-4">Useful Links</h5>
+          <ul>
+            <li class="mb-2"><a href="#" class="text-white">Home</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Products</a></li>
+            <li class="mb-2"><a href="#" class="text-white">FAQ</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Cart</a></li>
+          </ul>
+        </div>
+  
+        <!-- Column 4 -->
+        <div class="p-3" style="min-width: 250px; max-width: 300px;">
+          <h5 class="text-uppercase mb-4">Contact</h5>
+          <ul class="list-unstyled">
+            <li><p class="text-white"><i class="fas fa-map-marker-alt pe-2"></i>Warsaw, 57 Street, Poland</p></li>
+            <li><p class="text-white"><i class="fas fa-phone pe-2"></i>+ 01 234 567 89</p></li>
+            <li><p class="text-white"><i class="fas fa-envelope pe-2 mb-0"></i>contact@example.com</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2020 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/">LeSanShoes.com</a>
+    </div>
+  </footer>
+  
 
+
+  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalLabel">User Account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <?php if (isset($_SESSION["username"])): ?>
+          <p>You are logged in as <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong></p>
+          <a href="../userAuth/logoutUser.php" class="btn btn-danger">Logout</a>
+        <?php else: ?>
+          <p>You are not logged in.</p>
+          <a href="../userAuth/login.php" class="btn btn-primary">Login</a>
+        <?php endif; ?>
+      </div>
+    </div>
+  </div>
+</div>
+  
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" 
   integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" 
   crossorigin="anonymous"></script>

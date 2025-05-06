@@ -16,11 +16,11 @@
     $labels = [];
 
     while ($row = $result->fetch_assoc()) {
-        $labels[] = date('l', strtotime($row['sale_date']));  
+        $labels[] = date('l', strtotime($row['sale_date']));
         $data[] = (int)$row['total'];
     }
 
-    //$conn->close();
+    $conn->close();
 
     echo json_encode(['labels' => $labels, 'data' => $data]);
     

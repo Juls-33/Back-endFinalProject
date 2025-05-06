@@ -2,7 +2,7 @@
     session_start();
     include("sales_data.php");
 
-    $sql = "INSERT INTO sales_tbl (date, amount) VALUES ('2023-10-01', 100.00), ('2023-10-02', 150.00), ('2023-10-03', 200.00)"; 
+    $sql = "INSERT INTO sales_tbl (date, amount) VALUES ('2025-06-05', 100.00), ('2025-06-06', 150.00), ('2025-06-07', 200.00)"; 
     if ($conn->query($sql) === TRUE) {
         echo "New Record Created Successfully";
     } else {
@@ -413,40 +413,40 @@
 
 
     <script>
-        fetch('sales_data.php')
-    .then(response => response.json())
-    .then(json => {
-        const actions = document.getElementById('salesPerDayChart').getContext('2d');
-        const salesPerDayChart = new Chart(actions, {
-            type: 'line',
-            data: {
-                labels: json.labels,
-                datasets: [{
-                    label: 'Sales Per Day',
-                    data: json.data,
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    fill: true,
-                    tension: 0.4,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false, 
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    },
+    fetch('sales_data.php')
+        .then(response => response.json())
+        .then(json => {
+            const actions = document.getElementById('salesPerDayChart').getContext('2d');
+            const salesPerDayChart = new Chart(actions, {
+                type: 'line',
+                data: {
+                    labels: json.labels,
+                    datasets: [{
+                        label: 'Sales Per Day',
+                        data: json.data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, 
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
+            }); 
         }); 
-    }); 
 
         // const actions = document.getElementById('salesPerDayChart').getContext('2d');
         // const salesPerDayChart = new Chart(actions, {
@@ -485,7 +485,7 @@
         // });
 </script>
 
-<script>
+<!-- <script>
     const action = document.getElementById('salesPerMonthChart').getContext('2d');
     const salesPerMonthChart = new Chart(action, {
         type: 'line',
@@ -597,7 +597,7 @@
                 }
             }
         });
-</script>
+</script> -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
