@@ -39,18 +39,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="../users/products.html">Products</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../users/andrei.php">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
           </ul>
           <div class="d-lg-flex flex-lg-row align-items-center gap-2">
-              <div><a href="../userAuth/login.php">Login</a></div>
+              <!-- <div><a href="../userAuth/login.php">Login</a></div>
               <p>Username: <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?></p>
-              <a href="../userAuth/logoutUser.php">Logout</a>
-            <div class="mb-2">
-              <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
-              <span class="icon-text d-inline d-lg-none">User Account</span>
-            </div>
+              <a href="../userAuth/logoutUser.php">Logout</a> -->
+              <div class="mb-2" role="button" data-bs-toggle="modal" data-bs-target="#userModal">
+  <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
+  <span class="icon-text d-inline d-lg-none">User Account</span>
+</div>
             <div>
               <span class="material-symbols-outlined d-none d-lg-inline">shopping_cart</span>
               <span class="icon-text d-inline d-lg-none">Cart</span>
@@ -62,6 +62,13 @@
   </header>
 
   <main>
+  <div class="header">
+   <div class="pic">
+    <img src="../assets/images/jordan.jpg">
+   </div>
+  </div>
+
+  
     <div class="container mt-4">
       <div class="row">
         <!-- Filters -->
@@ -137,7 +144,7 @@
 
         <!-- Product Display -->
         <div class="col-md-9">
-          <h4>Basketball Shoes</h4>
+          <h4>Shoes</h4>
           <div class="row card-container" id="cardContainer"></div>
         </div>
       </div>
@@ -234,7 +241,25 @@
       }
     });
   </script>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalLabel">User Account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <?php if (isset($_SESSION["username"])): ?>
+          <p>You are logged in as <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong></p>
+          <a href="../userAuth/logoutUser.php" class="btn btn-danger">Logout</a>
+        <?php else: ?>
+          <p>You are not logged in.</p>
+          <a href="../userAuth/login.php" class="btn btn-primary">Login</a>
+        <?php endif; ?>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
