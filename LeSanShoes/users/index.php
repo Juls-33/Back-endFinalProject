@@ -50,9 +50,9 @@ session_start();
           <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
         </ul>
         <div class="d-lg-flex flex-lg-row align-items-center gap-2">
-              <!-- <div><a href="../userAuth/login.php">Login</a></div>
+               <div><a href="../userAuth/login.php">Login</a></div>
               <p>Username: <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?></p>
-              <a href="../userAuth/logoutUser.php">Logout</a> -->
+              <a href="../userAuth/logoutUser.php">Logout</a> 
               <div class="mb-2" role="button" data-bs-toggle="modal" data-bs-target="#userModal">
   <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
   <span class="icon-text d-inline d-lg-none">User Account</span>
