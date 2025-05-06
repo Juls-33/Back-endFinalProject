@@ -368,7 +368,7 @@ function loadTables(){
                 
                 response.colorways.forEach(item => {
                     const card = `
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 colorway-card" data-search="${item.colorway_name} ${item.model_name} ${item.price} ${item.modified_by}">
                         <div class="card shadow-sm">
                             <div class="card-header bg-primary text-white">
                                 <h5 class="card-title mb-0">${item.colorway_name}</h5>
@@ -448,6 +448,16 @@ function loadTables(){
         });
     });   
 }
+
+// search bar colorway
+$('#colorwaySearch').on('input', function () {
+    const searchTerm = $(this).val().toLowerCase();
+
+    $('.colorway-card').each(function () {
+        const text = $(this).attr('data-search').toLowerCase();
+        $(this).toggle(text.includes(searchTerm));
+    });
+});
 
 // EDIT SHOE MODEL
 $(document).on('click', '.edit-colorway-size-btn', function () {

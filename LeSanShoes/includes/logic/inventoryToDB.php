@@ -182,18 +182,27 @@
                             }
                             $stmt->close();
                         break;
-                        case 'search':
-                            $sql = "SELECT name, description FROM cards_tbl";
-                            $result = $conn->query($sql);
+                        // case 'search':
+                        //     $sql = "SELECT  
+                        //     sm.model_name
+                        //     c.colorway_name,
+                        //     c.price,
+                        //     c.date_created,
+                        //     c.date_updated,
+                        //     c.modified_by
                             
-                            $cards = [];
-                            while ($row = $result->fetch_assoc()) {
-                                $cards[] = $row;
-                            }
+                        //     FROM colorway_tbl c
+                        //     JOIN shoe_model_tbl sm ON c.shoe_model_id = sm.shoe_model_id";
+                        //     $result = $conn->query($sql);
                             
-                            header('Content-Type: application/json');
-                            echo json_encode($cards);
-                        break;
+                        //     $cards = [];
+                        //     while ($row = $result->fetch_assoc()) {
+                        //         $cards[] = $row;
+                        //     }
+                            
+                        //     header('Content-Type: application/json');
+                        //     echo json_encode($cards);
+                        // break;
                                                         
                     }
                 }
