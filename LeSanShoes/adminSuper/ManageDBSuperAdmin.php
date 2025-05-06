@@ -205,7 +205,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <form>
-                                    <h2 class="text-center mb-3">Add brand to the datababse</h2>
+                                    <h2 class="text-center mb-3">Add brand to the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="brandIDAdd">Brand ID</label>
@@ -310,7 +310,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <form>
-                                    <h2 class="text-center mb-3">Add shoes category to the datababse</h2>
+                                    <h2 class="text-center mb-3">Add shoes category to the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="categoryIDAdd">Category ID</label>
@@ -416,7 +416,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <form>
-                                    <h2 class="text-center mb-3">Add shoes gender to the datababse</h2>
+                                    <h2 class="text-center mb-3">Add shoes gender to the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="shoesGenderIDAdd">Shoes gender ID</label>
@@ -522,7 +522,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <form>
-                                    <h2 class="text-center mb-3">Add status to the datababse</h2>
+                                    <h2 class="text-center mb-3">Add status to the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="statusIDAdd">Status ID</label>
@@ -628,7 +628,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <form>
-                                    <h2 class="text-center mb-3">Add material to the datababse</h2>
+                                    <h2 class="text-center mb-3">Add material to the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="materialIDAdd">Material ID</label>
@@ -734,7 +734,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <form>
-                                    <h2 class="text-center mb-3">Add traction to the datababse</h2>
+                                    <h2 class="text-center mb-3">Add traction to the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="tractionIDAdd">Traction ID</label>
@@ -840,7 +840,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <form>
-                                    <h2 class="text-center mb-3">Add support to the datababse</h2>
+                                    <h2 class="text-center mb-3">Add support to the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="supportIDAdd">Support ID</label>
@@ -947,7 +947,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <form>
-                                    <h2 class="text-center mb-3">Add technology to the datababse</h2>
+                                    <h2 class="text-center mb-3">Add technology to the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="technologyIDAdd">Technology ID</label>
@@ -1053,7 +1053,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <form>
-                                    <h2 class="text-center mb-3">Add size to the datababse</h2>
+                                    <h2 class="text-center mb-3">Add size to the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="sizeIDAdd">Size ID</label>
@@ -1164,7 +1164,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <form>
-                                    <h2 class="text-center mb-3">Add user roles to the datababse</h2>
+                                    <h2 class="text-center mb-3">Add user roles to the database</h2>
                                     <hr>
                                     <div class="form-group mb-3">
                                         <label for="userRolesIDAdd">User Roles ID</label>
