@@ -13,6 +13,7 @@
 body{
     display: flex;
     flex-direction: column;
+    font-family:'Poppins', sans-serif "Helvetica Neue", Helvetica, Arial;
 
 }
 html, body {
