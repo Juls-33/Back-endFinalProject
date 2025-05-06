@@ -17,6 +17,11 @@
         <script src="../assets/swal/sweetalert2.min.js"></script>
         <!-- Custom CSS -->
         <link rel="stylesheet" href="../assets/css/customUserAuth.css">
+        <style>
+            ul{
+                list-style: none;
+            }
+        </style>
     </head>
     <body>
         <div class="form-wrapper">
