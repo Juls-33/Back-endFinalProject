@@ -244,6 +244,7 @@ function addTechnology() {
     };
     var isError = checkTwoFields(formData);
     if(isError=="error") return; sendViaAJAX(formData);
+    
 }
 function deleteTechnology() {
     var formData = {

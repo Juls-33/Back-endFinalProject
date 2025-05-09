@@ -270,13 +270,13 @@
                         $formField = $obj ->formField;
                         $date_created = date('Y-m-d H:i:s');
                         $modified_by = $_SESSION['username'];
-                    
+                       
                         $stmt = $conn->prepare("INSERT INTO traction_tbl(traction_id, traction_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
                         $stmt->bind_param("issss", $tractionID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Shoe traction name saved successfully.']);
                         } else {
-                            echo json_encode(['status' => 'error', 'message' => 'Failed to save the Shoe tractionname.']);
+                            echo json_encode(['status' => 'error', 'message' => 'Failed to save the Shoe traction name.']);
                         }
                         $stmt->close();
                     break;    
@@ -368,7 +368,7 @@
                         $modified_by = $_SESSION['username'];
                     
                         $stmt = $conn->prepare("INSERT INTO technology_tbl(technology_id, technology_name, date_created, date_updated, modified_by) VALUES (?,?,?,?,?)");
-                        $stmt->bind_param("isss", $technologyID, $formField, $date_created, $date_created, $modified_by);
+                        $stmt->bind_param("issss", $technologyID, $formField, $date_created, $date_created, $modified_by);
                         if ($stmt->execute()) {
                             echo json_encode(['status' => 'success', 'message' => 'Shoe technology name saved successfully.']);
                         } else {
