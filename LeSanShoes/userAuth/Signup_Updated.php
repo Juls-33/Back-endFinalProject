@@ -1,8 +1,3 @@
-<?php
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,10 +92,51 @@
       <div class="form-check mb-3">
         <input type="checkbox" class="form-check-input" id="terms" required>
         <label class="form-check-label" for="terms">
-          I agree to the <a href="#" class="condition-link">terms and conditions</a>
+          I agree to the <a href="#" class="condition-link" data-bs-toggle="modal" data-bs-target="#termsModal">terms and conditions</a>
         </label>
       </div>
 
+      <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="termsContent">
+              Loading...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+            
+      <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="privacy" required>
+        <label class="form-check-label" for="privacy">
+          I agree to the <a href="#" class="condition-link" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
+        </label> 
+      </div>
+      
+      <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="privacyModalLabel">Privacy Policy</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="privacyContent">
+              Loading...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div class="d-grid">
         <button type="button" class="btn btn-dark" onclick="signUp()">Sign Up</button>
       </div>
@@ -161,12 +197,59 @@
         '.popover-body': getUpdatedContent(passwordInput.value)
       });
     });
+  });
 
-    const showToast = (message) => {
-      toastMessage.textContent = message;
-      const toast = new bootstrap.Toast(toastElement);
-      toast.show();
-    };
+  //Terms and Conditions Modal
+  document.addEventListener('DOMContentLoaded', function () {
+    const termsModal = document.getElementById('termsModal');
+
+    termsModal.addEventListener('show.bs.modal', function () {
+      const termsContent = document.getElementById('termsContent');
+      termsContent.innerHTML = "Loading..."; // Reset Content
+
+      // Load the external HTML content
+      fetch('./termsandconditions.html')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.text();
+        })
+        .then(data => {
+          termsContent.innerHTML = data;
+        })
+        .catch(error => {
+          termsContent.innerHTML = "Failed to load content.";
+          console.error("Error loading external content:", error);
+        });
+    });
+  });
+
+  //privacy Policy Modal
+  document.addEventListener('DOMContentLoaded', function () {
+    const privacyModal = document.getElementById('privacyModal');
+
+    privacyModal.addEventListener('show.bs.modal', function () {
+      const privacyContent = document.getElementById('privacyContent');
+      privacyContent.innerHTML = "Loading..."; // Reset Content
+
+      // Load the external HTML content
+      fetch('./privacy.html')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.text();
+        })
+        .then(data => {
+          privacyContent.innerHTML = data;
+        })
+        .catch(error => {
+          privacyContent.innerHTML = "Failed to load content.";
+          console.error("Error loading external content:", error);
+        });
+    });
+  });
 
     window.signUp = function () {
       // Clear previous errors
@@ -214,15 +297,24 @@
       }
 
       const terms = document.getElementById('terms');
-      if (!terms.checked) {
-        showToast('You must accept the terms and conditions');
-        return;
+      const privacy = document.getElementById('privacy');
+      if(!terms.checked){
+        showToast ('You must accept the terms and conditions');
       }
 
+      if (!privacy.checked){
+        showToast('You must agree to the Privacy Policy');
+      }
+
+      
+    if (!terms?.checked || !privacy?.checked) {
+      return;
+    }
+      
       form.submit();
     };
-  });
 </script>
+
 
 
 
