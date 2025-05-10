@@ -1,7 +1,9 @@
 <?php
 include("configAndrei.php");
 
-function getOptions($conn, $table, $id_field, $name_field) {
+
+
+function getRunningShoes($conn, $table, $id_field, $name_field) {
     $result = $conn->query("SELECT $id_field, $name_field FROM $table");
     $options = '';
     while ($row = $result->fetch_assoc()) {
@@ -12,16 +14,19 @@ function getOptions($conn, $table, $id_field, $name_field) {
 
 try {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        
+
         $sql = "SELECT 
                     sm.shoe_model_id,
                     sm.model_name,
                     sm.description,
                     c.image1,
-                    b.brand_name AS brand_name
+                    b.brand_name AS brand_name,
+                    cat.category_name
                 FROM shoe_model_tbl sm
                 JOIN brand_tbl b ON sm.brand_id = b.brand_id
+                JOIN category_tbl cat ON sm.category_id = cat.category_id
                 LEFT JOIN colorway_tbl c ON sm.shoe_model_id = c.shoe_model_id
+                WHERE sm.category_id = 2
                 ORDER BY sm.model_name ASC";
 
         $result = $conn->query($sql);
@@ -39,6 +44,5 @@ try {
     http_response_code(500);
     echo json_encode(["error" => $e->getMessage()]);
 }
-
 ?>
 

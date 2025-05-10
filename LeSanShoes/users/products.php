@@ -69,8 +69,8 @@
    </div>
   </div>
 
-  
-    <div class="container mt-4">
+
+    <div class="container mt-4">  
       <div class="row">
         <!-- Filters -->
         <div class="col-md-3">
@@ -146,8 +146,11 @@
         <!-- Product Display -->
         <div class="col-md-9">
           <h4>Shoes</h4>
+          <input type="text" id="colorwaySearch" class="form-control mb-3" placeholder="Search products...">
           <div class="container mt-4">
-            <div class="row gy-4 card-container" id="cardContainer"></div>
+            </div>
+            <div class="row gy-4 card-container" id="cardContainer">
+            
           </div>
         </div>
       </div>
@@ -432,5 +435,17 @@
     </div>
   </div>
 </div>
+
+<script>   
+
+$('#colorwaySearch').on('input', function () {
+        const searchTerm = $(this).val().toLowerCase();
+        $('.colorway-card').each(function () {
+            const text = $(this).attr('data-search').toLowerCase();
+            $(this).toggle(text.includes(searchTerm));
+        });
+    });
+
+</script>
 </body>
 </html>

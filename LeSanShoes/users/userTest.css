@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+
+ .navbar-brand, .nav-link, .navbar-text {
+    color: #B51E1E !important;
+    font-weight: bold;
+}
+
+.ad {
+    background-color: #B51E1E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 2rem;
+}
+
+.ad-text {
+    width: 100%;
+    height: 1.5rem;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ad-text h2 {
+    font-size: 1rem;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-class {
+    width: 8rem;
+    height: 4rem;
+    display: flex;
+}
+
+.material-symbols-outlined{
+  color: #B51E1E;
+  font-size: 3rem;
+}
+
+.icon-text {
+  color: #B51E1E;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+a{
+    text-decoration: none;
+    color: #555;
+}
+p{
+    color: #000000;
+}
+.header{
+    border: #B51E1E solid;
+}
+.material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+
+a{
+    text-decoration: none;
+    color: #555;
+}
+p{
+    color: #000000;
+}
+.header{
+    border: #B51E1E solid;
+}
+.container{
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+      /* border: solid; */
+}
+
+.col-2{
+    flex-basis: 50%;
+    min-width: 300px;
+}
+.col-2 img{
+    max-width: 100%;
+    padding: 50px 0;
+} 
+
+.col-2 h1{
+    font-size: 60px;
+    line-height: 80px;
+    margin: 25px 0;
+      -webkit-text-stroke: 1px #740505; 
+      color: #B51E1E;
+}
+
+.btn{
+    display: inline-block;
+    background: #ffffff;
+    color: #B51E1E;
+    font-weight: bold;
+    padding:8px 30px;
+    margin: 30px 0px;
+    border-radius: 30px;
+    transition:background 0.5s;
+}
+.btn:hover{
+    background: #563434;
+}
+.header{
+    background: linear-gradient(#B51E1E, #fff,#B51E1E);
+}
+.header .row{
+    margin-top: 70px;
+}
+
+
+.shoesTitle{
+    margin-left: 70px;
+    margin-top: 40px;
+    margin-bottom: 70px;
+    color: #B51E1E;
+}
+
+
+.card-container {
+    width: 100%;
+  display: flex;
+  flex-wrap: nowrap;          
+  overflow-x: auto;           
+  justify-content: flex-start;               
+  padding: 0;      
+}
+
+.card-container-wrapper {
+  display: flex;
+  align-items: center;         /* Centers the cards vertically with the buttons */
+  justify-content: center;     /* Centers everything horizontally */
+  position: relative;          /* Allows positioning of buttons inside */
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: nowrap;            /* Prevents wrapping */
+  overflow-x: auto;             /* Enables horizontal scrolling */
+  justify-content: flex-start;  /* Aligns cards to the start */
+  margin: 0;                    /* Removes margin around the container */
+  padding: 0;                   /* Removes padding around the container */
+  width: 80%;                   /* Control the width of the card container */
+}
+
+.card-container .card {
+  flex: 0 0 25%;                /* Each card takes 25% of the container width */
+  margin: 0;                    /* No margin between cards */
+}
+
+.scroll-btn {
+  background-color: transparent;  /* Remove background color */
+  border: none;                   /* Remove border */
+  cursor: pointer;                /* Make the button clickable */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;                 /* Adjust icon size */
+  color: #007bff;                  /* Icon color */
+  z-index: 1;
+}
+
+.scroll-btn.left {
+  left: 0;  /* Position left button to the left */
+}
+
+.scroll-btn.right {
+  right: 0;  /* Position right button to the right */
+}
+
+
+.brandContainer{
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.card-text{
+  color: #B51E1E;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.brandContainer .card-text{
+  font-size: 2rem;
+ 
+}
+
+.runningContainer{
+    margin-top: 50px;
+}
+
+

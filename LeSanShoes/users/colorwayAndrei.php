@@ -14,7 +14,7 @@ $sql = "SELECT
             c.image2,
             c.image3,
             c.image4,
-            CONCAT(sm.brand_id, ': ', b.brand_name) AS brand_name
+            b.brand_name AS brand_name
         FROM shoe_model_tbl sm
         JOIN brand_tbl b ON sm.brand_id = b.brand_id
         LEFT JOIN colorway_tbl c ON sm.shoe_model_id = c.shoe_model_id

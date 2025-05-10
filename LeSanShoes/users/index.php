@@ -1,74 +1,63 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
-  <script src="../assets/js/user.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basketball Shoes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>    
-  <link rel="stylesheet" href="../assets/css/user.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <!-- <link rel="stylesheet" href="../user/css/products.css"/> -->
   <style>
-    .material-symbols-outlined {
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
-    }
   </style>
-  <link rel="stylesheet" href="productpage.css">
+  <link rel="stylesheet" href="userTest.css">
 </head>
 
 <body>
-<header>
-  <div class="ad">
-    <div class="ad-text">
-      <h2>Limited Time Offer 20% off for All Shoes! Contact Us Now</h2>
+  <header>
+    <div class="ad">
+      <div class="ad-text">
+        <h2>Limited Time Offer 20% off for All Shoes! Contact Us Now</h2>
+      </div>
     </div>
-  </div>
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <div class="logo-class">
-          <img src="../assets/images/sanshoes logo.png" alt="Bootstrap" width="100" height="100">
-        </div>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="products.php">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="faq.php">FAQ</a></li>
-        </ul>
-        <div class="d-lg-flex flex-lg-row align-items-center gap-2">
-               <div><a href="../userAuth/login.php">Login</a></div>
-              <p>Username: <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?></p>
-              <a href="../userAuth/logoutUser.php">Logout</a> 
-              <div class="mb-2" role="button" data-bs-toggle="modal" data-bs-target="#userModal">
-  <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
-  <span class="icon-text d-inline d-lg-none">User Account</span>
-</div>
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <div class="logo-class">
+            <img src="../assets/images/sanshoes logo.png" alt="Bootstrap" width="100" height="100">
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.php">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="faq.php">FAQ</a></li>
+          </ul>
+          <div class="d-lg-flex flex-lg-row align-items-center gap-2">
+            <div class="mb-2" role="button" data-bs-toggle="modal" data-bs-target="#userModal">
+              <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
+              <span class="icon-text d-inline d-lg-none">User Account</span>
+            </div>
             <div>
-            <span class="material-symbols-outlined d-none d-lg-inline">shopping_cart</span>
-            <span class="icon-text d-inline d-lg-none">Cart</span>
+              <span class="material-symbols-outlined d-none d-lg-inline">shopping_cart</span>
+              <span class="icon-text d-inline d-lg-none">Cart</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
-<main>
+<div>
   <div class="header">
     <div class="container">
       <div class="row">
@@ -84,64 +73,28 @@ session_start();
     </div>
   </div>
 
-  <div class="shoeSlide">
-    <div class="shoeSlide-header">
-      <h2>NEWEST IN THE GAME</h2>
-    </div>
-    <div class="wrapper">
-      <i id="left" class="fa-solid fa-angle-left"></i>
-      <ul class="carousel">
-        <li class="card">
-          <div class="img"><img src="../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-          <h2>Nike </h2>
-          <span id="model">Vomero 5</span>
-          <span>₱6,395</span>
-        </li>
 
-        <li class="card">
-          <div class="img"><img src="../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-          <h2>Nike </h2>
-          <span id="model">Vomero 5</span>
-          <span>₱6,395</span>
-        </li>
-        <li class="card">
-          <div class="img"><img src="../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-          <h2>Nike </h2>
-          <span id="model">Vomero 5</span>
-          <span>₱6,395</span>
-        </li>
-        <li class="card">
-          <div class="img"><img src="../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-          <h2>Nike </h2>
-          <span id="model">Vomero 5</span>
-          <span>₱6,395</span>
-        </li>
-        <li class="card">
-          <div class="img"><img src="../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-          <h2>Nike </h2>
-          <span id="model">Vomero 5</span>
-          <span>₱6,395</span>
-        </li>
-        <li class="card">
-          <div class="img"><img src="../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-          <h2>Nike </h2>
-          <span id="model">Vomero 5</span>
-          <span>₱6,395</span>
-        </li>
-        <li class="card">
-          <div class="img"><img src="../assets/../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-          <h2>Nike </h2>
-          <span id="model">Vomero 5</span>
-          <span>₱6,395</span>
-        </li>
-      </ul>
-      <i id="right" class="fa-solid fa-angle-right"></i>
+<div class="shoesTitle">
+  <h1>NEWEST IN THE GAME</h1>
+</div>
+  <div class="container mt-4">
+  <div class="card-container-wrapper">
+    <button class="scroll-btn left" id="leftBtn">
+      <span class="material-symbols-outlined">arrow_circle_left</span>
+    </button>
+    <div class="card-container" id="cardContainer">
+      <!-- Dynamic shoe model cards will appear here -->
     </div>
+    <button class="scroll-btn right" id="rightBtn">
+      <span class="material-symbols-outlined">arrow_circle_right</span>
+    </button>
   </div>
+</div>
 
-  <div class="brandContainer">
-    <div class="shoeSlide-header mb-5">
-      <h2>SHOP BY BRAND</h2>
+
+<div class="brandContainer">
+    <div class=" mb-5 shoesTitle">
+      <h1>SHOP BY BRAND</h1>
     </div>
     <div class="brands">
       <div class="row row-cols-auto justify-content-center g-3">
@@ -177,59 +130,50 @@ session_start();
             </div>
           </div>
         </div>
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="../assets/../assets/images\asics.jpg" class="card-img-top" alt="ANTA">
+            <div class="card-body p-2 text-center">
+              <p class="card-text small">ASICS</p>
+            </div>
+          </div>
+        </div>
       </div>
-     
-      <div class="shoeSlide">
-        <div class="shoeSlide-header">
-          <h2>RUNNING BEST SELLERS</h2>
-        </div>
-        <div class="wrapper">
-          <i id="left" class="fa-solid fa-angle-left"></i>
-          <ul class="carousel">
-            <li class="card">
-              <div class="img"><img src="../assets/../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-              <h2>Nike Vomero 5</h2>
-              <span>₱6,395</span>
-            </li>
-            <li class="card">
-              <div class="img"><img src="../assets/../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-              <h2>Nike Vomero 5</h2>
-              <span>₱6,395</span>
-            </li>
-            <li class="card">
-              <div class="img"><img src="../assets/../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-              <h2>Nike Vomero 5</h2>
-              <span>₱6,395</span>
-            </li>
-            <li class="card">
-              <div class="img"><img src="../assets/../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-              <h2>Nike Vomero 5</h2>
-              <span>₱6,395</span>
-            </li>
-            <li class="card">
-              <div class="img"><img src="../assets/../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-              <h2>Nike Vomero 5</h2>
-              <span>₱6,395</span>
-            </li>
-            <li class="card">
-              <div class="img"><img src="../assets/../assets/images/VOMERO+5+BG.jpg" alt="Nike Vomero" draggable="false"></div>
-              <h2>Nike Vomero 5</h2>
-              <span>₱6,395</span>
-            </li>
-          </ul>
-          <i id="right" class="fa-solid fa-angle-right"></i>
-        </div>
-        </div>
+       </div>
+   </div>
+
+       
 
 
-        <div class="genderContainer">
-          <div class="shoeSlide-header mb-5">
-            <h2>SHOP BY GENDER</h2>
+<div class="runningContainer">
+<div class="shoesTitle">
+  <h1>RUNNING ESSENTIALS</h1>
+</div>
+  <div class="container mt-4">
+  <div class="card-container-wrapper">
+    <button class="scroll-btn left" id="leftBtn1">
+      <span class="material-symbols-outlined">arrow_circle_left</span>
+    </button>
+    <div class="card-container" id="runningCardContainer">
+      <!-- Dynamic shoe model cards will appear here -->
+    </div>
+    <button class="scroll-btn right" id="rightBtn1">
+      <span class="material-symbols-outlined">arrow_circle_right</span>
+    </button>
+  </div>
+</div>
+</div>
+    
+
+
+<div class="genderContainer">
+          <div class="shoesTitle">
+            <h1>SHOP BY GENDER</h1>
           </div>
           <div class="genders">
             <div class="row row-cols-auto justify-content-center g-5">
               <div class="col">
-                <div class="card" style="width: 20rem;">
+                <div class="card" style="width: 15rem;">
                   <img src="../assets/images/kyrie.jpg" class="card-img-top" alt="ANTA">
                   <div class="card-body p-2 text-center">
                     <p class="card-text small">MEN</p>
@@ -237,7 +181,7 @@ session_start();
                 </div>
               </div>
               <div class="col">
-                <div class="card" style="width: 20rem;">
+                <div class="card" style="width: 15rem;">
                   <img src="../assets/images\sabrina.jpg" class="card-img-top" alt="ANTA">
                   <div class="card-body p-2 text-center">
                     <p class="card-text small">WOMEN</p>
@@ -245,7 +189,7 @@ session_start();
                 </div>
               </div>
               <div class="col">
-                <div class="card" style="width: 20rem;">
+                <div class="card" style="width: 15rem;">
                   <img src="../assets/images\stephen.jpg" class="card-img-top" alt="ANTA">
                   <div class="card-body p-2 text-center">
                     <p class="card-text small">UNISEX</p>
@@ -255,20 +199,17 @@ session_start();
             </div>
 
 
-
-
       </div>
     </div>
   </div>
+    
+  </main>
 
-  
-</main>
- <!-- Footer -->
- <br> <br>
- <footer class="text-white text-center text-lg-start w-100" style="width: 100%; background-color: #B51E1E;">
+  <!-- Footer -->
+  <br><br>
+  <footer class="text-white text-center text-lg-start w-100" style="width: 100%; background-color: #B51E1E;">
     <div class="p-4" style="max-width: 100%;">
       <div class="d-flex flex-wrap justify-content-around text-start">
-        <!-- Column 1 -->
         <div class="p-3" style="min-width: 250px; max-width: 300px;">
           <div class="shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto">
             <img src="../assets/images/sanshoes logo white.png" height="70" alt="" loading="lazy" />
@@ -280,8 +221,7 @@ session_start();
             <li><a class="text-white px-2" href="#"><i class="fab fa-youtube"></i></a></li>
           </ul>
         </div>
-  
-        <!-- Column 2 -->
+
         <div class="p-3" style="min-width: 250px; max-width: 300px;">
           <h5 class="text-uppercase mb-4">Products</h5>
           <ul>
@@ -291,19 +231,17 @@ session_start();
             <li class="mb-2"><a href="#" class="text-white">Adidas</a></li>
           </ul>
         </div>
-  
-        <!-- Column 3 -->
+
         <div class="p-3" style="min-width: 250px; max-width: 300px;">
           <h5 class="text-uppercase mb-4">Useful Links</h5>
           <ul>
-            <li class="mb-2"><a href="#" class="text-white">Home</a></li>
-            <li class="mb-2"><a href="products.php" class="text-white">Products</a></li>
+            <li class="mb-2"><a href="index.php" class="text-white">Home</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Products</a></li>
             <li class="mb-2"><a href="faq.php" class="text-white">FAQ</a></li>
             <li class="mb-2"><a href="#" class="text-white">Cart</a></li>
           </ul>
         </div>
-  
-        <!-- Column 4 -->
+
         <div class="p-3" style="min-width: 250px; max-width: 300px;">
           <h5 class="text-uppercase mb-4">Contact</h5>
           <ul class="list-unstyled">
@@ -314,37 +252,76 @@ session_start();
         </div>
       </div>
     </div>
-  
+
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
       © 2020 Copyright:
       <a class="text-white" href="https://mdbootstrap.com/">LeSanShoes.com</a>
     </div>
   </footer>
-  
 
+  <script src="productsPageMiddleware.js"></script>
+    <script src="runningshoes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- User Modal for login/logout -->
   <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="userModalLabel">User Account</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <?php if (isset($_SESSION["username"])): ?>
-          <p>You are logged in as <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong></p>
-          <a href="../userAuth/logoutUser.php" class="btn btn-danger">Logout</a>
-        <?php else: ?>
-          <p>You are not logged in.</p>
-          <a href="../userAuth/login.php" class="btn btn-primary">Login</a>
-        <?php endif; ?>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userModalLabel">User Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <?php if (isset($_SESSION["username"])): ?>
+            <p>You are logged in as <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong></p>
+            <a href="../userAuth/logoutUser.php" class="btn btn-danger">Logout</a>
+          <?php else: ?>
+            <p>You are not logged in.</p>
+            <a href="../userAuth/login.php" class="btn btn-primary">Login</a>
+          <?php endif; ?>
+        </div>
       </div>
     </div>
   </div>
-</div>
-  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" 
-  integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" 
-  crossorigin="anonymous"></script>
+
+  <script>
+    $('#colorwaySearch').on('input', function () {
+      const searchTerm = $(this).val().toLowerCase();
+      $('.colorway-card').each(function () {
+        const text = $(this).attr('data-search').toLowerCase();
+        $(this).toggle(text.includes(searchTerm));
+      });
+    });
+
+
+    document.getElementById('leftBtn').addEventListener('click', function() {
+  document.getElementById('cardContainer').scrollBy({
+    left: -300, /* Scroll left by 300px */
+    behavior: 'smooth'  /* Smooth scroll */
+  });
+});
+
+document.getElementById('rightBtn').addEventListener('click', function() {
+  document.getElementById('cardContainer').scrollBy({
+    left: 300,  /* Scroll right by 300px */
+    behavior: 'smooth'  /* Smooth scroll */
+  });
+});
+
+
+document.getElementById('leftBtn1').addEventListener('click', function() {
+  document.getElementById('runningCardContainer').scrollBy({
+    left: -300, /* Scroll left by 300px */
+    behavior: 'smooth'  /* Smooth scroll */
+  });
+});
+
+document.getElementById('rightBtn1').addEventListener('click', function() {
+  document.getElementById('runningCardContainer').scrollBy({
+    left: 300,  /* Scroll right by 300px */
+    behavior: 'smooth'  /* Smooth scroll */
+  });
+});
+  </script>
 </body>
 </html>

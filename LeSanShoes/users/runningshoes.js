@@ -2,7 +2,7 @@ console.log("JavaScript is running!");
 $(document).ready(function() {
       try {
         $.ajax({
-          url: 'TryLangAndrei.php',  
+          url: 'runningShoes.php',  
           method: 'POST',
           dataType: 'json',
           success: function(response) {
@@ -24,7 +24,7 @@ $(document).ready(function() {
               `;
             });
 
-            $('#cardContainer').html(cardsHtml);
+            $('#runningCardContainer').html(cardsHtml);
           }
         });
       } catch (error) {
@@ -32,7 +32,7 @@ $(document).ready(function() {
       }
     });
 
-    $('#cardContainer').on('click', '.product-card', function () {
+    $('#runningCardContainer').on('click', '.product-card', function () {
   const modelId = $(this).data('id');
   window.location.href = 'productpage.php?id=' + modelId;
 
