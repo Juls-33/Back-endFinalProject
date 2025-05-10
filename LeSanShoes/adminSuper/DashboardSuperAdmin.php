@@ -5,7 +5,14 @@
     ob_start();
     include('get_inventoryCount.php');
     $inventoryCount = ob_get_clean();
-    
+
+    ob_start();
+    include('get_pendingOrders.php');
+    $pendingCount = ob_get_clean();
+
+    ob_start();
+    include('get_completedOrders.php');
+    $completedCount = ob_get_clean();
     
     $sql = "INSERT INTO sales_tbl (date, amount) VALUES ('2025-06-05', 100.00), ('2025-06-06', 150.00), ('2025-06-07', 200.00)"; 
     if ($conn->query($sql) === TRUE) {
@@ -37,7 +44,6 @@
     <link rel="stylesheet" href="../assets/css/AdminPage.css">
     <link rel="stylesheet" href="../assets/css/CustomAdminPage.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -113,7 +119,7 @@
                     </a>
                 </li>
             </ul>
-            <div class="sidebar-footer">
+            <div class="sidebar-footer"> 
                 <a href="../userAuth/logoutAdmin.php" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Logout</span>
@@ -174,7 +180,7 @@
                                     <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">check_circle</span>
                                     <div class="text-end">
                                       <p class="text-sm mb-0">Completed Orders</p>
-                                      <h4 class="mb-0">50 Orders</h4>
+                                      <h4 class="mb-0"><?php echo htmlspecialchars($completedCount); ?> Orders</h4>
                                     </div>
                                 </div>     
                             </div>
@@ -188,7 +194,7 @@
                                     <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">pending_actions</span>
                                     <div class="text-end">
                                       <p class="text-sm mb-0">Pending Orders</p>
-                                      <h4 class="mb-0">5 Orders</h4>
+                                      <h4 class="mb-0"><?php echo htmlspecialchars($pendingCount); ?> Orders</h4>
                                     </div>
                                 </div>     
                             </div>
@@ -293,7 +299,7 @@
                             <div class="card-body pb-0 p-3 mt-1">
                                 <div class="row"> 
                                     <p class="text-sm mb-4">Registered Users</p>
-                                    <p class="mb-1">- 150 Users</p>
+                                    <p class="display-4 fw-bold" id="todayUsers">0</p>
                                 </div>
                                 <br>
                                 <hr class="dark horizontal my-0">
@@ -301,7 +307,7 @@
                             <div class="card-body pb-0 p-3 mt-1">
                                 <div class="row"> 
                                     <p class="text-sm mb-4">Registered Admins</p>
-                                    <p class="mb-4">- 5 Admins</p>
+                                    <p class="display-4 fw-bold" id="todayAdmins">0</p>
                                 </div>
                             </div>
                         </div>
@@ -450,6 +456,36 @@
             }); 
         }); 
         </script>
+
+    <script>
+        // Fetch pending orders
+        fetch('pending_orders.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('pendingCount').textContent = data;
+        });
+
+        // Fetch completed orders
+        fetch('completed_orders.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('completedCount').textContent = data;
+        });
+  </script>
+
+    <script>
+        fetch('roles.php')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('todayAdmins').textContent = data['Admin'] || 0;
+                document.getElementById('todayUsers').textContent = data['User'] || 0;
+            });
+    </script>
+
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
