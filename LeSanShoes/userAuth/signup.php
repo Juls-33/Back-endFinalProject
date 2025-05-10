@@ -126,10 +126,52 @@
                     <input type="number" id="contact" name="contact" class="form-control" min="0" onKeyPress="if(this.value.length==11) return false;" required>
                 </div>
 
-                <div class="checkbox">
+               <div class="checkbox">
+                    <input type="checkbox" id="terms" required>
                     <label>
-                    <input type="checkbox" id="terms"> I agree to the <a href="#">terms and conditions</a>
+                    I agree to the <a href="#" class="condition-link" data-bs-toggle="modal" data-bs-target="#termsModal">terms and conditions</a>
                     </label>
+                </div>
+
+                <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="termsContent">
+                                Loading...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkbox">
+                    <input type="checkbox" id="privacy">    
+                    <label for="privacy">
+                    I agree to the <a href="#" class="condition-link" data-bs-toggle="modal" data-bs-target="#privacyModal">privacy policy</a>
+                    </label> 
+                </div>
+
+                <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="privacyModalLabel">Privacy Policy</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="privacyContent">
+                                Loading...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -221,3 +263,56 @@
         </div>
     </body>
 </html>
+
+<script>
+     //Terms and Conditions Modal
+  document.addEventListener('DOMContentLoaded', function () {
+    const termsModal = document.getElementById('termsModal');
+
+    termsModal.addEventListener('show.bs.modal', function () {
+      const termsContent = document.getElementById('termsContent');
+      termsContent.innerHTML = "Loading..."; // Reset Content
+
+      // Load the external HTML content
+      fetch('./termsandconditions.html')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.text();
+        })
+        .then(data => {
+          termsContent.innerHTML = data;
+        })
+        .catch(error => {
+          termsContent.innerHTML = "Failed to load content.";
+          console.error("Error loading external content:", error);
+        });
+    });
+  });
+
+   document.addEventListener('DOMContentLoaded', function () {
+    const privacyModal = document.getElementById('privacyModal');
+
+    privacyModal.addEventListener('show.bs.modal', function () {
+      const privacyContent = document.getElementById('privacyContent');
+      privacyContent.innerHTML = "Loading..."; // Reset Content
+
+      // Load the external HTML content
+      fetch('./privacy.html')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.text();
+        })
+        .then(data => {
+          privacyContent.innerHTML = data;
+        })
+        .catch(error => {
+          privacyContent.innerHTML = "Failed to load content.";
+          console.error("Error loading external content:", error);
+        });
+      });
+    });
+</script>
