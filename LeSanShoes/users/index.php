@@ -22,6 +22,7 @@ session_start();
         'opsz' 24
     }
   </style>
+  <link rel="stylesheet" href="productpage.css">
 </head>
 
 <body>
@@ -46,8 +47,8 @@ session_start();
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../users/andrei.php">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.php">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.php">FAQ</a></li>
         </ul>
         <div class="d-lg-flex flex-lg-row align-items-center gap-2">
                <div><a href="../userAuth/login.php">Login</a></div>
@@ -74,7 +75,7 @@ session_start();
         <div class="col-2">
           <h1>Give your Workout <br>A New Style!</h1>
           <p>Success isn't always about greatness. It's about consistency. Consistent<br>hard work gains success. Greatness will come.</p>
-          <a href="products.html" class="btn">Explore Now &#8594;</a>
+          <a href="products.php" class="btn">Explore Now &#8594;</a>
         </div>
         <div class="col-2">
           <img src="../assets/images/image3.png" alt="Hero">
@@ -296,8 +297,8 @@ session_start();
           <h5 class="text-uppercase mb-4">Useful Links</h5>
           <ul>
             <li class="mb-2"><a href="#" class="text-white">Home</a></li>
-            <li class="mb-2"><a href="#" class="text-white">Products</a></li>
-            <li class="mb-2"><a href="#" class="text-white">FAQ</a></li>
+            <li class="mb-2"><a href="products.php" class="text-white">Products</a></li>
+            <li class="mb-2"><a href="faq.php" class="text-white">FAQ</a></li>
             <li class="mb-2"><a href="#" class="text-white">Cart</a></li>
           </ul>
         </div>

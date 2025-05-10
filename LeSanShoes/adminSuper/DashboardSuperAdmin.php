@@ -6,6 +6,7 @@
     include('get_inventoryCount.php');
     $inventoryCount = ob_get_clean();
     
+    
     $sql = "INSERT INTO sales_tbl (date, amount) VALUES ('2025-06-05', 100.00), ('2025-06-06', 150.00), ('2025-06-07', 200.00)"; 
     if ($conn->query($sql) === TRUE) {
         echo "New Record Created Successfully";
