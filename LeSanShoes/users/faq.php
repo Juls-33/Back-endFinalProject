@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 
 
@@ -42,8 +42,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="../users/andrei.php">Products</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="products.php">Products</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
                 </ul>
                 <div class="d-lg-flex flex-lg-row align-items-center gap-2">
@@ -63,7 +63,7 @@
             </div>
         </nav>
     </header>
-
+    <main>
     <!-- main -->
     <h1>Frequently Asked Questions</h1>
     <div class="accordion accordion-flush" id="accordionFAQ">
@@ -234,7 +234,7 @@
     </ul>
 
     <button type="button" class="btn">Contact Us</button>
-
+</main>
      <!-- Footer -->
      <br> <br>
     <footer class="text-white text-center text-lg-start w-100" style="width: 100%; background-color: #B51E1E;">

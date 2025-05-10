@@ -9,8 +9,8 @@
         die("Connection Failed: " . $conn->connect_error);
     }
 
-    $query = "SELECT DATE(date) as sale_date, SUM(amount) as total FROM sales_tbl GROUP BY sale_date ORDER BY sale_date ASC";
-    $result = $conn->query($query);
+     $query = "SELECT DATE(date) as sale_date, SUM(amount) as total FROM sales_tbl GROUP BY sale_date ORDER BY sale_date ASC";
+     $result = $conn->query($query);
 
     $data = [];
     $labels = [];
@@ -23,5 +23,5 @@
     //$conn->close();
 
     echo json_encode(['labels' => $labels, 'data' => $data]);
-    
+
 ?>
