@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `brand_tbl` (
   CONSTRAINT `fk_brand_tbl_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.brand_tbl: ~9 rows (approximately)
+-- Dumping data for table lesanshoes_db.brand_tbl: ~6 rows (approximately)
 DELETE FROM `brand_tbl`;
 INSERT INTO `brand_tbl` (`brand_id`, `brand_name`, `date_created`, `date_updated`, `modified_by`) VALUES
 	(0, 'N/A', '2025-04-29 06:11:44', '2025-05-04 06:59:12', 'damian'),
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `colorway_size_tbl` (
   CONSTRAINT `fk_colorway_size_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.colorway_size_tbl: ~2 rows (approximately)
+-- Dumping data for table lesanshoes_db.colorway_size_tbl: ~0 rows (approximately)
 DELETE FROM `colorway_size_tbl`;
 
 -- Dumping structure for table lesanshoes_db.colorway_tbl
@@ -122,10 +122,13 @@ CREATE TABLE IF NOT EXISTS `colorway_tbl` (
   KEY `fk_colorway_modified_by` (`modified_by`),
   CONSTRAINT `colorway_tbl_ibfk_1` FOREIGN KEY (`shoe_model_id`) REFERENCES `shoe_model_tbl` (`shoe_model_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_colorway_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.colorway_tbl: ~6 rows (approximately)
+-- Dumping data for table lesanshoes_db.colorway_tbl: ~2 rows (approximately)
 DELETE FROM `colorway_tbl`;
+INSERT INTO `colorway_tbl` (`colorway_id`, `shoe_model_id`, `colorway_name`, `price`, `image1`, `image2`, `image3`, `image4`, `date_created`, `date_updated`, `modified_by`) VALUES
+	(22, 13, 'Soldier', 7899.00, '../assets/images/colorway_681eb386d4959.jpg', '../assets/images/colorway_681eb386d4a84.jpg', '../assets/images/colorway_681eb386d4a89.jpg', '../assets/images/colorway_681eb386d4a8d.jpg', '2025-05-10 04:01:42', '2025-05-10 04:01:42', 'damian'),
+	(24, 14, 'Green', 6599.00, '../assets/images/colorway_681eb4403b301.jpg', '../assets/images/colorway_681eb4403b30d.jpg', '../assets/images/colorway_681eb4403b311.jpg', '../assets/images/colorway_681eb4403b315.jpg', '2025-05-10 04:04:48', '2025-05-10 04:04:48', 'damian');
 
 -- Dumping structure for table lesanshoes_db.faq_tbl
 DROP TABLE IF EXISTS `faq_tbl`;
@@ -155,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `material_tbl` (
   CONSTRAINT `fk_material_tbl_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.material_tbl: ~1 rows (approximately)
+-- Dumping data for table lesanshoes_db.material_tbl: ~7 rows (approximately)
 DELETE FROM `material_tbl`;
 INSERT INTO `material_tbl` (`material_id`, `material_name`, `date_created`, `date_updated`, `modified_by`) VALUES
 	(0, 'N/A', '2025-04-29 06:26:05', '2025-04-29 06:28:14', 'lebron'),
@@ -229,6 +232,25 @@ INSERT INTO `roles_tbl` (`roles_id`, `roles_name`, `roles_desc`, `date_created`,
 	(2, 'SuperAdmin', 'Manages the entire website and have access to all admin functionalities', '0000-00-00 00:00:00', '2025-04-27 09:57:56', 'lebron'),
 	(3, 'Admin', 'Have the ability to accommodate orders, manage inventory, and view statistics', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'lebron');
 
+-- Dumping structure for table lesanshoes_db.sales_tbl
+DROP TABLE IF EXISTS `sales_tbl`;
+CREATE TABLE IF NOT EXISTS `sales_tbl` (
+  `salesperday_id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` int(11) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`salesperday_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table lesanshoes_db.sales_tbl: ~0 rows (approximately)
+DELETE FROM `sales_tbl`;
+INSERT INTO `sales_tbl` (`salesperday_id`, `amount`, `date`) VALUES
+	(1, 100, '2025-06-05'),
+	(2, 150, '2025-06-06'),
+	(3, 200, '2025-06-07'),
+	(4, 100, '2025-06-05'),
+	(5, 150, '2025-06-06'),
+	(6, 200, '2025-06-07');
+
 -- Dumping structure for table lesanshoes_db.shoes_gender_tbl
 DROP TABLE IF EXISTS `shoes_gender_tbl`;
 CREATE TABLE IF NOT EXISTS `shoes_gender_tbl` (
@@ -281,10 +303,13 @@ CREATE TABLE IF NOT EXISTS `shoe_model_tbl` (
   CONSTRAINT `shoe_model_tbl_ibfk_4` FOREIGN KEY (`traction_id`) REFERENCES `traction_tbl` (`traction_id`),
   CONSTRAINT `shoe_model_tbl_ibfk_5` FOREIGN KEY (`support_id`) REFERENCES `support_tbl` (`support_id`),
   CONSTRAINT `shoe_model_tbl_ibfk_6` FOREIGN KEY (`technology_id`) REFERENCES `technology_tbl` (`technology_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.shoe_model_tbl: ~7 rows (approximately)
+-- Dumping data for table lesanshoes_db.shoe_model_tbl: ~2 rows (approximately)
 DELETE FROM `shoe_model_tbl`;
+INSERT INTO `shoe_model_tbl` (`shoe_model_id`, `brand_id`, `category_id`, `material_id`, `traction_id`, `support_id`, `technology_id`, `model_name`, `date_created`, `date_updated`, `description`, `modified_by`) VALUES
+	(13, 2, 1, 1, 1, 1, 1, 'LeBron James', '2025-05-10 04:00:46', '2025-05-10 04:00:46', 'Fly like LeBron, play like LeBron.', 'damian'),
+	(14, 4, 1, 3, 1, 2, 3, 'Damian Lillard', '2025-05-10 04:04:02', '2025-05-10 04:04:02', 'Dame Time!', 'damian');
 
 -- Dumping structure for table lesanshoes_db.size_tbl
 DROP TABLE IF EXISTS `size_tbl`;
@@ -300,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `size_tbl` (
   CONSTRAINT `fk_size_tbl_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.size_tbl: ~4 rows (approximately)
+-- Dumping data for table lesanshoes_db.size_tbl: ~12 rows (approximately)
 DELETE FROM `size_tbl`;
 INSERT INTO `size_tbl` (`size_id`, `size_name`, `date_created`, `date_updated`, `modified_by`) VALUES
 	(0, 'N/A', '2025-04-29 16:21:31', '2025-04-29 16:21:31', 'lebron'),
@@ -355,7 +380,7 @@ CREATE TABLE IF NOT EXISTS `support_tbl` (
   CONSTRAINT `fk_support_tbl_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.support_tbl: ~2 rows (approximately)
+-- Dumping data for table lesanshoes_db.support_tbl: ~3 rows (approximately)
 DELETE FROM `support_tbl`;
 INSERT INTO `support_tbl` (`support_id`, `support_name`, `date_created`, `date_updated`, `modified_by`) VALUES
 	(0, 'N/A', '2025-04-29 06:49:50', '2025-04-29 06:49:50', 'lebron'),
@@ -377,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `technology_tbl` (
   CONSTRAINT `fk_technology_tbl_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.technology_tbl: ~1 rows (approximately)
+-- Dumping data for table lesanshoes_db.technology_tbl: ~4 rows (approximately)
 DELETE FROM `technology_tbl`;
 INSERT INTO `technology_tbl` (`technology_id`, `technology_name`, `date_created`, `date_updated`, `modified_by`) VALUES
 	(0, 'N/A', '2025-04-29 06:55:45', '2025-05-06 03:44:23', 'damian'),
@@ -400,7 +425,7 @@ CREATE TABLE IF NOT EXISTS `traction_tbl` (
   CONSTRAINT `fk_traction_tbl_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.traction_tbl: ~1 rows (approximately)
+-- Dumping data for table lesanshoes_db.traction_tbl: ~4 rows (approximately)
 DELETE FROM `traction_tbl`;
 INSERT INTO `traction_tbl` (`traction_id`, `traction_name`, `date_created`, `date_updated`, `modified_by`) VALUES
 	(0, 'N/A', '2025-04-29 06:40:41', '2025-04-29 06:40:52', 'lebron'),
@@ -428,10 +453,10 @@ CREATE TABLE IF NOT EXISTS `users_tbl` (
   CONSTRAINT `users_tbl_ibfk_1` FOREIGN KEY (`roles_id`) REFERENCES `roles_tbl` (`roles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.users_tbl: ~13 rows (approximately)
+-- Dumping data for table lesanshoes_db.users_tbl: ~14 rows (approximately)
 DELETE FROM `users_tbl`;
 INSERT INTO `users_tbl` (`username`, `roles_id`, `fname`, `lname`, `email`, `user_password`, `birthday`, `user_address`, `contact`, `date_created`, `date_updated`, `last_login`) VALUES
-	('damian', 2, 'damian', 'lillard', 'damian@gmail.com', '123', '2025-04-23', '167-B 21st Avenue, East Rembo', '09664282161', '2025-04-20 18:25:14', '2025-05-03 18:05:09', '2025-05-06 09:20:01'),
+	('damian', 2, 'damian', 'lillard', 'damian@gmail.com', '123', '2025-04-23', '167-B 21st Avenue, East Rembo', '09664282161', '2025-04-20 18:25:14', '2025-05-03 18:05:09', '2025-05-10 11:06:32'),
 	('dasdadsdssdf', 1, 'dsadas', 'daa', 'dasd@gma.c', '123', '1876-08-28', 'eqweqqe', '03242211231', '2025-05-03 18:21:30', '2025-05-03 18:21:30', NULL),
 	('dasdadsdssdfdd', 1, 'dsadas', 'daa', 'dasd@gma.c', '123', '2025-08-28', 'eqweqqe', '03242211231', '2025-05-03 18:21:46', '2025-05-03 18:21:46', NULL),
 	('dasdasda', 1, 'dsadas', 'daa', 'dasd@gma.c', '123', '2025-05-03', 'eqweqqe', '03242211231', '2025-05-03 17:41:09', '2025-05-03 17:41:09', NULL),
