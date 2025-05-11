@@ -19,11 +19,14 @@ try {
                     c.colorway_name,
                     c.price,
                     c.image1,
-                    b.brand_name AS brand_name
+                    b.brand_name,
+                    COALESCE(SUM(cs.stock), 0) AS total_stock
                 FROM colorway_tbl c
                 LEFT JOIN shoe_model_tbl sm ON sm.shoe_model_id = c.shoe_model_id
                 LEFT JOIN brand_tbl b ON sm.brand_id = b.brand_id
-                ORDER BY sm.model_name ASC";
+                LEFT JOIN colorway_size_tbl cs ON cs.colorway_id = c.colorway_id
+                GROUP BY c.colorway_id
+                ";
 
         $result = $conn->query($sql);
         $shoe_models = [];

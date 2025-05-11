@@ -5,7 +5,6 @@ include("../includes/logic/config.php");
 // Get the ID from URL
 if (isset($_POST['id'])) {
   $modelId = mysqli_real_escape_string($conn, $_POST['id']);
- echo $modelId;
   
   // Query the database for the shoe model details
   $sql = "SELECT 
@@ -49,7 +48,18 @@ if (isset($_POST['id'])) {
 }
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-      // Display your product details here
+      $sizeSql = "SELECT s.size_name, cs.stock 
+                    FROM colorway_size_tbl cs 
+                    JOIN size_tbl s ON cs.size_id = s.size_id 
+                    WHERE cs.colorway_id = '$modelId'";
+        $sizeResult = mysqli_query($conn, $sizeSql);
+
+        $sizesWithStock = [];
+        if ($sizeResult && mysqli_num_rows($sizeResult) > 0) {
+            while ($sizeRow = mysqli_fetch_assoc($sizeResult)) {
+                $sizesWithStock[$sizeRow['size_name']] = $sizeRow['stock'];
+            }
+        }
       ?>
       <div class="container-fluid main">
         <div class="row row-cols-1 row-cols-lg-2 g-5">
@@ -98,7 +108,7 @@ if (isset($_POST['id'])) {
                     </div>
 
                     <div class = "productPriceSize">
-                        <h4><strong><?php echo $row['price']; ?></strong></h4>
+                        <h4><strong>₱ <?php echo $row['price']; ?></strong></h4>
                     </div>
 
                     <p class = "productText">
@@ -122,59 +132,25 @@ if (isset($_POST['id'])) {
                     </div>
 
                     <div class="row row-cols-3 row-cols-xl-3 row-cols-lg-2 g-2">
+                    <?php
+                    $counter = 1;
+                    foreach ($sizesWithStock as $sizeName => $stock) {
+                        $id = "option$counter";
+                        $disabled = $stock <= 0 ? 'disabled' : '';
+                        $class = $stock <= 0 ? 'unavailable text-muted' : '';
+                    ?>
                         <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option1" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option1">US 6</label>
+                            <input type="radio" class="btn-check" name="options-size" id="<?php echo $id; ?>" autocomplete="off" <?php echo $disabled; ?>>
+                            <label class="btn btn-outline-secondary size-button <?php echo $class; ?>" for="<?php echo $id; ?>">
+                                <?php echo $sizeName; ?>
+                            </label>
                         </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option2" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option2">US 6.5</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option3" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option3">US 7</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option4" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option4">US 7.5</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option5" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option5">US 8</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option6" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option6">US 8.5</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option7" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option7">US 9</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option8" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option8">US 9.5</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option9" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option9">US 10</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option10" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button unavailable" for="option10">US 10.5</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option11" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option11">US 11</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option12" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option12">US 11.5</label>
-                        </div>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="option13" autocomplete="off">
-                            <label class="btn btn-outline-secondary size-button" for="option13">US 12</label>
-                        </div>
-                    </div>
+                    <?php
+                        $counter++;
+                    }
+                    ?>
+</div>
+
 
                     <br>
 
