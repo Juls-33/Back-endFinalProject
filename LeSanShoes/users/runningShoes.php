@@ -1,7 +1,7 @@
+
+
 <?php
 include("configAndrei.php");
-
-
 
 function getRunningShoes($conn, $table, $id_field, $name_field) {
     $result = $conn->query("SELECT $id_field, $name_field FROM $table");
@@ -14,20 +14,22 @@ function getRunningShoes($conn, $table, $id_field, $name_field) {
 
 try {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
+        
         $sql = "SELECT 
-                    sm.shoe_model_id,
+                    c.colorway_id,
                     sm.model_name,
-                    sm.description,
+                    c.colorway_name,
+                    c.price,
                     c.image1,
-                    b.brand_name AS brand_name,
-                    cat.category_name
-                FROM shoe_model_tbl sm
-                JOIN brand_tbl b ON sm.brand_id = b.brand_id
-                JOIN category_tbl cat ON sm.category_id = cat.category_id
-                LEFT JOIN colorway_tbl c ON sm.shoe_model_id = c.shoe_model_id
-                WHERE sm.category_id = 2
-                ORDER BY sm.model_name ASC";
+                    b.brand_name,
+                    COALESCE(SUM(cs.stock), 0) AS total_stock
+                FROM colorway_tbl c
+                LEFT JOIN shoe_model_tbl sm ON sm.shoe_model_id = c.shoe_model_id
+                LEFT JOIN brand_tbl b ON sm.brand_id = b.brand_id
+                LEFT JOIN colorway_size_tbl cs ON cs.colorway_id = c.colorway_id
+                 WHERE sm.category_id = 2
+                GROUP BY c.colorway_id
+                ";
 
         $result = $conn->query($sql);
         $shoe_models = [];
@@ -44,5 +46,6 @@ try {
     http_response_code(500);
     echo json_encode(["error" => $e->getMessage()]);
 }
+
 ?>
 

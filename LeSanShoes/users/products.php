@@ -76,26 +76,7 @@
         <div class="col-md-3">
           <h4>Filters</h4>
           <div class="accordion" id="filtersAccordion">
-            <!-- Gender Filter -->
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#filterGender">
-                  Gender
-                </button>
-              </h2>
-              <div id="filterGender" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="men"> <label for="men">Men</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="women"> <label for="women">Women</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-        
+          
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#filterActivity">
@@ -105,13 +86,13 @@
               <div id="filterActivity" class="accordion-collapse collapse show">
                 <div class="accordion-body">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="running"> <label for="running">Running</label>
+                    <input class="form-check-input" type="checkbox" id="running" value="running"> <label for="running">Running</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="basketball"> <label for="basketball">Basketball</label>
+                    <input class="form-check-input" type="checkbox" id="basketball" value="basketball"> <label for="basketball">Basketball</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="lifestyle"> <label for="lifestyle">Lifestyle</label>
+                    <input class="form-check-input" type="checkbox" id="lifestyle" value="lifestyle"> <label for="lifestyle">Lifestyle</label>
                   </div>
                 </div>
               </div>
@@ -124,21 +105,29 @@
                 </button>
               </h2>
               <div id="filterBrand" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Anta" value="Anta"> <label for="Anta">Anta</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Nike"> <label for="Nike">Nike</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="UnderArmour"> <label for="UnderArmour">Under Armour</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Adidas"> <label for="Adidas">Adidas</label>
-                  </div>
-                </div>
-              </div>
+  <div class="accordion-body">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="Anta" value="Anta">
+      <label for="Anta">Anta</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="Nike" value="Nike">
+      <label for="Nike">Nike</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="Under" value="Under">
+      <label for="UnderArmour">Under Armour</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="Adidas" value="Adidas">
+      <label for="Adidas">Adidas</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="Asics" value="Asics">
+      <label for="Asics">Asics</label>
+    </div>
+  </div>
+</div>
             </div>
           </div>
         </div>
@@ -234,6 +223,7 @@
     </div>
   </footer>
   <script src="productsPageMiddleware.js"></script>
+  <script src="filters.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
   <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -255,9 +245,9 @@
   </div>
 </div>
 
-<script>   
+<script>
 
-$('#colorwaySearch').on('input', function () {
+  $('#colorwaySearch').on('input', function () {
         const searchTerm = $(this).val().toLowerCase();
         $('.colorway-card').each(function () {
             const text = $(this).attr('data-search').toLowerCase();
@@ -265,21 +255,38 @@ $('#colorwaySearch').on('input', function () {
         });
     });
 
-$('#Anta').on('change', function () {
-    const isChecked = $(this).is(':checked');
-    const searchTerm = $(this).val().toLowerCase();
+  function filterColorways() {
+    const selectedBrands = $('input[type=checkbox]:checked').map(function () {
+      return this.value.toLowerCase();
+    }).get();
+
     $('.colorway-card').each(function () {
-        const text = $(this).attr('data-search').toLowerCase();
+      const text = $(this).attr('data-search').toLowerCase();
 
-        if (isChecked) {
-            $(this).toggle(text.includes(searchTerm));
-        } else {
-            $(this).show(); // show everything when unchecked
-        }
+      const matches = selectedBrands.length === 0 || selectedBrands.some(brand => text.includes(brand));
+      $(this).toggle(matches);
     });
-});
+  }
 
+  // Attach the function to all brand checkboxes
+  $('#Anta, #Nike, #Under, #Adidas, #Asics').on('change', filterColorways);
 
+  // function filterActivities() {
+  //   const selectedActivities = $('input[type=checkbox]:checked').map(function () {
+  //     return this.value.toLowerCase();
+  //   }).get();
+
+  //   $('.colorway-card').each(function () {
+  //     const text = $(this).attr('data-search').toLowerCase();
+
+  //     const matches = selectedActivities.length === 0 || selectedActivities.some(activity => text.includes(activity));
+  //     $(this).toggle(matches);
+  //   });
+  // }
+
+  // // Attach the function to all activity checkboxes
+  // $('#running, #basketball, #lifestyle').on('change', filterActivities);
 </script>
+
 </body>
 </html>

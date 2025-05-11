@@ -26,23 +26,28 @@ $(document).ready(function() {
                   : `<strong>₱ ${item.price}</strong>`;
 
                 cardsHtml += `
-                  <div class="col-md-4 mb-4 colorway-card ${isOutOfStock ? 'grayed-out' : ''}"
-                      data-search="${item.model_name}${item.brand_name}${item.colorway_name}${item.price}">
-                    <div class="card product-card"
-                        style="width: 18rem; ${isOutOfStock ? 'opacity: 0.5; pointer-events: none;' : ''}"
-                        data-id="${item.colorway_id}">
-                      <img src="${imgPath}" class="card-img-top" alt="Shoe Image">
-                      <div class="card-body p-2 text-center">
-                        <p class="card-text small">
-                          <strong>${item.brand_name}</strong><br>
-                          ${item.model_name}<br>
-                          ${item.colorway_name}<br>
-                          ${stockText}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                `;
+  <div class="col-md-4 mb-4 colorway-card ${isOutOfStock ? 'grayed-out' : ''}"
+      data-search="${item.model_name}${item.brand_name}${item.colorway_name}${item.price}">
+    <div class="card product-card h-100"
+        style="width: 18rem; ${isOutOfStock ? 'opacity: 0.5; pointer-events: none;' : ''}"
+        data-id="${item.colorway_id}">
+      
+      <div style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+        <img src="${imgPath}" class="card-img-top" alt="Shoe Image"
+             style="height: 100%; width: auto; object-fit: contain;">
+      </div>
+      
+      <div class="card-body p-2 text-center">
+        <p class="card-text small">
+          <strong>${item.brand_name}</strong><br>
+          ${item.model_name}<br>
+          ${item.colorway_name}<br>
+          ${stockText}
+        </p>
+      </div>
+    </div>
+  </div>
+`;
               });
 
             $('#cardContainer').html(cardsHtml);

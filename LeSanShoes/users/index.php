@@ -164,44 +164,6 @@
 </div>
 </div>
     
-
-
-<div class="genderContainer">
-          <div class="shoesTitle">
-            <h1>SHOP BY GENDER</h1>
-          </div>
-          <div class="genders">
-            <div class="row row-cols-auto justify-content-center g-5">
-              <div class="col">
-                <div class="card" style="width: 15rem;">
-                  <img src="../assets/images/kyrie.jpg" class="card-img-top" alt="ANTA">
-                  <div class="card-body p-2 text-center">
-                    <p class="card-text small">MEN</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card" style="width: 15rem;">
-                  <img src="../assets/images\sabrina.jpg" class="card-img-top" alt="ANTA">
-                  <div class="card-body p-2 text-center">
-                    <p class="card-text small">WOMEN</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card" style="width: 15rem;">
-                  <img src="../assets/images\stephen.jpg" class="card-img-top" alt="ANTA">
-                  <div class="card-body p-2 text-center">
-                    <p class="card-text small">UNISEX</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-      </div>
-    </div>
-  </div>
     
   </main>
 
