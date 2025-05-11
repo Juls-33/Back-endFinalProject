@@ -10,6 +10,7 @@ function getOptions($conn, $table, $id_field, $name_field) {
 }
 
 
+
 try{
     if($_SERVER["REQUEST_METHOD"]==="POST"){
         // Shoe model query
@@ -88,6 +89,14 @@ try{
         while ($row = $colorway_size_result->fetch_assoc()) {
             $colorway_sizes[] = $row;
         }
+
+        // $sql = "SELECT status_name FROM status_tbl";
+        // $result = $conn->query($sql);
+        // $statuses = [];
+
+        // while ($row = $result->fetch_assoc()) {
+        //     $statuses[] = $row['status_name'];
+        // }
 
         
         echo json_encode([
