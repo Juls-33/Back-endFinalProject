@@ -498,7 +498,7 @@
         .then(json => {
             const ctx = document.getElementById('salesPerQuarterChart').getContext('2d');
             const salesPerQuarterChart = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'bar',
                 data: {
                     labels: json.labels,
                     datasets: [{
