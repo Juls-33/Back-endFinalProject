@@ -11,7 +11,7 @@ $(document).ready(function() {
               let imgPath = item.image1 || 'assets/images/default.jpg';  // Default if no image
               cardsHtml += `
                 <div class="col-md-4 mb-4 colorway-card" data-search=" ${item.model_name}${item.brand_name}">
-                  <div class="card" style="width: 18rem;" data-id="${item.shoe_model_id}" data-bs-toggle="modal" data-bs-target="#productDetailModal">
+                  <div class="card product-card" style="width: 18rem;" data-id="${item.shoe_model_id}"">
                     <img src="${imgPath}" class="card-img-top" alt="Shoe Image 1">
                     <div class="card-body p-2 text-center">
                       <p class="card-text small">
@@ -23,7 +23,7 @@ $(document).ready(function() {
                 </div>
               `;
             });
-
+            //  data-bs-toggle="modal" data-bs-target="#productDetailModal
             $('#cardContainer').html(cardsHtml);
           }
         });
