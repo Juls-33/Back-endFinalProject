@@ -69,32 +69,32 @@
             <div class="col-12 col-lg-9">
             <div class="row row-cols-1 row-cols-md-2 g-1">
                 <div class="col">
-                    <div class="img-zoom" 
-                         style="background-image: url('user-homepage/images/pdimg/kai1.jpg'); height: 400px;"
+                    <div class="img-zoom" "this is image1"
+                         style="background-image: url('<?php echo $_SESSION['image1']; ?>'); height: 400px;"
                          onmousemove="zoom(event, this)"
                          onmouseleave="resetZoom(this)"
                          onmouseenter="this.style.backgroundSize = '150%'"
                          onclick="openModal(0)"></div>
                 </div>
                 <div class="col">
-                    <div class="img-zoom" 
-                         style="background-image: url('user-homepage/images/pdimg/kai2.jpg'); height: 400px;"
+                    <div class="img-zoom" "this is image2"
+                         style="background-image: url('<?php echo $_SESSION['image2']; ?>'); height: 400px;"
                          onmousemove="zoom(event, this)"
                          onmouseleave="resetZoom(this)"
                          onmouseenter="this.style.backgroundSize = '150%'"
                          onclick="openModal(1)"></div>
                 </div>
                 <div class="col">
-                    <div class="img-zoom" 
-                         style="background-image: url('user-homepage/images/pdimg/kai3.jpg'); height: 400px;"
+                    <div class="img-zoom" "this is image3"
+                         style="background-image: url('<?php echo $_SESSION['image3']; ?>'); height: 400px;"
                          onmousemove="zoom(event, this)"
                          onmouseleave="resetZoom(this)"
                          onmouseenter="this.style.backgroundSize = '150%'"
                          onclick="openModal(2)"></div>
                 </div>
                 <div class="col">
-                    <div class="img-zoom" 
-                         style="background-image: url('user-homepage/images/pdimg/kai4.jpg'); height: 400px;"
+                    <div class="img-zoom" "this is image4"
+                         style="background-image: url('<?php echo $_SESSION['image4']; ?>'); height: 400px;"
                          onmousemove="zoom(event, this)"
                          onmouseleave="resetZoom(this)"
                          onmouseenter="this.style.backgroundSize = '150%'"
@@ -106,15 +106,16 @@
             <div class="col-12 col-lg-3" id = "productDesc">
                 <div class ="productDesc">
                     <div class = "productTitle">
-                        <h3><i>Basketball</i></h3>
-                        <h3><strong>Kaiju 1</strong></h3>
+                        <h3><i><?php echo $_SESSION['category_name']; ?></i></h3> "this is category_name"
+                        <h3><strong><?php echo $_SESSION['colorway_name']; ?></strong></h3> "this is colorway_name"
                     </div>
 
                     <div class = "productPriceSize">
-                        <h4><strong>Php 5,400</strong></h4>
+                        <h4><strong><?php echo $_SESSION['price']; ?></strong></h4> "this is price"
                     </div>
 
-                    <p class = "productText">
+                    <p class = "productText"> "this is description"
+                        <?php echo $_SESSION['description']; ?>
                         A Kai-ju Sotto Type of Footwear that makes you become the Monster that Kai Sotto the G.O.A.T is!
                     </p><br>
 
@@ -206,17 +207,17 @@
                                 <div class="row row-cols-2">
                                     <div class="col">
                                         <ul class="list-group">
-                                            <li>Model: Kaiju 1</li>
-                                            <li>Color: Colorful</li>
-                                            <li>Material: Premium Leather + Rubber</li>
+                                            <li>Model: <?php echo $_SESSION['model_name']; ?></li> "this is model_name"
+                                            <li>Color: <?php echo $_SESSION['colorway_name']; ?></li> "this is colorway_name"
+                                            <li>Material: <?php echo $_SESSION['material_name']; ?></li> "this is material_name"
                                             <li>Weight: 450 grams</li>
                                         </ul>
                                     </div>
                                     <div class="col">
                                         <ul class="list-group">
-                                            <li>Traction: Rubber Outsole</li>
-                                            <li>Support: High Ankle</li>
-                                            <li>Technology: Impact Protection</li>
+                                            <li>Traction: <?php echo $_SESSION['traction_name']; ?></li> "this is traction_name"
+                                            <li>Support: <?php echo $_SESSION['support_name']; ?></li> "this is support_name"
+                                            <li>Technology: <?php echo $_SESSION['technology_name']; ?></li> "this is technology_name"
                                         </ul>
                                     </div>
                                 </div>
