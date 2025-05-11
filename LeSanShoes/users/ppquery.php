@@ -5,6 +5,7 @@ include("../includes/logic/config.php");
 // Get the ID from URL
 if (isset($_POST['id'])) {
   $modelId = mysqli_real_escape_string($conn, $_POST['id']);
+ echo $modelId;
   
   // Query the database for the shoe model details
   $sql = "SELECT 
@@ -25,21 +26,21 @@ if (isset($_POST['id'])) {
               sg.shoes_gender_name
             FROM 
                 colorway_tbl cw
-            INNER JOIN 
+            LEFT JOIN 
                 shoe_model_tbl sm ON cw.shoe_model_id = sm.shoe_model_id
-            INNER JOIN 
+            LEFT JOIN 
                 brand_tbl bt ON sm.brand_id = bt.brand_id
-            INNER JOIN 
+            LEFT JOIN 
                 category_tbl ct ON sm.category_id = ct.category_id
-            INNER JOIN 
+            LEFT JOIN 
                 material_tbl mt ON sm.material_id = mt.material_id
-            INNER JOIN 
+            LEFT JOIN 
                 support_tbl st ON sm.support_id = st.support_id
-            INNER JOIN 
+            LEFT JOIN 
                 technology_tbl tt ON sm.technology_id = tt.technology_id
-            INNER JOIN 
+            LEFT JOIN 
                 traction_tbl tr ON sm.traction_id = tr.traction_id
-            INNER JOIN 
+            LEFT JOIN 
                 shoes_gender_tbl sg ON sm.shoes_gender_id = sg.shoes_gender_id
             WHERE 
                 sm.shoe_model_id = '$modelId'";
