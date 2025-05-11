@@ -194,3 +194,7 @@ body{
     white-space: normal !important;
   }
 
+.img-height{
+    height: 200px;
+}
+

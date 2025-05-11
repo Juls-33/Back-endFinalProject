@@ -338,7 +338,13 @@ function loadTables(){
                         { data: 'model_name' },
                         {
                             data: 'description',
-                            className: 'wrap-text'
+                            className: 'wrap-text',
+                            render: function (data, type, row) {
+                                if (type === 'display' && data.length > 50) {
+                                    return data.substr(0, 50) + '...';
+                                }
+                                return data;
+                            }
                         },
                         { data: 'brand_name' },
                         { data: 'category_name' },
@@ -376,10 +382,10 @@ function loadTables(){
                             </div>
                             <div class="card-body">
                                 <div class="row g-2">
-                                    <div class="col-6"><img src="${item.image1}" class="img-fluid rounded" /></div>
-                                    <div class="col-6"><img src="${item.image2}" class="img-fluid rounded" /></div>
-                                    <div class="col-6"><img src="${item.image3}" class="img-fluid rounded" /></div>
-                                    <div class="col-6"><img src="${item.image4}" class="img-fluid rounded" /></div>
+                                    <div class="col-6 img-height"><img src="${item.image1}" class="img-fluid rounded" /></div>
+                                    <div class="col-6 img-height"><img src="${item.image2}" class="img-fluid rounded" /></div>
+                                    <div class="col-6 img-height"><img src="${item.image3}" class="img-fluid rounded" /></div>
+                                    <div class="col-6 img-height"><img src="${item.image4}" class="img-fluid rounded" /></div>
                                 </div>
                                 <p class="mt-2"><strong>Price:</strong> ₱${item.price}</p>
                                 <p class="mt-2"><strong>Date created:</strong> ${item.date_created}</p>

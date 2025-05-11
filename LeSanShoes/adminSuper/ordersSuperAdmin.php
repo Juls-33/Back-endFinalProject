@@ -59,7 +59,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="InventorySuperAdmin" class="sidebar-link">
+                    <a href="InventorySuperAdmin.php" class="sidebar-link">
                         <i class="lni lni-box-archive-1"></i>
                         <span>Inventory</span>
                     </a>
@@ -178,13 +178,17 @@
     <div class="container text-center">
   <div class="row">
     <div class="col">
-      Column
+      <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
+      <p><strong>Total Price:</strong> ₱<span id="modalTotalPrice"></span></p>
+      <p><strong>Order Date:</strong> <span id="modalOrderDate"></span></p>
     </div>
     <div class="col">
-      Column
+      <p><strong>Username:</strong> <span id="modalUsername"></span></p>
+      <p><strong>Address:</strong> <span id="modalAddress"></span></p>
     </div>
     <div class="col">
-      Column
+      <h6>Ordered Items:</h6>
+                        <div id="modalItemsContainer"></div>
     </div>
   </div>
 </div>
@@ -192,15 +196,7 @@
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
     <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addNewStock()">Save changes</button>
 </div>
-                        <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
-                        <p><strong>Username:</strong> <span id="modalUsername"></span></p>
-                        <p><strong>Address:</strong> <span id="modalAddress"></span></p>
-                        <p><strong>Total Price:</strong> ₱<span id="modalTotalPrice"></span></p>
-                        <p><strong>Order Date:</strong> <span id="modalOrderDate"></span></p>
                         
-                        <hr>
-                        <h6>Ordered Items:</h6>
-                        <div id="modalItemsContainer"></div>
                     </div>
                     </div>
                 </div>
