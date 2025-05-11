@@ -3,8 +3,8 @@
 // Connect to your database
 include("../includes/logic/config.php");
 // Get the ID from URL
-if (isset($_GET['id'])) {
-  $modelId = mysqli_real_escape_string($conn, $_GET['id']);
+if (isset($_POST['id'])) {
+  $modelId = mysqli_real_escape_string($conn, $_POST['id']);
   
   // Query the database for the shoe model details
   $sql = "SELECT 
