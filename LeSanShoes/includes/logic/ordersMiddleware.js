@@ -1,4 +1,4 @@
-loadTables();
+// loadTables();
 function loadTables(){
     $(document).ready(function() {
         
@@ -46,27 +46,28 @@ function loadTables(){
                     processing: true,
                 });
                 // row click handler
-$('#ordersTable tbody').on('click', 'tr', function () {
-  const rowData = table.row(this).data();
-  if (!rowData) return;
+                $('#ordersTable tbody').off('click', 'tr').on('click', 'tr', function () {
+                const rowData = table.row(this).data();
+                if (!rowData) return;
 
-  $('#modalOrderId').text(rowData.order_id);
-  $('#modalUsername').text(rowData.username);
-  $('#modalTotalPrice').text(rowData.total_price);
-  $('#modalOrderDate').text(rowData.order_date);
-  $('#modalStatus').text(rowData.status);
-  $('#modalAddress').text(rowData.customer_address || 'N/A');
+                $('#modalOrderId').text(rowData.order_id);
+                $('#modalUsername').text(rowData.username);
+                $('#modalTotalPrice').text(rowData.total_price);
+                $('#modalOrderDate').text(rowData.order_date);
+                $('#modalStatus').text(rowData.status);
+                $('#modalAddress').text(rowData.customer_address || 'N/A');
+                $('#modalModelName').text(rowData.model_name);
+                $('#modalSizeName').text(rowData.size_name);
+                $('#modalColorwayName').text(rowData.colorway_name);
+                $('#modalQuantity').text(rowData.quantity);
 
-  // Item info
-  $('#modalItemsContainer').html(`
-    <p><strong>${rowData.model_name}</strong> (${rowData.size_name}, ${rowData.colorway_name})</p>
-    <p>Quantity: ${rowData.quantity}</p>
-    <img src="${rowData.image1}" class="img-fluid rounded" width="100">
-  `);
-
-  const modal = new bootstrap.Modal(document.getElementById('orderDetailModal'));
-  modal.show();
-})
+                // Item info
+                $('#modalItemsContainer').html(`
+                    <img src="${rowData.image1}" class="img-fluid rounded" width="100%">
+                `);
+                const modal = new bootstrap.Modal(document.getElementById('orderDetailModal'));
+                modal.show();
+                })
             },
             error: function(xhr, status, error) {
                 console.error("AJAX Error:", error);
@@ -74,3 +75,38 @@ $('#ordersTable tbody').on('click', 'tr', function () {
         });
     });
 }
+
+$(document).ready(function () {
+  loadTables();
+
+
+$('#updateOrderStatusBtn').on('click', function () {
+const orderId = $('#modalOrderId').text();
+const newStatus = $('#orderStatusDropdown').val();
+var data = {
+    action: "updateStatus",
+    orderId: orderId,
+    newStatus: newStatus,
+    
+};
+console.log(data.newStatus);
+    var jsonString = JSON.stringify(data);
+    $.ajax({
+        url: '../includes/logic/ordersToDB.php',
+        method: 'POST',
+        data: {myJson : jsonString},
+        success: function(response) {
+            Swal.fire({
+            title: "Updated Successfully",
+            icon: "success",
+            draggable: true
+            });
+            $('#orderDetailModal').modal('hide');
+            loadTables(); // refresh table
+        }
+    });
+});
+
+  
+})
+

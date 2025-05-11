@@ -98,14 +98,20 @@ CREATE TABLE IF NOT EXISTS `colorway_size_tbl` (
   CONSTRAINT `colorway_size_tbl_ibfk_1` FOREIGN KEY (`colorway_id`) REFERENCES `colorway_tbl` (`colorway_id`) ON DELETE CASCADE,
   CONSTRAINT `colorway_size_tbl_ibfk_2` FOREIGN KEY (`size_id`) REFERENCES `size_tbl` (`size_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_colorway_size_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.colorway_size_tbl: ~3 rows (approximately)
+-- Dumping data for table lesanshoes_db.colorway_size_tbl: ~9 rows (approximately)
 DELETE FROM `colorway_size_tbl`;
 INSERT INTO `colorway_size_tbl` (`colorway_size_id`, `colorway_id`, `size_id`, `stock`, `date_created`, `date_updated`, `modified_by`) VALUES
 	(9, 25, 7, 10, '2025-05-11 07:55:37', '2025-05-11 07:55:37', 'damian'),
 	(10, 25, 5, 10, '2025-05-11 07:55:41', '2025-05-11 07:55:41', 'damian'),
-	(11, 25, 12, 10, '2025-05-11 07:55:47', '2025-05-11 07:55:47', 'damian');
+	(11, 25, 12, 10, '2025-05-11 07:55:47', '2025-05-11 07:55:47', 'damian'),
+	(12, 25, 4, 10, '2025-05-11 08:27:22', '2025-05-11 08:27:22', 'damian'),
+	(13, 27, 6, 10, '2025-05-11 08:27:29', '2025-05-11 08:27:29', 'damian'),
+	(14, 31, 6, 10, '2025-05-11 08:27:33', '2025-05-11 08:27:33', 'damian'),
+	(15, 30, 8, 10, '2025-05-11 08:27:38', '2025-05-11 08:27:38', 'damian'),
+	(16, 30, 9, 10, '2025-05-11 08:27:44', '2025-05-11 08:27:44', 'damian'),
+	(17, 28, 9, 10, '2025-05-11 08:27:49', '2025-05-11 08:27:49', 'damian');
 
 -- Dumping structure for table lesanshoes_db.colorway_tbl
 DROP TABLE IF EXISTS `colorway_tbl`;
@@ -185,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `orders_tbl` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `order_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` enum('pending','processing','completed','cancelled','failed') DEFAULT 'pending',
+  `status` enum('Pending','Out For Delivery','Completed','Cancelled','failed') DEFAULT 'Pending',
   `total_price` decimal(10,2) DEFAULT 0.00,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
@@ -193,10 +199,13 @@ CREATE TABLE IF NOT EXISTS `orders_tbl` (
   PRIMARY KEY (`order_id`),
   KEY `username` (`username`),
   CONSTRAINT `orders_tbl_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users_tbl` (`username`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.orders_tbl: ~0 rows (approximately)
+-- Dumping data for table lesanshoes_db.orders_tbl: ~2 rows (approximately)
 DELETE FROM `orders_tbl`;
+INSERT INTO `orders_tbl` (`order_id`, `username`, `order_date`, `status`, `total_price`, `date_created`, `date_updated`, `customer_address`) VALUES
+	(1, 'dasdadsdssdf', '2025-05-11 14:29:53', 'Completed', 10000.00, '2025-05-11 14:30:06', '2025-05-11 14:30:06', 'bahay ko'),
+	(2, 'julius', '2025-05-11 15:42:50', 'Completed', 15000.00, '2025-05-11 15:42:56', '2025-05-11 15:42:56', 'UST');
 
 -- Dumping structure for table lesanshoes_db.order_items_tbl
 DROP TABLE IF EXISTS `order_items_tbl`;
@@ -219,10 +228,13 @@ CREATE TABLE IF NOT EXISTS `order_items_tbl` (
   CONSTRAINT `order_items_tbl_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders_tbl` (`order_id`) ON DELETE CASCADE,
   CONSTRAINT `order_items_tbl_ibfk_2` FOREIGN KEY (`colorway_id`) REFERENCES `colorway_tbl` (`colorway_id`) ON DELETE CASCADE,
   CONSTRAINT `order_items_tbl_ibfk_3` FOREIGN KEY (`size_id`) REFERENCES `size_tbl` (`size_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.order_items_tbl: ~0 rows (approximately)
+-- Dumping data for table lesanshoes_db.order_items_tbl: ~2 rows (approximately)
 DELETE FROM `order_items_tbl`;
+INSERT INTO `order_items_tbl` (`order_item_id`, `order_id`, `colorway_id`, `size_id`, `quantity`, `price_at_order`, `date_created`, `date_updated`, `colorway_size_id`) VALUES
+	(1, 1, 29, 11, 2, 5000.00, '2025-05-11 14:30:49', '2025-05-11 14:30:51', 14),
+	(2, 2, 27, 12, 3, 5000.00, '2025-05-11 15:43:16', '2025-05-11 15:43:16', 14);
 
 -- Dumping structure for table lesanshoes_db.roles_tbl
 DROP TABLE IF EXISTS `roles_tbl`;
@@ -251,49 +263,60 @@ DROP TABLE IF EXISTS `sales_tbl`;
 CREATE TABLE IF NOT EXISTS `sales_tbl` (
   `salesperday_id` int(11) NOT NULL AUTO_INCREMENT,
   `amount` int(11) NOT NULL,
-  `date` date NOT NULL,
-  PRIMARY KEY (`salesperday_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `date` date NOT NULL DEFAULT current_timestamp(),
+  `order_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`salesperday_id`),
+  KEY `fk_order` (`order_id`),
+  CONSTRAINT `fk_order` FOREIGN KEY (`order_id`) REFERENCES `orders_tbl` (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.sales_tbl: ~36 rows (approximately)
+-- Dumping data for table lesanshoes_db.sales_tbl: ~38 rows (approximately)
 DELETE FROM `sales_tbl`;
-INSERT INTO `sales_tbl` (`salesperday_id`, `amount`, `date`) VALUES
-	(1, 100, '2025-06-05'),
-	(2, 150, '2025-06-06'),
-	(3, 200, '2025-06-07'),
-	(4, 100, '2025-06-05'),
-	(5, 150, '2025-06-06'),
-	(6, 200, '2025-06-07'),
-	(7, 100, '2025-06-05'),
-	(8, 150, '2025-06-06'),
-	(9, 200, '2025-06-07'),
-	(10, 100, '2025-06-05'),
-	(11, 150, '2025-06-06'),
-	(12, 200, '2025-06-07'),
-	(13, 100, '2025-06-05'),
-	(14, 150, '2025-06-06'),
-	(15, 200, '2025-06-07'),
-	(16, 100, '2025-06-05'),
-	(17, 150, '2025-06-06'),
-	(18, 200, '2025-06-07'),
-	(19, 100, '2025-06-05'),
-	(20, 150, '2025-06-06'),
-	(21, 200, '2025-06-07'),
-	(22, 100, '2025-06-05'),
-	(23, 150, '2025-06-06'),
-	(24, 200, '2025-06-07'),
-	(25, 100, '2025-06-05'),
-	(26, 150, '2025-06-06'),
-	(27, 200, '2025-06-07'),
-	(28, 100, '2025-06-05'),
-	(29, 150, '2025-06-06'),
-	(30, 200, '2025-06-07'),
-	(31, 100, '2025-06-05'),
-	(32, 150, '2025-06-06'),
-	(33, 200, '2025-06-07'),
-	(34, 100, '2025-06-05'),
-	(35, 150, '2025-06-06'),
-	(36, 200, '2025-06-07');
+INSERT INTO `sales_tbl` (`salesperday_id`, `amount`, `date`, `order_id`) VALUES
+	(1, 100, '2025-06-05', NULL),
+	(2, 150, '2025-06-06', NULL),
+	(3, 200, '2025-06-07', NULL),
+	(4, 100, '2025-06-05', NULL),
+	(5, 150, '2025-06-06', NULL),
+	(6, 200, '2025-06-07', NULL),
+	(7, 100, '2025-06-05', NULL),
+	(8, 150, '2025-06-06', NULL),
+	(9, 200, '2025-06-07', NULL),
+	(10, 100, '2025-06-05', NULL),
+	(11, 150, '2025-06-06', NULL),
+	(12, 200, '2025-06-07', NULL),
+	(13, 100, '2025-06-05', NULL),
+	(14, 150, '2025-06-06', NULL),
+	(15, 200, '2025-06-07', NULL),
+	(16, 100, '2025-06-05', NULL),
+	(17, 150, '2025-06-06', NULL),
+	(18, 200, '2025-06-07', NULL),
+	(19, 100, '2025-06-05', NULL),
+	(20, 150, '2025-06-06', NULL),
+	(21, 200, '2025-06-07', NULL),
+	(22, 100, '2025-06-05', NULL),
+	(23, 150, '2025-06-06', NULL),
+	(24, 200, '2025-06-07', NULL),
+	(25, 100, '2025-06-05', NULL),
+	(26, 150, '2025-06-06', NULL),
+	(27, 200, '2025-06-07', NULL),
+	(28, 100, '2025-06-05', NULL),
+	(29, 150, '2025-06-06', NULL),
+	(30, 200, '2025-06-07', NULL),
+	(31, 100, '2025-06-05', NULL),
+	(32, 150, '2025-06-06', NULL),
+	(33, 200, '2025-06-07', NULL),
+	(34, 100, '2025-06-05', NULL),
+	(35, 150, '2025-06-06', NULL),
+	(36, 200, '2025-06-07', NULL),
+	(37, 10000, '2025-05-11', 1),
+	(38, 15000, '2025-05-11', 2),
+	(39, 100, '2025-06-05', NULL),
+	(40, 150, '2025-06-06', NULL),
+	(41, 200, '2025-06-07', NULL),
+	(42, 100, '2025-06-05', NULL),
+	(43, 150, '2025-06-06', NULL),
+	(44, 200, '2025-06-07', NULL);
 
 -- Dumping structure for table lesanshoes_db.shoes_gender_tbl
 DROP TABLE IF EXISTS `shoes_gender_tbl`;

@@ -169,32 +169,38 @@
                 <div class="modal-dialog modal-lg modal-dialog-scrollable">
                     <div class="modal-content">
 <div class="modal-header bg-primary text-white">
-    <h5 class="modal-title" id="orderDetailModalLabel">Order Details</h5>
-    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+    <!-- <h5 class="modal-title" id="orderDetailModalLabel">Order Details</h5> -->
+    <h5><strong>Status:</strong> <span id="modalStatus"></span></h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeModal()"></button>
 </div>
-\
 <div class="modal-body">
-    <div class="container text-center">
+    <div class="container text-justify">
   <div class="row">
     <div class="col">
-      <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
-      <p><strong>Total Price:</strong> ₱<span id="modalTotalPrice"></span></p>
-      <p><strong>Order Date:</strong> <span id="modalOrderDate"></span></p>
+        <h6>Ordered Items:</h6>
+        <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
+        <p><strong>Shoe Model:</strong> <span id="modalModelName"></span></p>
+        <p><strong>Size:</strong> <span id="modalSizeName"></span></p>
+        <p><strong>Colorway:</strong> <span id="modalColorwayName"></span></p>
+        <p><strong>Quantity:</strong> <span id="modalQuantity"></span></p>
+        <p><strong>Total Price:</strong> ₱<span id="modalTotalPrice"></span></p>
+        <p><strong>Order Date:</strong> <span id="modalOrderDate"></span></p>
     </div>
     <div class="col">
-      <p><strong>Username:</strong> <span id="modalUsername"></span></p>
-      <p><strong>Address:</strong> <span id="modalAddress"></span></p>
+        <p><strong>Username:</strong> <span id="modalUsername"></span></p>
+        <p><strong>Address:</strong> <span id="modalAddress"></span></p>
     </div>
     <div class="col">
-      <h6>Ordered Items:</h6>
-                        <div id="modalItemsContainer"></div>
+        <div id="modalItemsContainer"></div>
     </div>
   </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
-    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addNewStock()">Save changes</button>
+    <select id="orderStatusDropdown" class="form-select">
+        <?= getOptions($conn, 'status_tbl', 'status_id', 'status_name'); ?>
+    </select>
+    <button id="updateOrderStatusBtn" class="btn btn-success">Update Status</button>
+
 </div>
                         
                     </div>

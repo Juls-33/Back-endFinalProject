@@ -10,6 +10,7 @@ try{
             o.username,
             o.total_price,
             o.order_date,
+            o.customer_address,
             o.status,
             oi.quantity,
             cw.colorway_name,
@@ -29,6 +30,33 @@ try{
         
         while ($row = $result->fetch_assoc()) {
             $orders[] = $row;
+        }
+
+        $groupedOrders = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $orderId = $row['order_id'];
+
+            if (!isset($groupedOrders[$orderId])) {
+                $groupedOrders[$orderId] = [
+                    'order_id' => $row['order_id'],
+                    'username' => $row['username'],
+                    'total_price' => $row['total_price'],
+                    'order_date' => $row['order_date'],
+                    'status' => $row['status'],
+                    'customer_address' => $row['customer_address'],
+                    'items' => []
+                ];
+            }
+
+            $groupedOrders[$orderId]['items'][] = [
+                'shoe_model_id' => $row['shoe_model_id'],
+                'model_name' => $row['model_name'],
+                'colorway_name' => $row['colorway_name'],
+                'size_name' => $row['size_name'],
+                'quantity' => $row['quantity'],
+                'image1' => $row['image1']
+            ];
         }
 
         echo json_encode([
