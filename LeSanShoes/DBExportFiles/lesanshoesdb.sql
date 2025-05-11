@@ -98,10 +98,14 @@ CREATE TABLE IF NOT EXISTS `colorway_size_tbl` (
   CONSTRAINT `colorway_size_tbl_ibfk_1` FOREIGN KEY (`colorway_id`) REFERENCES `colorway_tbl` (`colorway_id`) ON DELETE CASCADE,
   CONSTRAINT `colorway_size_tbl_ibfk_2` FOREIGN KEY (`size_id`) REFERENCES `size_tbl` (`size_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_colorway_size_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.colorway_size_tbl: ~0 rows (approximately)
+-- Dumping data for table lesanshoes_db.colorway_size_tbl: ~3 rows (approximately)
 DELETE FROM `colorway_size_tbl`;
+INSERT INTO `colorway_size_tbl` (`colorway_size_id`, `colorway_id`, `size_id`, `stock`, `date_created`, `date_updated`, `modified_by`) VALUES
+	(9, 25, 7, 10, '2025-05-11 07:55:37', '2025-05-11 07:55:37', 'damian'),
+	(10, 25, 5, 10, '2025-05-11 07:55:41', '2025-05-11 07:55:41', 'damian'),
+	(11, 25, 12, 10, '2025-05-11 07:55:47', '2025-05-11 07:55:47', 'damian');
 
 -- Dumping structure for table lesanshoes_db.colorway_tbl
 DROP TABLE IF EXISTS `colorway_tbl`;
@@ -123,14 +127,18 @@ CREATE TABLE IF NOT EXISTS `colorway_tbl` (
   KEY `fk_colorway_modified_by` (`modified_by`),
   CONSTRAINT `colorway_tbl_ibfk_1` FOREIGN KEY (`shoe_model_id`) REFERENCES `shoe_model_tbl` (`shoe_model_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_colorway_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.colorway_tbl: ~3 rows (approximately)
+-- Dumping data for table lesanshoes_db.colorway_tbl: ~7 rows (approximately)
 DELETE FROM `colorway_tbl`;
 INSERT INTO `colorway_tbl` (`colorway_id`, `shoe_model_id`, `colorway_name`, `price`, `image1`, `image2`, `image3`, `image4`, `date_created`, `date_updated`, `modified_by`) VALUES
-	(22, 13, 'Soldier', 7899.00, '../assets/images/colorway_681eb386d4959.jpg', '../assets/images/colorway_681eb386d4a84.jpg', '../assets/images/colorway_681eb386d4a89.jpg', '../assets/images/colorway_681eb386d4a8d.jpg', '2025-05-10 04:01:42', '2025-05-10 04:01:42', 'damian'),
-	(24, 14, 'Green', 6599.00, '../assets/images/colorway_681eb4403b301.jpg', '../assets/images/colorway_681eb4403b30d.jpg', '../assets/images/colorway_681eb4403b311.jpg', '../assets/images/colorway_681eb4403b315.jpg', '2025-05-10 04:04:48', '2025-05-10 04:04:48', 'damian'),
-	(25, 15, 'Black', 8999.00, '../assets/images/colorway_681f79c335f4f.jpg', '../assets/images/colorway_681f79c336011.jpg', '../assets/images/colorway_681f79c336014.jpg', '../assets/images/colorway_681f79c336015.jpg', '2025-05-10 18:07:31', '2025-05-10 18:07:31', 'lebron');
+	(25, 15, 'Black', 8999.00, '../assets/images/colorway_682041b084cea.jpg', '../assets/images/colorway_681f79c336011.jpg', '../assets/images/colorway_681f79c336014.jpg', '../assets/images/colorway_682041b085b92.jpg', '2025-05-10 18:07:31', '2025-05-11 08:20:32', 'damian'),
+	(26, 16, 'White', 5000.00, '../assets/images/colorway_682040e1e8e0a.png', '../assets/images/colorway_682040e1e8e19.png', '../assets/images/colorway_682040e1e8e1e.png', '../assets/images/colorway_682040e1e8e22.png', '2025-05-11 08:17:05', '2025-05-11 08:17:05', 'damian'),
+	(27, 17, 'Solar Return', 5000.00, '../assets/images/colorway_6820411b33f86.jpg', '../assets/images/colorway_6820411b33f8e.jpg', '../assets/images/colorway_6820411b33f91.jpg', '../assets/images/colorway_6820411b33f94.jpg', '2025-05-11 08:18:03', '2025-05-11 08:18:03', 'damian'),
+	(28, 18, 'Black Hole', 5000.00, '../assets/images/colorway_6820414eec5a4.png', '../assets/images/colorway_6820414eec5ad.png', '../assets/images/colorway_6820414eec5b1.png', '../assets/images/colorway_6820414eec5b3.png', '2025-05-11 08:18:54', '2025-05-11 08:18:54', 'damian'),
+	(29, 19, 'Black Cement', 8000.00, '../assets/images/colorway_6820417581f76.jpg', '../assets/images/colorway_6820417581f81.jpg', '../assets/images/colorway_6820417581f87.jpg', '../assets/images/colorway_6820417581f8a.jpg', '2025-05-11 08:19:33', '2025-05-11 08:19:33', 'damian'),
+	(30, 20, 'Green White', 5000.00, '../assets/images/colorway_682041ea50f76.jpg', '../assets/images/colorway_682041ea50f7f.jpg', '../assets/images/colorway_682041ea50f82.jpg', '../assets/images/colorway_682041ea50f85.jpg', '2025-05-11 08:21:30', '2025-05-11 08:21:30', 'damian'),
+	(31, 21, 'LeBronto Raptors', 10000.00, '../assets/images/colorway_68204218d2a20.jpg', '../assets/images/colorway_68204218d2a2b.jpg', '../assets/images/colorway_68204218d2a31.jpg', '../assets/images/colorway_68204218d2a34.jpg', '2025-05-11 08:22:16', '2025-05-11 08:22:16', 'damian');
 
 -- Dumping structure for table lesanshoes_db.faq_tbl
 DROP TABLE IF EXISTS `faq_tbl`;
@@ -339,14 +347,18 @@ CREATE TABLE IF NOT EXISTS `shoe_model_tbl` (
   CONSTRAINT `shoe_model_tbl_ibfk_4` FOREIGN KEY (`traction_id`) REFERENCES `traction_tbl` (`traction_id`),
   CONSTRAINT `shoe_model_tbl_ibfk_5` FOREIGN KEY (`support_id`) REFERENCES `support_tbl` (`support_id`),
   CONSTRAINT `shoe_model_tbl_ibfk_6` FOREIGN KEY (`technology_id`) REFERENCES `technology_tbl` (`technology_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.shoe_model_tbl: ~3 rows (approximately)
+-- Dumping data for table lesanshoes_db.shoe_model_tbl: ~7 rows (approximately)
 DELETE FROM `shoe_model_tbl`;
 INSERT INTO `shoe_model_tbl` (`shoe_model_id`, `brand_id`, `category_id`, `material_id`, `traction_id`, `support_id`, `technology_id`, `model_name`, `date_created`, `date_updated`, `description`, `modified_by`) VALUES
-	(13, 2, 1, 1, 1, 1, 1, 'LeBron James', '2025-05-10 04:00:46', '2025-05-10 04:00:46', 'Fly like LeBron, play like LeBron.', 'damian'),
-	(14, 4, 1, 3, 1, 2, 3, 'Damian Lillard', '2025-05-10 04:04:02', '2025-05-10 04:04:02', 'Dame Time!', 'damian'),
-	(15, 6, 1, 4, 3, 3, 4, 'Luka 4 Bloodline', '2025-05-10 18:05:07', '2025-05-10 18:05:07', 'Luka 4 Bloodline', 'lebron');
+	(15, 6, 1, 4, 3, 3, 4, 'Luka 4 Bloodline', '2025-05-10 18:05:07', '2025-05-10 18:05:07', 'Luka 4 Bloodline', 'lebron'),
+	(16, 4, 3, 2, 1, 2, 0, 'Stan Smith', '2025-05-11 08:04:35', '2025-05-11 08:04:35', 'Timeless appeal. Effortless style. Everyday versatility. For over 50 years and counting, adidas Stan Smith Shoes have continued to hold their place as an icon. This pair shows off a fresh redesign as part of adidas\' commitment to use only recycled polyester by 2024. With a vegan upper and an outsole made from rubber waste, they still have iconic style, they\'re just made with the planet in mind.\n\nThis product is made with vegan alternatives to animal-derived ingredients or materials. It is also m', 'damian'),
+	(17, 1, 1, 1, 2, 3, 2, 'Kai 2', '2025-05-11 08:09:31', '2025-05-11 08:09:31', 'The "Solar Return" colorway takes inspiration from the solar spectrum, deconstructing sunlight into a vibrant array of colors across the shoe. These hues reflect the richness of all of life’s experiences and the energy Kyrie brings to the game.', 'damian'),
+	(18, 5, 2, 1, 2, 2, 2, 'Gel Kayano 31', '2025-05-11 08:11:28', '2025-05-11 08:11:28', 'Move your mind with the GEL-KAYANO™ 31 LITE-SHOW™ shoe’s adaptive stability and premium comfort. ​This version features reflective details that are designed to improve your visibility in low-light settings.\n\n​\nThe 4D GUIDANCE SYSTEM™ helps provide adaptive stability. This helps you experience a more supportive and balanced stride during your distance training. ​​\n\nIts midsole implements FF BLAST™ PLUS ECO cushioning and PureGEL™ technology. These features make your distance training feel smooth', 'damian'),
+	(19, 6, 3, 2, 1, 1, 0, 'Jordan 3', '2025-05-11 08:13:05', '2025-05-11 08:13:05', 'The Air Jordan 3 Retro ‘Infrared 23’ delivers a revised take on the silhouette’s OG White/Cement colorway from 1988. Like the original, the mid-top makes use of a white leather upper with elephant print overlays at the toe and heel. Updates include Infrared eyelets and added hits of basic black coloring on the tongue, collar, midsole and outsole.', 'damian'),
+	(20, 2, 3, 2, 1, 2, 0, 'Field General', '2025-05-11 08:14:15', '2025-05-11 08:14:15', 'The Field General has moved from the stadium to the streets. It pairs synthetic leather and textiles with a nubby Waffle sole to create that vintage gridiron look.', 'damian'),
+	(21, 2, 1, 2, 1, 3, 4, 'LeBron 21', '2025-05-11 08:15:57', '2025-05-11 08:15:57', 'Inspired by an oyster shell that protects the pearl it houses, the LeBron 21 has upper venting, informed by a shell\'s veining, which aims to help contain the athlete\'s foot during explosive movements. Reinforced by 360 degrees of zonal cables over the footbed, the shoes make sure players\' feet remain secure as games heat up. Meanwhile, underfoot, a forefoot Zoom Turbo unit and bottom 13-millimetre Zoom unit encourage propulsion. A TPU midfoot shank provides stability and extra oomph for dynamic', 'damian');
 
 -- Dumping structure for table lesanshoes_db.size_tbl
 DROP TABLE IF EXISTS `size_tbl`;
