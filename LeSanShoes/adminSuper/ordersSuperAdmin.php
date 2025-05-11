@@ -168,17 +168,36 @@
                 <div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-scrollable">
                     <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="orderDetailModalLabel">Order Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
+<div class="modal-header bg-primary text-white">
+    <h5 class="modal-title" id="orderDetailModalLabel">Order Details</h5>
+    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeModal()"></button>
+</div>
+\
+<div class="modal-body">
+    <div class="container text-center">
+  <div class="row">
+    <div class="col">
+      Column
+    </div>
+    <div class="col">
+      Column
+    </div>
+    <div class="col">
+      Column
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+    <button type="button" class="btn btn-success" name="signup_btn" value="signup_btn" onclick="addNewStock()">Save changes</button>
+</div>
                         <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
                         <p><strong>Username:</strong> <span id="modalUsername"></span></p>
                         <p><strong>Address:</strong> <span id="modalAddress"></span></p>
                         <p><strong>Total Price:</strong> ₱<span id="modalTotalPrice"></span></p>
                         <p><strong>Order Date:</strong> <span id="modalOrderDate"></span></p>
-                        <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+                        
                         <hr>
                         <h6>Ordered Items:</h6>
                         <div id="modalItemsContainer"></div>
