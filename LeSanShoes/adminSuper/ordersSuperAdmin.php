@@ -34,7 +34,7 @@
                     <i class="lni lni-dashboard-square-1"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">LeSanOrders</a>
+                    <a href="#">LeSanShoes</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
@@ -132,6 +132,8 @@
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-orders-tab" data-bs-toggle="tab" data-bs-target="#nav-Orders" type="button" role="tab" aria-controls="nav-Orders" aria-selected="false">Orders</button> 
+                    <button class="nav-link" id="nav-completed-tab" data-bs-toggle="tab" data-bs-target="#nav-Completed" type="button" role="tab" aria-controls="nav-Completed" aria-selected="false">Completed</button> 
+                    <button class="nav-link" id="nav-cancelled-tab" data-bs-toggle="tab" data-bs-target="#nav-Cancelled" type="button" role="tab" aria-controls="nav-Cancelled" aria-selected="false">Cancelled</button> 
                 </div>
             </nav>  
             <div class="tab-content" id="nav-tabContent">
@@ -146,7 +148,7 @@
                                     <thead>
                                         <tr>
                                             <th>Order ID</th>
-                                            <th>username</th>
+                                            <th>Customer Name</th>
                                             <th>Total Price</th>
                                             <th>Date purchased</th>
                                             <th>Status</th>
@@ -155,7 +157,61 @@
                                             <th>Size</th>
                                             <th>Shoe model</th>
                                             <th>Image</th>
-                                            <th>Edit/Delete</th>
+                                            <!-- <th>Delete</th> -->
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                </div>
+                <!-- Completed -->
+                <div class="tab-pane fade" id="nav-Completed" role="tabpanel" aria-labelledby="nav-completed-tab">
+                    <br>
+                    <!-- <div class="tab-pane fade show active" id="nav-Orders" role="tabpanel" aria-labelledby="nav-orders-tab"> -->
+                        <div class="container">
+                            <div style="overflow-x: auto;">
+                                <table id="completedTable" class="display nowrap" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Customer Name</th>
+                                            <th>Total Price</th>
+                                            <th>Date purchased</th>
+                                            <th>Status</th>
+                                            <th>Quantity</th>
+                                            <th>Colorway name</th>
+                                            <th>Size</th>
+                                            <th>Shoe model</th>
+                                            <th>Image</th>
+                                            <!-- <th>Delete</th> -->
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                </div>
+                <!-- Cancelled -->
+                <div class="tab-pane fade" id="nav-Cancelled" role="tabpanel" aria-labelledby="nav-cancelled-tab">
+                    <br>
+                    <!-- <div class="tab-pane fade show active" id="nav-Orders" role="tabpanel" aria-labelledby="nav-orders-tab"> -->
+                        <div class="container">
+                            <div style="overflow-x: auto;">
+                                <table id="cancelledTable" class="display nowrap" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Customer Name</th>
+                                            <th>Total Price</th>
+                                            <th>Date purchased</th>
+                                            <th>Status</th>
+                                            <th>Quantity</th>
+                                            <th>Colorway name</th>
+                                            <th>Size</th>
+                                            <th>Shoe model</th>
+                                            <th>Image</th>
+                                            <!-- <th>Delete</th> -->
                                         </tr>
                                     </thead>
                                 </table>
@@ -166,94 +222,49 @@
                 <!-- MODALS -->
                  <!-- Order Detail Modal -->
                 <div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-<div class="modal-header bg-primary text-white">
-    <!-- <h5 class="modal-title" id="orderDetailModalLabel">Order Details</h5> -->
-    <h5><strong>Status:</strong> <span id="modalStatus"></span></h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeModal()"></button>
-</div>
-<div class="modal-body">
-    <div class="container text-justify">
-  <div class="row">
-    <div class="col">
-        <h6>Ordered Items:</h6>
-        <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
-        <p><strong>Shoe Model:</strong> <span id="modalModelName"></span></p>
-        <p><strong>Size:</strong> <span id="modalSizeName"></span></p>
-        <p><strong>Colorway:</strong> <span id="modalColorwayName"></span></p>
-        <p><strong>Quantity:</strong> <span id="modalQuantity"></span></p>
-        <p><strong>Total Price:</strong> ₱<span id="modalTotalPrice"></span></p>
-        <p><strong>Order Date:</strong> <span id="modalOrderDate"></span></p>
-    </div>
-    <div class="col">
-        <p><strong>Username:</strong> <span id="modalUsername"></span></p>
-        <p><strong>Address:</strong> <span id="modalAddress"></span></p>
-    </div>
-    <div class="col">
-        <div id="modalItemsContainer"></div>
-    </div>
-  </div>
-</div>
-<div class="modal-footer">
-    <select id="orderStatusDropdown" class="form-select">
-        <?= getOptions($conn, 'status_tbl', 'status_id', 'status_name'); ?>
-    </select>
-    <button id="updateOrderStatusBtn" class="btn btn-success">Update Status</button>
-
-</div>
-                        
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-                 <!-- Edit Colorway Size Modal -->
-                 <div class="modal fade" id="editColorwaySizeModal" tabindex="-1" aria-labelledby="editColorwatSizeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
                         <div class="modal-content">
-                            <form id="editColorwaySizeForm">
-                                <div class="modal-header bg-primary text-white">
-                                    <h5 class="modal-title" id="editColorwatSizeModalLabel">Edit Shoe Model</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeModal()"></button>
-                                </div>
-                                <!-- nandito yung id -->
-                                <div class="modal-body row g-3">
-                                    <input type="hidden" id="colorway_size_id" name="colorway_size_id">
-                                    <div class="form-group mb-3">
-                                        <label>Colorway</label>
-                                        <div class="form-floating">
-                                            <select class="form-select" name="edit_colorway_id" id="colorwaySelect" required>
-                                                <option value="" disabled selected>Open this select menu</option>
-                                                <?= getOptions($conn, 'colorway_tbl', 'colorway_id', 'colorway_name'); ?>
-                                            </select>
-                                            <label for="colorwaySelect">Select a Colorway</label>
+                            <div class="modal-header bg-primary text-white">
+                                <!-- <h5 class="modal-title" id="orderDetailModalLabel">Order Details</h5> -->
+                                <h5><strong>Status:</strong> <span id="modalStatus"></span></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeModal()"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container text-justify">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>Ordered Items:</h6>
+                                            <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
+                                            <p><strong>Shoe Model:</strong> <span id="modalModelName"></span></p>
+                                            <p><strong>Size:</strong> <span id="modalSizeName"></span></p>
+                                            <p><strong>Colorway:</strong> <span id="modalColorwayName"></span></p>
+                                            <p><strong>Quantity:</strong> <span id="modalQuantity"></span></p>
+                                            <p><strong>Total Price:</strong> ₱<span id="modalTotalPrice"></span></p>
+                                            <p><strong>Order Date:</strong> <span id="modalOrderDate"></span></p>
+                                        </div>
+                                        <div class="col">
+                                            <p><strong>Customer Name:</strong> <span id="modalUsername"></span></p>
+                                            <p><strong>Address:</strong> <span id="modalAddress"></span></p>
+                                        </div>
+                                        <div class="col">
+                                            <div id="modalItemsContainer"></div>
                                         </div>
                                     </div>
-
-                                    <div class="form-group mb-3">
-                                        <label>Size</label>
-                                        <div class="form-floating">
-                                            <select class="form-select" name="edit_size_id" id="sizeSelect" required>
-                                                <option value="" disabled selected>Open this select menu</option>
-                                                <?= getOptions($conn, 'size_tbl', 'size_id', 'size_name'); ?>
-                                            </select>
-                                            <label for="sizeSelect">Select a Size</label>
-                                        </div>
-                                    </div>
-                                    <p class="text-warning-emphasis">Missing colorway or size? Go to Manage Colorway or <a href="ManageDBSuperAdmin.php">Manage Database</a> to add shoe colorway.</p>
                                 </div>
                                 <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="editColorwaySize()">Save Changes</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Cancel</button>
+                                    <select id="orderStatusDropdown" class="form-select">
+                                        <?= getOptions($conn, 'status_tbl', 'status_id', 'status_name'); ?>
+                                    </select>
+                                    <button id="updateOrderStatusBtn" class="btn btn-success">Update Status</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
