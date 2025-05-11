@@ -45,7 +45,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="#" class="sidebar-link active-nav">
                         <i class="lni lni-box-closed"></i>
                         <span>Orders</span>
                     </a>
@@ -59,7 +59,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="InventorySuperAdmin" class="sidebar-link active-nav">
+                    <a href="InventorySuperAdmin" class="sidebar-link">
                         <i class="lni lni-box-archive-1"></i>
                         <span>Inventory</span>
                     </a>
