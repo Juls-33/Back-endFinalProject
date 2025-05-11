@@ -3,6 +3,10 @@
     include("sales_perDay.php");
 
     ob_start();
+    include('get_totalSales.php');
+    $completedCount = ob_get_clean();
+
+    ob_start();
     include('get_inventoryCount.php');
     $inventoryCount = ob_get_clean();
 
@@ -14,13 +18,6 @@
     include('get_completedOrders.php');
     $completedCount = ob_get_clean();
     
-    $sql = "INSERT INTO sales_tbl (date, amount) VALUES ('2025-06-05', 100.00), ('2025-06-06', 150.00), ('2025-06-07', 200.00)"; 
-    if ($conn->query($sql) === TRUE) {
-        echo "New Record Created Successfully";
-    } else {
-        echo "Error: " . $conn->error; 
-    }
-
     if (!isset($_SESSION['username'])) {
         // Not logged in — redirect to login
         header("Location: ../users/index.php");
@@ -166,7 +163,7 @@
                                     <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">universal_currency_alt</span>
                                     <div class="text-end">
                                       <p class="text-sm mb-0">Total Sales</p>
-                                      <h4 class="mb-0">Php 50,000</h4>
+                                      <h4 class="mb-0"><?php echo htmlspecialchars($total); ?> PHP </h4>
                                     </div>
                                 </div>  
                             </div>
@@ -458,15 +455,23 @@
         </script>
 
     <script>
+        fetch('get_totalSales.php')
+          .then(response => response.text())
+          .then(data => {
+                document.getElementById('totalSales').textContent = parseInt(data).toLocaleString();
+          });
+    </script>
+
+    <script>
         // Fetch pending orders
-        fetch('pending_orders.php')
+        fetch('get_pendingOrders.php')
         .then(response => response.text())
         .then(data => {
             document.getElementById('pendingCount').textContent = data;
         });
 
         // Fetch completed orders
-        fetch('completed_orders.php')
+        fetch('get_completedOrders.php')
         .then(response => response.text())
         .then(data => {
             document.getElementById('completedCount').textContent = data;
@@ -481,11 +486,6 @@
                 document.getElementById('todayUsers').textContent = data['User'] || 0;
             });
     </script>
-
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
