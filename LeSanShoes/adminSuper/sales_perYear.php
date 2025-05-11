@@ -11,15 +11,14 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT DATE_FORMAT(date, '%M') AS month, SUM(amount) AS total FROM sales_tbl GROUP BY MONTH(date) ORDER BY MONTH(date)";
-
+    $sql =  "SELECT YEAR(date) AS year, SUM(amount) AS total FROM sales_tbl GROUP BY YEAR(date) ORDER BY YEAR(date)";
     $result = $conn->query($sql);
 
     $labels = [];
     $data = [];
 
     while ($row = $result->fetch_assoc()) {
-        $labels[] = $row['month'];
+        $labels[] = $row['year'];
         $data[] = (int)$row['total'];
     }
 

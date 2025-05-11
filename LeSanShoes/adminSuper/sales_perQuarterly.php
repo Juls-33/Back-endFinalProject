@@ -11,7 +11,8 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT DATE_FORMAT(date, '%M') AS month, SUM(amount) AS total FROM sales_tbl GROUP BY MONTH(date) ORDER BY MONTH(date)";
+    
+    $sql = "SELECT CONCAT(QUARTER(date), ' ', 'Quarter') AS quarter, SUM(amount) AS total FROM sales_tbl GROUP BY QUARTER(date) ORDER BY QUARTER(date)";
 
     $result = $conn->query($sql);
 
@@ -19,7 +20,7 @@
     $data = [];
 
     while ($row = $result->fetch_assoc()) {
-        $labels[] = $row['month'];
+        $labels[] = $row['quarter'];
         $data[] = (int)$row['total'];
     }
 

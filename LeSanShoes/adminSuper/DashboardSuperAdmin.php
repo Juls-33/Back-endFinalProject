@@ -421,8 +421,8 @@
     fetch('sales_perDay.php')
         .then(response => response.json())
         .then(json => {
-            const actions = document.getElementById('salesPerDayChart').getContext('2d');
-            const salesPerDayChart = new Chart(actions, {
+            const ctx = document.getElementById('salesPerDayChart').getContext('2d');
+            const salesPerDayChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: json.labels,
@@ -453,6 +453,118 @@
             }); 
         }); 
         </script>
+
+        
+    <script>
+    fetch('sales_perMonth.php')
+        .then(response => response.json())
+        .then(json => {
+            const ctx = document.getElementById('salesPerMonthChart').getContext('2d');
+            const salesPerMonthChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: json.labels,
+                    datasets: [{
+                        label: 'Sales Per Month',
+                        data: json.data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, 
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }); 
+        }); 
+        </script>
+
+    <script>
+    fetch('sales_perQuarterly.php')
+        .then(response => response.json())
+        .then(json => {
+            const ctx = document.getElementById('salesPerQuarterChart').getContext('2d');
+            const salesPerQuarterChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: json.labels,
+                    datasets: [{
+                        label: 'Sales Per Quarter',
+                        data: json.data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, 
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }); 
+        }); 
+    </script>
+
+    <script>
+    fetch('sales_perYear.php')
+        .then(response => response.json())
+        .then(json => {
+            const ctx = document.getElementById('salesPerYearChart').getContext('2d');
+            const salesPerYearChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: json.labels,
+                    datasets: [{
+                        label: 'Sales Per Year',
+                        data: json.data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, 
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }); 
+        }); 
+    </script>
 
     <script>
         fetch('get_totalSales.php')
