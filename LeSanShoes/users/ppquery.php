@@ -22,12 +22,11 @@ if (isset($_POST['id'])) {
               mt.material_name,
               st.support_name,
               tt.technology_name,
-              tr.traction_name,
-              sg.shoes_gender_name
+              tr.traction_name
             FROM 
-                colorway_tbl cw
-            LEFT JOIN 
-                shoe_model_tbl sm ON cw.shoe_model_id = sm.shoe_model_id
+                shoe_model_tbl sm
+            JOIN 
+                colorway_tbl cw ON cw.shoe_model_id = sm.shoe_model_id
             LEFT JOIN 
                 brand_tbl bt ON sm.brand_id = bt.brand_id
             LEFT JOIN 
@@ -40,13 +39,14 @@ if (isset($_POST['id'])) {
                 technology_tbl tt ON sm.technology_id = tt.technology_id
             LEFT JOIN 
                 traction_tbl tr ON sm.traction_id = tr.traction_id
-            LEFT JOIN 
-                shoes_gender_tbl sg ON sm.shoes_gender_id = sg.shoes_gender_id
             WHERE 
-                sm.shoe_model_id = '$modelId'";
+                cw.colorway_id = '$modelId'";
 
   $result = mysqli_query($conn, $sql);
-  
+  if (!$result) {
+    echo "<pre><strong>SQL Error:</strong> " . mysqli_error($conn) . "</pre>";
+    echo "<pre><strong>Query:</strong> $sql</pre>";
+}
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
       // Display your product details here

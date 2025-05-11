@@ -10,13 +10,15 @@ $(document).ready(function() {
             response.shoe_models.forEach(item => {
               let imgPath = item.image1 || 'assets/images/default.jpg';  // Default if no image
               cardsHtml += `
-                <div class="col-md-4 mb-4 colorway-card" data-search=" ${item.model_name}${item.brand_name}">
-                  <div class="card product-card" style="width: 18rem;" data-id="${item.shoe_model_id}"">
+                <div class="col-md-4 mb-4 colorway-card" data-search=" ${item.model_name}${item.brand_name}${item.colorway_name}${item.price}">
+                  <div class="card product-card" style="width: 18rem;" data-id="${item.colorway_id}"">
                     <img src="${imgPath}" class="card-img-top" alt="Shoe Image 1">
                     <div class="card-body p-2 text-center">
                       <p class="card-text small">
+                        <strong>${item.brand_name}</strong><br>
                         ${item.model_name} <br>
-                        <strong>${item.brand_name}</strong>
+                        ${item.colorway_name}<br>
+                        <strong>₱ ${item.price}</strong>
                       </p>
                     </div>
                   </div>

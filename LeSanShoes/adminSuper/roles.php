@@ -17,7 +17,6 @@
         SELECT r.roles_name, COUNT(*) AS count
         FROM users_tbl u
         JOIN roles_tbl r ON u.roles_id = r.roles_id
-  
         GROUP BY r.roles_name
     ";
 
