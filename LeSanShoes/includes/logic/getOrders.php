@@ -18,26 +18,30 @@ try{
             cw.image1
         FROM orders_tbl o
         JOIN order_items_tbl oi ON o.order_id = oi.order_id
-        JOIN colorway_size_tbl cs ON oi.colorway_size_id = cs.colorway_size_id
-        JOIN colorway_tbl cw ON cs.colorway_id = cw.colorway_id
-        JOIN shoe_model_tbl sm ON cw.model_id = sm.shoe_model_id
-        JOIN size_tbl s ON cs.size_id = s.size_id
+        LEFT JOIN colorway_size_tbl cs ON oi.colorway_size_id = cs.colorway_size_id
+        LEFT JOIN colorway_tbl cw ON cs.colorway_id = cw.colorway_id
+        LEFT JOIN shoe_model_tbl sm ON cw.shoe_model_id = sm.shoe_model_id
+        LEFT JOIN size_tbl s ON cs.size_id = s.size_id
         ";
 
         $result = $conn->query($sql);
-        $orders = [];
-
+        $orders = [];       
+        
         while ($row = $result->fetch_assoc()) {
             $orders[] = $row;
         }
 
         echo json_encode([
             "orders" => $orders,
+            
         ]);
     }
 }
 catch(Exception $e){
-    http_response_code(408);
+    http_response_code(500); // 500 is more appropriate for server errors
+    echo json_encode([
+        "error" => $e->getMessage()
+    ]);
 }
 
 ?>

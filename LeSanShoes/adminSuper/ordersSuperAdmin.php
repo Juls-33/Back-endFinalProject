@@ -163,7 +163,30 @@
                         </div>
                     <!-- </div> -->
                 </div>
-                
+                <!-- MODALS -->
+                 <!-- Order Detail Modal -->
+                <div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="orderDetailModalLabel">Order Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
+                        <p><strong>Username:</strong> <span id="modalUsername"></span></p>
+                        <p><strong>Address:</strong> <span id="modalAddress"></span></p>
+                        <p><strong>Total Price:</strong> ₱<span id="modalTotalPrice"></span></p>
+                        <p><strong>Order Date:</strong> <span id="modalOrderDate"></span></p>
+                        <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+                        <hr>
+                        <h6>Ordered Items:</h6>
+                        <div id="modalItemsContainer"></div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
                  <!-- Edit Colorway Size Modal -->
                  <div class="modal fade" id="editColorwaySizeModal" tabindex="-1" aria-labelledby="editColorwatSizeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
