@@ -126,7 +126,7 @@
               <div id="filterBrand" class="accordion-collapse collapse show">
                 <div class="accordion-body">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Anta"> <label for="Anta">Anta</label>
+                    <input class="form-check-input" type="checkbox" id="Anta" value="Anta"> <label for="Anta">Anta</label>
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="Nike"> <label for="Nike">Nike</label>
@@ -166,188 +166,7 @@
       </div>
       <div class="modal-body">
         <!-- We'll fill this dynamically -->
-         <div class="container-fluid main">
-          <div class="row row-cols-1 row-cols-lg-2 g-5">
-              <div class="col-12 col-lg-9">
-              <div class="row row-cols-1 row-cols-md-2 g-1">
-                  <div class="col">
-                      <div class="img-zoom" 
-                          style="background-image: url('user-homepage/images/pdimg/kai1.jpg'); height: 400px;"
-                          onmousemove="zoom(event, this)"
-                          onmouseleave="resetZoom(this)"
-                          onmouseenter="this.style.backgroundSize = '150%'"
-                          onclick="openModal(0)"></div>
-                  </div>
-                  <div class="col">
-                      <div class="img-zoom" 
-                          style="background-image: url('user-homepage/images/pdimg/kai2.jpg'); height: 400px;"
-                          onmousemove="zoom(event, this)"
-                          onmouseleave="resetZoom(this)"
-                          onmouseenter="this.style.backgroundSize = '150%'"
-                          onclick="openModal(1)"></div>
-                  </div>
-                  <div class="col">
-                      <div class="img-zoom" 
-                          style="background-image: url('user-homepage/images/pdimg/kai3.jpg'); height: 400px;"
-                          onmousemove="zoom(event, this)"
-                          onmouseleave="resetZoom(this)"
-                          onmouseenter="this.style.backgroundSize = '150%'"
-                          onclick="openModal(2)"></div>
-                  </div>
-                  <div class="col">
-                      <div class="img-zoom" 
-                          style="background-image: url('user-homepage/images/pdimg/kai4.jpg'); height: 400px;"
-                          onmousemove="zoom(event, this)"
-                          onmouseleave="resetZoom(this)"
-                          onmouseenter="this.style.backgroundSize = '150%'"
-                          onclick="openModal(3)"></div>
-                  </div>
-              </div>
-              </div>
-
-              <div class="col-12 col-lg-3" id = "productDesc">
-                  <div class ="productDesc">
-                      <div class = "productTitle">
-                          <h3><i>Basketball</i></h3>
-                          <h3><strong>Kaiju 1</strong></h3>
-                      </div>
-
-                      <div class = "productPriceSize">
-                          <h4><strong>Php 5,400</strong></h4>
-                      </div>
-
-                      <p class = "productText">
-                          A Kai-ju Sotto Type of Footwear that makes you become the Monster that Kai Sotto the G.O.A.T is!
-                      </p><br>
-
-                      <div class="row row-cols-2">
-                          <div class="col-8 col-lg-7 col-sm-9">
-                              <p> Sizes </p>
-                          </div>
-                          <div class="col-4 col-lg-5 col-sm-3">
-                              <div class="d-flex align-items-center" id = "sizes">
-                              <i class="material-icons me-2">
-                                  straighten
-                              </i>
-                              <a href="#" data-bs-toggle="modal" data-bs-target="#sizeChartModal">
-                              Size Chart
-                              </a>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="row row-cols-3 row-cols-xl-3 row-cols-lg-2 g-2">
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option1" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option1">US 6</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option2" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option2">US 6.5</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option3" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option3">US 7</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option4" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option4">US 7.5</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option5" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option5">US 8</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option6" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option6">US 8.5</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option7" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option7">US 9</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option8" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option8">US 9.5</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option9" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option9">US 10</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option10" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button unavailable" for="option10">US 10.5</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option11" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option11">US 11</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option12" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option12">US 11.5</label>
-                          </div>
-                          <div class="col">
-                              <input type="radio" class="btn-check" name="options-size" id="option13" autocomplete="off">
-                              <label class="btn btn-outline-secondary size-button" for="option13">US 12</label>
-                          </div>
-                      </div>
-
-                      <br>
-
-                      <button class="btn btn-primary btn-lg addtoCart" data-bs-toggle="modal" data-bs-target="#addCartModal">Add To Cart</button>
-
-                      
-                      <div class="accordion accordion-spacing accordion-flush" id="accordionExample">
-                          <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                              Details
-                              </button>
-                          </h2>
-                          <div id="collapseOne" class="accordion-collapse collapse">
-                              <div class="accordion-body">
-                                  <div class="row row-cols-2">
-                                      <div class="col">
-                                          <ul class="list-group">
-                                              <li>Model: Kaiju 1</li>
-                                              <li>Color: Colorful</li>
-                                              <li>Material: Premium Leather + Rubber</li>
-                                              <li>Weight: 450 grams</li>
-                                          </ul>
-                                      </div>
-                                      <div class="col">
-                                          <ul class="list-group">
-                                              <li>Traction: Rubber Outsole</li>
-                                              <li>Support: High Ankle</li>
-                                              <li>Technology: Impact Protection</li>
-                                          </ul>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          </div>
-                          <div class="accordion-item">
-                              <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                  Shipping & Returns
-                                </button>
-                              </h2>
-                              <div id="collapseTwo" class="accordion-collapse collapse">
-                                <div class="accordion-body">
-                                  <strong>SanShoes currently offers free standard nationwide shipping in the Philippines.</strong><br><br>
-
-                                  Metro Manila Orders: 5-7 business days <br><br>
-                                  
-                                  Provincial Orders: 7-20 business days <br><br>
-                                  
-                                  Any order (regular priced and sale items) made through SanShoes is eligible for return within seven (7) days from the date the item was delivered.<br><br> Orders must be returned with a dated sales invoice/receipt and the product’s original and complete packaging for it to be accepted.
-                                </div>
-                              </div>
-                            </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
         <p><strong>Model:</strong> <span id="modalModelName"></span></p>
         <p><strong>Brand:</strong> <span id="modalBrandName"></span></p>
@@ -445,6 +264,21 @@ $('#colorwaySearch').on('input', function () {
             $(this).toggle(text.includes(searchTerm));
         });
     });
+
+$('#Anta').on('change', function () {
+    const isChecked = $(this).is(':checked');
+    const searchTerm = $(this).val().toLowerCase();
+    $('.colorway-card').each(function () {
+        const text = $(this).attr('data-search').toLowerCase();
+
+        if (isChecked) {
+            $(this).toggle(text.includes(searchTerm));
+        } else {
+            $(this).show(); // show everything when unchecked
+        }
+    });
+});
+
 
 </script>
 </body>
