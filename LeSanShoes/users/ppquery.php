@@ -1,7 +1,6 @@
 <?php
-// productpage.php
-// Connect to your database
 include("../includes/logic/config.php");
+$isLoggedIn = isset($_SESSION['username']);
 // Get the ID from URL
 if (isset($_POST['id'])) {
   $modelId = mysqli_real_escape_string($conn, $_POST['id']);
@@ -66,13 +65,13 @@ if (isset($_POST['id'])) {
             <div class="col-12 col-lg-9">
             <div class="row row-cols-1 row-cols-md-2 g-1">
                 <div class="col">
-                    <div class="img-zoom"
-                         style="background-image: url('<?php echo $row['image1']; ?>'); height: 400px;"
-                         onmousemove="zoom(event, this)"
-                         onmouseleave="resetZoom(this)"
-                         onmouseenter="this.style.backgroundSize = '150%'"
-                         onclick="openModal(0)"></div>
-                </div>
+                    <div id="mainProductImage" class="img-zoom"
+                        style="background-image: url('<?php echo $row['image1']; ?>'); height: 400px;"
+                        onmousemove="zoom(event, this)"
+                        onmouseleave="resetZoom(this)"
+                        onmouseenter="this.style.backgroundSize = '150%'"
+                        onclick="openModal(0)"></div>
+                    </div>
                 <div class="col">
                     <div class="img-zoom"
                          style="background-image: url('<?php echo $row['image2']; ?>'); height: 400px;"
@@ -161,7 +160,7 @@ if (isset($_POST['id'])) {
                         <input type="hidden" id="selected-size-stock" value="0">
                     <br>
 
-                    <button class="btn btn-primary btn-lg addtoCart" data-bs-toggle="modal" data-bs-target="#addCartModal">Add To Cart</button>
+                    <button class="btn btn-primary btn-lg addtoCart"  <?php if (!$isLoggedIn) echo 'data-auth="false"'; ?>>Add To Cart</button>
 
                     
                     <div class="accordion accordion-spacing accordion-flush" id="accordionExample">

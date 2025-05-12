@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title><?php echo $_SESSION['colorway_name']; ?></title>
 
     <link rel="stylesheet" href="productpage.css">
@@ -88,33 +91,40 @@
             </div>
         </div>
     </div>
+
+<!-- On click add to cart -->
 <div class="modal fade" id="addCartModal" tabindex="-1" aria-labelledby="addCartModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addCartModalLabel"><i class="bi bi-cart-check"></i> Item Added to Cart</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
             </div>
             <div class="modal-body">
                 <div class="row align-items-center">
-                    <div class="col-md-4">
-                        <img src="user-homepage/images/pdimg/kai1.jpg" alt="Product" class="img-fluid rounded">
-                    </div>
                     <div class="col-md-8">
-                        <h5>Kaiju 1</h5>
-                        <p>Php 5,400</p>
+                        <!-- <img src="user-homepage/images/pdimg/kai1.jpg" alt="Product" id="img" class="img-fluid rounded"> -->
+                        <img id="cart-product-img" src="" alt="Product Image" class="img-fluid mb-3">
+                    </div>
+                    <div class="col-md-4">
+                        <h5 id="cart-product-name"></h5>
+                        <p id="cart-product-price"></p>
                         <p>Size: <span id="selected-size"></span></p>
+                        <p>Quantity: <span id="selected-qty"></span></p>
+                        <p>Total: <span id="cart-total-price"></span></p>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Continue Shopping</button>
                 <a href="cart.html" type="button" class="btn btn-primary">View Cart</a>
             </div>
         </div>
     </div>
 </div>
+<!-- end of onclick add to cart -->
 
+<!-- Size chart modal -->
 <div class="modal fade" id="sizeChartModal" tabindex="-1" aria-labelledby="sizeChartModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -173,6 +183,9 @@
         </div>
     </div>
 </div>
+<!-- end of size chart modal -->
+
+<!-- MODAL CART -->
 <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -233,6 +246,7 @@
         </div>
     </div>
 </div>
+<!-- end of modal cart -->
 
 <!-- Footer -->
 <footer class="text-white text-center text-lg-start w-100" style="width: 100%; background-color: #B51E1E;">
