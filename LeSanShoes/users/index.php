@@ -77,7 +77,7 @@
 <div class="shoesTitle">
   <h1>NEWEST IN THE GAME</h1>
 </div>
-  <div class="container mt-4">
+ <div class="container mt-4">
   <div class="card-container-wrapper">
     <button class="scroll-btn left" id="leftBtn">
       <span class="material-symbols-outlined">arrow_circle_left</span>
@@ -91,71 +91,86 @@
   </div>
 </div>
 
-<div class="brandContainer">
-  <div class="mb-5 shoesTitle">
-    <h1>SHOP BY BRAND</h1>
+
+
+
+<div class="container my-5 brandContainer">
+  <div class="mb-4 text-center shoesTitleColor">
+    <h1 class="fw-bold">SHOP BY BRAND</h1>
   </div>
-  <div class="brands">
-    <div class="row row-cols-auto justify-content-center g-3">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-4 justify-content-center">
 
-      <div class="col">
-        <a href="products.php?brand=Anta" style="text-decoration: none; color: inherit;">
-          <div class="card" style="width: 18rem;">
-            <img src="../assets/images/kyrie.jpg" class="card-img-top" alt="ANTA">
-            <div class="card-body p-2 text-center">
-              <p class="card-text small">ANTA</p>
-            </div>
+    <div class="col d-flex justify-content-center">
+      <a href="products.php?brand=Anta" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
+        <div class="card h-100">
+          <img src="../assets/images/kyrie.jpg" class="card-img-top" alt="ANTA">
+          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+            <p class="card-text fs-6 fw-semibold mb-0">ANTA</p>
           </div>
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="products.php?brand=Nike" style="text-decoration: none; color: inherit;">
-          <div class="card" style="width: 18rem;">
-            <img src="../assets/images/sabrina.jpg" class="card-img-top" alt="NIKE">
-            <div class="card-body p-2 text-center">
-              <p class="card-text small">NIKE</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="products.php?brand=Under" style="text-decoration: none; color: inherit;">
-          <div class="card" style="width: 18rem;">
-            <img src="../assets/images/stephen.jpg" class="card-img-top" alt="UNDER ARMOUR">
-            <div class="card-body p-2 text-center">
-              <p class="card-text small">UNDER ARMOUR</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="products.php?brand=Adidas" style="text-decoration: none; color: inherit;">
-          <div class="card" style="width: 18rem;">
-            <img src="../assets/images/harden.jpg" class="card-img-top" alt="ADIDAS">
-            <div class="card-body p-2 text-center">
-              <p class="card-text small">ADIDAS</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="products.php?brand=Asics" style="text-decoration: none; color: inherit;">
-          <div class="card" style="width: 18rem;">
-            <img src="../assets/images/asics.jpg" class="card-img-top" alt="ASICS">
-            <div class="card-body p-2 text-center">
-              <p class="card-text small">ASICS</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
+        </div>
+      </a>
     </div>
+
+    <div class="col d-flex justify-content-center">
+      <a href="products.php?brand=Nike" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
+        <div class="card h-100">
+          <img src="../assets/images/sabrina.jpg" class="card-img-top" alt="NIKE">
+          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+            <p class="card-text fs-6 fw-semibold mb-0">NIKE</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col d-flex justify-content-center">
+      <a href="products.php?brand=Under" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
+        <div class="card h-100">
+          <img src="../assets/images/stephen.jpg" class="card-img-top" alt="UNDER ARMOUR">
+          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+            <p class="card-text fs-6 fw-semibold mb-0">UNDER ARMOUR</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col d-flex justify-content-center">
+      <a href="products.php?brand=Adidas" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
+        <div class="card h-100">
+          <img src="../assets/images/harden.jpg" class="card-img-top" alt="ADIDAS">
+          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+            <p class="card-text fs-6 fw-semibold mb-0">ADIDAS</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col d-flex justify-content-center">
+      <a href="products.php?brand=Asics" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
+        <div class="card h-100">
+          <img src="../assets/images/asics.jpg" class="card-img-top" alt="ASICS">
+          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+            <p class="card-text fs-6 fw-semibold mb-0">ASICS</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col d-flex justify-content-center">
+      <a href="products.php?brand=Jordan" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
+        <div class="card h-100">
+          <img src="../assets/images/jordanPic.jpg" class="card-img-top" alt="JORDAN">
+          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+            <p class="card-text fs-6 fw-semibold mb-0">JORDAN</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
   </div>
 </div>
+
+
+
 
 
        
@@ -203,10 +218,12 @@
         <div class="p-3" style="min-width: 250px; max-width: 300px;">
           <h5 class="text-uppercase mb-4">Products</h5>
           <ul>
-            <li class="mb-2"><a href="#" class="text-white">Anta</a></li>
-            <li class="mb-2"><a href="#" class="text-white">Nike</a></li>
-            <li class="mb-2"><a href="#" class="text-white">Under Armour</a></li>
-            <li class="mb-2"><a href="#" class="text-white">Adidas</a></li>
+            <li class="mb-2"> <a href="products.php?brand=Anta" class="text-white">Anta</a></li>
+            <li class="mb-2"><a href="products.php?brand=Nike" class="text-white">Nike</a></li>
+            <li class="mb-2"><a href="products.php?brand=Under" class="text-white">Under Armour</a></li>
+            <li class="mb-2"><a href="products.php?brand=Adidas" class="text-white">Adidas</a></li>
+            <li class="mb-2"><a href="products.php?brand=Asics" class="text-white">Asics</a></li>
+            <li class="mb-2"><a href="products.php?brand=Jordan" class="text-white">Jordan</a></li>
           </ul>
         </div>
 
@@ -214,7 +231,7 @@
           <h5 class="text-uppercase mb-4">Useful Links</h5>
           <ul>
             <li class="mb-2"><a href="index.php" class="text-white">Home</a></li>
-            <li class="mb-2"><a href="#" class="text-white">Products</a></li>
+            <li class="mb-2"><a href="products.php" class="text-white">Products</a></li>
             <li class="mb-2"><a href="faq.php" class="text-white">FAQ</a></li>
             <li class="mb-2"><a href="#" class="text-white">Cart</a></li>
           </ul>
@@ -263,6 +280,8 @@
   </div>
 
   <script>
+
+
     $('#colorwaySearch').on('input', function () {
       const searchTerm = $(this).val().toLowerCase();
       $('.colorway-card').each(function () {

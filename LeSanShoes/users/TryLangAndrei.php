@@ -14,17 +14,19 @@ try {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
         $sql = "SELECT 
-                    c.colorway_id,
-                    sm.model_name,
-                    c.colorway_name,
-                    c.price,
-                    c.image1,
-                    b.brand_name,
-                    COALESCE(SUM(cs.stock), 0) AS total_stock
-                FROM colorway_tbl c
-                LEFT JOIN shoe_model_tbl sm ON sm.shoe_model_id = c.shoe_model_id
-                LEFT JOIN brand_tbl b ON sm.brand_id = b.brand_id
-                LEFT JOIN colorway_size_tbl cs ON cs.colorway_id = c.colorway_id
+    c.colorway_id,
+    sm.model_name,
+    c.colorway_name,
+    c.price,
+    c.image1,
+    b.brand_name,
+    COALESCE(SUM(cs.stock), 0) AS total_stock,
+    cat.category_name
+FROM colorway_tbl c
+LEFT JOIN shoe_model_tbl sm ON sm.shoe_model_id = c.shoe_model_id
+LEFT JOIN brand_tbl b ON sm.brand_id = b.brand_id
+LEFT JOIN colorway_size_tbl cs ON cs.colorway_id = c.colorway_id
+LEFT JOIN category_tbl cat ON sm.category_id = cat.category_id
                 GROUP BY c.colorway_id
                 ";
 
