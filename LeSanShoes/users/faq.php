@@ -89,13 +89,23 @@ session_start();
                     <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
                     </ul>
                     <div class="d-lg-flex flex-lg-row align-items-center gap-2">
-                        <div><a href="../userAuth/login.php">Login</a></div>
-                        <p>Username: <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?></p>
-                        <a href="../userAuth/logoutUser.php">Logout</a> 
-                        <div class="mb-2" role="button" data-bs-toggle="modal" data-bs-target="#userModal">
-            <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
-            <span class="icon-text d-inline d-lg-none">User Account</span>
-            </div>
+                        <div class="dropdown mb-2">
+    <div class="d-flex align-items-center" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
+        <span class="icon-text d-inline d-lg-none">User Account</span>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+        <?php if (isset($_SESSION["username"])): ?>
+            <li class="dropdown-item text-muted">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="../userAuth/logoutUser.php">Logout</a></li>
+        <?php else: ?>
+            <li><a class="dropdown-item" href="../userAuth/login.php">Login</a></li>
+        <?php endif; ?>
+    </ul>
+</div>
                         <div>
                         <span class="material-symbols-outlined d-none d-lg-inline">shopping_cart</span>
                         <span class="icon-text d-inline d-lg-none">Cart</span>

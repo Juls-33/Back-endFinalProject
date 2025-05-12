@@ -181,3 +181,35 @@ $(document).ready(function () {
   waitForColorwayCards(applyURLFilters);
 });
 
+
+
+
+// INDEX PAGE BUTTONS 
+  document.getElementById('leftBtn').addEventListener('click', function() {
+  document.getElementById('cardContainer').scrollBy({
+    left: -300, /* Scroll left by 300px */
+    behavior: 'smooth'  /* Smooth scroll */
+  });
+});
+
+document.getElementById('rightBtn').addEventListener('click', function() {
+  document.getElementById('cardContainer').scrollBy({
+    left: 300,  /* Scroll right by 300px */
+    behavior: 'smooth'  /* Smooth scroll */
+  });
+});
+
+
+document.getElementById('leftBtn1').addEventListener('click', function() {
+  document.getElementById('runningCardContainer').scrollBy({
+    left: -300, /* Scroll left by 300px */
+    behavior: 'smooth'  /* Smooth scroll */
+  });
+});
+
+document.getElementById('rightBtn1').addEventListener('click', function() {
+  document.getElementById('runningCardContainer').scrollBy({
+    left: 300,  /* Scroll right by 300px */
+    behavior: 'smooth'  /* Smooth scroll */
+  });
+});

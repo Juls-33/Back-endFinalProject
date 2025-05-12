@@ -44,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Additional items will be loaded dynamically -->
+                    <!-- Additional items can be added here -->
                 </div>
             </div>
             <div id="cartFooter" class="modal-footer d-flex justify-content-between" style="display: none;">
@@ -55,3 +55,24 @@
         </div>
     </div>
 </div>
+
+<!-- login modal -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userModalLabel">User Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <?php if (isset($_SESSION["username"])): ?>
+            <p>You are logged in as <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong></p>
+            <a href="../userAuth/logoutUser.php" class="btn btn-danger">Logout</a>
+          <?php else: ?>
+            <p>You are not logged in.</p>
+            <a href="../userAuth/login.php" class="btn btn-primary">Login</a>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
+  </div>

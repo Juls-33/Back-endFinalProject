@@ -23,49 +23,7 @@
 <body>
 
 <!-- Header -->
-<header>
-  <div class="ad">
-    <div class="ad-text">
-      <h2>Limited Time Offer 20% off for All Shoes! Contact Us Now</h2>
-    </div>
-  </div>
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <div class="logo-class">
-          <img src="LeSanShoes/assets/images/sanshoes logo.png" alt="Bootstrap" width="100" height="100">
-        </div>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.php">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../users/products.php">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
-        </ul>
-        <div class="d-lg-flex flex-lg-row align-items-center gap-2">
-            <!-- temporary login and logout -->
-            <div><a href="../userAuth/login.php">Login</a></div>
-            <p>Username: <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?></p>
-            <a href="../userAuth/logoutUser.php">Logout</a>
-            <!-- end of temporary login and logout -->
-          <div class="mb-2">
-            <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
-            <span class="icon-text d-inline d-lg-none">User Account</span>
-          </div>
-          <div>
-            <span class="material-symbols-outlined d-none d-lg-inline" id="openCartBtn" data-bs-toggle="modal" data-bs-target="#cartModal">shopping_cart</span>
-            <span class="icon-text d-inline d-lg-none" data-bs-toggle="modal" id="openCartBtn" data-bs-target="#cartModal">Cart</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
+<?php include('C:\xampp\htdocs\Back-endFinalProject\LeSanShoes\header-footer\header.php'); ?>
 
 <!-- Main Body (Display Dynamic Product Details Here)-->
 <main id="mainpart"></main>
