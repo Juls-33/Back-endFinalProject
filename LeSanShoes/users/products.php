@@ -117,7 +117,7 @@
 </div>
 <div class="form-check">
   <input class="form-check-input" type="checkbox" id="Under" value="Under Armour">
-  <label for="UnderArmour">Under Armour</label>
+  <label for="Under">Under Armour</label>
 </div>
 <div class="form-check">
   <input class="form-check-input" type="checkbox" id="Adidas" value="Adidas">
@@ -127,6 +127,11 @@
   <input class="form-check-input" type="checkbox" id="Asics" value="Asics">
   <label for="Asics">Asics</label>
 </div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" id="Jordan" value="Jordan">
+  <label for="Jordan">Jordan</label>
+</div>
+
 
   </div>
 </div>
@@ -278,6 +283,91 @@
     }
   });
 </script> -->
+<!-- <script>
+function getURLParameter(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+function applyURLFilters() {
+  const brandFromURL = getURLParameter('brand');
+  if (brandFromURL) {
+    const brandCheckbox = $(`#${brandFromURL}`);
+    if (brandCheckbox.length) {
+      brandCheckbox.prop('checked', true);
+    }
+  }
+
+  const categoryFromURL = getURLParameter('category');
+  if (categoryFromURL) {
+    const categoryCheckbox = $(`#${categoryFromURL}`);
+    if (categoryCheckbox.length) {
+      categoryCheckbox.prop('checked', true);
+    }
+  }
+
+  // Call the filter after all checkbox states are set
+  filterColorwaysAndCategories();
+}
+
+$(window).on('load', function () {
+  applyURLFilters();
+});
+</script> -->
+<script>
+function getURLParameter(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+function applyURLFilters() {
+  const brandFromURL = getURLParameter('brand');
+  if (brandFromURL) {
+    const checkbox = $(`#${brandFromURL}`);
+    if (checkbox.length) {
+      checkbox.prop('checked', true);
+    }
+  }
+
+  const categoryFromURL = getURLParameter('category');
+  if (categoryFromURL) {
+    const checkbox = $(`#${categoryFromURL}`);
+    if (checkbox.length) {
+      checkbox.prop('checked', true);
+    }
+  }
+
+  filterColorwaysAndCategories(); // Apply filter after checkboxes are set
+}
+
+function waitForColorwayCards(callback) {
+  const container = document.querySelector('.colorway-card')?.parentElement;
+  if (!container) {
+    // Retry after short delay if elements not yet in DOM
+    setTimeout(() => waitForColorwayCards(callback), 50);
+    return;
+  }
+
+  // Run immediately if already present
+  if (document.querySelector('.colorway-card')) {
+    callback();
+    return;
+  }
+
+  // Otherwise observe and run once they're added
+  const observer = new MutationObserver((mutations, obs) => {
+    if (document.querySelector('.colorway-card')) {
+      obs.disconnect();
+      callback();
+    }
+  });
+
+  observer.observe(container, { childList: true, subtree: true });
+}
+
+$(document).ready(function () {
+  waitForColorwayCards(applyURLFilters);
+});
+</script>
+
 
 <script>
   $('#colorwaySearch').on('input', function () {
@@ -288,21 +378,34 @@
     });
   });
 
-  function filterColorways() {
-    const selectedBrands = $('input[type=checkbox]:checked').map(function () {
+  function filterColorwaysAndCategories() {
+  const selectedBrands = $('#Anta, #Nike, #Under, #Adidas, #Asics, #Jordan')
+    .filter(':checked')
+    .map(function () {
       return this.value.toLowerCase();
     }).get();
 
+  const selectedCategories = $('#running, #basketball, #lifestyle')
+    .filter(':checked')
+    .map(function () {
+      return this.value.toLowerCase();
+    }).get();
 
-    $('.colorway-card').each(function () {
-      const text = $(this).attr('data-search').toLowerCase();  
+  $('.colorway-card').each(function () {
+    const text = $(this).attr('data-search').toLowerCase();
 
-      const matches = selectedBrands.length === 0 || selectedBrands.some(brand => text.includes(brand));
-      $(this).toggle(matches);  
-    });
-  }
+    const brandMatch = selectedBrands.length === 0 ? true : selectedBrands.some(brand => text.includes(brand));
+    const categoryMatch = selectedCategories.length === 0 ? true : selectedCategories.some(category => text.includes(category));
 
-  $('#Anta, #Nike, #UnderArmour, #Adidas, #Asics').on('change', filterColorways);
+    const matches = brandMatch && categoryMatch;
+    $(this).toggle(matches);
+  });
+}
+
+$('#Anta, #Nike, #Under, #Adidas, #Asics,#Jordan, #running, #basketball, #lifestyle')
+  .on('change', filterColorwaysAndCategories);
+
+
 </script>
 
 

@@ -27,7 +27,7 @@ $(document).ready(function() {
 
                 cardsHtml += `
   <div class="col-md-4 mb-4 colorway-card ${isOutOfStock ? 'grayed-out' : ''}"
-      data-search="${item.model_name}${item.brand_name}${item.colorway_name}${item.price}">
+      data-search="${item.model_name}${item.brand_name}${item.colorway_name}${item.price}${item.category_name}">
     <div class="card product-card h-100"
         style="width: 18rem; ${isOutOfStock ? 'opacity: 0.5; pointer-events: none;' : ''}"
         data-id="${item.colorway_id}">
