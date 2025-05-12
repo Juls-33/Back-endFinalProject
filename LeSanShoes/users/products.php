@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,25 +108,26 @@
               <div id="filterBrand" class="accordion-collapse collapse show">
   <div class="accordion-body">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="Anta" value="Anta">
-      <label for="Anta">Anta</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="Nike" value="Nike">
-      <label for="Nike">Nike</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="Under" value="Under">
-      <label for="UnderArmour">Under Armour</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="Adidas" value="Adidas">
-      <label for="Adidas">Adidas</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="Asics" value="Asics">
-      <label for="Asics">Asics</label>
-    </div>
+  <input class="form-check-input" type="checkbox" id="Anta" value="Anta">
+  <label for="Anta">Anta</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" id="Nike" value="Nike">
+  <label for="Nike">Nike</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" id="Under" value="Under Armour">
+  <label for="UnderArmour">Under Armour</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" id="Adidas" value="Adidas">
+  <label for="Adidas">Adidas</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" id="Asics" value="Asics">
+  <label for="Asics">Asics</label>
+</div>
+
   </div>
 </div>
             </div>
@@ -245,48 +247,64 @@
   </div>
 </div>
 
-<script>
 
+<!-- <script>
+  // Wait for the page to load
+  document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const brand = params.get("brand"); // Get the brand from the URL
+
+    console.log("Brand from URL:", brand);  // Debugging line
+
+    if (brand) {
+      const decodedBrand = decodeURIComponent(brand);  // Decode the brand
+
+      // Find the checkbox for that brand
+      const checkbox = document.querySelector(`input[type="checkbox"][value="${decodedBrand}"]`);
+
+      console.log("Found checkbox for brand:", decodedBrand);  // Debugging line
+
+      if (checkbox) {
+        checkbox.checked = true;  // Check the checkbox
+        console.log("Checkbox is checked:", checkbox);  // Debugging line
+
+        // Manually trigger the 'change' event to apply the filter
+        $(checkbox).trigger('change');
+      } else {
+        console.warn("Checkbox not found for brand:", decodedBrand);  // Debugging line
+      }
+    } else {
+      console.warn("No brand parameter in URL!");  // Debugging line
+    }
+  });
+</script> -->
+
+<script>
   $('#colorwaySearch').on('input', function () {
-        const searchTerm = $(this).val().toLowerCase();
-        $('.colorway-card').each(function () {
-            const text = $(this).attr('data-search').toLowerCase();
-            $(this).toggle(text.includes(searchTerm));
-        });
+    const searchTerm = $(this).val().toLowerCase();
+    $('.colorway-card').each(function () {
+      const text = $(this).attr('data-search').toLowerCase();
+      $(this).toggle(text.includes(searchTerm));  // Show or hide cards based on search
     });
+  });
 
   function filterColorways() {
     const selectedBrands = $('input[type=checkbox]:checked').map(function () {
       return this.value.toLowerCase();
     }).get();
 
+
     $('.colorway-card').each(function () {
-      const text = $(this).attr('data-search').toLowerCase();
+      const text = $(this).attr('data-search').toLowerCase();  
 
       const matches = selectedBrands.length === 0 || selectedBrands.some(brand => text.includes(brand));
-      $(this).toggle(matches);
+      $(this).toggle(matches);  
     });
   }
 
-  // Attach the function to all brand checkboxes
-  $('#Anta, #Nike, #Under, #Adidas, #Asics').on('change', filterColorways);
-
-  // function filterActivities() {
-  //   const selectedActivities = $('input[type=checkbox]:checked').map(function () {
-  //     return this.value.toLowerCase();
-  //   }).get();
-
-  //   $('.colorway-card').each(function () {
-  //     const text = $(this).attr('data-search').toLowerCase();
-
-  //     const matches = selectedActivities.length === 0 || selectedActivities.some(activity => text.includes(activity));
-  //     $(this).toggle(matches);
-  //   });
-  // }
-
-  // // Attach the function to all activity checkboxes
-  // $('#running, #basketball, #lifestyle').on('change', filterActivities);
+  $('#Anta, #Nike, #UnderArmour, #Adidas, #Asics').on('change', filterColorways);
 </script>
+
 
 </body>
 </html>

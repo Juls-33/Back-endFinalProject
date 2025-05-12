@@ -91,56 +91,72 @@
   </div>
 </div>
 
-
 <div class="brandContainer">
-    <div class=" mb-5 shoesTitle">
-      <h1>SHOP BY BRAND</h1>
-    </div>
-    <div class="brands">
-      <div class="row row-cols-auto justify-content-center g-3">
-        <div class="col">
+  <div class="mb-5 shoesTitle">
+    <h1>SHOP BY BRAND</h1>
+  </div>
+  <div class="brands">
+    <div class="row row-cols-auto justify-content-center g-3">
+
+      <div class="col">
+        <a href="products.php?brand=Anta" style="text-decoration: none; color: inherit;">
           <div class="card" style="width: 18rem;">
-            <img src="../assets/../assets/images/kyrie.jpg" class="card-img-top" alt="ANTA">
+            <img src="../assets/images/kyrie.jpg" class="card-img-top" alt="ANTA">
             <div class="card-body p-2 text-center">
               <p class="card-text small">ANTA</p>
             </div>
           </div>
-        </div>
-        <div class="col">
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="products.php?brand=Nike" style="text-decoration: none; color: inherit;">
           <div class="card" style="width: 18rem;">
-            <img src="../assets/../assets/images\sabrina.jpg" class="card-img-top" alt="ANTA">
+            <img src="../assets/images/sabrina.jpg" class="card-img-top" alt="NIKE">
             <div class="card-body p-2 text-center">
               <p class="card-text small">NIKE</p>
             </div>
           </div>
-        </div>
-        <div class="col">
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="products.php?brand=Under" style="text-decoration: none; color: inherit;">
           <div class="card" style="width: 18rem;">
-            <img src="../assets/../assets/images\stephen.jpg" class="card-img-top" alt="ANTA">
+            <img src="../assets/images/stephen.jpg" class="card-img-top" alt="UNDER ARMOUR">
             <div class="card-body p-2 text-center">
               <p class="card-text small">UNDER ARMOUR</p>
             </div>
           </div>
-        </div>
-        <div class="col">
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="products.php?brand=Adidas" style="text-decoration: none; color: inherit;">
           <div class="card" style="width: 18rem;">
-            <img src="../assets/../assets/images\harden.jpg" class="card-img-top" alt="ANTA">
+            <img src="../assets/images/harden.jpg" class="card-img-top" alt="ADIDAS">
             <div class="card-body p-2 text-center">
               <p class="card-text small">ADIDAS</p>
             </div>
           </div>
-        </div>
-        <div class="col">
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="products.php?brand=Asics" style="text-decoration: none; color: inherit;">
           <div class="card" style="width: 18rem;">
-            <img src="../assets/../assets/images\asics.jpg" class="card-img-top" alt="ANTA">
+            <img src="../assets/images/asics.jpg" class="card-img-top" alt="ASICS">
             <div class="card-body p-2 text-center">
               <p class="card-text small">ASICS</p>
             </div>
           </div>
-        </div>
+        </a>
       </div>
-       </div>
-   </div>
+
+    </div>
+  </div>
+</div>
+
 
        
 
