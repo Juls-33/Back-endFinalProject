@@ -80,3 +80,104 @@ $(document).ready(function() {
     }
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+// SEARCH SHOES FUNCTION
+
+$('#colorwaySearch').on('input', function () {
+    const searchTerm = $(this).val().toLowerCase();
+    $('.colorway-card').each(function () {
+      const text = $(this).attr('data-search').toLowerCase();
+      $(this).toggle(text.includes(searchTerm));  // Show or hide cards based on search
+    });
+  });
+
+  function filterColorwaysAndCategories() {
+  const selectedBrands = $('#Anta, #Nike, #Under, #Adidas, #Asics, #Jordan')
+    .filter(':checked')
+    .map(function () {
+      return this.value.toLowerCase();
+    }).get();
+
+  const selectedCategories = $('#running, #basketball, #lifestyle')
+    .filter(':checked')
+    .map(function () {
+      return this.value.toLowerCase();
+    }).get();
+
+  $('.colorway-card').each(function () {
+    const text = $(this).attr('data-search').toLowerCase();
+
+    const brandMatch = selectedBrands.length === 0 ? true : selectedBrands.some(brand => text.includes(brand));
+    const categoryMatch = selectedCategories.length === 0 ? true : selectedCategories.some(category => text.includes(category));
+
+    const matches = brandMatch && categoryMatch;
+    $(this).toggle(matches);
+  });
+}
+
+$('#Anta, #Nike, #Under, #Adidas, #Asics,#Jordan, #running, #basketball, #lifestyle')
+  .on('change', filterColorwaysAndCategories);
+// FILTER FUNCTION
+function getURLParameter(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+function applyURLFilters() {
+  const brandFromURL = getURLParameter('brand');
+  if (brandFromURL) {
+    const checkbox = $(`#${brandFromURL}`);
+    if (checkbox.length) {
+      checkbox.prop('checked', true);
+    }
+  }
+
+  const categoryFromURL = getURLParameter('category');
+  if (categoryFromURL) {
+    const checkbox = $(`#${categoryFromURL}`);
+    if (checkbox.length) {
+      checkbox.prop('checked', true);
+    }
+  }
+
+  filterColorwaysAndCategories(); // Apply filter after checkboxes are set
+}
+
+function waitForColorwayCards(callback) {
+  const container = document.querySelector('.colorway-card')?.parentElement;
+  if (!container) {
+    // Retry after short delay if elements not yet in DOM
+    setTimeout(() => waitForColorwayCards(callback), 50);
+    return;
+  }
+
+  // Run immediately if already present
+  if (document.querySelector('.colorway-card')) {
+    callback();
+    return;
+  }
+
+  // Otherwise observe and run once they're added
+  const observer = new MutationObserver((mutations, obs) => {
+    if (document.querySelector('.colorway-card')) {
+      obs.disconnect();
+      callback();
+    }
+  });
+
+  observer.observe(container, { childList: true, subtree: true });
+}
+
+$(document).ready(function () {
+  waitForColorwayCards(applyURLFilters);
+});
+
