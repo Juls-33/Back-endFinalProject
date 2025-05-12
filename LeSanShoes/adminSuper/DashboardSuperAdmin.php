@@ -25,7 +25,6 @@
     }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -314,7 +313,7 @@
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
-                                    <h5 class="text-sm mb-4">Top Selling Products Per Day</h5>
+                                    <p class="text-sm mb-0">Top Selling Products Per Day</p>
                                 </div>
                             </div>
                             <div class="card-body pb-4 p-3 mt-0">
@@ -373,40 +372,40 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span class="fw-bold">Orders Overview</span>
-                            <a href="#" class="text-decoration-none small">View the Unfulfilled Orders</a>
+                            <!-- <a href="#" class="text-decoration-none small">View the Unfulfilled Orders</a> -->
                         </div>
 
                         <div class="card-body pt-3">
                             <div class="d-flex overflow-auto px-3" style="gap: 1.5rem;">
                                 <!-- Mini Card -->
-                                <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                                <div class="card text-center flex-shrink-0" style="width: 471px; height: 140px;">
                                     <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
-                                        <h6 class="mb-1">Pending</h6>
-                                    <p class="mb-0 text-muted">3 Orders</p>
+                                    <h6 class="mb-1">Pending</h6>
+                                    <p id="pendingCount" class="mb-0 text-muted">0 Orders</p>
                                 </div>
                             </div>
 
                             <!-- Mini Card -->
-                            <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                            <div class="card text-center flex-shrink-0" style="width: 471px; height: 140px;">
                                 <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
-                                    <h6 class="mb-1">Canceled</h6>
-                                    <p class="mb-0 text-muted">2 Orders</p>
+                                    <h6 class="mb-1">Cancelled</h6>
+                                    <p id="cancelledCount" class="mb-0 text-muted">0 Orders</p>
                                 </div>
                             </div>
 
                             <!-- Mini Card -->
-                            <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                            <div class="card text-center flex-shrink-0" style="width: 471px; height: 140px;">
                                 <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
                                     <h6 class="mb-1">Processing</h6>
-                                    <p class="mb-0 text-muted">5 Orders</p>
+                                    <p id="processingCount" class="mb-0 text-muted">0 Orders</p>
                                 </div>
                             </div>
 
                             <!-- Mini Card -->
-                            <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                            <div class="card text-center flex-shrink-0" style="width: 471px; height: 140px;">
                                 <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
                                     <h6 class="mb-1">Completed</h6>
-                                    <p class="mb-0 text-muted">10 Orders</p>
+                                    <p id="completedCount" class="mb-0 text-muted">0 Orders</p>
                                 </div>
                                 </div>
                             </div>
@@ -588,7 +587,7 @@
         .then(data => {
             document.getElementById('completedCount').textContent = data;
         });
-  </script>
+    </script>
 
     <script>
         fetch('roles.php')

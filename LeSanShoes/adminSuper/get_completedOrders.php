@@ -1,6 +1,5 @@
 <?php
     
-    // Database connection
     $servername = "localhost";
     $database = "lesanshoes_db";
     $username = "root";
@@ -12,7 +11,6 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Query for completed orders
     $sql = "SELECT COUNT(*) AS completed_count FROM orders_tbl WHERE status = 'completed'";
     $result = $conn->query($sql);
 
