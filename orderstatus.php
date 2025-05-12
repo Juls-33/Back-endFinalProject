@@ -112,20 +112,6 @@ h4{
 .mt-3 {
     margin-top: 1rem; /* Adjust margin as needed */
 }
-
-.btn-link {
-    text-decoration: none; /* Remove link underline */
-    color: black; /* Adjust color for the link */
-    font-weight: 500; /* Font weight adjustment */
-    padding-left: 0;
-}
-
-.btn-primary {
-    background-color: black; /* Set button background to black */
-    color: white; /* Set text color to white */
-    padding: 0.5rem 1rem; /* Adjust padding for button */
-}
-
 .d-flex {
     display: flex; /* Enable flexbox */
 }
@@ -195,13 +181,13 @@ h4{
             <div class="col">
                 <div class="card mb-3" style="width: 100%; cursor:pointer; border-color:#5f0000;" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
                     <div class="card-body">
-                        <h5 class="card-title mb-3"><strong>Order ID: 038526624</strong></h5>
-                        <p class="card-text"><strong>Status: Pending</strong></p>
+                        <h5 class="card-title mb-3"><strong>Order ID: 038526624</strong></h5> this is order_id
+                        <p class="card-text"><strong>Status: Pending</strong></p> this is status
                         <p class="card-text">
-                            <medium class="text-muted">Nike Vomero, Adidas Shibal, Anta ga Suki, etc.</medium>
+                            <medium class="text-muted">Nike Vomero, Adidas Shibal, Anta ga Suki, etc.</medium> this is all colorway_name in order_items_tbl (loop all colorways in the orders_tbl in this single tag)
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="card-text mb-2"><strong>Total: Php 6969.69</strong></p>
+                            <p class="card-text mb-2"><strong>Total: Php 6969.69</strong></p> this is total_price
                             <button class="btn btn-outline-danger mb-3 ms-2">
                             Cancel
                             </button>
@@ -238,7 +224,7 @@ h4{
                         <img src="LeSanShoes/assets/images/VOMERO+5+BG.jpg" alt="Nike Book 1 EP 'Flagstaff'" class="img-fluid shoes">
                         <div>
                             <p class="mb-1">Nike Book 1 EP 'Flagstaff'</p>
-                            <small>10.5</small>
+                            <small>10.5 &middot; Qty:</small>
                         </div>
                         <span class="ms-auto">₱7,895.00</span>
                     </li>
@@ -246,7 +232,7 @@ h4{
                         <img src="LeSanShoes/assets/images/VOMERO+5+BG.jpg" alt="Nike Air More Uptempo Slide" class="img-fluid shoes">
                         <div>
                             <p class="mb-1">Nike Air More Uptempo Slide</p>
-                            <small>11</small>
+                            <small>11 &middot; Qty:</small>
                         </div>
                         <span class="ms-auto">₱4,995.00</span>
                     </li>
@@ -254,7 +240,7 @@ h4{
                         <img src="LeSanShoes/assets/images/VOMERO+5+BG.jpg" alt="Air Jordan 1 Retro High OG 'Rare Air'" class="img-fluid shoes">
                         <div>
                             <p class="mb-1">Air Jordan 1 Retro High OG 'Rare Air'</p>
-                            <small>10.5</small>
+                            <small>10.5 &middot; Qty:</small>
                         </div>
                         <span class="ms-auto">₱9,895.00</span>
                     </li>
@@ -262,7 +248,7 @@ h4{
                         <img src="LeSanShoes/assets/images/colorway_6815f567d9c15.jpg" alt="Anta Kai 2 'Solar Return'" class="img-fluid shoes">
                         <div>
                             <p class="mb-1">Anta Kai 2 'Solar Return'</p>
-                            <small>9</small>
+                            <small>9 &middot; Qty:</small>
                         </div>
                         <span class="ms-auto">₱7,995.00</span>
                     </li>
