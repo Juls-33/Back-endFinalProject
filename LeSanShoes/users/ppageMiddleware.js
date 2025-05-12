@@ -90,21 +90,19 @@ function updateQtyButtons(stock) {
 // ADD TO CART
 $(document).on('click', '.addtoCart', function () {
     if (this.dataset.auth === "false") {
-            // e.preventDefault();
-            Swal.fire({
-                text: "You must be logged in to add items to your cart.",
-                icon: "warning",
-                showConfirmButton: true,
-                confirmButtonText: "Login",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "../userAuth/login.php";
-                }
-            });
+        Swal.fire({
+            text: "You must be logged in to add items to your cart.",
+            icon: "warning",
+            showConfirmButton: true,
+            confirmButtonText: "Login",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "../userAuth/login.php";
+            }
+        });
+        return;
+    }
 
-        }
-
-    $(document).on('click', '.addtoCart', function () {
     const productName = $('#productDesc .productTitle strong').text();
     const productPriceText = $('#productDesc .productPriceSize strong').text();
     const selectedRadio = $('input[name="options-size"]:checked');
@@ -112,19 +110,16 @@ $(document).on('click', '.addtoCart', function () {
     const colorwaySizeId = selectedRadio.data('size-id'); 
     const quantity = parseInt($('#qty-count').text());
 
-    // Fallback if no size selected
     if (!selectedSize) {
         Swal.fire({
             text: "Please select a size first",
             icon: "warning"
-            });
+        });
         return;
     }
 
-    // Remove non-numeric characters from price string
     const unitPrice = parseFloat(productPriceText.replace(/[^\d.]/g, ''));
     const totalPrice = unitPrice * quantity;
-
     const bgStyle = $('#mainProductImage').css('background-image');
     const imageUrl = bgStyle.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
 
@@ -135,21 +130,20 @@ $(document).on('click', '.addtoCart', function () {
     $('#cart-total-price').text(`₱ ${totalPrice.toLocaleString()}`);
     $('#cart-product-img').attr('src', imageUrl);
 
-    // Only open modal if everything is valid
     const cartModal = new bootstrap.Modal(document.getElementById('addCartModal'));
     cartModal.show();
-    var data = {
+
+    const data = {
         action: 'addToCart',
         colorway_size_id: colorwaySizeId,
         qty: quantity,
         total: totalPrice,
     };
-    console.log(data.name, data.colorway_size_id, data.qty, data.total);
-    var jsonString = JSON.stringify(data);
+
     $.ajax({
         url: 'addToCart.php',
         method: 'POST',
-        data: {myJson : jsonString},
+        data: { myJson: JSON.stringify(data) },
         success: function (response) {
             console.log("Cart updated:", response);
         },
@@ -159,8 +153,6 @@ $(document).on('click', '.addtoCart', function () {
     });
 });
 
-
-});
 
 // OPEN CART
 $(document).on('click', '#openCartBtn', function () {
@@ -183,7 +175,13 @@ $(document).on('click', '#openCartBtn', function () {
                     <div class="card mb-3 cart-card" data-index="${index}" style="cursor: pointer;">
                         <div class="row g-0 align-items-center">
                             <div class="col-auto ps-3">
-                                <input type="checkbox" class="form-check-input cart-check" data-price="${item.total_price}" data-index="${index}">
+                                <input type="checkbox" class="form-check-input cart-check" 
+                                data-price="${item.total_price}" 
+                                data-index="${index}" 
+                                data-cart-id="${item.cart_id}"
+                                data-colorway-id="${item.colorway_id}"
+                                data-price-at-order="${item.price}"
+                                data-colorway-size-id="${item.colorway_size_id}">
                             </div>
                             <div class="col-md-4">
                                 <img src="${item.image1}" class="img-fluid rounded-start" style="object-fit: contain;">
@@ -195,6 +193,7 @@ $(document).on('click', '#openCartBtn', function () {
                                     <p class="card-text mt-2"><strong>₱${parseFloat(item.total_price).toLocaleString()}</strong></p>
                                     <p class="card-text">Size: ${item.size_name}</p>
                                     <p class="card-text">Qty: ${item.quantity}</p>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -234,34 +233,38 @@ $(document).off('click', '.cart-card').on('click', '.cart-card', function (e) {
 });
 
 // checkout
+
 $(document).on('click', '#checkoutBtn', function () {
     const selectedItems = [];
 
     $('.cart-check:checked').each(function () {
-        const index = $('.cart-check').index(this);
-        const itemCard = $('.cart-card').eq(index);
+        const index = $(this).data('index');
+        const card = $(`.cart-card[data-index="${index}"]`);
 
-        const modelName = itemCard.find('.card-title').text();
-        const size = itemCard.find('.card-text:contains("Size")').text().replace("Size: ", "");
-        const qty = itemCard.find('.card-text:contains("Qty")').text().replace("Qty: ", "");
-        const price = $(this).data('price');
+        const item = {
+            cart_id: $(this).data('cart-id'),
+            colorway_id: $(this).data('colorway-id'),
+            colorway_size_id: $(this).data('colorway-size-id'),
+            price_at_order: $(this).data('price-at-order'),
+            model_name: card.find('.card-title').text(),
+            colorway_name: card.find('.text-muted').text(),
+            total_price: parseFloat($(this).data('price')),
+            size_name: card.find('.card-text:contains("Size")').text().replace('Size: ', ''),
+            quantity: parseInt(card.find('.card-text:contains("Qty")').text().replace('Qty: ', '')),
+            image1: card.find('img').attr('src')
+        };
 
-        selectedItems.push({
-            model_name: modelName,
-            size: size,
-            quantity: qty,
-            price: price
-        });
+        selectedItems.push(item);
     });
 
     if (selectedItems.length === 0) {
-        Swal.fire("Please select at least one item to checkout", "", "warning");
+        Swal.fire("No items selected", "Please select at least one item to checkout.", "warning");
         return;
     }
 
-    console.log("Selected for checkout:", selectedItems);
-    // TODO: Send selectedItems to backend via AJAX for processing
-
+    sessionStorage.setItem('checkoutItems', JSON.stringify(selectedItems));
+    window.location.href = 'checkoutPage.php';
+  
     Swal.fire("Checkout Ready", "Proceeding to checkout with selected items.", "success");
 });
 

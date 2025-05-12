@@ -16,7 +16,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title><?php echo $_SESSION['colorway_name']; ?></title>
+    <title><?php echo $_SESSION['model_name']; ?></title>
 
     <link rel="stylesheet" href="productpage.css">
 </head>

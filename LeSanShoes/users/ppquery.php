@@ -52,7 +52,7 @@ if (isset($_POST['id'])) {
                     JOIN size_tbl s ON cs.size_id = s.size_id 
                     WHERE cs.colorway_id = '$modelId'";
         $sizeResult = mysqli_query($conn, $sizeSql);
-
+        $_SESSION['model_name'] = $row['model_name'];
         $sizesWithStock = [];
         if ($sizeResult && mysqli_num_rows($sizeResult) > 0) {
             while ($sizeRow = mysqli_fetch_assoc($sizeResult)) {
