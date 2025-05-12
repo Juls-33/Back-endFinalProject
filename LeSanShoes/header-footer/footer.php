@@ -34,10 +34,12 @@
       <div class="p-3" style="min-width: 250px; max-width: 300px;">
         <h5 class="text-uppercase mb-4">Products</h5>
         <ul>
-          <li class="mb-2"><a href="#" class="text-white">Anta</a></li>
-          <li class="mb-2"><a href="#" class="text-white">Nike</a></li>
-          <li class="mb-2"><a href="#" class="text-white">Under Armour</a></li>
-          <li class="mb-2"><a href="#" class="text-white">Adidas</a></li>
+          <li class="mb-2"><a href="products.php?brand=Anta" class="text-white">Anta</a></li>
+          <li class="mb-2"><a href="products.php?brand=Nike" class="text-white">Nike</a></li>
+          <li class="mb-2"><a href="products.php?brand=Under" class="text-white">Under Armour</a></li>
+          <li class="mb-2"><a href="products.php?brand=Adidas" class="text-white">Adidas</a></li>
+          <li class="mb-2"><a href="products.php?brand=Asics" class="text-white">Asics</a></li>
+          <li class="mb-2"><a href="products.php?brand=Jordan" class="text-white">Jordan</a></li>
         </ul>
       </div>
 
