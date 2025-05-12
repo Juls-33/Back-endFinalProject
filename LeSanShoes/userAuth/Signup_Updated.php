@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>LeSanShoes - Sign up</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
-  <!-- JQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" 
-  integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" 
-  crossorigin="anonymous"></script>
-  <!-- Custom Scripts -->
-  <script type="text/javascript" src="/Back-endFinalProject/user-accounts-testing/assets/js/display_profile_image.js"></script>
-  <script src="../includes/logic/signupMiddleware.js"></script>
-  <!-- <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css"> -->
-  <!-- <script src="../assets/swal/sweetalert2.min.js"></script> -->
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-  <link rel="stylesheet" href="../assets/css/customUserAuth.css">
-  <!-- Header and Footer -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
-  <script src="../assets/js/user.js" defer></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>    
-  <link rel="stylesheet" href="/Back-endFinalProject/LeSanShoes/assets/css/user.css">
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LeSanShoes - Sign Up</title>
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
+   <!-- JQuery -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" 
+   integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" 
+   crossorigin="anonymous"></script>
+   <!-- Custom Scripts -->
+   <script type="text/javascript" src="assets/js/display_profile_image.js"></script>
+   <script src="../includes/logic/signupMiddleware.js"></script>
+   <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
+   <script src="../assets/swal/sweetalert2.min.js"></script>
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+   <link rel="stylesheet" href="../assets/css/customUserAuth.css">
+   <!-- Header and Footer -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+   <script src="../assets/js/user.js" defer></script>
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>    
+   <link rel="stylesheet" href="../assets/css/user.css"/>
+   <!-- Bootstrap JS -->
   <style>
     ul{
       padding:0;
       list-style: none;
+      padding: 0%;
     }
-
+   
     li {
       display:flex;
       vertical-align:flex-start;
@@ -54,7 +54,6 @@
     .password-requirement-text {
       margin-top:2%;
     }
-
   </style>
 
 </head>
@@ -65,7 +64,6 @@
         <h2>Limited Time Offer 20% off for All Shoes! Contact Us Now</h2>
       </div>
     </div>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -101,7 +99,7 @@
     </nav>
   </header>
   <main>
-    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center my-login-page">
+    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center form-wrapper">
       <form id="signupForm" class="login-form w-100" style="max-width: 600px;">
         <h2 class="text-center  mb-4" style="margin-top: 1%;">Sign Up</h2>
         <hr>
@@ -110,6 +108,10 @@
           <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" maxlength="100" required>
         </div>
 
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" id="email" name="email" class="form-control"  placeholder="Enter your email" maxlength="100" required>
+      </div>
         <div class="row">
           <div class="form-group col-md-6 mb-3">
             <label for="fname" class="form-label">First name</label>
@@ -121,156 +123,151 @@
           </div>
         </div>
 
-        <div class="form-group mb-3">
-          <label for="email" class="form-label">Email Address</label>
-          <input type="email" id="email" name="email" class="form-control"  placeholder="Enter your email address" maxlength="100" required>
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" maxlength="100" required>
         </div>
+      <div>
+      <div class="form-group">
+        <label for="passwordConf" class="form-label">Confirm Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="passwordConf" name="passwordConf" class="form-control" placeholder="Re-enter your password" maxlength="100" required>
+      </div>
 
-        <div class="form-group mb-3 position-relative">
-          <label for="password" class="form-label">Password</label>
-          <div class="password-wrapper">
-            <input type="password" id="password" name="password" class="form-control"  placeholder="Enter your password" maxlength="100" required>
-          </div>
-        </div>
+      <div class="form-group">
+        <label for="birthdate" class="form-label">Birthday</label>
+        <input type="date" id="birthdate" name="birthdate" class="form-control" required>
+      </div>
 
-        <div class="form-group mb-3 position-relative">
-          <label for="passwordConf" class="form-label">Confirm Password</label>
-          <div class="password-wrapper">
-            <input type="password" id="passwordConf" name="passwordConf" class="form-control"  placeholder="Re-enter your username" maxlength="100" required>
-          </div>
-        </div>
+      <div class="form-group">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" id="address" name="address" class="form-control" placeholder="Enter your address" maxlength="250" required>
+      </div>
 
-        <div class="form-group mb-3">
-          <label for="birthdate" class="form-label">Birthday</label>
-          <input type="date" id="birthdate" name="birthdate" class="form-control" required>
-        </div>
+      <div class="form-group">
+        <label for="contact" class="form-label">Contact Number</label>
+        <input type="number" id="contact" name="contact" class="form-control" placeholder="Enter your contact number" min="0" onKeyPress="if(this.value.length==11) return false;" required>
+      </div>
 
-        <div class="form-group mb-3">
-          <label for="address" class="form-label">Address</label>
-          <input type="text" id="address" name="address" class="form-control"  placeholder="Enter your current address" maxlength="250" required>
-        </div>
+      <div class="checkbox">
+        <input type="checkbox" class="form-check-input" id="terms" required>
+        <label class="form-check-label" for="terms">
+          I agree to the <a href="#" class="condition-link" data-bs-toggle="modal" data-bs-target="#termsModal">terms and conditions</a>
+        </label>
+      </div>
 
-        <div class="form-group mb-3">
-          <label for="contact" class="form-label">Contact Number</label>
-          <input type="number" id="contact" name="contact" class="form-control" min="0"  placeholder="Enter your contact number" onKeyPress="if(this.value.length==11) return false;" required>
-        </div>
-
-        <div class="form-check mb-3">
-          <input type="checkbox" class="form-check-input" id="terms" required>
-          <label class="form-check-label" for="terms">
-            I agree to the <a href="#" class="condition-link" data-bs-toggle="modal" data-bs-target="#termsModal">terms and conditions</a>
-          </label>
-        </div>
-
-        <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body" id="termsContent">
-                Loading...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
+      <!-- Terms Modal -->
+      <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="termsContent">
+              Loading...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
-              
-        <div class="form-check mb-3">
-          <input type="checkbox" class="form-check-input" id="privacy" required>
-          <label class="form-check-label" for="privacy">
-            I agree to the <a href="#" class="condition-link" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
-          </label> 
-        </div>
-        
-        <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="privacyModalLabel">Privacy Policy</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body" id="privacyContent">
-                Loading...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
+      </div>
+
+      <div class="checkbox">
+        <input type="checkbox" class="form-check-input" id="privacy" required>
+        <label class="form-check-label" for="privacy">
+          I agree to the <a href="#" class="condition-link" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
+        </label> 
+      </div>
+
+      <!-- Privacy Modal -->
+      <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="privacyModalLabel">Privacy Policy</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="privacyContent">
+              Loading...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
-        
-        <div class="d-grid">
-          <button type="button" class="btn btn-danger" onclick="signUp()">Sign Up</button>
-        </div>
+      </div>
+      
+      <div class="d-grid">
+        <button type="button" class="btn btn-danger" onclick="signUp()">Sign Up</button>
+      </div>
 
-        <p class="text-center mt-3">Already have an account? <a href="login.php">Log in</a></p>
-      </form>
-    </div>
-  </main>
+      <p class="text-center mt-3">Already have an account? <a href="login.php">Log in</a></p>
+    </form>
+  </div>
   <!-- Toast for Error -->
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
     <div id="errorToast" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
-        <div class="toast-body" id="toastErrortMessage">
-          <!-- Validation message will appear here -->
+        <div class="toast-body" id="toastErrorMessage">
+          <!-- Error message will appear here -->
         </div>
         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
   </div>
   <!-- Toast for Confirmation -->
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1099">
     <div id="confirmationToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
         <div class="toast-body" id="toastConfirmationMessage">
-          All fields are valid. Form submission is successful!
+          <!-- Success message will appear here -->
         </div>
         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
-  </div>
+  </div> 
+</main>
    <!-- Footer -->
-    <br> <br>
-    <footer class="text-white text-center text-lg-start w-100" style="width: 100%; background-color: #B51E1E;">
-      <div class="p-4" style="max-width: 100%;">
-        <div class="d-flex flex-wrap justify-content-around text-start">
+  <br> <br>
+  <footer class="text-white text-center text-lg-start w-100" style="width: 100%; background-color: #B51E1E;">
+    <div class="p-4" style="max-width: 100%;">
+      <div class="d-flex flex-wrap justify-content-around text-start">
         <!-- Column 1 -->
-          <div class="p-3" style="min-width: 250px; max-width: 300px;">
-            <div class="shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto">
-              <img src="../assets/images/sanshoes logo white.png" height="70" alt="" loading="lazy" />
-            </div>
-            <p class="text-center" style="color: white;">Find your perfect pair and step into comfort and style</p>
-            <ul class="list-unstyled d-flex justify-content-center">
-              <li><a class="text-white px-2" href="#"><i class="fab fa-facebook-square"></i></a></li>
-              <li><a class="text-white px-2" href="#"><i class="fab fa-instagram"></i></a></li>
-              <li><a class="text-white px-2" href="#"><i class="fab fa-youtube"></i></a></li>
-            </ul>
+        <div class="p-3" style="min-width: 250px; max-width: 300px;">
+          <div class="shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto">
+            <img src="../assets/images/sanshoes logo white.png" height="70" alt="" loading="lazy" />
           </div>
-          
+          <p class="text-center" style="color: white;">Find your perfect pair and step into comfort and style</p>
+          <ul class="list-unstyled d-flex justify-content-center">
+            <li><a class="text-white px-2" href="#"><i class="fab fa-facebook-square"></i></a></li>
+            <li><a class="text-white px-2" href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a class="text-white px-2" href="#"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+        </div>
+
           <!-- Column 2 -->
-          <div class="p-3" style="min-width: 250px; max-width: 300px;">
-            <h5 class="text-uppercase mb-4">Products</h5>
-            <ul>
-              <li class="mb-2"><a href="#" class="text-white">Anta</a></li>
-              <li class="mb-2"><a href="#" class="text-white">Nike</a></li>
-              <li class="mb-2"><a href="#" class="text-white">Under Armour</a></li>
-              <li class="mb-2"><a href="#" class="text-white">Adidas</a></li>
-            </ul>
-          </div>
+        <div class="p-3" style="min-width: 250px; max-width: 300px;">
+          <h5 class="text-uppercase mb-4">Products</h5>
+          <ul>
+            <li class="mb-2"><a href="#" class="text-white">Anta</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Nike</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Under Armour</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Adidas</a></li>
+          </ul>
+        </div>
           <!-- Column 3 -->
-          <div class="p-3" style="min-width: 250px; max-width: 300px;">
-            <h5 class="text-uppercase mb-4">Useful Links</h5>
-            <ul>
-              <li class="mb-2"><a href="#" class="text-white">Home</a></li>
-              <li class="mb-2"><a href="#" class="text-white">Products</a></li>
-              <li class="mb-2"><a href="#" class="text-white">FAQ</a></li>
-              <li class="mb-2"><a href="#" class="text-white">Cart</a></li>
-            </ul>
-          </div>
+        <div class="p-3" style="min-width: 250px; max-width: 300px;">
+          <h5 class="text-uppercase mb-4">Useful Links</h5>
+          <ul>
+            <li class="mb-2"><a href="#" class="text-white">Home</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Products</a></li>
+            <li class="mb-2"><a href="#" class="text-white">FAQ</a></li>
+            <li class="mb-2"><a href="#" class="text-white">Cart</a></li>
+          </ul>
+        </div>
           <!-- Column 4 -->
           <div class="p-3" style="min-width: 250px; max-width: 300px;">
             <h5 class="text-uppercase mb-4">Contact</h5>
@@ -282,8 +279,7 @@
           </div>
         </div>
       </div>
-        
-       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
         © 2020 Copyright:
         <a class="text-white" href="https://mdbootstrap.com/">LeSanShoes.com</a>
       </div>
@@ -292,181 +288,160 @@
 </html>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
+    // Elements
     const errorElement = document.getElementById('errorToast');
     const confirmationElement = document.getElementById('confirmationToast');
-
     const form = document.getElementById('signupForm');
-
     const passwordInput = document.getElementById('password');
     const password2 = document.getElementById('passwordConf');
+    const termsCheckbox = document.getElementById('terms');
+    const privacyCheckbox = document.getElementById('privacy');
 
+    // Password requirements
     const requirements = [
-      { test: (val) => val.length >= 10, text: 'At least 10 Characters' },
-      { test: (val) => /[A-Z]/.test(val), text: 'One Uppercase letter' },
-      { test: (val) => /[a-z]/.test(val), text: 'One lowercase letter' },
-      { test: (val) => /\d/.test(val), text: 'One number' },
-      { test: (val) => /[^A-Za-z0-9]/.test(val), text: 'One special character' }
+        { test: (val) => val.length >= 10, text: 'At least 10 characters' },
+        { test: (val) => /[A-Z]/.test(val), text: 'One uppercase letter' },
+        { test: (val) => /[a-z]/.test(val), text: 'One lowercase letter' },
+        { test: (val) => /\d/.test(val), text: 'One number' },
+        { test: (val) => /[^A-Za-z0-9]/.test(val), text: 'One special character' }
     ];
 
-    const getUpdatedContent = (value) => {
-      return `<ul style="margin:0; padding-left: 0.5rem;">` +
-        requirements.map(req => {
-          const icon = req.test(value)
-            ? '<span class="material-symbols-outlined material-icon-checked">check_circle</span>'
-            : '<span class="material-symbols-outlined material-icon-unchecked">radio_button_unchecked</span>';
-          return `<li style="margin-bottom: 0.5rem;">${icon} <span class="password-requirement-text">${req.text}</span></li>`;
-        }).join('') + `</ul>`;
-    };
+    // Password validation popover setup
+    if (passwordInput) {
+        new bootstrap.Popover(passwordInput, {
+            content: getUpdatedContent(passwordInput.value),
+            trigger: 'focus',
+            html: true
+        });
 
-    const popover = new bootstrap.Popover(passwordInput, {
-      html: true,
-      trigger: 'focus',
-      title: 'Password must:',
-      content: getUpdatedContent('')
-    });
-
-    passwordInput.addEventListener('input', function () {
-      popover.setContent({
-        '.popover-body': getUpdatedContent(passwordInput.value)
-      });
-    });
-    
-    // Form validation logic
-    const showToast = (message, type = 'validation') => {
-    let toastElement;
-    
-    if (type === 'confirmation') {
-      document.getElementById('toastConfirmationMessage').textContent = message;
-      new bootstrap.Toast(document.getElementById('confirmationToast')).show();
-    } else {
-      document.getElementById('toastErrortMessage').textContent = message;
-      new bootstrap.Toast(errorElement).show();
+        passwordInput.addEventListener('input', function() {
+            const popover = bootstrap.Popover.getInstance(passwordInput);
+            if (popover) {
+                popover.setContent({ '.popover-body': getUpdatedContent(this.value) });
+            }
+        });
     }
 
-    const toast = new bootstrap.Toast(toastElement);
-    };
+    // Helper function for password requirements display
+    function getUpdatedContent(value) {
+        return `<ul style="margin:0; padding-left: 0.5rem;">` +
+            requirements.map(req => {
+                const icon = req.test(value)
+                    ? '<span class="material-symbols-outlined material-icon-checked">check_circle</span>'
+                    : '<span class="material-symbols-outlined material-icon-unchecked">radio_button_unchecked</span>';
+                return `<li style="margin-bottom: 0.5rem;">${icon} <span class="password-requirement-text">${req.text}</span></li>`;
+            }).join('') + `</ul>`;
+    }
 
+    // Toast notification function
+   function showToast(message, type = 'error') {
+      if (type === 'confirmation') {
+        document.getElementById('toastConfirmationMessage').textContent = message;
+        new bootstrap.Toast(document.getElementById('confirmationToast')).show();
+      } else {
+        document.getElementById('toastErrorMessage').textContent = message;
+        new bootstrap.Toast(document.getElementById('errorToast')).show();
+      }
+    }
 
+    // Main form submission function
     window.signUp = function () {
-      // Clear previous errors
-      document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
-    
-    // checks if there are values per field
-      const requiredFields = [
-        { id: 'username', name: 'Username' },
-        { id: 'fname', name: 'First name' },
-        { id: 'lname', name: 'Last name' },
-        { id: 'email', name: 'Email' },
-        { id: 'password', name: 'Password' },
-        { id: 'passwordConf', name: 'Re-entrying your password' },
-        { id: 'birthdate', name: 'Birthdate' },
-        { id: 'address', name: 'Address' },
-        { id: 'contact', name: 'Contact number' }
-      ];
+        // Clear previous errors
+        document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
 
-      for (let field of requiredFields) {
-        const input = document.getElementById(field.id);
-        if (!input || !input.value.trim()) {
-          input.classList.add('is-invalid');
-          showToast(`${field.name} is required`);
-          input.focus();
-          return;
+        // Check required fields
+        const requiredFields = [
+            { id: 'username', name: 'Username' },
+            { id: 'fname', name: 'First name' },
+            { id: 'lname', name: 'Last name' },
+            { id: 'email', name: 'Email' },
+            { id: 'password', name: 'Password' },
+            { id: 'passwordConf', name: 'Password confirmation' },
+            { id: 'birthdate', name: 'Birthdate' },
+            { id: 'address', name: 'Address' },
+            { id: 'contact', name: 'Contact number' }
+        ];
+
+        // Validate required fields
+        for (let field of requiredFields) {
+            const input = document.getElementById(field.id);
+            if (!input || !input.value.trim()) {
+                input?.classList.add('is-invalid');
+                showToast(`${field.name} is required`);
+                return;
+            }
         }
-      }
 
-      const passwordVal = passwordInput.value.trim();
-      const confirmVal = password2.value.trim();
+        // Password validation
+        const passwordVal = passwordInput.value.trim();
+        const confirmVal = password2.value.trim();
 
-    // checks if password requirements are fulfilled
-      for (let requirement of requirements) {
-        if (!requirement.test(passwordVal)) {
-          passwordInput.classList.add('is-invalid');
-          showToast(`Password requirement not met: ${requirement.text}`);
-          passwordInput.focus();
-          return;
+        // Check password requirements
+        for (let requirement of requirements) {
+            if (!requirement.test(passwordVal)) {
+                passwordInput.classList.add('is-invalid');
+                showToast('Password does not meet all requirements');
+                return;
+            }
         }
-      }
-    // checks if both password fields
-      if (passwordVal !== confirmVal) {
-        password2.classList.add('is-invalid');
-        showToast('Passwords do not match');
-        password2.focus();
-        return;
-      }
 
-      const termsChecked = document.getElementById('terms');
-      const privacyChecked = document.getElementById('privacy');
-      if(!terms.checked){
-        showToast ('You must accept the terms and conditions');
-      }
+        // Check password match
+        if (passwordVal !== confirmVal) {
+            password2.classList.add('is-invalid');
+            showToast('Passwords do not match');
+            return;
+        }
 
-      if (!privacy.checked){
-        showToast('You must agree to the Privacy Policy');
-      }
+        // Check terms and privacy
+        if (!termsCheckbox.checked || !privacyCheckbox.checked) {
+            showToast('You must accept both the terms and conditions and privacy policy');
+            return;
+        }
 
-      
-    if (!terms?.checked || !privacy?.checked) {
-      return;
-    }
-      
-    showToast('Account created successfully!', 'confirmation');
-    setTimeout(() => form.submit(), 2000); // 2s delay
+        // If all validations pass
+        showToast('Account created successfully!', 'confirmation');
+        setTimeout(() => form.submit(), 2000);
     };
+});
+
+  //Modal
+ document.addEventListener('DOMContentLoaded', function () {
+  // Terms Modal
+  const termsModal = document.getElementById('termsModal');
+  termsModal.addEventListener('show.bs.modal', function () {
+    loadModalContent('./termsandconditions.html', 'termsContent');
   });
 
-  //Terms and Conditions Modal
-  document.addEventListener('DOMContentLoaded', function () {
-    const termsModal = document.getElementById('termsModal');
-
-    termsModal.addEventListener('show.bs.modal', function () {
-      const termsContent = document.getElementById('termsContent');
-      termsContent.innerHTML = "Loading..."; // Reset Content
-
-      // Load the external HTML content
-      fetch('./termsandconditions.html')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.text();
-        })
-        .then(data => {
-          termsContent.innerHTML = data;
-        })
-        .catch(error => {
-          termsContent.innerHTML = "Failed to load content.";
-          console.error("Error loading external content:", error);
-        });
-    });
+  // Privacy Modal
+  const privacyModal = document.getElementById('privacyModal');
+  privacyModal.addEventListener('show.bs.modal', function () {
+    loadModalContent('./privacy.html', 'privacyContent');
   });
 
-  //privacy Policy Modal
-  document.addEventListener('DOMContentLoaded', function () {
-    const privacyModal = document.getElementById('privacyModal');
-
-    privacyModal.addEventListener('show.bs.modal', function () {
-      const privacyContent = document.getElementById('privacyContent');
-      privacyContent.innerHTML = "Loading..."; // Reset Content
-
-      // Load the external HTML content
-      fetch('./privacy.html')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.text();
-        })
-        .then(data => {
-          privacyContent.innerHTML = data;
-        })
-        .catch(error => {
-          privacyContent.innerHTML = "Failed to load content.";
-          console.error("Error loading external content:", error);
-        });
-    });
-  });
+  // Shared function to load content
+  function loadModalContent(url, elementId) {
+    const contentElement = document.getElementById(elementId);
+    contentElement.innerHTML = "Loading...";
+    
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(data => {
+        contentElement.innerHTML = data;
+      })
+      .catch(error => {
+        contentElement.innerHTML = `Failed to load content. (${error.message})`;
+        console.error(`Error loading ${url}:`, error);
+      });
+  }
+});
 </script>
+
 
 
 
