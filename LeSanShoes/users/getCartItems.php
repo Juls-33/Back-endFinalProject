@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // echo $username;
 
-    $sql = "SELECT c.cart_id, c.quantity, c.total_price, s.size_name, cm.colorway_name, cm.image1, sm.model_name
+    $sql = "SELECT c.cart_id, c.quantity, c.total_price, s.size_name, cm.colorway_name, cs.colorway_size_id, cm.colorway_id, cm.price, cm.image1, sm.model_name
             FROM cart_tbl c
             JOIN colorway_size_tbl cs ON c.colorway_size_id = cs.colorway_size_id
             JOIN size_tbl s ON cs.size_id = s.size_id
