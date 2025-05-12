@@ -58,6 +58,26 @@ INSERT INTO `brand_tbl` (`brand_id`, `brand_name`, `date_created`, `date_updated
 	(5, 'Asics', '2025-05-06 03:54:33', '2025-05-06 03:54:33', 'damian'),
 	(6, 'Jordan', '2025-05-10 18:02:06', '2025-05-10 18:02:06', 'lebron');
 
+-- Dumping structure for table lesanshoes_db.cart_tbl
+DROP TABLE IF EXISTS `cart_tbl`;
+CREATE TABLE IF NOT EXISTS `cart_tbl` (
+  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `colorway_size_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`cart_id`),
+  KEY `username` (`username`),
+  KEY `colorway_size_id` (`colorway_size_id`),
+  CONSTRAINT `colorway_size_id` FOREIGN KEY (`colorway_size_id`) REFERENCES `colorway_size_tbl` (`colorway_size_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `username` FOREIGN KEY (`username`) REFERENCES `users_tbl` (`username`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table lesanshoes_db.cart_tbl: ~0 rows (approximately)
+DELETE FROM `cart_tbl`;
+
 -- Dumping structure for table lesanshoes_db.category_tbl
 DROP TABLE IF EXISTS `category_tbl`;
 CREATE TABLE IF NOT EXISTS `category_tbl` (
@@ -103,15 +123,15 @@ CREATE TABLE IF NOT EXISTS `colorway_size_tbl` (
 -- Dumping data for table lesanshoes_db.colorway_size_tbl: ~9 rows (approximately)
 DELETE FROM `colorway_size_tbl`;
 INSERT INTO `colorway_size_tbl` (`colorway_size_id`, `colorway_id`, `size_id`, `stock`, `date_created`, `date_updated`, `modified_by`) VALUES
-	(9, 25, 7, 10, '2025-05-11 07:55:37', '2025-05-11 07:55:37', 'damian'),
-	(10, 25, 5, 10, '2025-05-11 07:55:41', '2025-05-11 07:55:41', 'damian'),
-	(11, 25, 12, 10, '2025-05-11 07:55:47', '2025-05-11 07:55:47', 'damian'),
+	(9, 25, 7, 7, '2025-05-11 07:55:37', '2025-05-11 07:55:37', 'damian'),
+	(10, 25, 5, 6, '2025-05-11 07:55:41', '2025-05-11 07:55:41', 'damian'),
+	(11, 25, 12, 8, '2025-05-11 07:55:47', '2025-05-11 07:55:47', 'damian'),
 	(12, 25, 4, 10, '2025-05-11 08:27:22', '2025-05-11 08:27:22', 'damian'),
-	(13, 27, 6, 10, '2025-05-11 08:27:29', '2025-05-11 08:27:29', 'damian'),
+	(13, 27, 6, 0, '2025-05-11 08:27:29', '2025-05-11 08:27:29', 'damian'),
 	(14, 31, 6, 10, '2025-05-11 08:27:33', '2025-05-11 08:27:33', 'damian'),
 	(15, 30, 8, 10, '2025-05-11 08:27:38', '2025-05-11 08:27:38', 'damian'),
 	(16, 30, 9, 10, '2025-05-11 08:27:44', '2025-05-11 08:27:44', 'damian'),
-	(17, 28, 9, 10, '2025-05-11 08:27:49', '2025-05-11 08:27:49', 'damian');
+	(17, 28, 9, 7, '2025-05-11 08:27:49', '2025-05-11 08:27:49', 'damian');
 
 -- Dumping structure for table lesanshoes_db.colorway_tbl
 DROP TABLE IF EXISTS `colorway_tbl`;
@@ -135,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `colorway_tbl` (
   CONSTRAINT `fk_colorway_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.colorway_tbl: ~7 rows (approximately)
+-- Dumping data for table lesanshoes_db.colorway_tbl: ~8 rows (approximately)
 DELETE FROM `colorway_tbl`;
 INSERT INTO `colorway_tbl` (`colorway_id`, `shoe_model_id`, `colorway_name`, `price`, `image1`, `image2`, `image3`, `image4`, `date_created`, `date_updated`, `modified_by`) VALUES
 	(25, 15, 'Black', 8999.00, '../assets/images/colorway_682041b084cea.jpg', '../assets/images/colorway_681f79c336011.jpg', '../assets/images/colorway_681f79c336014.jpg', '../assets/images/colorway_682041b085b92.jpg', '2025-05-10 18:07:31', '2025-05-11 08:20:32', 'damian'),
@@ -197,16 +217,26 @@ CREATE TABLE IF NOT EXISTS `orders_tbl` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_updated` datetime NOT NULL DEFAULT current_timestamp(),
   `customer_address` varchar(250) DEFAULT NULL,
+  `contact` varchar(50) DEFAULT '09151234567',
   PRIMARY KEY (`order_id`),
   KEY `username` (`username`),
   CONSTRAINT `orders_tbl_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users_tbl` (`username`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.orders_tbl: ~2 rows (approximately)
+-- Dumping data for table lesanshoes_db.orders_tbl: ~11 rows (approximately)
 DELETE FROM `orders_tbl`;
-INSERT INTO `orders_tbl` (`order_id`, `username`, `order_date`, `status`, `total_price`, `date_created`, `date_updated`, `customer_address`) VALUES
-	(1, 'dasdadsdssdf', '2025-05-11 14:29:53', 'Pending', 10000.00, '2025-05-11 14:30:06', '2025-05-11 14:30:06', 'bahay ko'),
-	(2, 'julius', '2025-05-11 15:42:50', 'Completed', 15000.00, '2025-05-11 15:42:56', '2025-05-11 15:42:56', 'UST');
+INSERT INTO `orders_tbl` (`order_id`, `username`, `order_date`, `status`, `total_price`, `date_created`, `date_updated`, `customer_address`, `contact`) VALUES
+	(1, 'dasdadsdssdf', '2025-05-11 14:29:53', 'Pending', 10000.00, '2025-05-11 14:30:06', '2025-05-11 14:30:06', 'bahay ko', '09151234567'),
+	(2, 'julius', '2025-05-11 15:42:50', 'Completed', 15000.00, '2025-05-11 15:42:56', '2025-05-11 15:42:56', 'UST', '09151234567'),
+	(11, 'julspogi', '2025-05-12 22:19:24', 'Pending', 0.00, '2025-05-12 22:19:24', '2025-05-12 22:19:24', 'bahay ko', '12345678'),
+	(18, 'julspogi', '2025-05-12 23:48:04', 'Pending', 0.00, '2025-05-12 23:48:04', '2025-05-12 23:48:04', '167-B 21st Avenue, East Rembo', '09664282161'),
+	(26, 'julspogi', '2025-05-13 00:16:33', 'Pending', 0.00, '2025-05-13 00:16:33', '2025-05-13 00:16:33', '167-B 21st Avenue, East Rembo', '09664282161'),
+	(27, 'julspogi', '2025-05-13 00:18:16', 'Pending', NULL, '2025-05-13 00:18:16', '2025-05-13 00:18:16', '167-B 21st Avenue, East Rembo', '09664282161'),
+	(28, 'julspogi', '2025-05-13 00:19:07', 'Pending', NULL, '2025-05-13 00:19:07', '2025-05-13 00:19:07', '167-B 21st Avenue, East Rembo', '09664282161'),
+	(29, 'julspogi', '2025-05-13 00:20:22', 'Pending', NULL, '2025-05-13 00:20:22', '2025-05-13 00:20:22', '167-B 21st Avenue, East Rembo', '09664282161'),
+	(30, 'julspogi', '2025-05-13 00:22:59', 'Pending', 5000.00, '2025-05-13 00:22:59', '2025-05-13 00:22:59', '167-B 21st Avenue, East Rembo', '09664282161'),
+	(31, 'julspogi', '2025-05-13 00:23:40', 'Pending', 26997.00, '2025-05-13 00:23:40', '2025-05-13 00:23:40', '167-B 21st Avenue, East Rembo', '09664282161'),
+	(32, 'julspogi', '2025-05-13 00:24:23', 'Pending', 50996.00, '2025-05-13 00:24:23', '2025-05-13 00:24:23', '167-B 21st Avenue, East Rembo', '09664282161');
 
 -- Dumping structure for table lesanshoes_db.order_items_tbl
 DROP TABLE IF EXISTS `order_items_tbl`;
@@ -229,13 +259,22 @@ CREATE TABLE IF NOT EXISTS `order_items_tbl` (
   CONSTRAINT `order_items_tbl_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders_tbl` (`order_id`) ON DELETE CASCADE,
   CONSTRAINT `order_items_tbl_ibfk_2` FOREIGN KEY (`colorway_id`) REFERENCES `colorway_tbl` (`colorway_id`) ON DELETE CASCADE,
   CONSTRAINT `order_items_tbl_ibfk_3` FOREIGN KEY (`size_id`) REFERENCES `size_tbl` (`size_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.order_items_tbl: ~2 rows (approximately)
+-- Dumping data for table lesanshoes_db.order_items_tbl: ~11 rows (approximately)
 DELETE FROM `order_items_tbl`;
 INSERT INTO `order_items_tbl` (`order_item_id`, `order_id`, `colorway_id`, `size_id`, `quantity`, `price_at_order`, `date_created`, `date_updated`, `colorway_size_id`) VALUES
 	(1, 1, 29, 11, 2, 5000.00, '2025-05-11 14:30:49', '2025-05-11 14:30:51', 14),
-	(2, 2, 27, 12, 3, 5000.00, '2025-05-11 15:43:16', '2025-05-11 15:43:16', 14);
+	(2, 2, 27, 12, 3, 5000.00, '2025-05-11 15:43:16', '2025-05-11 15:43:16', 14),
+	(3, 18, 25, 12, 2, 0.00, '2025-05-12 23:48:04', '2025-05-12 23:48:04', 11),
+	(4, 26, 27, 6, 2, 5000.00, '2025-05-13 00:16:33', '2025-05-13 00:16:33', 13),
+	(5, 27, 27, 6, 2, 5000.00, '2025-05-13 00:18:16', '2025-05-13 00:18:16', 13),
+	(6, 28, 27, 6, 2, 5000.00, '2025-05-13 00:19:07', '2025-05-13 00:19:07', 13),
+	(7, 29, 27, 6, 3, 5000.00, '2025-05-13 00:20:22', '2025-05-13 00:20:22', 13),
+	(8, 30, 27, 6, 1, 5000.00, '2025-05-13 00:22:59', '2025-05-13 00:22:59', 13),
+	(9, 31, 25, 7, 3, 8999.00, '2025-05-13 00:23:40', '2025-05-13 00:23:40', 9),
+	(10, 32, 25, 5, 4, 8999.00, '2025-05-13 00:24:23', '2025-05-13 00:24:23', 10),
+	(11, 32, 28, 9, 3, 5000.00, '2025-05-13 00:24:23', '2025-05-13 00:24:23', 17);
 
 -- Dumping structure for table lesanshoes_db.roles_tbl
 DROP TABLE IF EXISTS `roles_tbl`;
@@ -271,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `sales_tbl` (
   CONSTRAINT `fk_order` FOREIGN KEY (`order_id`) REFERENCES `orders_tbl` (`order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.sales_tbl: ~65 rows (approximately)
+-- Dumping data for table lesanshoes_db.sales_tbl: ~77 rows (approximately)
 DELETE FROM `sales_tbl`;
 INSERT INTO `sales_tbl` (`salesperday_id`, `amount`, `date`, `order_id`) VALUES
 	(1, 100, '2025-06-05', NULL),
@@ -463,7 +502,7 @@ CREATE TABLE IF NOT EXISTS `status_tbl` (
   CONSTRAINT `fk_status_tbl_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `users_tbl` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.status_tbl: ~4 rows (approximately)
+-- Dumping data for table lesanshoes_db.status_tbl: ~5 rows (approximately)
 DELETE FROM `status_tbl`;
 INSERT INTO `status_tbl` (`status_id`, `status_name`, `date_created`, `date_updated`, `modified_by`) VALUES
 	(1, 'Pending', '2025-04-27 08:56:59', '2025-04-27 08:56:59', 'lebron'),
@@ -558,7 +597,7 @@ CREATE TABLE IF NOT EXISTS `users_tbl` (
   CONSTRAINT `users_tbl_ibfk_1` FOREIGN KEY (`roles_id`) REFERENCES `roles_tbl` (`roles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table lesanshoes_db.users_tbl: ~13 rows (approximately)
+-- Dumping data for table lesanshoes_db.users_tbl: ~14 rows (approximately)
 DELETE FROM `users_tbl`;
 INSERT INTO `users_tbl` (`username`, `roles_id`, `fname`, `lname`, `email`, `user_password`, `birthday`, `user_address`, `contact`, `date_created`, `date_updated`, `last_login`) VALUES
 	('damian', 2, 'damian', 'lillard', 'damian@gmail.com', '123', '2025-04-23', '167-B 21st Avenue, East Rembo', '09664282161', '2025-04-20 18:25:14', '2025-05-03 18:05:09', '2025-05-11 21:45:38'),
@@ -569,6 +608,7 @@ INSERT INTO `users_tbl` (`username`, `roles_id`, `fname`, `lname`, `email`, `use
 	('Giannis', 3, 'asdklsad', 'Antetokounmpo', 'giannis@gmail.com', '123', NULL, '', '39430294312', '2025-05-01 04:06:02', '2025-05-03 16:44:32', NULL),
 	('he', 2, 'JULIUS AUSTIN', 'JULIUS AUSTIN', 'giansenensantos@yahoo.com.ph', '123', NULL, '', '54545454545', '2025-04-27 14:34:06', '2025-05-03 18:04:35', '2025-05-04 00:04:07'),
 	('julius', 1, 'JULIUS AUSTIN', 'SANTOS', 'Juliusaustin.santos.cics@ust.edu.ph', '123', '2004-08-28', '167-B 21st Avenue, East Rembo', '09664282161', '2025-04-21 16:11:52', '2025-04-21 16:11:52', '2025-05-11 12:41:03'),
+	('julspogi', 1, 'Julius Austin', 'Santos', 'juliusaustin.santos@gmail.com', '123', '2004-05-28', '167-B 21st Avenue, East Rembo', '09664282161', '2025-05-12 07:31:36', '2025-05-12 07:31:36', '2025-05-12 13:32:50'),
 	('lebron', 2, 'LeBron', 'James', 'lebronjamesking@gmail.com', '123', NULL, '', '12312312312', '2025-04-27 15:17:55', '2025-04-27 15:17:55', '2025-05-11 12:32:25'),
 	('marc', 1, 'marc', 'yaeger', 'marc@gmail.com', '123', '2025-04-17', '167-B 21st Avenue, East Rembo', '09664282161', '2025-04-22 01:13:14', '2025-04-22 01:13:14', '2025-04-23 14:41:30'),
 	('sddvlmdlkvd', 1, 'dsadas1', 'daa', 'dasd@gma.c', '123', '2025-05-03', 'eqweqqe', '03242211231', '2025-05-03 18:22:37', '2025-05-03 18:22:37', NULL),

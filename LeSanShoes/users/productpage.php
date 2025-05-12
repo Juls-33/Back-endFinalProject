@@ -59,7 +59,7 @@
           </div>
           <div>
             <span class="material-symbols-outlined d-none d-lg-inline" id="openCartBtn" data-bs-toggle="modal" data-bs-target="#cartModal">shopping_cart</span>
-            <span class="icon-text d-inline d-lg-none" data-bs-toggle="modal" data-bs-target="#cartModal">Cart</span>
+            <span class="icon-text d-inline d-lg-none" data-bs-toggle="modal" id="openCartBtn" data-bs-target="#cartModal">Cart</span>
           </div>
         </div>
       </div>
