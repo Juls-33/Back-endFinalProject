@@ -71,7 +71,7 @@
 <main id="mainpart"></main>
 
 <!-- Modals -->
-    <div class="modal fade modal-fullscreen" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal fade modal-fullscreen" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true" data-bs-backdrop="false">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
@@ -306,67 +306,7 @@
 </footer>
 
 <script>
-    const images = [
-        '<?php echo $_SESSION['image1']; ?>',
-        '<?php echo $_SESSION['image2']; ?>',
-        '<?php echo $_SESSION['image3']; ?>',
-        '<?php echo $_SESSION['image4']; ?>'
-        ];
-    let currentIndex = 0;
-
-    function openModal(index) {
-    currentIndex = index;
-    const modalImageDiv = document.getElementById('modalImage');
-    modalImageDiv.style.backgroundImage = `url('${images[currentIndex]}')`;
-    updateThumbnailList();
-    const modal = new bootstrap.Modal(document.getElementById('imageModal'));
-    modal.show();
-}
-
-function changeImage(direction) {
-    currentIndex = (currentIndex + direction + images.length) % images.length;
-    const modalImageDiv = document.getElementById('modalImage');
-    modalImageDiv.style.backgroundImage = `url('${images[currentIndex]}')`;
-    resetZoom(modalImageDiv); // Maintain zoom level when changing images
-    updateThumbnailList();
-}
-
-function updateThumbnailList() {
-    const thumbnailList = document.getElementById('thumbnailList');
-    thumbnailList.innerHTML = '';
     
-    images.forEach((image, index) => {
-        const thumbnail = document.createElement('div');
-        thumbnail.className = 'thumbnail-item';
-        thumbnail.style.backgroundImage = `url('${image}')`;
-        thumbnail.style.width = '80px';
-        thumbnail.style.height = '80px';
-        thumbnail.style.backgroundSize = 'cover';
-        thumbnail.style.cursor = 'pointer';
-        thumbnail.style.margin = '0 5px';
-        thumbnail.style.border = currentIndex === index ? '2px solid #B51E1E' : '2px solid transparent';
-        thumbnail.onclick = () => {
-            currentIndex = index;
-            const modalImageDiv = document.getElementById('modalImage');
-            modalImageDiv.style.backgroundImage = `url('${images[currentIndex]}')`;
-            resetZoom(modalImageDiv);
-            updateThumbnailList();
-        };
-        thumbnailList.appendChild(thumbnail);
-    });
-}
-    function zoom(event, element) {
-        const rect = element.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / element.offsetWidth;
-        const y = (event.clientY - rect.top) / element.offsetHeight;
-        element.style.backgroundPosition = `${x * 100}% ${y * 100}%`;
-    }
-    function resetZoom(element) {
-        element.style.backgroundPosition = 'center';
-        element.style.backgroundSize = 'cover';
-    }
-    
-
 function updateCartFooter(isEmpty) {
         const footer = document.getElementById('cartFooter');
         footer.style.display = isEmpty ? 'none' : 'flex';
