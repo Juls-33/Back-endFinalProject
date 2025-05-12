@@ -4,6 +4,12 @@
     color: #B51E1E !important;
     font-weight: bold;
 }
+.cart-card.selected {
+    border: 2px solid #B51E1E;
+    background-color: #fff5f5;
+    transition: all 0.2s ease;
+}
+
 
 .ad {
     background-color: #B51E1E;

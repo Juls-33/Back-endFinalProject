@@ -47,7 +47,7 @@ if (isset($_POST['id'])) {
 }
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-      $sizeSql = "SELECT s.size_name, cs.stock 
+      $sizeSql = "SELECT cs.colorway_size_id, s.size_name, cs.stock
                     FROM colorway_size_tbl cs 
                     JOIN size_tbl s ON cs.size_id = s.size_id 
                     WHERE cs.colorway_id = '$modelId'";
@@ -56,7 +56,11 @@ if (isset($_POST['id'])) {
         $sizesWithStock = [];
         if ($sizeResult && mysqli_num_rows($sizeResult) > 0) {
             while ($sizeRow = mysqli_fetch_assoc($sizeResult)) {
-                $sizesWithStock[$sizeRow['size_name']] = $sizeRow['stock'];
+                $sizesWithStock[] = [
+                    'size_name' => $sizeRow['size_name'],
+                    'stock' => $sizeRow['stock'],
+                    'colorway_size_id' => $sizeRow['colorway_size_id']
+                ];
             }
         }
       ?>
@@ -133,15 +137,15 @@ if (isset($_POST['id'])) {
                     <div class="row row-cols-3 row-cols-xl-3 row-cols-lg-2 g-2">
                         <?php
                         $counter = 1;
-                        foreach ($sizesWithStock as $sizeName => $stock) {
+                        foreach ($sizesWithStock as $size) {
                             $id = "option$counter";
-                            $disabled = $stock <= 0 ? 'disabled' : '';
-                            $class = $stock <= 0 ? 'unavailable text-muted' : '';
+                            $disabled = $size <= 0 ? 'disabled' : '';
+                            $class = $size <= 0 ? 'unavailable text-muted' : '';
                         ?>
                             <div class="col">
-                                <input type="radio" class="btn-check" name="options-size" id="<?php echo $id; ?>" autocomplete="off" <?php echo $disabled; ?>>
-                                <label class="btn btn-outline-secondary size-button <?php echo $class; ?>" for="<?php echo $id; ?>" data-stock="<?php echo $stock; ?>">
-                                    <?php echo $sizeName; ?>
+                                <input type="radio" class="btn-check" name="options-size" id="<?php echo $id; ?>" autocomplete="off" <?php echo $disabled; ?> data-size-id="<?php echo $size['colorway_size_id']; ?>">
+                                <label class="btn btn-outline-secondary size-button <?php echo $class; ?>" for="<?php echo $id; ?>" data-stock="<?php echo $size['stock']; ?>">
+                                    <?php echo $size['size_name']; ?>
                                 </label>
                             </div>
                         <?php

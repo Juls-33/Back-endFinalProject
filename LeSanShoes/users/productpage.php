@@ -58,7 +58,7 @@
             <span class="icon-text d-inline d-lg-none">User Account</span>
           </div>
           <div>
-            <span class="material-symbols-outlined d-none d-lg-inline" data-bs-toggle="modal" data-bs-target="#cartModal">shopping_cart</span>
+            <span class="material-symbols-outlined d-none d-lg-inline" id="openCartBtn" data-bs-toggle="modal" data-bs-target="#cartModal">shopping_cart</span>
             <span class="icon-text d-inline d-lg-none" data-bs-toggle="modal" data-bs-target="#cartModal">Cart</span>
           </div>
         </div>
@@ -117,7 +117,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Continue Shopping</button>
-                <a href="cart.html" type="button" class="btn btn-primary">View Cart</a>
+                <!-- <a href="cart.html" type="button" class="btn btn-primary">View Cart</a> -->
             </div>
         </div>
     </div>
@@ -234,14 +234,10 @@
                     <!-- Additional items can be added here -->
                 </div>
             </div>
-            <div class="modal-footer d-flex justify-content-between" style="display: none;" id="cartFooter">
-                <div>
-                    <h6>Subtotal</h6>
-                    <h5 id="cartSubtotal">₱0</h5>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-dark">Checkout</button>
-                </div>
+            <div id="cartFooter" class="modal-footer d-flex justify-content-between" style="display: none;">
+                <hr>
+                <p><strong>Subtotal: <span id="cartSubtotal">₱0.00</span></strong></p>
+                <button id="checkoutBtn" class="btn btn-danger">Checkout</button>
             </div>
         </div>
     </div>
@@ -312,20 +308,20 @@ function updateCartFooter(isEmpty) {
         footer.style.display = isEmpty ? 'none' : 'flex';
     }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = new bootstrap.Modal('#addCartModal');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const modal = new bootstrap.Modal('#addCartModal');
     
-    document.querySelector('.addtoCart').addEventListener('click', () => {
-        const selectedSize = document.querySelector('input[name="options-size"]:checked')?.nextElementSibling?.textContent || '';
-        document.getElementById('selected-size').textContent = selectedSize;
-        modal.show();
-    });
-});
-document.querySelector('.material-symbols-outlined:last-child').addEventListener('click', () => {
-    const modal = new bootstrap.Modal(document.getElementById('cartModal'));
-    updateCart();
-    modal.show();
-});
+//     document.querySelector('.addtoCart').addEventListener('click', () => {
+//         const selectedSize = document.querySelector('input[name="options-size"]:checked')?.nextElementSibling?.textContent || '';
+//         document.getElementById('selected-size').textContent = selectedSize;
+//         modal.show();
+//     });
+// });  
+// document.querySelector('.material-symbols-outlined:last-child').addEventListener('click', () => {
+//     const modal = new bootstrap.Modal(document.getElementById('cartModal'));
+//     updateCart();
+//     modal.show();
+// });
 
 
 </script>

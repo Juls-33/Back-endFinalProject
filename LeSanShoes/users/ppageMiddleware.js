@@ -107,7 +107,9 @@ $(document).on('click', '.addtoCart', function () {
     $(document).on('click', '.addtoCart', function () {
     const productName = $('#productDesc .productTitle strong').text();
     const productPriceText = $('#productDesc .productPriceSize strong').text();
-    const selectedSize = $('input[name="options-size"]:checked').next('label').text().trim();
+    const selectedRadio = $('input[name="options-size"]:checked');
+    const selectedSize = selectedRadio.next('label').text().trim();
+    const colorwaySizeId = selectedRadio.data('size-id'); 
     const quantity = parseInt($('#qty-count').text());
 
     // Fallback if no size selected
@@ -136,18 +138,18 @@ $(document).on('click', '.addtoCart', function () {
     // Only open modal if everything is valid
     const cartModal = new bootstrap.Modal(document.getElementById('addCartModal'));
     cartModal.show();
-
+    var data = {
+        action: 'addToCart',
+        colorway_size_id: colorwaySizeId,
+        qty: quantity,
+        total: totalPrice,
+    };
+    console.log(data.name, data.colorway_size_id, data.qty, data.total);
+    var jsonString = JSON.stringify(data);
     $.ajax({
         url: 'addToCart.php',
         method: 'POST',
-        data: {
-            name: productName,
-            size: selectedSize,
-            qty: quantity,
-            price: unitPrice,
-            total: totalPrice,
-            image: imageUrl
-        },
+        data: {myJson : jsonString},
         success: function (response) {
             console.log("Cart updated:", response);
         },
@@ -159,6 +161,110 @@ $(document).on('click', '.addtoCart', function () {
 
 
 });
+
+// OPEN CART
+$(document).on('click', '#openCartBtn', function () {
+    
+    $.ajax({
+        url: 'getCartItems.php',
+        method: 'POST',
+        dataType: 'json',
+        success: function (response) {
+            if (!response.cartItems || response.cartItems.length === 0) {
+                $('#cartItems').html('<p>Your cart is empty.</p>');
+                $('#cartFooter').hide();
+                return;
+            }
+            $('#cartItems').empty();
+            var subtotal = 0;
+            response.cartItems.forEach((item, index) => {
+                subtotal += parseFloat(item.total_price);
+                $('#cartItems').append(`
+                    <div class="card mb-3 cart-card" data-index="${index}" style="cursor: pointer;">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-auto ps-3">
+                                <input type="checkbox" class="form-check-input cart-check" data-price="${item.total_price}" data-index="${index}">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="${item.image1}" class="img-fluid rounded-start" style="object-fit: contain;">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <h5 class="card-title">${item.model_name}</h5>
+                                    <small class="text-muted">${item.colorway_name}</small>
+                                    <p class="card-text mt-2"><strong>₱${parseFloat(item.total_price).toLocaleString()}</strong></p>
+                                    <p class="card-text">Size: ${item.size_name}</p>
+                                    <p class="card-text">Qty: ${item.quantity}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            });
+
+        $('#cartSubtotal').text(`₱${subtotal.toLocaleString()}`);
+        $('#cartFooter').show()
+        },
+        error: function (xhr) {
+            Swal.fire("Error loading cart", xhr.responseText, "error");
+        }
+    });
+});
+
+// click cart
+$(document).off('click', '.cart-card').on('click', '.cart-card', function (e) {
+    if ($(e.target).is('.cart-check')) return;
+
+    const index = $(this).data('index');
+    const checkbox = $(`.cart-check[data-index="${index}"]`);
+    checkbox.prop('checked', !checkbox.prop('checked')).trigger('change');
+    let subtotal = 0;
+    $('.cart-check:checked').each(function () {
+        subtotal += parseFloat($(this).data('price'));
+    });
+    $('.cart-check').each(function () {
+        const card = $(this).closest('.cart-card');
+        if ($(this).is(':checked')) {
+            card.addClass('selected');
+        } else {
+            card.removeClass('selected');
+        }
+    });
+    $('#cartSubtotal').text(`₱${subtotal.toLocaleString()}`);
+});
+
+// checkout
+$(document).on('click', '#checkoutBtn', function () {
+    const selectedItems = [];
+
+    $('.cart-check:checked').each(function () {
+        const index = $('.cart-check').index(this);
+        const itemCard = $('.cart-card').eq(index);
+
+        const modelName = itemCard.find('.card-title').text();
+        const size = itemCard.find('.card-text:contains("Size")').text().replace("Size: ", "");
+        const qty = itemCard.find('.card-text:contains("Qty")').text().replace("Qty: ", "");
+        const price = $(this).data('price');
+
+        selectedItems.push({
+            model_name: modelName,
+            size: size,
+            quantity: qty,
+            price: price
+        });
+    });
+
+    if (selectedItems.length === 0) {
+        Swal.fire("Please select at least one item to checkout", "", "warning");
+        return;
+    }
+
+    console.log("Selected for checkout:", selectedItems);
+    // TODO: Send selectedItems to backend via AJAX for processing
+
+    Swal.fire("Checkout Ready", "Proceeding to checkout with selected items.", "success");
+});
+
 
 
 // Function to open the modal
