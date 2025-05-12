@@ -117,7 +117,7 @@ if (isset($_POST['id'])) {
 
                     <div class="row row-cols-2">
                         <div class="col-8 col-lg-7 col-sm-9">
-                            <p> Sizes </p>
+                            <p> Avaiilable Sizes </p>
                         </div>
                         <div class="col-4 col-lg-5 col-sm-3">
                             <div class="d-flex align-items-center" id = "sizes">
@@ -132,26 +132,33 @@ if (isset($_POST['id'])) {
                     </div>
 
                     <div class="row row-cols-3 row-cols-xl-3 row-cols-lg-2 g-2">
-                    <?php
-                    $counter = 1;
-                    foreach ($sizesWithStock as $sizeName => $stock) {
-                        $id = "option$counter";
-                        $disabled = $stock <= 0 ? 'disabled' : '';
-                        $class = $stock <= 0 ? 'unavailable text-muted' : '';
-                    ?>
-                        <div class="col">
-                            <input type="radio" class="btn-check" name="options-size" id="<?php echo $id; ?>" autocomplete="off" <?php echo $disabled; ?>>
-                            <label class="btn btn-outline-secondary size-button <?php echo $class; ?>" for="<?php echo $id; ?>">
-                                <?php echo $sizeName; ?>
-                            </label>
+                        <?php
+                        $counter = 1;
+                        foreach ($sizesWithStock as $sizeName => $stock) {
+                            $id = "option$counter";
+                            $disabled = $stock <= 0 ? 'disabled' : '';
+                            $class = $stock <= 0 ? 'unavailable text-muted' : '';
+                        ?>
+                            <div class="col">
+                                <input type="radio" class="btn-check" name="options-size" id="<?php echo $id; ?>" autocomplete="off" <?php echo $disabled; ?>>
+                                <label class="btn btn-outline-secondary size-button <?php echo $class; ?>" for="<?php echo $id; ?>" data-stock="<?php echo $stock; ?>">
+                                    <?php echo $sizeName; ?>
+                                </label>
+                            </div>
+                        <?php
+                            $counter++;
+                        }
+                        ?>
+                        
+                    </div>
+                    <br>    
+                        <p>Quantity:</p>
+                        <div class="mt-3 d-flex align-items-center">
+                            <button class="btn btn-sm btn-outline-secondary me-2" id="qty-decrease">-</button>
+                            <span id="qty-count" class="px-3">1</span>
+                            <button class="btn btn-sm btn-outline-secondary ms-2" id="qty-increase">+</button>
                         </div>
-                    <?php
-                        $counter++;
-                    }
-                    ?>
-</div>
-
-
+                        <input type="hidden" id="selected-size-stock" value="0">
                     <br>
 
                     <button class="btn btn-primary btn-lg addtoCart" data-bs-toggle="modal" data-bs-target="#addCartModal">Add To Cart</button>

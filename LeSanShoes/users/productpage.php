@@ -40,8 +40,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../users/products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../users/products.php">Products</a></li>
           <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
         </ul>
         <div class="d-lg-flex flex-lg-row align-items-center gap-2">
@@ -372,6 +372,8 @@ document.querySelector('.material-symbols-outlined:last-child').addEventListener
     updateCart();
     modal.show();
 });
+
+
 </script>
 <script src="ppageMiddleware.js"></script>
 </body>
