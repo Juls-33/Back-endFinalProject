@@ -11,7 +11,7 @@
 
      $query = "SELECT DATE(date) as sale_date, SUM(amount) as total FROM sales_tbl GROUP BY sale_date ORDER BY sale_date ASC";
      $result = $conn->query($query);
-
+    
     $data = [];
     $labels = [];
 

@@ -1,5 +1,16 @@
 <?php
 
+    $servername = "localhost";
+    $database = "lesanshoes_db";
+    $username = "root";
+    $pass = "";
+
+    $conn = new mysqli($servername, $username, $pass, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
     $inventory_sql = "SELECT SUM(stock) AS total FROM colorway_size_tbl";
     $result = $conn->query($inventory_sql);
     $inventoryCount = 0;
