@@ -65,7 +65,7 @@ if (isset($_POST['id'])) {
             <div class="col-12 col-lg-9">
             <div class="row row-cols-1 row-cols-md-2 g-1">
                 <div class="col">
-                    <div class="img-zoom"
+                    <div  id="mainProductImage" class="img-zoom"
                          style="background-image: url('<?php echo $row['image1']; ?>'); height: 400px;" data-index="0"
                          onmousemove="zoom(event, this)"
                          onmouseleave="resetZoom(this)"

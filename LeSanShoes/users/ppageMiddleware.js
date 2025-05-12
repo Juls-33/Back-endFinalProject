@@ -124,14 +124,14 @@ $(document).on('click', '.addtoCart', function () {
     const totalPrice = unitPrice * quantity;
 
     const bgStyle = $('#mainProductImage').css('background-image');
-    // const imageUrl = bgStyle.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+    const imageUrl = bgStyle.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
 
     $('#cart-product-name').text(productName);
     $('#cart-product-price').text(`₱ ${unitPrice.toLocaleString()}`);
     $('#selected-size').text(selectedSize);
     $('#selected-qty').text(quantity);
     $('#cart-total-price').text(`₱ ${totalPrice.toLocaleString()}`);
-    // $('#cart-product-img').attr('src', imageUrl);
+    $('#cart-product-img').attr('src', imageUrl);
 
     // Only open modal if everything is valid
     const cartModal = new bootstrap.Modal(document.getElementById('addCartModal'));
