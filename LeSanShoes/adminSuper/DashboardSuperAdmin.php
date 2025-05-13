@@ -581,7 +581,7 @@
         fetch('roles.php')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('todayAdmins').textContent = data['Admin'] || 0;
+                document.getElementById('todayAdmins').textContent = data['Admin'] + data['SuperAdmin']|| 0;
                 document.getElementById('todayUsers').textContent = data['User'] || 0;
             });
     </script>
