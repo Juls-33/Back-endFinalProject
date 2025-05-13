@@ -24,6 +24,7 @@ session_start();
     <link rel="stylesheet" href="../HEADER/FOOTER/header-footer.css"/>
     <link rel="stylesheet" href="productpage.css">
     <link rel="stylesheet" href="userTest.css">
+     <link rel="stylesheet" href="../header-footer/header-footer.css">
     <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
     <script src="../assets/swal/sweetalert2.min.js"></script>
     <style>

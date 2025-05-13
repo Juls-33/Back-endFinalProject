@@ -19,6 +19,7 @@
     <title><?php echo $_SESSION['model_name']; ?></title>
 
     <link rel="stylesheet" href="productpage.css">
+    <link rel="stylesheet" href="../header-footer/header-footer.css">
     <link rel="stylesheet" href="userTest.css">
     
 </head>

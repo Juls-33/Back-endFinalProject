@@ -29,7 +29,7 @@
         <div class="col-2">
           <h1>Give your Workout <br>A New Style!</h1>
           <p>Success isn't always about greatness. It's about consistency. Consistent<br>hard work gains success. Greatness will come.</p>
-          <a href="products.php" class="btn">Explore Now &#8594;</a>
+          <a href="products.php" id="Explore" class="mbtn">Explore Now &#8594;</a>
         </div>
         <div class="col-2">
           <img src="../assets/images/image3.png" alt="Hero">
