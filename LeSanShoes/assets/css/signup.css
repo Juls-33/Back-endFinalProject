@@ -1,0 +1,27 @@
+ul{
+    padding:0;
+    list-style: none;
+    padding: 0%;
+}
+   
+li {
+    display:flex;
+    vertical-align:flex-start;
+    line-height: 1rem;
+    font-size: 0.9rem;
+    color: #000;
+    margin-bottom:0.5rem;
+}
+
+.material-icon-checked{
+    color: #008000 !important;
+    font-size:1.5rem !important;
+}
+.material-icon-unchecked{
+    color: #FF0000 !important;
+    font-size: 1.5rem !important;
+}
+
+.password-requirement-text {
+    margin-top:2%;
+}

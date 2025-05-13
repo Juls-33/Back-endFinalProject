@@ -19,134 +19,125 @@
    <!-- Custom CSS -->
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
    <link rel="stylesheet" href="../assets/css/customUserAuth.css">
+   <link rel="stylesheet" href="../assets/css/signup.css">
    <!-- Header and Footer -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
    <script src="../assets/js/user.js" defer></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>    
-   <link rel="stylesheet" href="../assets/css/user.css"/>
+   <link rel="stylesheet" href="../header-footer/header-footer.css">
    <!-- Bootstrap JS -->
-  <style>
-    ul{
-      padding:0;
-      list-style: none;
-      padding: 0%;
-    }
-   
-    li {
-      display:flex;
-      vertical-align:flex-start;
-      line-height: 1rem;
-      font-size: 0.9rem;
-      color: #000;
-      margin-bottom:0.5rem;
-    }
-
-    .material-icon-checked{
-      color: #008000 !important;
-      font-size:1.5rem !important;
-    }
-    .material-icon-unchecked{
-      color: #FF0000 !important;
-      font-size: 1.5rem !important;
-    }
-
-    .password-requirement-text {
-      margin-top:2%;
-    }
-  </style>
-
 </head>
 <body>
-  <header>
-    <div class="ad">
-      <div class="ad-text">
-        <h2>Limited Time Offer 20% off for All Shoes! Contact Us Now</h2>
-      </div>
+<header>
+  <div class="ad">
+    <div class="ad-text">
+      <h2>Limited Time Offer 20% off for All Shoes! Contact Us Now</h2>
     </div>
+  </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <div class="logo-class">
-            <img src="../assets/images/sanshoes logo.png" alt="Bootstrap" width="100" height="100">
-          </div>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.php">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="../users/andrei.php">Products</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
-          </ul>
-          <div class="d-lg-flex flex-lg-row align-items-center gap-2">
-            <div><a href="../userAuth/login.php">Login</a></div>
-              <p>Username: <?php echo isset($_SESSION["username"]) ? htmlspecialchars($_SESSION["username"]) : 'Not set'; ?></p>
-              <a href="../userAuth/logoutUser.php">Logout</a> 
-              <div class="mb-2" role="button" data-bs-toggle="modal" data-bs-target="#userModal">
-    <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
-    <span class="icon-text d-inline d-lg-none">User Account</span>
-    </div>
-          <div>
-              <span class="material-symbols-outlined d-none d-lg-inline">shopping_cart</span>
-              <span class="icon-text d-inline d-lg-none">Cart</span>
-          </div>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <div class="logo-class">
+                    <img src="../assets/images/sanshoes logo.png" alt="Bootstrap" width="100" height="100">
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../users/products.php">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.php">FAQ</a></li>
+                </ul>
+                <div class="d-lg-flex flex-lg-row align-items-center gap-2">
+                    <span class="material-symbols-outlined d-none d-lg-inline cursor-pointer" style="cursor:pointer; pointer-events: auto;" data-bs-toggle="modal" data-bs-target="#orderDetailsModal" title="View Orders">
+                        receipt_long
+                    </span>
+                    <div class="d-flex d-lg-none align-items-center mb-2">
+                      <span class="icon-text d-inline d-lg-none cursor-pointer" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
+                          View Orders
+                      </span>
+                    </div>
+                    <span class="material-symbols-outlined d-none d-lg-inline cursor-pointer" style="cursor:pointer; pointer-events: auto;" id="openCartBtn" data-bs-toggle="modal" data-bs-target="#cartModal" title="View Cart">
+                        shopping_cart
+                    </span>
+                    <div class="d-flex d-lg-none align-items-center mb-2">
+                      <span class="icon-text d-inline d-lg-none cursor-pointer" id="openCartBtn" data-bs-toggle="modal" data-bs-target="#cartModal">Cart</span>
+                    </div>
+                    <div class="dropdown mb-1">
+                        <div class="d-flex align-items-center" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Profile">
+                            <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
+                            <span class="icon-text d-inline d-lg-none">User  Account</span>
+                        </div>
+                        <!-- Dropdown Menu -->
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <?php if (isset($_SESSION["username"])): ?>
+                                <li class="dropdown-item text-muted">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="../userAuth/logoutUser .php">Logout</a></li>
+                            <?php else: ?>
+                                <li><a class="dropdown-item" href="../userAuth/login.php">Login</a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-      </div>
     </nav>
-  </header>
+</header>
   <main>
     <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center form-wrapper">
       <form id="signupForm" class="login-form w-100" style="max-width: 600px;">
         <h2 class="text-center  mb-4" style="margin-top: 1%;">Sign Up</h2>
+        <p style ="text-align: center"> Access Exclusive Features - Sign Up Now! <b> All fields are required</b></p>
         <hr>
         <div class="form-group">
-          <label for="username" class="form-label">Username</label>
+          <label for="username" class="form-label">Username*</label>
           <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" maxlength="100" required>
         </div>
 
       <div class="mb-3">
-        <label for="email" class="form-label">Email Address</label>
+        <label for="email" class="form-label">Email Address*</label>
         <input type="email" id="email" name="email" class="form-control"  placeholder="Enter your email" maxlength="100" required>
       </div>
         <div class="row">
           <div class="form-group col-md-6 mb-3">
-            <label for="fname" class="form-label">First name</label>
+            <label for="fname" class="form-label">First name*</label>
             <input type="text" id="fname" name="fname" class="form-control"  placeholder="Enter your firstname" maxlength="100" required>
           </div>
           <div class="form-group col-md-6 mb-3">
-            <label for="lname" class="form-label">Last name</label>
+            <label for="lname" class="form-label">Last name*</label>
             <input type="text" id="lname" name="lname" class="form-control"  placeholder="Enter your lastname" maxlength="100" required>
           </div>
         </div>
 
       <div class="form-group">
-        <label for="password" class="form-label">Password</label>
+        <label for="password" class="form-label">Password*</label>
         <div class="password-wrapper">
           <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" maxlength="100" required>
         </div>
       <div>
       <div class="form-group">
-        <label for="passwordConf" class="form-label">Confirm Password</label>
+        <label for="passwordConf" class="form-label">Confirm Password*</label>
         <div class="password-wrapper">
           <input type="password" id="passwordConf" name="passwordConf" class="form-control" placeholder="Re-enter your password" maxlength="100" required>
       </div>
 
       <div class="form-group">
-        <label for="birthdate" class="form-label">Birthday</label>
+        <label for="birthdate" class="form-label">Birthday*</label>
         <input type="date" id="birthdate" name="birthdate" class="form-control" required>
       </div>
 
       <div class="form-group">
-        <label for="address" class="form-label">Address</label>
+        <label for="address" class="form-label">Address*</label>
         <input type="text" id="address" name="address" class="form-control" placeholder="Enter your address" maxlength="250" required>
       </div>
 
       <div class="form-group">
-        <label for="contact" class="form-label">Contact Number</label>
+        <label for="contact" class="form-label">Contact Number*</label>
         <input type="number" id="contact" name="contact" class="form-control" placeholder="Enter your contact number" min="0" onKeyPress="if(this.value.length==11) return false;" required>
       </div>
 
@@ -201,7 +192,7 @@
       </div>
       
       <div class="d-grid">
-        <button type="button" class="btn btn-danger" onclick="signUp()">Sign Up</button>
+        <button type="button" class="btn btn-danger mt-3" onclick="signUp()">Sign Up</button>
       </div>
 
       <p class="text-center mt-3">Already have an account? <a href="login.php">Log in</a></p>
