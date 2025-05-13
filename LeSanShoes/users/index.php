@@ -29,7 +29,7 @@
         <div class="col-2">
           <h1>Give your Workout <br>A New Style!</h1>
           <p>Success isn't always about greatness. It's about consistency. Consistent<br>hard work gains success. Greatness will come.</p>
-          <a href="products.php" id="Explore" class="mbtn">Explore Now &#8594;</a>
+          <a href="products.php" class="mbtn">Explore Now &#8594;</a>
         </div>
         <div class="col-2">
           <img src="../assets/images/image3.png" alt="Hero">
@@ -37,6 +37,8 @@
       </div>
     </div>
   </div>
+
+
 
 
 <div class="shoesTitle">
@@ -133,6 +135,52 @@
 
   </div>
 </div>
+
+<div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../assets/images/lebron.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block text-end custom-caption">
+        <div class="d-inline-block text-center">
+          <h2 class="fw-bold">BASKETBALL</h2>
+          <a href="products.php?category=basketball" class="btn btn-light mt-2">Explore Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="../assets/images/bolt.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block text-end custom-caption">
+        <div class="d-inline-block text-center">
+          <h2>RUNNING</h2>
+          <a href="products.php?category=running" class="btn btn-light mt-2">Explore Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="../assets/images/mbappe.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block text-end custom-caption">
+        <div class="d-inline-block text-center">
+          <h2 class="fw-bold">LIFESTYLE</h2>
+          <a href="products.php?category=lifestyle" class="btn btn-light mt-2">Explore Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
 
 <div class="runningContainer">
 <div class="shoesTitle">

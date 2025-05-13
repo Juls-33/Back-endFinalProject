@@ -58,9 +58,9 @@
       <div class="p-3" style="min-width: 250px; max-width: 300px;">
         <h5 class="text-uppercase mb-4">Contact</h5>
         <ul class="list-unstyled">
-          <li><p><i class="fas fa-map-marker-alt pe-2"></i>Warsaw, 57 Street, Poland</p></li>
-          <li><p><i class="fas fa-phone pe-2"></i>+ 01 234 567 89</p></li>
-          <li><p><i class="fas fa-envelope pe-2 mb-0"></i>contact@example.com</p></li>
+          <li><p><i class="fas fa-map-marker-alt pe-2"></i>Biringan City, Philippines</p></li>
+          <li><p><i class="fas fa-phone pe-2"></i>+63 984 467 7856</p></li>
+          <li><p><i class="fas fa-envelope pe-2 mb-0"></i>juls_33@gmail.com</p></li>
         </ul>
       </div>
 

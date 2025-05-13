@@ -30,7 +30,7 @@ a{
     color: #555;
 }
 p{
-    color: #000000;
+    color: #841a1a;
 }
 .header{
     border: #B51E1E solid;
@@ -59,11 +59,11 @@ p{
 } 
 
 .col-2 h1{
-    font-size: 60px;
-    line-height: 80px;
+    font-size: 70px;
+    line-height: 100px;
     margin: 25px 0;
       -webkit-text-stroke: 1px #740505; 
-      color: #B51E1E;
+      color: #ffffff;
 }
 
 .mbtn{
@@ -97,15 +97,6 @@ p{
 }
 
 
-.card-container {
-    width: 100%;
-  display: flex;
-  flex-wrap: nowrap;          
-  overflow-x: auto;           
-  justify-content: flex-start;               
-  padding: 0;      
-}
-
 .card-container-wrapper {
   display: flex;
   align-items: center;         /* Centers the cards vertically with the buttons */
@@ -120,14 +111,19 @@ p{
   justify-content: flex-start;  /* Aligns cards to the start */
   margin: 0;                    /* Removes margin around the container */
   padding: 0;                   /* Removes padding around the container */
-  width: 80%;                   /* Control the width of the card container */
+  width: 80%;       
+  
 }
 
 .card-container .card {
   flex: 0 0 25%;                /* Each card takes 25% of the container width */
-  margin: 0;                    /* No margin between cards */
+  margin: 0;      
+   transition: transform 0.3s ease;
+  border:none;
 }
-
+.card-container .card:hover {
+  transform: scale(1.05); /* grows 5% larger */
+}
 .scroll-btn {
   background-color: transparent;  /* Remove background color */
   border: none;                   /* Remove border */

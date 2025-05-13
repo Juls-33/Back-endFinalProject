@@ -74,9 +74,7 @@ session_start();
         <?php include('../header-footer/header.php'); ?>
     </header>
     <body>
-        
-        <main>
-        <!-- main -->
+
         <main>
             <h1 style = "padding: 3%">Frequently Asked Questions</h1>
             <div class="accordion accordion-flush  w-100 " id="accordionFAQ" style="max-width: 80%;" >
@@ -246,13 +244,13 @@ session_start();
                     <li>Email: </li>
                     <li>Contact Number: </li>
                 </ul>
-                <button type="button" class="btn border solid">Contact Us</button>
+                <button type="button" class="mbtn border solid">Contact Us</button>
             </div>
         </main>
         <!-- Footer -->
         <br> <br>
-        <?php include('modals.php'); ?>
-        <?php include('../header-footer/footer.php'); ?>
+   <?php include('modals.php'); ?>
+<?php include('../header-footer/footer.php'); ?>
 
         <script src="productsPageMiddleware.js"></script>
         <script src="ppageMiddleware.js"></script>
