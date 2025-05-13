@@ -120,7 +120,7 @@ if (isset($_POST['id'])) {
 
                     <div class="row row-cols-2">
                         <div class="col-8 col-lg-7 col-sm-9">
-                            <p> Avaiilable Sizes </p>
+                            <p> Available Sizes </p>
                         </div>
                         <div class="col-4 col-lg-5 col-sm-3">
                             <div class="d-flex align-items-center" id = "sizes">
@@ -139,8 +139,8 @@ if (isset($_POST['id'])) {
                         $counter = 1;
                         foreach ($sizesWithStock as $size) {
                             $id = "option$counter";
-                            $disabled = $size <= 0 ? 'disabled' : '';
-                            $class = $size <= 0 ? 'unavailable text-muted' : '';
+                            $disabled = $size['stock'] <= 0 ? 'disabled' : '';
+                            $class = $size['stock'] <= 0 ? 'unavailable text-muted' : '';
                         ?>
                             <div class="col">
                                 <input type="radio" class="btn-check" name="options-size" id="<?php echo $id; ?>" autocomplete="off" <?php echo $disabled; ?> data-size-id="<?php echo $size['colorway_size_id']; ?>">

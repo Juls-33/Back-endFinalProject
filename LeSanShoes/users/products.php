@@ -13,6 +13,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
   <link rel="stylesheet" href="../assets/css/products.css"/>
   <link rel="stylesheet" href="../HEADER/FOOTER/header-footer.css"/>
+  <!-- <link rel="stylesheet" href="userTest.css"> -->
+  <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
+  <script src="../assets/swal/sweetalert2.min.js"></script>
   <style>
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -22,7 +25,7 @@
 </head>
 
 <body>
-  <?php include('C:\xampp\htdocs\Back-endFinalProject\LeSanShoes\header-footer\header.php'); ?>
+  <?php include('../header-footer/header.php'); ?>
 
   <main>
      <div class="header">
@@ -136,7 +139,7 @@
 
 <!-- cart modal -->
 <?php include('modals.php'); ?>
-<?php include('C:\xampp\htdocs\Back-endFinalProject\LeSanShoes\header-footer\footer.php'); ?>
+<?php include('../header-footer/footer.php'); ?>
 
 <script src="productsPageMiddleware.js"></script>
 <script src="ppageMiddleware.js"></script>

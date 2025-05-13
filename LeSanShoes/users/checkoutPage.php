@@ -303,7 +303,7 @@ window.onload = function() {
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const items = JSON.parse(sessionStorage.getItem('checkoutItems')) || [];
-
+        
         if (items.length === 0) {
             document.getElementById('checkoutList').innerHTML = '<p>No items selected for checkout.</p>';
             return;
@@ -373,8 +373,8 @@ window.onload = function() {
             success: function (response) {
                 Swal.fire("Order Placed", "Thank you for your purchase!", "success").then(() => {
                     sessionStorage.removeItem('checkoutItems');
-                    alert("done");
-                    // window.location.href = 'orderConfirmation.php';
+                    // alert("done");
+                    window.location.href = 'products.php';
                 });
             },
             error: function (xhr) {

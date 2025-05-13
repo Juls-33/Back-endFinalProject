@@ -9,7 +9,10 @@
     background-color: #fff5f5;
     transition: all 0.2s ease;
 }
-
+.unavailable {
+    pointer-events: none;
+    opacity: 0.5;
+}
 
 .ad {
     background-color: #B51E1E;

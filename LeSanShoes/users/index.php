@@ -10,15 +10,16 @@
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-  <!-- <link rel="stylesheet" href="../user/css/products.css"/> -->
   <style>
   </style>
   <link rel="stylesheet" href="userTest.css">
+  <link rel="stylesheet" href="productpage.css">
+  <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
+  <script src="../assets/swal/sweetalert2.min.js"></script>
 </head>
 
 <body>
-<?php include('C:\xampp\htdocs\Back-endFinalProject\LeSanShoes\header-footer\header.php'); ?>
+<?php include('../header-footer/header.php'); ?>
 
 <div>
   <div class="header">
@@ -155,7 +156,7 @@
   </main>
 
 <?php include('modals.php'); ?>
-<?php include('C:\xampp\htdocs\Back-endFinalProject\LeSanShoes\header-footer\footer.php'); ?>
+<?php include('../header-footer/footer.php'); ?>
 
   <script src="productsPageMiddleware.js"></script>
   <script src="runningshoes.js"></script>

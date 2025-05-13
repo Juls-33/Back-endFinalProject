@@ -19,11 +19,13 @@
     <title><?php echo $_SESSION['model_name']; ?></title>
 
     <link rel="stylesheet" href="productpage.css">
+    <!-- <link rel="stylesheet" href="userTest.css"> -->
+    
 </head>
 <body>
 
 <!-- Header -->
-<?php include('C:\xampp\htdocs\Back-endFinalProject\LeSanShoes\header-footer\header.php'); ?>
+<?php include('../header-footer/header.php'); ?>
 
 <!-- Main Body (Display Dynamic Product Details Here)-->
 <main id="mainpart"></main>

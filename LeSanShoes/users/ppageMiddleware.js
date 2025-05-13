@@ -176,7 +176,9 @@ $(document).on('click', '#openCartBtn', function () {
                         <div class="row g-0 align-items-center">
                             <div class="col-auto ps-3">
                                 <input type="checkbox" class="form-check-input cart-check" 
-                                data-price="${item.total_price}" 
+                                data-price="${item.total_price}"
+                                data-quantity="${item.quantity}"
+                                data-stock="${item.stock}"
                                 data-index="${index}" 
                                 data-cart-id="${item.cart_id}"
                                 data-colorway-id="${item.colorway_id}"
@@ -190,10 +192,22 @@ $(document).on('click', '#openCartBtn', function () {
                                 <div class="card-body">
                                     <h5 class="card-title">${item.model_name}</h5>
                                     <small class="text-muted">${item.colorway_name}</small>
-                                    <p class="card-text mt-2"><strong>₱${parseFloat(item.total_price).toLocaleString()}</strong></p>
-                                    <p class="card-text">Size: ${item.size_name}</p>
-                                    <p class="card-text">Qty: ${item.quantity}</p>
+                                    <p class="card-text"><strong>₱${parseFloat(item.total_price).toLocaleString()}</strong></p>
                                     
+                                    <div class="mb-2 d-flex align-items-center">
+                                        <label class="me-2 mb-0">Size:</label>
+                                        <select class="form-select form-select-sm cart-size-select" data-colorway-id="${item.colorway_id}" data-cart-id="${item.cart_id}">
+                                            <option selected>${item.size_name}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-2 d-flex align-items-center">
+                                        <label class="me-2 mb-0">Qty:</label>
+                                        <button class="btn btn-outline-secondary btn-sm qty-decrease" data-cart-id="${item.cart_id}" data-price-at-order="${item.price}">−</button>
+                                        <span class="mx-2 cart-qty" data-cart-id="${item.cart_id}" data-price-at-order="${item.price}">${item.quantity}</span>
+                                        <button class="btn btn-outline-secondary btn-sm qty-increase" data-cart-id="${item.cart_id}" data-price-at-order="${item.price}">+</button>
+                                    </div>
+                                    <button class="btn btn-sm btn-danger cart-delete-btn mt-1" data-cart-id="${item.cart_id}">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +226,19 @@ $(document).on('click', '#openCartBtn', function () {
 
 // click cart
 $(document).off('click', '.cart-card').on('click', '.cart-card', function (e) {
-    if ($(e.target).is('.cart-check')) return;
+    const $target = $(e.target);
+
+    // Prevent toggle if click is on checkbox or interactive elements
+    if (
+        $target.is('.cart-check') ||
+        $target.is('.qty-increase') ||
+        $target.is('.qty-decrease') ||
+        $target.is('.cart-delete-btn') ||
+        $target.is('.cart-size-select') ||
+        $target.closest('.cart-size-select').length > 0 
+    ) {
+        return;
+    }
 
     const index = $(this).data('index');
     const checkbox = $(`.cart-check[data-index="${index}"]`);
@@ -249,8 +275,8 @@ $(document).on('click', '#checkoutBtn', function () {
             model_name: card.find('.card-title').text(),
             colorway_name: card.find('.text-muted').text(),
             total_price: parseFloat($(this).data('price')),
-            size_name: card.find('.card-text:contains("Size")').text().replace('Size: ', ''),
-            quantity: parseInt(card.find('.card-text:contains("Qty")').text().replace('Qty: ', '')),
+            size_name: card.find('.cart-size-select').val(), 
+            quantity: $(this).data('quantity'),
             image1: card.find('img').attr('src')
         };
 
@@ -265,10 +291,99 @@ $(document).on('click', '#checkoutBtn', function () {
     sessionStorage.setItem('checkoutItems', JSON.stringify(selectedItems));
     window.location.href = 'checkoutPage.php';
   
-    Swal.fire("Checkout Ready", "Proceeding to checkout with selected items.", "success");
+    // Swal.fire("Checkout Ready", "Proceeding to checkout with selected items.", "success");
+});
+
+// get sizes for cart
+$(document).on('focus', '.cart-size-select', function () {
+    const select = $(this);
+    const colorwayId = select.data('colorway-id');
+    const cartId = select.data('cart-id');
+
+    $.ajax({
+        url: 'cartActions.php',
+        method: 'POST',
+        data: {
+            action: 'getSizesForColorway',
+            colorway_id: colorwayId
+        },
+        dataType: 'json',
+        success: function (sizes) {
+            select.empty();
+            sizes.forEach(size => {
+                select.append(`<option value="${size.size_id}">${size.size_name}</option>`);
+            });
+        },
+        error: function (xhr) {
+            console.error('Failed to load sizes:', xhr.responseText);
+        }
+    });
+});
+// quantity increase for cart
+$(document).on('click', '.qty-increase, .qty-decrease', function () {
+    const isIncrease = $(this).hasClass('qty-increase');
+    const cartId = $(this).data('cart-id');
+    const price = $(this).data('price-at-order');
+    const qtySpan = $(`.cart-qty[data-cart-id="${cartId}"]`);
+    let qty = parseInt(qtySpan.text());
+
+    const checkbox = $(`.cart-check[data-cart-id="${cartId}"]`);
+    const maxStock = parseInt(checkbox.attr('data-stock'));
+    
+    console.log(price);
+    if (isIncrease && qty<maxStock) {
+        qty++;
+    } else if (!isIncrease && qty > 1) {
+        qty--;
+    }
+
+    qtySpan.text(qty);
+
+    checkbox.attr('data-quantity', qty);
+    const newTotalPrice = qty * price;
+    checkbox.attr('data-price', newTotalPrice);
+
+    const card = $(`.cart-card[data-index="${checkbox.data('index')}"]`);
+    card.find('.card-text strong').text(`₱${newTotalPrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}`);
+    updateCartSubtotal();
+    $.post('cartActions.php', {
+        action: 'updateCartQuantity',
+        cart_id: cartId,
+        price: price,
+        quantity: qty
+    }, function (res) {
+        console.log('Qty updated:', res);
+        // $('#openCartBtn').click();
+    });
+});
+// delete cart
+$(document).on('click', '.cart-delete-btn', function () {
+    const cartId = $(this).data('cart-id');
+    $.post('cartActions.php', {
+        action: 'deleteCartItem',
+        cart_id: cartId
+    }, function (res) {
+        console.log('Deleted:', res);
+        $('#openCartBtn').click();
+    });
 });
 
 
+// update cart subtotal
+function updateCartSubtotal() {
+    let subtotal = 0;
+
+    $('.cart-check:checked').each(function () {
+        const index = $(this).data('index');
+        const card = $(`.cart-card[data-index="${index}"]`);
+        const qty = parseInt($(`.cart-qty[data-cart-id="${$(this).data('cart-id')}"]`).text());
+        const pricePerItem = parseFloat($(this).data('price-at-order'));
+
+        subtotal += qty * pricePerItem;
+    });
+
+    $('#cartSubtotal').text(subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 }));
+}
 
 // Function to open the modal
 function openModal(index) {
