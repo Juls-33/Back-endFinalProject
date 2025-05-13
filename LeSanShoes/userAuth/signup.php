@@ -429,7 +429,9 @@
               data: {myJson : jsonString},
               success: function(response) {
                       showToast('Account created successfully!', 'confirmation');
-                        setTimeout(() => form.submit(), 1000);
+                        setTimeout(() => {
+                        window.location.href = 'login.php';
+                      }, 2000);
               },
               error: function() {
                   // Handle any errors that occur during the request
