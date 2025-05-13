@@ -63,10 +63,10 @@ if (isset($_SESSION['username'])) {
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="../users/index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="../users/products.php">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="faq.php">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../users/faq.php">FAQ</a></li>
                 </ul>
                 <div class="d-lg-flex flex-lg-row align-items-center gap-2">
-                    <span class="material-symbols-outlined d-none d-lg-inline cursor-pointer" style="cursor:pointer; pointer-events: auto;" data-bs-toggle="modal" data-bs-target="#orderDetailsModal" title="View Orders">
+                    <!-- <span class="material-symbols-outlined d-none d-lg-inline cursor-pointer" style="cursor:pointer; pointer-events: auto;" data-bs-toggle="modal" data-bs-target="#orderDetailsModal" title="View Orders">
                         receipt_long
                     </span>
                     <div class="d-flex d-lg-none align-items-center mb-2">
@@ -76,7 +76,7 @@ if (isset($_SESSION['username'])) {
                     </div>
                     <span class="material-symbols-outlined d-none d-lg-inline cursor-pointer" style="cursor:pointer; pointer-events: auto;" id="openCartBtn" data-bs-toggle="modal" data-bs-target="#cartModal" title="View Cart">
                         shopping_cart
-                    </span>
+                    </span> -->
                     <div class="d-flex d-lg-none align-items-center mb-2">
                       <span class="icon-text d-inline d-lg-none cursor-pointer" id="openCartBtn" data-bs-toggle="modal" data-bs-target="#cartModal">Cart</span>
                     </div>
