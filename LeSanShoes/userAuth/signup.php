@@ -433,11 +433,7 @@
               },
               error: function() {
                   // Handle any errors that occur during the request
-                  Swal.fire({
-                      icon: "error",
-                      title: "Oops...",
-                      text: 'Something went wrong! Username already exist',
-                  });
+                  showToast('Username already exist');
               }
           });
 // END OF EDITTT
