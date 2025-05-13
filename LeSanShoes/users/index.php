@@ -219,25 +219,8 @@
     
    
   </main>
-  <script>
-    function username() {
-    console.log("pasokkk");
-    var form = document.getElementById('usernameForm');
-    if (!form.checkValidity()) {
-        form.reportValidity(); 
-        return; 
-      }
-    //   
-    var formData = new FormData(form);
-    var data = {
-        action: 'editUsername',
-        username: formData.get("username").trim(),
-    };
+  
 
-    var jsonString = JSON.stringify(data);
-    sendViaAJAX(jsonString);
-}
-  </script>
 <script src="editUserMiddleware.js"></script>
 <?php include('modals.php'); ?>
 <?php include('../header-footer/footer.php'); ?>

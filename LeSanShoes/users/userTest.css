@@ -124,7 +124,8 @@ p{
   justify-content: flex-start;  /* Aligns cards to the start */
   margin: 0;                    /* Removes margin around the container */
   padding: 0;                   /* Removes padding around the container */
-  width: 80%;       
+  width: 80%;    
+  scrollbar-width: none   
   
 }
 
@@ -179,6 +180,8 @@ p{
 .runningContainer{
     margin-top: 50px;
 }
+
+
 
 @media (max-width: 768px) {
     .rowcart {
