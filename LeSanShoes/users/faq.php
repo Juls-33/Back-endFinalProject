@@ -28,6 +28,7 @@ session_start();
      <link rel="stylesheet" href="../header-footer/header-footer.css">
     <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
     <script src="../assets/swal/sweetalert2.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
     <style>
         .accordion{
             display:flex;
@@ -240,10 +241,10 @@ session_start();
             <div class="customer_support border solid">
                 <h3>Customer Support</h3>
                 <ul>
-                    <li>Facebook: </li>
-                    <li>Instagram: </li>
-                    <li>Email: </li>
-                    <li>Contact Number: </li>
+                    <li>Facebook: <a href="https://www.facebook.com/andreilouis.villajuan">Lesanshoes</a> </li> 
+                    <li>Instagram: <a href="https://www.instagram.com/andreivillajuan/">Lesanshoes</a> </li> 
+                    <li>Email: juls_33@gmail.com </li>
+                    <li>Contact Number:+63 984 467 7856 </li>
                 </ul>
                 <button type="button" class="mbtn border solid">Contact Us</button>
             </div>
