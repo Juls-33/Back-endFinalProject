@@ -39,7 +39,10 @@ if (mysqli_num_rows($orderQuery) > 0) {
         }
 
         $colorwayList = implode(', ', $colorwayNames);
-
+        $cancelDisabled = ($status !== 'Pending' && $status !== 'Out for Delivery');
+        $cancelBtn = $cancelDisabled
+            ? "<button class='btn btn-outline-secondary btn-sm' disabled>Cancel</button>"
+            : "<button class='btn btn-outline-danger btn-sm cancel-order-btn' data-order-id='$order_id'>Cancel</button>";
         echo "
         <div class='card mb-4 border-danger-subtle shadow-sm w-100'>
             <div class='card-body'>
@@ -53,7 +56,11 @@ if (mysqli_num_rows($orderQuery) > 0) {
                         <p class='mb-1'><strong>Items:</strong> <small class='text-muted'>$colorwayList</small></p>
                         <div class='d-flex justify-content-between align-items-center mt-3'>
                             <p class='mb-0'><strong>Total:</strong> Php $total</p>
-                            <button class='btn btn-outline-danger btn-sm'>Cancel</button>
+                            <div class='d-flex justify-content-between align-items-center mt-3'>
+                                <p class='mb-0'><strong>Total:</strong> Php $total</p>
+                                $cancelBtn
+                            </div>
+
                         </div>
                     </div>
                 </div>
