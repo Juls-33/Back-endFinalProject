@@ -181,6 +181,39 @@ p{
     margin-top: 50px;
 }
 
+/* Hide scroll buttons by default */
+.card-container-wrapper .scroll-btn {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+  
+}
+
+/* Position left and right buttons */
+.card-container-wrapper .scroll-btn.left {
+  left: -10px;
+}
+.card-container-wrapper .scroll-btn.right {
+  right: -10px;
+}
+
+/* Show buttons only on desktop when hovering */
+@media (min-width: 768px) {
+  .card-container-wrapper {
+    position: relative;
+  }
+
+  .card-container-wrapper:hover .scroll-btn {
+    display: block;
+  }
+}
 
 
 @media (max-width: 768px) {
@@ -213,4 +246,56 @@ p{
     font-size: 20px;
     -webkit-text-stroke: 0.2px #B51E1E; 
 }
+}
+
+/* .scroll-wrapper .flex-shrink-0 {
+  width: 400px;
+} */
+
+#brandCardContainer .brand-card .card-body .card-text {
+  color: #B51E1E; /* Set the text color */
+}
+
+/* Base scroll wrapper styling */
+.scroll-wrapper {
+  overflow-x: auto;
+  display: flex;
+  gap: 1rem;
+  padding: 0 0.5rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+   scrollbar-width: none   
+}
+
+/* Snap each card into place */
+.brand-card {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 405px;
+}
+
+/* Responsive card widths */
+@media (max-width: 1199.98px) {
+  .brand-card {
+    max-width: 330px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .brand-card {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .brand-card {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .brand-card {
+    max-width: 180px;
+  }
 }

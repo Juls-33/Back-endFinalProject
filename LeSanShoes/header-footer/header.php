@@ -8,7 +8,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="../users/index.php">
                 <div class="logo-class">
                     <img src="../assets/images/sanshoes logo.png" alt="Bootstrap" width="100" height="100">
                 </div>

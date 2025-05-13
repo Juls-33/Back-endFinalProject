@@ -58,83 +58,10 @@
 </div>
  
 
-<div class="container my-5 brandContainer">
-  <div class="mb-4 shoesTitleColor">
-    <h1 class="fw-bold">SHOP BY BRAND</h1>
-  </div>
-  <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-4 justify-content-center">
 
-    <div class="col d-flex justify-content-center">
-      <a href="products.php?brand=Anta" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
-        <div class="card h-100">
-          <img src="../assets/images/kyrie.jpg" class="card-img-top" alt="ANTA">
-          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
-            <p class="card-text fs-6 fw-semibold mb-0">ANTA</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col d-flex justify-content-center">
-      <a href="products.php?brand=Nike" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
-        <div class="card h-100">
-          <img src="../assets/images/sabrina.jpg" class="card-img-top" alt="NIKE">
-          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
-            <p class="card-text fs-6 fw-semibold mb-0">NIKE</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col d-flex justify-content-center">
-      <a href="products.php?brand=Under" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
-        <div class="card h-100">
-          <img src="../assets/images/stephen.jpg" class="card-img-top" alt="UNDER ARMOUR">
-          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
-            <p class="card-text fs-6 fw-semibold mb-0">UNDER ARMOUR</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col d-flex justify-content-center">
-      <a href="products.php?brand=Adidas" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
-        <div class="card h-100">
-          <img src="../assets/images/harden.jpg" class="card-img-top" alt="ADIDAS">
-          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
-            <p class="card-text fs-6 fw-semibold mb-0">ADIDAS</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col d-flex justify-content-center">
-      <a href="products.php?brand=Asics" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
-        <div class="card h-100">
-          <img src="../assets/images/asics.jpg" class="card-img-top" alt="ASICS">
-          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
-            <p class="card-text fs-6 fw-semibold mb-0">ASICS</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col d-flex justify-content-center">
-      <a href="products.php?brand=Jordan" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
-        <div class="card h-100">
-          <img src="../assets/images/jordanPic.jpg" class="card-img-top" alt="JORDAN">
-          <div class="card-body d-flex flex-column justify-content-end text-center p-2">
-            <p class="card-text fs-6 fw-semibold mb-0">JORDAN</p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-  </div>
-</div>
 <div class="container my-5">
   <div class="mb-4 shoesTitleColor">
-    <h1 class="fw-bold text-center">FOR THE GREATEST</h1>
+    <h1 class="fw-bold text-center"></h1>
   </div>
 </div>
 
@@ -194,6 +121,95 @@
   </button>
 </div>
 
+<div class="container my-5 brandContainer">
+  <div class="mb-4 shoesTitleColor">
+    <h1 class="fw-bold">SHOP BY BRAND</h1>
+  </div>
+
+  <!-- Arrow-enabled scroll wrapper -->
+  <div class="card-container-wrapper">
+    <button class="scroll-btn left" id="leftBtn2">
+      <span class="material-symbols-outlined">arrow_circle_left</span>
+    </button>
+
+    <div class="scroll-wrapper d-flex overflow-auto gap-3 px-1" id="brandCardContainer">
+      <!-- Brand cards -->
+      <div class="brand-card flex-shrink-0">
+        <a href="products.php?brand=Anta" class="text-decoration-none text-dark w-100">
+          <div class="card h-100">
+            <img src="../assets/images/kyrie1.jpg" class="card-img-top" alt="ANTA">
+            <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+              <p class="card-text fs-6 fw-semibold mb-0">ANTA</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="brand-card flex-shrink-0">
+        <a href="products.php?brand=Nike" class="text-decoration-none text-dark w-100">
+          <div class="card h-100">
+            <img src="../assets/images/sabrina1.jpg" class="card-img-top" alt="NIKE">
+            <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+              <p class="card-text fs-6 fw-semibold mb-0">NIKE</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="brand-card flex-shrink-0">
+        <a href="products.php?brand=Under" class="text-decoration-none text-dark w-100">
+          <div class="card h-100">
+            <img src="../assets/images/curry1.jpg" class="card-img-top" alt="UNDER ARMOUR">
+            <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+              <p class="card-text fs-6 fw-semibold mb-0">UNDER ARMOUR</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="brand-card flex-shrink-0">
+        <a href="products.php?brand=Adidas" class="text-decoration-none text-dark w-100">
+          <div class="card h-100">
+            <img src="../assets/images/harden1.jpg" class="card-img-top" alt="ADIDAS">
+            <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+              <p class="card-text fs-6 fw-semibold mb-0">ADIDAS</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="brand-card flex-shrink-0">
+        <a href="products.php?brand=Asics" class="text-decoration-none text-dark w-100">
+          <div class="card h-100">
+            <img src="../assets/images/asics1.jpg" class="card-img-top" alt="ASICS">
+            <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+              <p class="card-text fs-6 fw-semibold mb-0">ASICS</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="brand-card flex-shrink-0">
+        <a href="products.php?brand=Jordan" class="text-decoration-none text-dark w-100">
+          <div class="card h-100">
+            <img src="../assets/images/jordan1.jpg" class="card-img-top" alt="JORDAN">
+            <div class="card-body d-flex flex-column justify-content-end text-center p-2">
+              <p class="card-text fs-6 fw-semibold mb-0">JORDAN</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <button class="scroll-btn right" id="rightBtn2">
+      <span class="material-symbols-outlined">arrow_circle_right</span>
+    </button>
+  </div>
+</div>
+
+
+
+
 
 
 <div class="runningContainer">
@@ -219,7 +235,22 @@
     
    
   </main>
-  
+  <script>
+  const leftBtn2 = document.getElementById("leftBtn2");
+  const rightBtn2 = document.getElementById("rightBtn2");
+  const brandContainer = document.getElementById("brandCardContainer");
+
+  const scrollAmount = 350;
+
+  leftBtn2.addEventListener("click", () => {
+    brandContainer.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+
+  rightBtn2.addEventListener("click", () => {
+    brandContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
+</script>
+
 
 <script src="editUserMiddleware.js"></script>
 <?php include('modals.php'); ?>
