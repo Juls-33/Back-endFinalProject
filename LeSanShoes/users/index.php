@@ -4,14 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Basketball Shoes</title>
+  <title>SanShoes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-  <style>
-  </style>
+  <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
   <link rel="stylesheet" href="userTest.css">
   <link rel="stylesheet" href="productpage.css">
   <link rel="stylesheet" href="../header-footer/header-footer.css">
@@ -41,8 +40,10 @@
 
 
 
-<div class="shoesTitle">
-  <h1>NEWEST IN THE GAME</h1>
+<div class="container my-5">
+  <div class="mb-4 shoesTitleColor">
+    <h1 class="fw-bold">NEWEST IN THE GAME</h1>
+  </div>
 </div>
  <div class="container mt-4">
   <div class="card-container-wrapper">
@@ -62,7 +63,7 @@
 
 
 <div class="container my-5 brandContainer">
-  <div class="mb-4 text-center shoesTitleColor">
+  <div class="mb-4 shoesTitleColor">
     <h1 class="fw-bold">SHOP BY BRAND</h1>
   </div>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-4 justify-content-center">
@@ -135,7 +136,11 @@
 
   </div>
 </div>
-
+<div class="container my-5">
+  <div class="mb-4 shoesTitleColor">
+    <h1 class="fw-bold text-center">FOR THE GREATEST</h1>
+  </div>
+</div>
 <div id="carouselExampleCaptions" class="carousel slide">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -156,7 +161,7 @@
       <img src="../assets/images/bolt.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block text-end custom-caption">
         <div class="d-inline-block text-center">
-          <h2>RUNNING</h2>
+          <h2 class="fw-bold">RUNNING</h2>
           <a href="products.php?category=running" class="btn btn-light mt-2">Explore Now</a>
         </div>
       </div>
@@ -183,8 +188,10 @@
 
 
 <div class="runningContainer">
-<div class="shoesTitle">
-  <h1>RUNNING ESSENTIALS</h1>
+<div class="container my-5">
+  <div class="mb-4 shoesTitleColor">
+    <h1 class="fw-bold">RUNNING ESSENTIALS</h1>
+  </div>
 </div>
   <div class="container mt-4">
   <div class="card-container-wrapper">

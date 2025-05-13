@@ -1,3 +1,4 @@
+
 <header>
     <div class="ad">
         <div class="ad-text">
@@ -47,7 +48,7 @@
                             <?php if (isset($_SESSION["username"])): ?>
                                 <li class="dropdown-item text-muted">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="../userAuth/logoutUser .php">Logout</a></li>
+                                <li><a class="dropdown-item" href="../userAuth/logoutUser.php">Logout</a></li>
                             <?php else: ?>
                                 <li><a class="dropdown-item" href="../userAuth/login.php">Login</a></li>
                             <?php endif; ?>

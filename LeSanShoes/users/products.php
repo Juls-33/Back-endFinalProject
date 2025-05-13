@@ -12,7 +12,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
   <link rel="stylesheet" href="../assets/css/products.css"/>
-  <link rel="stylesheet" href="../HEADER/FOOTER/header-footer.css"/>
+    <link rel="stylesheet" href="../header-footer/header-footer.css">
+     <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
   <!-- <link rel="stylesheet" href="userTest.css"> -->
   <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
   <script src="../assets/swal/sweetalert2.min.js"></script>

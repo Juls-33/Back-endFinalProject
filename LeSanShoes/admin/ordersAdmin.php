@@ -16,7 +16,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory</title>
-     <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -40,7 +39,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="DashboardSuperAdmin.php" class="sidebar-link">
+                    <a href="DashboardAdmin.php" class="sidebar-link">
                         <i class="lni lni-dashboard-square-1"></i>
                         <span>Dashboard</span>
                     </a>
@@ -49,48 +48,6 @@
                     <a href="#" class="sidebar-link active-nav">
                         <i class="lni lni-box-closed"></i>
                         <span>Orders</span>
-                    </a>
-                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Login</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Register</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="InventorySuperAdmin.php" class="sidebar-link">
-                        <i class="lni lni-box-archive-1"></i>
-                        <span>Inventory</span>
-                    </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                Two Links
-                            </a>
-                            <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="ManageDBSuperAdmin.php" class="sidebar-link">
-                        <i class="lni lni-layout-9"></i>
-                        <span>Manage Database</span>
-                    </a>
-                </li>
-                <li class="sidebar-item ">
-                    <a href="UserMngSuperAdmin.php" class="sidebar-link">
-                        <i class="lni lni-user-multiple-4"></i>
-                        <span>User Management</span>
                     </a>
                 </li>
             </ul>
@@ -108,7 +65,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm">
-                                <a class="opacity-5 text-dark" href="javascript:;">Super Admin</a>
+                                <a class="opacity-5 text-dark" href="javascript:;">Admin</a>
                             </li>
                             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Orders</li>
                         </ol>

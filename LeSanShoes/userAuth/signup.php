@@ -13,7 +13,7 @@
    crossorigin="anonymous"></script>
    <!-- Custom Scripts -->
    <script type="text/javascript" src="assets/js/display_profile_image.js"></script>
-   <script src="../includes/logic/signupMiddleware.js"></script>
+   
    <link rel="stylesheet" href="../assets/swal/sweetalert2.min.css">
    <script src="../assets/swal/sweetalert2.min.js"></script>
    <!-- Custom CSS -->
@@ -391,8 +391,47 @@
         }
 
         // If all validations pass
-        showToast('Account created successfully!', 'confirmation');
-        setTimeout(() => form.submit(), 2000);
+        // EDIT
+        // EDITTTTTTTTTTT
+            var form = document.getElementById('signupForm');
+            if (!form.checkValidity()) {
+                form.reportValidity(); 
+                return; 
+              }
+              console.log('checkpoint 1');
+            var formData = new FormData(form);
+            var data = {
+                action: 'signUp',
+                username: formData.get("username").trim(),
+                user_fname: formData.get("fname").trim(),
+                user_lname: formData.get("lname").trim(),
+                user_email: formData.get("email").trim(),
+                user_password: formData.get("password").trim(),
+                user_passwordConf: formData.get("passwordConf").trim(),
+                user_birthday: formData.get("birthdate").trim(),
+                user_address: formData.get("address").trim(),
+                user_contact: formData.get("contact").trim(),
+            };
+            console.log(data);
+            var jsonString = JSON.stringify(data);
+            $.ajax({
+              url: "../includes/logic/userAuthToDB.php", 
+              type: "POST",
+              data: {myJson : jsonString},
+              success: function(response) {
+                      showToast('Account created successfully!', 'confirmation');
+                        setTimeout(() => {
+                        window.location.href = 'login.php';
+                      }, 2000);
+              },
+              error: function() {
+                  // Handle any errors that occur during the request
+                  showToast('Username already exist');
+              }
+          });
+// END OF EDITTT
+        
+        // setTimeout(() => form.submit(), 2000);
     };
 });
 
@@ -432,4 +471,5 @@
   }
 });
 </script>
+<script src="../includes/logic/signupMiddleware.js"></script>
 

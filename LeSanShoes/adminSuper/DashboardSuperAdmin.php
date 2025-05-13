@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include("sales_perDay.php");
+    //include("sales_perDay.php");
 
     ob_start();
     include('get_totalSales.php');
@@ -313,16 +313,12 @@
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
-                                    <p class="text-sm mb-0">Top Selling Products Per Day</p>
+                                     <h5 class="text-sm mb-4">Top Selling Products Per Day</h5>
                                 </div>
                             </div>
-                            <div class="card-body pb-4 p-3 mt-0">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                    <li class="list-group-item">A third item</li>
-                                  </ul>
+                            <div class="card-body pb-4 p-3 mt-0"> 
+                                    <ul id="topSellingDayList" class="list-group list-group-flush">
+                                    </ul>
                             </div>
                         </div>
                     </div>
@@ -339,12 +335,8 @@
                                 </div>
                             </div>
                             <div class="card-body pb-4 p-3 mt-0">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                    <li class="list-group-item">A third item</li>
-                                  </ul>
+                                <ul id="topSellingMonthList" class="list-group list-group-flush">
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -357,12 +349,8 @@
                                 </div>
                             </div>
                             <div class="card-body pb-4 p-3 mt-0">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                    <li class="list-group-item">A third item</li>
-                                  </ul>
+                                <ul id="topSellingYearList" class="list-group list-group-flush">
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -593,9 +581,140 @@
         fetch('roles.php')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('todayAdmins').textContent = data['Admin'] || 0;
+                document.getElementById('todayAdmins').textContent = data['Admin'] + data['SuperAdmin']|| 0;
                 document.getElementById('todayUsers').textContent = data['User'] || 0;
             });
+    </script>
+
+    <script>
+    fetch('orders_overview.php')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('pendingCount').textContent = `${data.Pending} Orders`;
+            document.getElementById('cancelledCount').textContent = `${data.Cancelled} Orders`;
+            document.getElementById('processingCount').textContent = `${data['Out For Delivery']} Orders`;
+            document.getElementById('completedCount').textContent = `${data.Completed} Orders`;
+        });
+    </script>
+
+    <script>
+    // Fetch and display top selling products per day
+    fetch('top_sellingProducts_day.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        const list = document.getElementById('topSellingDayList');
+        list.innerHTML = ''; // Clear existing items
+
+        if (data.length === 0) {
+            const li = document.createElement('li');
+            li.className = 'list-group-item text-center border-0';
+            li.textContent = 'No products sold today';
+            list.appendChild(li);
+        } else {
+            data.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item border-0 d-flex justify-content-between align-items-center';
+                li.innerHTML = `
+                    <div>
+                        <span class="text-sm fw-medium">${item.model}</span>
+                        <br>
+                        <small class="text-muted">Revenue: ₱${item.revenue}</small>
+                    </div>
+                    <span class="badge bg-gradient-primary rounded-pill">${item.sold} sold</span>
+                `;
+                list.appendChild(li);
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching daily top selling products:', error);
+        const list = document.getElementById('topSellingDayList');
+        list.innerHTML = '<li class="list-group-item border-0 text-center text-danger">Error loading data</li>';
+    });
+    
+    
+    // Fetch and display top selling products per month
+    fetch('top_sellingProducts_month.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        const list = document.getElementById('topSellingMonthList');
+        list.innerHTML = ''; // Clear existing items
+
+        if (data.length === 0) {
+            const li = document.createElement('li');
+            li.className = 'list-group-item text-center border-0';
+            li.textContent = 'No products sold this month';
+            list.appendChild(li);
+        } else {
+            data.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item border-0 d-flex justify-content-between align-items-center';
+                li.innerHTML = `
+                    <div>
+                        <span class="text-sm fw-medium">${item.model}</span>
+                        <br>
+                        <small class="text-muted">Revenue: ₱${item.revenue}</small>
+                    </div>
+                    <span class="badge bg-gradient-primary rounded-pill">${item.sold} sold</span>
+                `;
+                list.appendChild(li);
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching monthly top selling products:', error);
+        const list = document.getElementById('topSellingMonthList');
+        list.innerHTML = '<li class="list-group-item border-0 text-center text-danger">Error loading data</li>';
+    });
+
+    // Fetch and display top selling products per year
+    fetch('top_sellingProducts_year.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        const list = document.getElementById('topSellingYearList');
+        list.innerHTML = ''; // Clear existing items
+
+        if (data.length === 0) {
+            const li = document.createElement('li');
+            li.className = 'list-group-item text-center border-0';
+            li.textContent = 'No products sold this year';
+            list.appendChild(li);
+        } else {
+            data.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item border-0 d-flex justify-content-between align-items-center';
+                li.innerHTML = `
+                    <div>
+                        <span class="text-sm fw-medium">${item.model}</span>
+                        <br>
+                        <small class="text-muted">Revenue: ₱${item.revenue}</small>
+                    </div>
+                    <span class="badge bg-gradient-primary rounded-pill">${item.sold} sold</span>
+                `;
+                list.appendChild(li);
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching yearly top selling products:', error);
+        const list = document.getElementById('topSellingYearList');
+        list.innerHTML = '<li class="list-group-item border-0 text-center text-danger">Error loading data</li>';
+    });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

@@ -1,21 +1,29 @@
 <?php
     session_start();
-    include("sales_data.php");
+    //include("sales_perDay.php");
 
-    $sql = "INSERT INTO sales_tbl (date, amount) VALUES ('2025-06-05', 100.00), ('2025-06-06', 150.00), ('2025-06-07', 200.00)"; 
-    if ($conn->query($sql) === TRUE) {
-        echo "New Record Created Successfully";
-    } else {
-        echo "Error: " . $conn->error; 
-    }
+    ob_start();
+    include('get_totalSales.php');
+    $completedCount = ob_get_clean();
 
+    ob_start();
+    include('get_inventoryCount.php');
+    $inventoryCount = ob_get_clean();
+
+    ob_start();
+    include('get_pendingOrders.php');
+    $pendingCount = ob_get_clean();
+
+    ob_start();
+    include('get_completedOrders.php');
+    $completedCount = ob_get_clean();
+    
     if (!isset($_SESSION['username'])) {
         // Not logged in — redirect to login
         header("Location: ../users/index.php");
         exit();
     }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +40,6 @@
     <link rel="stylesheet" href="../assets/css/AdminPage.css">
     <link rel="stylesheet" href="../assets/css/CustomAdminPage.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -60,55 +67,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="ordersAdmin.php" class="sidebar-link">
                         <i class="lni lni-box-closed"></i>
                         <span>Orders</span>
                     </a>
-                    <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Login</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Register</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-box-archive-1"></i>
-                        <span>Inventory</span>
-                    </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                Two Links
-                            </a>
-                            <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="ManageDBAdmin.php" class="sidebar-link">
-                        <i class="lni lni-layout-9"></i>
-                        <span>Manage Database</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="UserMngAdmin.php" class="sidebar-link">
-                        <i class="lni lni-user-multiple-4"></i>
-                        <span>User Management</span>
-                    </a>
                 </li>
             </ul>
-            <div class="sidebar-footer">
+            <div class="sidebar-footer"> 
                 <a href="../userAuth/logoutAdmin.php" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Logout</span>
@@ -123,7 +88,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm">
-                                <a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                                <a class="opacity-5 text-dark" href="javascript:;">Admin</a>
                             </li>
                             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
                         </ol>
@@ -155,7 +120,7 @@
                                     <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">universal_currency_alt</span>
                                     <div class="text-end">
                                       <p class="text-sm mb-0">Total Sales</p>
-                                      <h4 class="mb-0">Php 50,000</h4>
+                                      <h4 class="mb-0"><?php echo htmlspecialchars($total); ?> PHP </h4>
                                     </div>
                                 </div>  
                             </div>
@@ -169,7 +134,7 @@
                                     <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">check_circle</span>
                                     <div class="text-end">
                                       <p class="text-sm mb-0">Completed Orders</p>
-                                      <h4 class="mb-0">50 Orders</h4>
+                                      <h4 class="mb-0"><?php echo htmlspecialchars($completedCount); ?> Orders</h4>
                                     </div>
                                 </div>     
                             </div>
@@ -183,7 +148,7 @@
                                     <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">pending_actions</span>
                                     <div class="text-end">
                                       <p class="text-sm mb-0">Pending Orders</p>
-                                      <h4 class="mb-0">5 Orders</h4>
+                                      <h4 class="mb-0"><?php echo htmlspecialchars($pendingCount); ?> Orders</h4>
                                     </div>
                                 </div>     
                             </div>
@@ -197,7 +162,7 @@
                                     <span class="material-symbols-outlined" style="font-size: 50px; height: 40px; align-items: center">inventory</span>
                                     <div class="text-end">
                                       <p class="text-sm mb-0">Inventory</p>
-                                      <h4 class="mb-0">150 Items</h4>
+                                      <h4 class="mb-0"><?php echo htmlspecialchars($inventoryCount); ?> Items</h4>
                                     </div>
                                   </div>
                             </div>
@@ -206,6 +171,7 @@
                 </div>
             </div> 
 
+            
             <div class="container-fluid pt-3">
                 <div class="row removable">
                     <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
@@ -287,7 +253,7 @@
                             <div class="card-body pb-0 p-3 mt-1">
                                 <div class="row"> 
                                     <p class="text-sm mb-4">Registered Users</p>
-                                    <p class="mb-1">- 150 Users</p>
+                                    <p class="display-4 fw-bold" id="todayUsers">0</p>
                                 </div>
                                 <br>
                                 <hr class="dark horizontal my-0">
@@ -295,7 +261,7 @@
                             <div class="card-body pb-0 p-3 mt-1">
                                 <div class="row"> 
                                     <p class="text-sm mb-4">Registered Admins</p>
-                                    <p class="mb-4">- 5 Admins</p>
+                                    <p class="display-4 fw-bold" id="todayAdmins">0</p>
                                 </div>
                             </div>
                         </div>
@@ -305,24 +271,17 @@
                         <div class="card mb-4">
                             <div class="card-header p-3 pt-2">
                                 <div class="text-end pt-1">
-                                    <h5 class="text-sm mb-4">Top Selling Products Per Day</h5>
+                                     <h5 class="text-sm mb-4">Top Selling Products Per Day</h5>
                                 </div>
                             </div>
-                            <div class="card-body pb-4 p-3 mt-0">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                    <li class="list-group-item">A third item</li>
-                                  </ul>
+                            <div class="card-body pb-4 p-3 mt-0"> 
+                                    <ul id="topSellingDayList" class="list-group list-group-flush">
+                                    </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
 
             <div class="container-fluid pt-3">
                 <div class="row removable">
@@ -334,12 +293,8 @@
                                 </div>
                             </div>
                             <div class="card-body pb-4 p-3 mt-0">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                    <li class="list-group-item">A third item</li>
-                                  </ul>
+                                <ul id="topSellingMonthList" class="list-group list-group-flush">
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -352,12 +307,8 @@
                                 </div>
                             </div>
                             <div class="card-body pb-4 p-3 mt-0">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                    <li class="list-group-item">A third item</li>
-                                  </ul>
+                                <ul id="topSellingYearList" class="list-group list-group-flush">
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -367,40 +318,40 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span class="fw-bold">Orders Overview</span>
-                            <a href="#" class="text-decoration-none small">View the Unfulfilled Orders</a>
+                            <!-- <a href="#" class="text-decoration-none small">View the Unfulfilled Orders</a> -->
                         </div>
 
                         <div class="card-body pt-3">
                             <div class="d-flex overflow-auto px-3" style="gap: 1.5rem;">
                                 <!-- Mini Card -->
-                                <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                                <div class="card text-center flex-shrink-0" style="width: 471px; height: 140px;">
                                     <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
-                                        <h6 class="mb-1">Pending</h6>
-                                    <p class="mb-0 text-muted">3 Orders</p>
+                                    <h6 class="mb-1">Pending</h6>
+                                    <p id="pendingCount" class="mb-0 text-muted">0 Orders</p>
                                 </div>
                             </div>
 
                             <!-- Mini Card -->
-                            <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                            <div class="card text-center flex-shrink-0" style="width: 471px; height: 140px;">
                                 <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
-                                    <h6 class="mb-1">Canceled</h6>
-                                    <p class="mb-0 text-muted">2 Orders</p>
+                                    <h6 class="mb-1">Cancelled</h6>
+                                    <p id="cancelledCount" class="mb-0 text-muted">0 Orders</p>
                                 </div>
                             </div>
 
                             <!-- Mini Card -->
-                            <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                            <div class="card text-center flex-shrink-0" style="width: 471px; height: 140px;">
                                 <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
                                     <h6 class="mb-1">Processing</h6>
-                                    <p class="mb-0 text-muted">5 Orders</p>
+                                    <p id="processingCount" class="mb-0 text-muted">0 Orders</p>
                                 </div>
                             </div>
 
                             <!-- Mini Card -->
-                            <div class="card text-center flex-shrink-0" style="width: 140px; height: 140px;">
+                            <div class="card text-center flex-shrink-0" style="width: 471px; height: 140px;">
                                 <div class="card-body d-flex flex-column justify-content-center align-items-center p-3">
                                     <h6 class="mb-1">Completed</h6>
-                                    <p class="mb-0 text-muted">10 Orders</p>
+                                    <p id="completedCount" class="mb-0 text-muted">0 Orders</p>
                                 </div>
                                 </div>
                             </div>
@@ -411,13 +362,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
     <script>
-    fetch('sales_data.php')
+    fetch('sales_perDay.php')
         .then(response => response.json())
         .then(json => {
-            const actions = document.getElementById('salesPerDayChart').getContext('2d');
-            const salesPerDayChart = new Chart(actions, {
+            const ctx = document.getElementById('salesPerDayChart').getContext('2d');
+            const salesPerDayChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: json.labels,
@@ -447,163 +397,287 @@
                 }
             }); 
         }); 
+        </script>
 
-        // const actions = document.getElementById('salesPerDayChart').getContext('2d');
-        // const salesPerDayChart = new Chart(actions, {
-        //     type: 'line',
-        //     data: {
-        //         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        //         datasets: [{
-        //             label: 'Sales Per Day',
-        //             data: [12, 19, 3, 5, 2, 3, 9],
-        //             borderColor: 'rgba(75, 192, 192, 1)',
-        //             backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        //             fill: true,
-        //             tension: 0.4,
-        //             pointStyle: 'circle',
-        //             pointRadius: 6,
-        //             pointHoverRadius: 8,
-        //             pointBackgroundColor: 'white',
-        //             pointBorderColor: 'rgba(75, 192, 192, 1)'
-        //         }]
-        //     },
-            // options: {
-            //     responsive: true,
-            //     maintainAspectRatio: false, 
-            //     plugins: {
-            //         legend: {
-            //             display: true,
-            //             position: 'top',
-            //         },
-            //     },
-            //     scales: {
-            //         y: {
-            //             beginAtZero: true
-            //         }
-            //     }
-            // }
-        // });
-</script>
-
-<!-- <script>
-    const action = document.getElementById('salesPerMonthChart').getContext('2d');
-    const salesPerMonthChart = new Chart(action, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-            datasets: [{
-                label: 'Sales Per Month',
-                data: [19, 27, 8, 14, 40, 59, 80, 30, 10, 20, 1, 100],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true,
-                tension: 0.4,
-                pointStyle: 'circle',
-                pointRadius: 6,
-                pointHoverRadius: 8,
-                pointBackgroundColor: 'white',
-                pointBorderColor: 'rgba(75, 192, 192, 1)'
-            }]
-        },
-        options: {
-                responsive: true,
-                maintainAspectRatio: false, 
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    },
+        
+    <script>
+    fetch('sales_perMonth.php')
+        .then(response => response.json())
+        .then(json => {
+            const ctx = document.getElementById('salesPerMonthChart').getContext('2d');
+            const salesPerMonthChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: json.labels,
+                    datasets: [{
+                        label: 'Sales Per Month',
+                        data: json.data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, 
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
-</script>
+            }); 
+        }); 
+        </script>
 
-<script>
-    const act = document.getElementById('salesPerYearChart').getContext('2d');
-    const salesPerYearChart = new Chart(act, {
-        type: 'line',
-        data: {
-            labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
-            datasets: [{
-                label: 'Sales Per Year',
-                data: [19, 27, 8, 14, 40],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true,
-                tension: 0.4,
-                pointStyle: 'circle',
-                pointRadius: 6,
-                pointHoverRadius: 8,
-                pointBackgroundColor: 'white',
-                pointBorderColor: 'rgba(75, 192, 192, 1)'
-            }]
-        },
-        options: {
-                responsive: true,
-                maintainAspectRatio: false, 
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    },
+    <script>
+    fetch('sales_perQuarterly.php')
+        .then(response => response.json())
+        .then(json => {
+            const ctx = document.getElementById('salesPerQuarterChart').getContext('2d');
+            const salesPerQuarterChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: json.labels,
+                    datasets: [{
+                        label: 'Sales Per Quarter',
+                        data: json.data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, 
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
-</script>
+            }); 
+        }); 
+    </script>
 
-<script>
-    const Aksyon = document.getElementById('salesPerQuarterChart').getContext('2d');
-    const salesPerQuarterChart = new Chart(Aksyon, {
-        type: 'line',
-        data: {
-            labels: ['1st Quarter', '2nd Quarter', '3rd Quarter', '4th Quarter'],
-            datasets: [{
-                label: 'Sales Per Quarter',
-                data: [19, 27, 8, 14],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true,
-                tension: 0.4,
-                pointStyle: 'circle',
-                pointRadius: 6,
-                pointHoverRadius: 8,
-                pointBackgroundColor: 'white',
-                pointBorderColor: 'rgba(75, 192, 192, 1)'
-            }]
-        },
-        options: {
-                responsive: true,
-                maintainAspectRatio: false, 
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    },
+    <script>
+    fetch('sales_perYear.php')
+        .then(response => response.json())
+        .then(json => {
+            const ctx = document.getElementById('salesPerYearChart').getContext('2d');
+            const salesPerYearChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: json.labels,
+                    datasets: [{
+                        label: 'Sales Per Year',
+                        data: json.data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, 
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
-</script> -->
+            }); 
+        }); 
+    </script>
 
+    <script>
+        fetch('get_totalSales.php')
+          .then(response => response.text())
+          .then(data => {
+                document.getElementById('totalSales').textContent = parseInt(data).toLocaleString();
+          });
+    </script>
+
+    <script>
+        // Fetch pending orders
+        fetch('get_pendingOrders.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('pendingCount').textContent = data;
+        });
+
+        // Fetch completed orders
+        fetch('get_completedOrders.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('completedCount').textContent = data;
+        });
+    </script>
+
+    <script>
+        fetch('roles.php')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('todayAdmins').textContent = data['Admin'] + data['SuperAdmin']|| 0;
+                document.getElementById('todayUsers').textContent = data['User'] || 0;
+            });
+    </script>
+
+    <script>
+    fetch('orders_overview.php')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('pendingCount').textContent = `${data.Pending} Orders`;
+            document.getElementById('cancelledCount').textContent = `${data.Cancelled} Orders`;
+            document.getElementById('processingCount').textContent = `${data['Out For Delivery']} Orders`;
+            document.getElementById('completedCount').textContent = `${data.Completed} Orders`;
+        });
+    </script>
+
+    <script>
+    // Fetch and display top selling products per day
+    fetch('top_sellingProducts_day.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        const list = document.getElementById('topSellingDayList');
+        list.innerHTML = ''; // Clear existing items
+
+        if (data.length === 0) {
+            const li = document.createElement('li');
+            li.className = 'list-group-item text-center border-0';
+            li.textContent = 'No products sold today';
+            list.appendChild(li);
+        } else {
+            data.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item border-0 d-flex justify-content-between align-items-center';
+                li.innerHTML = `
+                    <div>
+                        <span class="text-sm fw-medium">${item.model}</span>
+                        <br>
+                        <small class="text-muted">Revenue: ₱${item.revenue}</small>
+                    </div>
+                    <span class="badge bg-gradient-primary rounded-pill">${item.sold} sold</span>
+                `;
+                list.appendChild(li);
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching daily top selling products:', error);
+        const list = document.getElementById('topSellingDayList');
+        list.innerHTML = '<li class="list-group-item border-0 text-center text-danger">Error loading data</li>';
+    });
+    
+    
+    // Fetch and display top selling products per month
+    fetch('top_sellingProducts_month.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        const list = document.getElementById('topSellingMonthList');
+        list.innerHTML = ''; // Clear existing items
+
+        if (data.length === 0) {
+            const li = document.createElement('li');
+            li.className = 'list-group-item text-center border-0';
+            li.textContent = 'No products sold this month';
+            list.appendChild(li);
+        } else {
+            data.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item border-0 d-flex justify-content-between align-items-center';
+                li.innerHTML = `
+                    <div>
+                        <span class="text-sm fw-medium">${item.model}</span>
+                        <br>
+                        <small class="text-muted">Revenue: ₱${item.revenue}</small>
+                    </div>
+                    <span class="badge bg-gradient-primary rounded-pill">${item.sold} sold</span>
+                `;
+                list.appendChild(li);
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching monthly top selling products:', error);
+        const list = document.getElementById('topSellingMonthList');
+        list.innerHTML = '<li class="list-group-item border-0 text-center text-danger">Error loading data</li>';
+    });
+
+    // Fetch and display top selling products per year
+    fetch('top_sellingProducts_year.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        const list = document.getElementById('topSellingYearList');
+        list.innerHTML = ''; // Clear existing items
+
+        if (data.length === 0) {
+            const li = document.createElement('li');
+            li.className = 'list-group-item text-center border-0';
+            li.textContent = 'No products sold this year';
+            list.appendChild(li);
+        } else {
+            data.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item border-0 d-flex justify-content-between align-items-center';
+                li.innerHTML = `
+                    <div>
+                        <span class="text-sm fw-medium">${item.model}</span>
+                        <br>
+                        <small class="text-muted">Revenue: ₱${item.revenue}</small>
+                    </div>
+                    <span class="badge bg-gradient-primary rounded-pill">${item.sold} sold</span>
+                `;
+                list.appendChild(li);
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching yearly top selling products:', error);
+        const list = document.getElementById('topSellingYearList');
+        list.innerHTML = '<li class="list-group-item border-0 text-center text-danger">Error loading data</li>';
+    });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <script src="AdminPage.js"></script>
+        <script src="../includes/logic/AdminPage.js"></script>
 </body>
-
 </html>
