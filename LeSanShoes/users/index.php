@@ -38,9 +38,6 @@
   </div>
 </div>
 
-
-
-
 <div class="container my-5">
   <div class="mb-4 shoesTitleColor">
     <h1 class="fw-bold">NEWEST IN THE GAME</h1>
@@ -59,9 +56,7 @@
     </button>
   </div>
 </div>
-
-
-
+ 
 
 <div class="container my-5 brandContainer">
   <div class="mb-4 shoesTitleColor">
@@ -224,7 +219,26 @@
     
     
   </main>
+  <script>
+    function username() {
+    console.log("pasokkk");
+    var form = document.getElementById('usernameForm');
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return; 
+      }
+    //   
+    var formData = new FormData(form);
+    var data = {
+        action: 'editUsername',
+        username: formData.get("username").trim(),
+    };
 
+    var jsonString = JSON.stringify(data);
+    sendViaAJAX(jsonString);
+}
+  </script>
+<script src="editUserMiddleware.js"></script>
 <?php include('modals.php'); ?>
 <?php include('../header-footer/footer.php'); ?>
 
@@ -232,6 +246,7 @@
   <script src="runningshoes.js"></script>
   <script src="ppageMiddleware.js"></script>
   <script src="orderDetailsMiddleware.js"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

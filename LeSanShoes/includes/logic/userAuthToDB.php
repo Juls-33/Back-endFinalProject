@@ -255,7 +255,83 @@
                             "admin" => $admin,
                         ]);
                     break;
-                    
+                    case 'editName':
+                        $username = $_SESSION['username'];
+                        $fname = $obj ->fname;
+                        $lname = $obj ->lname;
+                        $date_updated = date('Y-m-d H:i:s');
+
+                        $stmt = $conn->prepare("UPDATE users_tbl SET fname = ?, lname=?, date_updated = ? where username = ?");
+                        $stmt->bind_param("ssss", $fname, $lname, $date_updated, $username);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo "Record was successfully updated.";
+                            } else {
+                                echo "Username not found.";
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                    break;
+                    case 'editEmail':
+                        $username = $_SESSION['username'];
+                        $email = $obj ->email;
+                        $date_updated = date('Y-m-d H:i:s');
+
+                        $stmt = $conn->prepare("UPDATE users_tbl SET email = ?, date_updated = ? where username = ?");
+                        $stmt->bind_param("sss", $email, $date_updated, $username);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo "Record was successfully updated.";
+                            } else {
+                                echo "Username not found.";
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                    break;
+                    case 'editAddress':
+                        $username = $_SESSION['username'];
+                        $address = $obj ->address;
+                        $date_updated = date('Y-m-d H:i:s');
+
+                        $stmt = $conn->prepare("UPDATE users_tbl SET user_address= ?, date_updated = ? where username = ?");
+                        $stmt->bind_param("sss", $address, $date_updated, $username);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo "Record was successfully updated.";
+                            } else {
+                                echo "Username not found.";
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                    break;
+                    case 'editContact':
+                        $username = $_SESSION['username'];
+                        $contact = $obj ->contact;
+                        $date_updated = date('Y-m-d H:i:s');
+
+                        $stmt = $conn->prepare("UPDATE users_tbl SET contact = ?, date_updated = ? where username = ?");
+                        $stmt->bind_param("sss", $contact, $date_updated, $username);
+                        if ($stmt->execute()) {
+                            if ($stmt->affected_rows > 0) {
+                                echo "Record was successfully updated.";
+                            } else {
+                                echo "Username not found.";
+                            }
+                            
+                        } else {
+                            echo "Failed to execute";
+                        }
+                        $stmt->close();
+                    break;
                 }
             }
         }
