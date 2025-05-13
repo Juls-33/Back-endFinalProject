@@ -4,6 +4,7 @@ function signUp() {
         form.reportValidity(); 
         return; 
       }
+      console.log('checkpoint 1');
     var formData = new FormData(form);
     var data = {
         action: 'signUp',
@@ -17,6 +18,7 @@ function signUp() {
         user_address: formData.get("address").trim(),
         user_contact: formData.get("contact").trim(),
     };
+    console.log(data);
     verifySignUp(data);
 }
 
