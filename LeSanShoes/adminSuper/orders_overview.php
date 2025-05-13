@@ -17,7 +17,7 @@
     $statuses = [
         'Pending' => 0,
         'Cancelled' => 0,
-        'Processing' => 0,
+        'Out For Delivery' => 0,
         'Completed' => 0
     ];
 
