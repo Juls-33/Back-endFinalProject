@@ -302,6 +302,8 @@ if (isset($_SESSION['username'])) {
                               title: "Login failed",
                               text: res.message
                           });
+                          setTimeout(() => window.location.href = 'login.php', 2000);
+                          return;
                       }
                   },
                   error: function() {
