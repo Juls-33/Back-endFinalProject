@@ -57,7 +57,7 @@ if (mysqli_num_rows($orderQuery) > 0) {
                         <div class='d-flex justify-content-between align-items-center mt-3'>
                             <p class='mb-0'><strong>Total:</strong> Php $total</p>
                             <div class='d-flex justify-content-between align-items-center mt-3'>
-                                <p class='mb-0'><strong>Total:</strong> Php $total</p>
+                                <p class='mb-0 me-2'><strong>Total:</strong> Php $total</p>
                                 $cancelBtn
                             </div>
 
