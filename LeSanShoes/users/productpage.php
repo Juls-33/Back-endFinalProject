@@ -19,7 +19,7 @@
     <title><?php echo $_SESSION['model_name']; ?></title>
 
     <link rel="stylesheet" href="productpage.css">
-    <!-- <link rel="stylesheet" href="userTest.css"> -->
+    <link rel="stylesheet" href="userTest.css">
     
 </head>
 <body>
@@ -155,8 +155,8 @@
             </div>
             <div class="modal-body" id="cartModalBody">
                 <div id="cartItems">
-                    <div class="card mb-3" style="max-width: fit-content;">
-                        <div class="row g-0">
+                    <!-- <div class="card mb-3" style="max-width: fit-content;">
+                        <div class="row rowcart g-0">
                             <div class="col-md-4" style="padding-left: 10px;">
                                 <img src="user-homepage/images/pdimg/kai1.jpg" class="img-fluid rounded-start" alt="Nike V2K Run" style="object-fit: contain;">
                             </div>
@@ -180,17 +180,17 @@
                                     </div>
                                     <p class="card-text"><strong>₱6,895.00</strong></p>
                                     <div class="d-flex align-items-center">
-                                        <button class="btn btn-outline-secondary me-2">-</button>
+                                        <button class="btn btn-outline-secondary mbtn me-2">-</button>
                                         <span>1</span>
-                                        <button class="btn btn-outline-secondary ms-2">+</button>
-                                        <button class="btn btn-outline-danger ms-2">
+                                        <button class="btn btn-outline-secondary mbtn ms-2">+</button>
+                                        <button class="btn btn-outline-danger mbtn ms-2">
                                             <i class="material-icons">delete</i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Additional items can be added here -->
                 </div>
             </div>

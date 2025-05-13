@@ -173,7 +173,7 @@ $(document).on('click', '#openCartBtn', function () {
                 subtotal += parseFloat(item.total_price);
                 $('#cartItems').append(`
                     <div class="card mb-3 cart-card" data-index="${index}" style="cursor: pointer;">
-                        <div class="row g-0 align-items-center">
+                        <div class="row g-0 rowcart align-items-center">
                             <div class="col-auto ps-3">
                                 <input type="checkbox" class="form-check-input cart-check" 
                                 data-price="${item.total_price}"
@@ -203,11 +203,11 @@ $(document).on('click', '#openCartBtn', function () {
 
                                     <div class="mb-2 d-flex align-items-center">
                                         <label class="me-2 mb-0">Qty:</label>
-                                        <button class="btn btn-outline-secondary btn-sm qty-decrease" data-cart-id="${item.cart_id}" data-price-at-order="${item.price}">−</button>
+                                        <button class="btn btn-outline-secondary btn-sm mbtn qty-decrease" data-cart-id="${item.cart_id}" data-price-at-order="${item.price}">−</button>
                                         <span class="mx-2 cart-qty" data-cart-id="${item.cart_id}" data-price-at-order="${item.price}">${item.quantity}</span>
-                                        <button class="btn btn-outline-secondary btn-sm qty-increase" data-cart-id="${item.cart_id}" data-price-at-order="${item.price}">+</button>
+                                        <button class="btn btn-outline-secondary btn-sm mbtn qty-increase" data-cart-id="${item.cart_id}" data-price-at-order="${item.price}">+</button>
                                     </div>
-                                    <button class="btn btn-sm btn-danger cart-delete-btn mt-1" data-cart-id="${item.cart_id}">Delete</button>
+                                    <button class="btn btn-sm btn-danger cart-delete-btn mbtn mt-1" data-cart-id="${item.cart_id}">Delete</button>
                                 </div>
                             </div>
                         </div>

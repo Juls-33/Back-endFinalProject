@@ -91,7 +91,7 @@ p{
     padding-left: 25px;
     padding-right: 25px;
 }
-.row{
+.rowcart{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -116,7 +116,7 @@ p{
       color: #B51E1E;
 }
 
-.btn{
+.mbtn{
     display: inline-block;
     background: #ffffff;
     color: #B51E1E;
@@ -126,7 +126,7 @@ p{
     border-radius: 30px;
     transition:background 0.5s;
 }
-.btn:hover{
+.mbtn:hover{
     background: #563434;
 }
 .header{
