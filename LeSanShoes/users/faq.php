@@ -19,7 +19,8 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
     <script src="../assets/js/user.js" defer></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>   
+     <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico"> 
     <!-- <link rel="stylesheet" href="../assets/css/user.css"/> -->
     <link rel="stylesheet" href="../HEADER/FOOTER/header-footer.css"/>
     <link rel="stylesheet" href="productpage.css">
