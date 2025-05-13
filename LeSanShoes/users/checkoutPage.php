@@ -276,6 +276,7 @@ h4{
       <a class="text-white" href="https://mdbootstrap.com/">LeSanShoes.com</a>
     </div>
 </footer>
+<script src="orderDetailsMiddleware.js"></script>
 </body>
 <script>
 document.getElementById('addressInfo').addEventListener('change', function() {
