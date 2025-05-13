@@ -50,7 +50,8 @@ if (isset($_POST['id'])) {
       $sizeSql = "SELECT cs.colorway_size_id, s.size_name, cs.stock
                     FROM colorway_size_tbl cs 
                     JOIN size_tbl s ON cs.size_id = s.size_id 
-                    WHERE cs.colorway_id = '$modelId'";
+                    WHERE cs.colorway_id = '$modelId'
+                    ORDER BY s.size_id ASC";
         $sizeResult = mysqli_query($conn, $sizeSql);
         $_SESSION['model_name'] = $row['model_name'];
         $sizesWithStock = [];
@@ -106,8 +107,9 @@ if (isset($_POST['id'])) {
             <div class="col-12 col-lg-3" id = "productDesc">
                 <div class ="productDesc">
                     <div class = "productTitle">
-                        <h3><i><?php echo $row['category_name']; ?></i></h3>
-                        <h3><strong><?php echo $row['colorway_name']; ?></strong></h3>
+                        <h4><i><?php echo $row['category_name']; ?></i></h4>
+                        <h3><?php echo $row['model_name']; ?></h3>
+                        <h6><?php echo $row['colorway_name']; ?></h6>
                     </div>
 
                     <div class = "productPriceSize">

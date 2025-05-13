@@ -17,6 +17,11 @@ $(document).ready(function() {
             success: function(pdetails) {
                 $('#mainpart').html(pdetails);
                 initializeDynamicContent();
+
+                const modelName = $('#mainpart .productTitle h3').text().trim();
+                if (modelName) {
+                    document.title = modelName + " | SanShoes";
+                }
             },
             error: function(xhr, status, error) {
                 console.error('Error loading product details: ' + error);
@@ -44,6 +49,7 @@ function fetchImages(modelId) {
         }
     });
 }
+
 $(document).ready(function() {
     const urlParams = new URLSearchParams(window.location.search);
     const modelId = urlParams.get('id');
@@ -388,32 +394,62 @@ function updateCartSubtotal() {
 // Function to open the modal
 function openModal(index) {
     currentIndex = index;
-    const modalImageDiv = document.getElementById('modalImage');
-    modalImageDiv.style.backgroundImage = `url('${images[currentIndex]}')`;
+
+    const modalImageDiv = $('#modalImage');
+
+    if (images[currentIndex]) {
+        modalImageDiv.css('background-image', `url('${images[currentIndex]}')`);
+    } else {
+        console.warn('Invalid image index:', currentIndex);
+        return;
+    }
+
+    resetZoom(modalImageDiv[0]);
     updateThumbnailList();
-    
-    // Initialize and show the modal
+
     const modal = new bootstrap.Modal(document.getElementById('imageModal'));
     modal.show();
+
+    $('.next-btn, .prev-btn').show();
 }
+
+// Function to change the image
 function changeImage(direction) {
-    // Calculate new index
     let newIndex = currentIndex + direction;
-    
-    // Wrap around if needed
+
     if (newIndex < 0) {
         newIndex = images.length - 1;
     } else if (newIndex >= images.length) {
         newIndex = 0;
     }
-    
-    // Update current index and image
-    currentIndex = newIndex;
-    const modalImageDiv = document.getElementById('modalImage');
-    modalImageDiv.style.backgroundImage = `url('${images[currentIndex]}')`;
-    resetZoom(modalImageDiv);
-    updateThumbnailList();
+
+    if (images[newIndex]) {
+        currentIndex = newIndex;
+        $('#modalImage').css('background-image', `url('${images[currentIndex]}')`);
+        resetZoom(document.getElementById('modalImage'));
+        updateThumbnailList();
+    } else {
+        console.warn('Invalid image index:', newIndex);
+    }
 }
+
+// Hide buttons when modal image is clicked
+$('#modalImage').on('click', function () {
+    resetZoom(this);
+    $('.next-btn, .prev-btn').hide();
+});
+
+// When a thumbnail is clicked, openModal will run and .show() buttons again
+// If you manually call setModalImage on thumbnail click, ensure it restores buttons too:
+function setModalImage(index) {
+    if (images[index]) {
+        currentIndex = index;
+        $('#modalImage').css('background-image', `url('${images[currentIndex]}')`);
+        resetZoom(document.getElementById('modalImage'));
+        updateThumbnailList();
+    }
+}
+
 
 // Function to zoom the image
 function zoom(event, element) {
@@ -428,13 +464,25 @@ function resetZoom(element) {
     element.style.backgroundPosition = 'center';
     element.style.backgroundSize = 'cover';
 }
-document.getElementById('imageModal').addEventListener('hidden.bs.modal', function () {
-    // Remove any remaining backdrop
-    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
-    
-    // Reset body styles
-    document.body.style.overflow = 'auto';
-    document.body.style.paddingRight = '';
+
+$(document).ready(function () {
+    $('#closeImageModalBtn').on('click', function () {
+        const modalEl = document.getElementById('imageModal');
+        const modalInstance = bootstrap.Modal.getInstance(modalEl);
+
+        if (modalInstance) {
+            modalInstance.hide(); // Fully hides the modal via Bootstrap
+        }
+    });
+
+    //Whenever the modal is hidden, clean up automatically
+    $('#imageModal').on('hidden.bs.modal', function () {
+        $('.modal-backdrop').remove();
+        $('body').removeClass('modal-open').css({
+            overflow: '',
+            paddingRight: ''
+        });
+    });
 });
 
 // Function to update the thumbnail list
@@ -460,6 +508,7 @@ function updateThumbnailList() {
                 modalImageDiv.style.backgroundImage = `url('${images[currentIndex]}')`;
                 resetZoom(modalImageDiv);
                 updateThumbnailList();
+                $('.next-btn, .prev-btn').show();
             });
         thumbnailList.append(thumbnail);
     });

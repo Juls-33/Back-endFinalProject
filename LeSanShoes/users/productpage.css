@@ -41,6 +41,9 @@
     .productDesc h3{
         color: #B51E1E;
     }
+    .productTitle{
+        padding-bottom: 4px;
+    }
     .accordion-spacing{
       margin-top: 1.8vh;
     }
@@ -174,7 +177,6 @@
             background-color: transparent !important;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-       
         #sizeDropdown {
             background-color: transparent !important;
             color: black !important;

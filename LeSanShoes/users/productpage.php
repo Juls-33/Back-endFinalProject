@@ -1,5 +1,4 @@
-<?php session_start(); 
-
+<?php session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +15,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title><?php echo $_SESSION['model_name']; ?></title>
-     <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
 
     <link rel="stylesheet" href="productpage.css">
     <link rel="stylesheet" href="../header-footer/header-footer.css">
@@ -33,7 +32,7 @@
 <main id="mainpart"></main>
 
 <!-- Modals -->
-    <div class="modal fade modal-fullscreen" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true" data-bs-backdrop="false">
+    <div class="modal fade modal-fullscreen" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
