@@ -257,9 +257,66 @@ if (isset($_SESSION['username'])) {
                     return;
                 }
             }
+             var formData = {
+                  action: 'login',
+                  username: document.getElementById("username").value.trim(),
+                  user_password: document.getElementById("password").value.trim(),
+              };
+
+              var jsonString = JSON.stringify(formData);
+              $.ajax({
+                  url: "../includes/logic/userAuthToDB.php", 
+                  type: "POST",
+                  data: {myJson : jsonString},
+                  success: function(response) {
+                      let res;
+                      try {
+                          res = JSON.parse(response);
+                      } catch (e) {
+                          Swal.fire({
+                              icon: "error",
+                              title: "Unexpected response from server",
+                              text: response
+                          });
+                          return;
+                      }
+                  
+                      if (res.status === "success") {
+                          if (res.roles_id == 1) {
+                              window.location.href = "../users/index.php";
+                          } else if (res.roles_id == 3) {
+                              window.location.href = "../admin/DashboardAdmin.php";
+                          } else if(res.roles_id == 2){
+                              window.location.href = "../adminSuper/DashboardSuperAdmin.php";
+                          }
+                          else {
+                              Swal.fire({
+                                  icon: "warning",
+                                  title: "Unknown role",
+                                  text: "No redirection configured for this role."
+                              });
+                          }
+                      } else {
+                          Swal.fire({
+                              icon: "error",
+                              title: "Login failed",
+                              text: res.message
+                          });
+                      }
+                  },
+                  error: function() {
+                      // Handle any errors that occur during the request
+                      Swal.fire({
+                          icon: "error",
+                          title: "Oops...",
+                          text: 'Something went wrong! Username already exist',
+                      });
+                  }
+              });
+
             // If all validations pass
             showToast('Login successfully!', 'confirmation');
-            setTimeout(() => form.submit(), 1000);
+            setTimeout(() => window.location.href = 'index.php', 2000);
         };
     });
 </script>
