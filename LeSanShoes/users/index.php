@@ -24,7 +24,7 @@
 <div>
   <div class="header">
     <div class="container">
-      <div class="row">
+      <div class="rowcart"> 
         <div class="col-2">
           <h1>Give your Workout <br>A New Style!</h1>
           <p>Success isn't always about greatness. It's about consistency. Consistent<br>hard work gains success. Greatness will come.</p>
@@ -36,6 +36,7 @@
       </div>
     </div>
   </div>
+</div>
 
 
 
@@ -66,7 +67,7 @@
   <div class="mb-4 shoesTitleColor">
     <h1 class="fw-bold">SHOP BY BRAND</h1>
   </div>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-4 justify-content-center">
+  <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-4 justify-content-center">
 
     <div class="col d-flex justify-content-center">
       <a href="products.php?brand=Anta" class="text-decoration-none text-dark w-100" style="max-width: 220px;">
@@ -141,6 +142,7 @@
     <h1 class="fw-bold text-center">FOR THE GREATEST</h1>
   </div>
 </div>
+
 <div id="carouselExampleCaptions" class="carousel slide">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -148,34 +150,45 @@
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
+    
     <div class="carousel-item active">
-      <img src="../assets/images/lebron.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block text-end custom-caption">
-        <div class="d-inline-block text-center">
-          <h2 class="fw-bold">BASKETBALL</h2>
-          <a href="products.php?category=basketball" class="btn btn-light mt-2">Explore Now</a>
+      <a href="products.php?category=basketball" class="d-block w-100 position-relative">
+        <img src="../assets/images/lebron.jpg" class="d-block w-100" alt="BASKETBALL">
+        <div class="carousel-caption d-none d-md-block text-end custom-caption">
+          <div class="d-inline-block text-center">
+            <h2 class="fw-bold">BASKETBALL</h2>
+            <span class="btn btn-light mt-2">Explore Now</span>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
+
     <div class="carousel-item">
-      <img src="../assets/images/bolt.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block text-end custom-caption">
-        <div class="d-inline-block text-center">
-          <h2 class="fw-bold">RUNNING</h2>
-          <a href="products.php?category=running" class="btn btn-light mt-2">Explore Now</a>
+      <a href="products.php?category=running" class="d-block w-100 position-relative">
+        <img src="../assets/images/bolt.jpg" class="d-block w-100" alt="RUNNING">
+        <div class="carousel-caption d-none d-md-block text-end custom-caption">
+          <div class="d-inline-block text-center">
+            <h2 class="fw-bold">RUNNING</h2>
+            <span class="btn btn-light mt-2">Explore Now</span>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
+
     <div class="carousel-item">
-      <img src="../assets/images/mbappe.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block text-end custom-caption">
-        <div class="d-inline-block text-center">
-          <h2 class="fw-bold">LIFESTYLE</h2>
-          <a href="products.php?category=lifestyle" class="btn btn-light mt-2">Explore Now</a>
+      <a href="products.php?category=lifestyle" class="d-block w-100 position-relative">
+        <img src="../assets/images/mbappe.jpg" class="d-block w-100" alt="LIFESTYLE">
+        <div class="carousel-caption d-none d-md-block text-end custom-caption">
+          <div class="d-inline-block text-center">
+            <h2 class="fw-bold">LIFESTYLE</h2>
+            <span class="btn btn-light mt-2">Explore Now</span>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
+
   </div>
+
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -185,6 +198,7 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
 
 
 <div class="runningContainer">

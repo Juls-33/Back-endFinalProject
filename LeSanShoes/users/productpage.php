@@ -17,6 +17,7 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title><?php echo $_SESSION['model_name']; ?></title>
+     <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
 
     <link rel="stylesheet" href="productpage.css">
     <link rel="stylesheet" href="../header-footer/header-footer.css">
