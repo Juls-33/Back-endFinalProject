@@ -143,6 +143,7 @@
 <?php include('../header-footer/footer.php'); ?>
 
 <script src="productsPageMiddleware.js"></script>
+<script src="editUserMiddleware.js"></script>
 <script src="ppageMiddleware.js"></script>
   <script src="filters.js"></script>
   <script src="orderDetailsMiddleware.js"></script>

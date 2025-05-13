@@ -63,7 +63,7 @@
 
 
 <!-- edit users modal -->
- <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editUserModal">EDIT</button>
+ <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editUserModal">EDIT</button> -->
 <!-- User Edit Modal HTML -->
 <div id="editUserModal" class="modal fade" tabindex="-1" aria-labelledby="editUserModalLabel">
     <div class="modal-dialog">

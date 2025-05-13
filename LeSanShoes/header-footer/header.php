@@ -45,14 +45,19 @@
                         </div>
                         <!-- Dropdown Menu -->
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <?php if (isset($_SESSION["username"])): ?>
-                                <li class="dropdown-item text-muted">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="../userAuth/logoutUser.php">Logout</a></li>
-                            <?php else: ?>
-                                <li><a class="dropdown-item" href="../userAuth/login.php">Login</a></li>
-                            <?php endif; ?>
+                        <?php if (isset($_SESSION["username"])): ?>
+                        <li class="dropdown-item text-muted">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?></li>
+                         <li><hr class="dropdown-divider"></li>
+                         <li> <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editUserModal">
+                        Edit Profile</a> </li>
+
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="../userAuth/logoutUser.php">Logout</a></li>
+                        <?php else: ?>
+                        <li><a class="dropdown-item" href="../userAuth/login.php">Login</a></li>
+                       <?php endif; ?>
                         </ul>
+
                     </div>
                 </div>
             </div>

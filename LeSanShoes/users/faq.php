@@ -249,11 +249,9 @@ session_start();
                 <button type="button" class="mbtn border solid">Contact Us</button>
             </div>
         </main>
-        <!-- Footer -->
-        <br> <br>
    <?php include('modals.php'); ?>
 <?php include('../header-footer/footer.php'); ?>
-
+        <script src="editUserMiddleware.js"></script>
         <script src="productsPageMiddleware.js"></script>
         <script src="ppageMiddleware.js"></script>
         <script src="orderDetailsMiddleware.js"></script>
