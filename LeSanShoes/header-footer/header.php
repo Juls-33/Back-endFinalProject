@@ -23,23 +23,24 @@
           <li class="nav-item"><a class="nav-link" href="faq.php">FAQ</a></li>
           </ul>
           <div class="d-lg-flex flex-lg-row align-items-center gap-2">
+              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">View Orders</button>
               <div class="dropdown mb-2">
-    <div class="d-flex align-items-center" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
-        <span class="icon-text d-inline d-lg-none">User Account</span>
-    </div>
+                <div class="d-flex align-items-center" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="material-symbols-outlined d-none d-lg-inline">account_circle</span>
+                    <span class="icon-text d-inline d-lg-none">User Account</span>
+                </div>
 
-    <!-- Dropdown Menu -->
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-        <?php if (isset($_SESSION["username"])): ?>
-            <li class="dropdown-item text-muted">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="../userAuth/logoutUser.php">Logout</a></li>
-        <?php else: ?>
-            <li><a class="dropdown-item" href="../userAuth/login.php">Login</a></li>
-        <?php endif; ?>
-    </ul>
-</div>
+                <!-- Dropdown Menu -->
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <?php if (isset($_SESSION["username"])): ?>
+                        <li class="dropdown-item text-muted">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="../userAuth/logoutUser.php">Logout</a></li>
+                    <?php else: ?>
+                        <li><a class="dropdown-item" href="../userAuth/login.php">Login</a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
           </div>
             <div>
               <span class="material-symbols-outlined d-none d-lg-inline cursor-pointer" id="openCartBtn" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#cartModal" styl>
