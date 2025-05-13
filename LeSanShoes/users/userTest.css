@@ -7,56 +7,6 @@
 }
 
 
- 
-.navbar-brand, .nav-link, .navbar-text {
-    color: #B51E1E !important;
-    font-weight: bold;
-}
-
-.ad {
-    background-color: #B51E1E;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 2rem;
-}
-
-.ad-text {
-    width: 100%;
-    height: 1.5rem;
-    text-align: center;
-    color: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.ad-text h2 {
-    font-size: 1rem;
-}
-
-img {
-    width: 100%;
-    height: 100%;
-}
-
-.logo-class {
-    width: 8rem;
-    height: 4rem;
-    display: flex;
-}
-
-.material-symbols-outlined{
-  color: #B51E1E;
-  font-size: 3rem;
-}
-
-.icon-text {
-  color: #B51E1E;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-
 a{
     text-decoration: none;
     color: #555;
