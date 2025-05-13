@@ -66,17 +66,17 @@ if (isset($_SESSION['username'])) {
                     <li class="nav-item"><a class="nav-link" href="../users/faq.php">FAQ</a></li>
                 </ul>
                 <div class="d-lg-flex flex-lg-row align-items-center gap-2">
-                    <!-- <span class="material-symbols-outlined d-none d-lg-inline cursor-pointer" style="cursor:pointer; pointer-events: auto;" data-bs-toggle="modal" data-bs-target="#orderDetailsModal" title="View Orders">
-                        receipt_long
-                    </span>
-                    <div class="d-flex d-lg-none align-items-center mb-2">
-                      <span class="icon-text d-inline d-lg-none cursor-pointer" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
-                          View Orders
-                      </span>
-                    </div>
-                    <span class="material-symbols-outlined d-none d-lg-inline cursor-pointer" style="cursor:pointer; pointer-events: auto;" id="openCartBtn" data-bs-toggle="modal" data-bs-target="#cartModal" title="View Cart">
-                        shopping_cart
-                    </span> -->
+                        <!-- <span class="material-symbols-outlined d-none d-lg-inline cursor-pointer" style="cursor:pointer; pointer-events: auto;" data-bs-toggle="modal" data-bs-target="#orderDetailsModal" title="View Orders">
+                            receipt_long
+                        </span>
+                        <div class="d-flex d-lg-none align-items-center mb-2">
+                        <span class="icon-text d-inline d-lg-none cursor-pointer" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
+                            View Orders
+                        </span>
+                        </div>
+                        <span class="material-symbols-outlined d-none d-lg-inline cursor-pointer" style="cursor:pointer; pointer-events: auto;" id="openCartBtn" data-bs-toggle="modal" data-bs-target="#cartModal" title="View Cart">
+                            shopping_cart
+                        </span> -->
                     <div class="d-flex d-lg-none align-items-center mb-2">
                       <span class="icon-text d-inline d-lg-none cursor-pointer" id="openCartBtn" data-bs-toggle="modal" data-bs-target="#cartModal">Cart</span>
                     </div>

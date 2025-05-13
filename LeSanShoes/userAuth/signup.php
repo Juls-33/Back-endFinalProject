@@ -138,7 +138,7 @@
 
       <div class="form-group">
         <label for="contact" class="form-label">Contact Number*</label>
-        <input type="number" id="contact" name="contact" class="form-control" placeholder="Enter your contact number" min="0" onKeyPress="if(this.value.length==11) return false;" required>
+        <input type="number" id="contact" name="contact" class="form-control" placeholder="Enter your contact number" min="0" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==11) return false;" required>
       </div>
 
       <div class="checkbox">
