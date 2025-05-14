@@ -288,12 +288,12 @@
 
                             <div class="form-group mb-3">
                                 <label for="passwordEdit">Edit new password</label>
-                                <input type="password" id="passwordEdit" name="passwordEdit" class="form-control" maxlength="100" required>
+                                <input type="password" id="passwordEdit" name="passwordEdit" class="form-control"  maxlength="100" required>
                             </div>
 
                             <div class="form-group mb-3">
                                 <label for="passwordConfEdit">Confirm new password</label>
-                                <input type="password" id="passwordConfEdit" name="passwordConfEdit" class="form-control" maxlength="100" required>
+                                <input type="password" id="passwordConfEdit" name="passwordConfEdit" class="form-control"   maxlength="100" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="contactEdit">Contact Number</label>
@@ -345,16 +345,16 @@
 
                             <div class="form-group mb-3">
                                 <label for="password">Password</label>
-                                <input type="password" id="password" name="password" class="form-control" maxlength="100" required>
+                                <input type="password" id="password" name="password" class="form-control" minlength="8" maxlength="100" required>
                             </div>
 
                             <div class="form-group mb-3">
                                 <label for="passwordConf">Password confirmation</label>
-                                <input type="password" id="passwordConf" name="passwordConf" class="form-control" maxlength="100" required>
+                                <input type="password" id="passwordConf" name="passwordConf" class="form-control" minlength="8" maxlength="100" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="contact">Contact Number</label>
-                                <input type="number" id="contact" name="contact" class="form-control" min="0"  maxlength="11" onKeyPress="if(this.value.length==11) return false;" required>
+                                <input type="number" id="contact" name="contact" class="form-control" min="0"  maxlength="11" oninput="this.value = Math.abs(this.value)" onKeyPress="if(this.value.length==11) return false;" required>
                             </div>
                             </form>
                         </div>

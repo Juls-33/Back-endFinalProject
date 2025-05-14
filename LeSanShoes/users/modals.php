@@ -132,7 +132,7 @@
                         <div class="form-group mb-3">
                             <form id="contactForm">
                               <label for="username" class="form-label">Contact Number</label>
-                              <input type="text" id="contact" name="contact" class="form-control" placeholder="Enter new contact number" maxlength="11" required>
+                              <input type="number" id="contact" name="contact" class="form-control" placeholder="Enter new contact number" oninput="this.value = Math.abs(this.value)" maxlength="11" required>
                               <button type="button" class="btn btn-primary" onclick="updateContact()">Save Details</button>
                             </form>
                         </div>
