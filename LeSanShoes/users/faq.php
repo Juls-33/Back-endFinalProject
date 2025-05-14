@@ -246,7 +246,7 @@ session_start();
                     <li>Email: juls_33@gmail.com </li>
                     <li>Contact Number:+63 984 467 7856 </li>
                 </ul>
-                <button type="button" class="mbtn border solid">Contact Us</button>
+                <!-- <button type="button" class="mbtn border solid">Contact Us</button> -->
             </div>
         </main>
    <?php include('modals.php'); ?>
