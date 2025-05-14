@@ -128,7 +128,7 @@
 
       <div class="form-group">
         <label for="birthdate" class="form-label">Birthday*</label>
-        <input type="date" id="birthdate" name="birthdate" class="form-control" required>
+        <input type="date" id="birthdate" name="birthdate" class="form-control" max="2025-05-13" required>
       </div>
 
       <div class="form-group">
